@@ -102,16 +102,12 @@ export const Home = (): JSX.Element => {
             <div className="relative">
               {/* Navigation */}
               <nav className="flex items-center justify-between py-4 mb-8 lg:mb-16">
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center">
                   <img 
                     src="/attached_assets/construction_1750785320323.jpg" 
-                    alt="Smart Builders & Developers" 
-                    className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
+                    alt="Company Logo" 
+                    className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
                   />
-                  <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
-                    Smart Builders
-                    <span className="block text-sm font-normal text-[#313131] tracking-normal">& Developers</span>
-                  </div>
                 </div>
                 
                 {/* Desktop Navigation */}
