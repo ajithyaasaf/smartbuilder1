@@ -52,7 +52,7 @@ export const Section = (): JSX.Element => {
             <div className="relative">
               {/* Navigation */}
               <nav className="flex items-center justify-between py-4 mb-8 lg:mb-16">
-                <div className="text-xl sm:text-2xl lg:text-[25px] font-semibold text-[#17a6b8] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
+                <div className="text-xl sm:text-2xl lg:text-[25px] font-semibold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
                   BuildMasters
                 </div>
                 
@@ -62,7 +62,7 @@ export const Section = (): JSX.Element => {
                     {navItems.map((item, index) => (
                       <NavigationMenuItem key={index}>
                         <NavigationMenuLink
-                          className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#17a6b8] transition-colors ${
+                          className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#b48b2f] transition-colors ${
                             item.active
                               ? "font-semibold relative after:absolute after:w-1 after:h-1 after:bg-[#313131] after:rounded-sm after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2"
                               : "font-normal"
@@ -94,9 +94,9 @@ export const Section = (): JSX.Element => {
                         <a
                           key={index}
                           href="#"
-                          className={`text-lg [font-family:'Poppins',Helvetica] hover:text-[#17a6b8] transition-colors px-4 py-2 ${
+                          className={`text-lg [font-family:'Poppins',Helvetica] hover:text-[#b48b2f] transition-colors px-4 py-2 ${
                             item.active
-                              ? "font-semibold text-[#17a6b8] border-l-2 border-[#17a6b8]"
+                              ? "font-semibold text-[#b48b2f] border-l-2 border-[#b48b2f]"
                               : "font-normal text-[#313131]"
                           }`}
                           onClick={() => setIsMobileMenuOpen(false)}
@@ -105,12 +105,12 @@ export const Section = (): JSX.Element => {
                         </a>
                       ))}
                       <div className="pt-4 px-4 space-y-3">
-                        <Button className="w-full bg-[#17a6b8] hover:bg-[#148a9a] text-white font-medium [font-family:'Poppins',Helvetica]">
+                        <Button className="w-full bg-[#b48b2f] hover:bg-[#9d7829] text-white font-medium [font-family:'Poppins',Helvetica]">
                           Explore
                         </Button>
                         <Button
                           variant="outline"
-                          className="w-full border-2 border-[#17a6b8] text-[#17a6b8] hover:bg-[#17a6b8] hover:text-white font-medium [font-family:'Poppins',Helvetica]"
+                          className="w-full border-2 border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white font-medium [font-family:'Poppins',Helvetica]"
                         >
                           Contact Us
                         </Button>
@@ -127,12 +127,12 @@ export const Section = (): JSX.Element => {
                   {/* Heading */}
                   <div className="space-y-2">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold [font-family:'Poppins',Helvetica] leading-tight lg:leading-[64px] tracking-[-1.64px]">
-                      <span className="text-[#17a6b8]">Masters</span>
+                      <span className="text-[#b48b2f]">Masters</span>
                       <span className="text-[#313131]"> of</span>
                       <br />
                       <span className="text-[#313131]">Consistency and</span>
                       <br />
-                      <span className="text-[#17a6b8]">Quality</span>
+                      <span className="text-[#b48b2f]">Quality</span>
                       <span className="text-[#313131]">.</span>
                     </h1>
                   </div>
@@ -145,12 +145,12 @@ export const Section = (): JSX.Element => {
 
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 sm:gap-3">
-                    <Button className="w-full sm:w-auto px-8 py-4 h-auto bg-[#17a6b8] hover:bg-[#148a9a] rounded-[40px_5px_40px_5px] shadow-[0px_1.85px_3.15px_#18a7b906,0px_8.15px_6.52px_#18a7b90a,0px_20px_13px_#18a7b90d,0px_38.52px_25.48px_#18a7b910,0px_64.81px_46.85px_#18a7b913] text-white text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px]">
+                    <Button className="w-full sm:w-auto px-8 py-4 h-auto bg-[#b48b2f] hover:bg-[#9d7829] rounded-[40px_5px_40px_5px] shadow-[0px_1.85px_3.15px_#18a7b906,0px_8.15px_6.52px_#18a7b90a,0px_20px_13px_#18a7b90d,0px_38.52px_25.48px_#18a7b910,0px_64.81px_46.85px_#18a7b913] text-white text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px]">
                       Explore
                     </Button>
                     <Button
                       variant="outline"
-                      className="w-full sm:w-auto px-8 py-4 h-auto rounded-[40px_5px_40px_5px] border-2 border-[#17a6b8] hover:bg-[#17a6b8] hover:text-white text-[#17a6b8] text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px] shadow-[0px_1.85px_3.15px_#38383806,0px_8.15px_6.52px_#3838380a,0px_20px_13px_#3838380d,0px_38.52px_25.48px_#38383810,0px_64.81px_46.85px_#38383813,0px_100px_80px_#3838381a]"
+                      className="w-full sm:w-auto px-8 py-4 h-auto rounded-[40px_5px_40px_5px] border-2 border-[#b48b2f] hover:bg-[#b48b2f] hover:text-white text-[#b48b2f] text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px] shadow-[0px_1.85px_3.15px_#38383806,0px_8.15px_6.52px_#3838380a,0px_20px_13px_#3838380d,0px_38.52px_25.48px_#38383810,0px_64.81px_46.85px_#38383813,0px_100px_80px_#3838381a]"
                     >
                       Contact Us
                     </Button>

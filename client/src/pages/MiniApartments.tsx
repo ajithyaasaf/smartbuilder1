@@ -5,9 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MapPin, Phone, Mail, Bed, Bath, Square, Car, Star, CheckCircle, ArrowRight, Building, Wifi, Coffee, Briefcase, GraduationCap, Heart } from "lucide-react";
+import { Footer } from "@/components/Footer";
+import { useNavigation } from "@/lib/navigation";
 
 export const MiniApartments = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { navigate } = useNavigation();
   
   const navItems = [
     { name: "Home", path: "/", active: false },
@@ -145,8 +148,8 @@ export const MiniApartments = (): JSX.Element => {
           <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
             <nav className="flex items-center justify-between py-4 mb-8 lg:mb-12">
               <div className="flex items-center space-x-2">
-                <Building className="w-8 h-8 text-[#17a6b8]" />
-                <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#17a6b8] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
+                <Building className="w-8 h-8 text-[#b48b2f]" />
+                <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
                   Smart Builders
                   <span className="block text-sm font-normal text-[#313131] tracking-normal">& Developers</span>
                 </div>
@@ -157,10 +160,10 @@ export const MiniApartments = (): JSX.Element => {
                   {navItems.slice(0, 6).map((item, index) => (
                     <NavigationMenuItem key={index}>
                       <NavigationMenuLink
-                        href={item.path}
-                        className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#17a6b8] transition-colors cursor-pointer ${
+                        onClick={() => navigate(item.path)}
+                        className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#b48b2f] transition-colors cursor-pointer ${
                           item.active
-                            ? "font-semibold relative after:absolute after:w-1 after:h-1 after:bg-[#17a6b8] after:rounded-sm after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2"
+                            ? "font-semibold relative after:absolute after:w-1 after:h-1 after:bg-[#b48b2f] after:rounded-sm after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2"
                             : "font-normal"
                         }`}
                       >
@@ -173,7 +176,7 @@ export const MiniApartments = (): JSX.Element => {
 
               <div className="hidden lg:flex items-center space-x-4">
                 <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-                  <MapPin className="w-4 h-4 mr-1 text-[#17a6b8]" />
+                  <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
                   Madurai, Tamil Nadu
                 </div>
               </div>
@@ -192,8 +195,8 @@ export const MiniApartments = (): JSX.Element => {
                       <a
                         key={index}
                         href={item.path}
-                        className={`text-lg [font-family:'Poppins',Helvetica] hover:text-[#17a6b8] transition-colors px-4 py-2 ${
-                          item.active ? "font-semibold text-[#17a6b8] border-l-2 border-[#17a6b8]" : "font-normal text-[#313131]"
+                        className={`text-lg [font-family:'Poppins',Helvetica] hover:text-[#b48b2f] transition-colors px-4 py-2 ${
+                          item.active ? "font-semibold text-[#b48b2f] border-l-2 border-[#b48b2f]" : "font-normal text-[#313131]"
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -209,22 +212,22 @@ export const MiniApartments = (): JSX.Element => {
           {/* Hero Section */}
           <section className="text-center mb-16 lg:mb-20">
             <div className="max-w-4xl mx-auto">
-              <Badge className="bg-[#17a6b8]/10 text-[#17a6b8] border-[#17a6b8]/20 font-medium mb-6">
+              <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] border-[#b48b2f]/20 font-medium mb-6">
                 Affordable Mini Apartments in Madurai
               </Badge>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] leading-tight mb-6">
-                <span className="text-[#17a6b8]">Smart</span> Mini Apartments
+                <span className="text-[#b48b2f]">Smart</span> Mini Apartments
                 <br />
-                for <span className="text-[#17a6b8]">Urban</span> Living
+                for <span className="text-[#b48b2f]">Urban</span> Living
               </h1>
               <p className="text-lg sm:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-7 mb-8 max-w-2xl mx-auto">
                 Perfectly designed compact homes for young professionals, students, and first-time buyers. Experience modern living with smart space utilization and premium amenities.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-[#17a6b8] hover:bg-[#148a9a] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
+                <Button className="bg-[#b48b2f] hover:bg-[#9d7829] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
                   View Mini Apartments
                 </Button>
-                <Button variant="outline" className="border-2 border-[#17a6b8] text-[#17a6b8] hover:bg-[#17a6b8] hover:text-white rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
+                <Button variant="outline" className="border-2 border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
                   <Phone className="w-4 h-4 mr-2" />
                   EMI Calculator
                 </Button>
@@ -236,7 +239,7 @@ export const MiniApartments = (): JSX.Element => {
           <section className="mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                Perfect for <span className="text-[#17a6b8]">Every Lifestyle</span>
+                Perfect for <span className="text-[#b48b2f]">Every Lifestyle</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
                 Our mini apartments cater to diverse needs and lifestyles in urban Madurai.
@@ -247,7 +250,7 @@ export const MiniApartments = (): JSX.Element => {
               {targetGroups.map((group, index) => (
                 <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
                   <CardContent className="p-0">
-                    <group.icon className="w-12 h-12 mx-auto mb-4 text-[#17a6b8]" />
+                    <group.icon className="w-12 h-12 mx-auto mb-4 text-[#b48b2f]" />
                     <CardTitle className="text-lg font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
                       {group.title}
                     </CardTitle>
@@ -275,9 +278,9 @@ export const MiniApartments = (): JSX.Element => {
                 <Card key={apartment.id} className="overflow-hidden border-none shadow-xl hover:shadow-2xl transition-shadow">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                     {/* Image Section */}
-                    <div className="relative h-80 lg:h-full bg-gradient-to-br from-[#17a6b8]/10 to-[#17a6b8]/20">
+                    <div className="relative h-80 lg:h-full bg-gradient-to-br from-[#b48b2f]/10 to-[#b48b2f]/20">
                       <div className="absolute top-4 left-4 space-y-2">
-                        <Badge className="bg-[#17a6b8] text-white">
+                        <Badge className="bg-[#b48b2f] text-white">
                           {apartment.status}
                         </Badge>
                         <Badge className="bg-green-500 text-white">
@@ -294,12 +297,12 @@ export const MiniApartments = (): JSX.Element => {
                         </div>
                       </div>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <Building className="w-24 h-24 text-[#17a6b8] opacity-40" />
+                        <Building className="w-24 h-24 text-[#b48b2f] opacity-40" />
                       </div>
                       <div className="absolute bottom-4 left-4 right-4">
                         <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3">
                           <div className="text-sm font-medium text-[#313131]">EMI Starting</div>
-                          <div className="text-lg font-bold text-[#17a6b8]">{apartment.emi}</div>
+                          <div className="text-lg font-bold text-[#b48b2f]">{apartment.emi}</div>
                         </div>
                       </div>
                     </div>
@@ -311,7 +314,7 @@ export const MiniApartments = (): JSX.Element => {
                           {apartment.name}
                         </CardTitle>
                         <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica] mb-1">
-                          <MapPin className="w-4 h-4 mr-1 text-[#17a6b8]" />
+                          <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
                           {apartment.location}
                         </div>
                         <div className="text-xs text-[#6b6b6b]">Possession: {apartment.possession}</div>
@@ -319,26 +322,26 @@ export const MiniApartments = (): JSX.Element => {
 
                       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6 text-sm">
                         <div className="flex items-center text-[#6b6b6b]">
-                          <Bed className="w-4 h-4 mr-2 text-[#17a6b8]" />
+                          <Bed className="w-4 h-4 mr-2 text-[#b48b2f]" />
                           {apartment.bedrooms}
                         </div>
                         <div className="flex items-center text-[#6b6b6b]">
-                          <Bath className="w-4 h-4 mr-2 text-[#17a6b8]" />
+                          <Bath className="w-4 h-4 mr-2 text-[#b48b2f]" />
                           {apartment.bathrooms}
                         </div>
                         <div className="flex items-center text-[#6b6b6b]">
-                          <Square className="w-4 h-4 mr-2 text-[#17a6b8]" />
+                          <Square className="w-4 h-4 mr-2 text-[#b48b2f]" />
                           {apartment.area}
                         </div>
                         <div className="flex items-center text-[#6b6b6b]">
-                          <Car className="w-4 h-4 mr-2 text-[#17a6b8]" />
+                          <Car className="w-4 h-4 mr-2 text-[#b48b2f]" />
                           {apartment.parking}
                         </div>
                       </div>
 
                       <div className="mb-6">
                         <div className="flex items-baseline gap-3 mb-2">
-                          <div className="font-bold text-2xl text-[#17a6b8] [font-family:'Poppins',Helvetica]">
+                          <div className="font-bold text-2xl text-[#b48b2f] [font-family:'Poppins',Helvetica]">
                             {apartment.price}
                           </div>
                           <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
@@ -378,7 +381,7 @@ export const MiniApartments = (): JSX.Element => {
                         <h4 className="font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-3">Why Choose This</h4>
                         <div className="flex flex-wrap gap-2">
                           {apartment.highlights.map((highlight, index) => (
-                            <Badge key={index} className="bg-[#17a6b8]/10 text-[#17a6b8] text-xs">
+                            <Badge key={index} className="bg-[#b48b2f]/10 text-[#b48b2f] text-xs">
                               {highlight}
                             </Badge>
                           ))}
@@ -386,11 +389,11 @@ export const MiniApartments = (): JSX.Element => {
                       </div>
 
                       <div className="flex gap-3">
-                        <Button className="flex-1 bg-[#17a6b8] hover:bg-[#148a9a] text-white rounded-[20px_2px_20px_2px] font-medium [font-family:'Poppins',Helvetica]">
+                        <Button className="flex-1 bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[20px_2px_20px_2px] font-medium [font-family:'Poppins',Helvetica]">
                           View Details
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
-                        <Button variant="outline" className="border-[#17a6b8] text-[#17a6b8] hover:bg-[#17a6b8] hover:text-white rounded-[20px_2px_20px_2px] px-6">
+                        <Button variant="outline" className="border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white rounded-[20px_2px_20px_2px] px-6">
                           <Phone className="w-4 h-4" />
                         </Button>
                       </div>
@@ -405,7 +408,7 @@ export const MiniApartments = (): JSX.Element => {
           <section className="mb-16 lg:mb-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                <span className="text-[#17a6b8]">Smart</span> Design Features
+                <span className="text-[#b48b2f]">Smart</span> Design Features
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
                 Innovative design solutions that make compact living comfortable and efficient.
@@ -440,7 +443,7 @@ export const MiniApartments = (): JSX.Element => {
           <section className="mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                Easy <span className="text-[#17a6b8]">Financing</span> Options
+                Easy <span className="text-[#b48b2f]">Financing</span> Options
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
                 Partner banks offering attractive home loan rates for your mini apartment purchase.
@@ -451,7 +454,7 @@ export const MiniApartments = (): JSX.Element => {
               {financingOptions.map((option, index) => (
                 <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
                   <CardContent className="p-0">
-                    <CardTitle className="text-xl font-bold text-[#17a6b8] [font-family:'Poppins',Helvetica] mb-4">
+                    <CardTitle className="text-xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-4">
                       {option.bank}
                     </CardTitle>
                     <div className="space-y-2 text-sm">
@@ -468,7 +471,7 @@ export const MiniApartments = (): JSX.Element => {
                         <span className="font-semibold text-[#313131]">{option.processing}</span>
                       </div>
                     </div>
-                    <Button className="w-full mt-4 bg-[#17a6b8] hover:bg-[#148a9a] text-white rounded-[20px_2px_20px_2px] font-medium [font-family:'Poppins',Helvetica]">
+                    <Button className="w-full mt-4 bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[20px_2px_20px_2px] font-medium [font-family:'Poppins',Helvetica]">
                       Apply Now
                     </Button>
                   </CardContent>
@@ -479,7 +482,7 @@ export const MiniApartments = (): JSX.Element => {
 
           {/* CTA Section */}
           <section className="mb-16">
-            <Card className="bg-gradient-to-r from-[#17a6b8] to-[#148a9a] border-none text-white p-8 lg:p-12 text-center">
+            <Card className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] border-none text-white p-8 lg:p-12 text-center">
               <CardContent className="p-0">
                 <h2 className="text-2xl lg:text-3xl font-bold [font-family:'Poppins',Helvetica] mb-4">
                   Start Your Homeownership Journey
@@ -488,11 +491,11 @@ export const MiniApartments = (): JSX.Element => {
                   Get pre-approved for home loans and explore our mini apartments with zero booking amount offers.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-white text-[#17a6b8] hover:bg-gray-100 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
+                  <Button className="bg-white text-[#b48b2f] hover:bg-gray-100 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
                     <Phone className="w-4 h-4 mr-2" />
                     Call +91 98765 43210
                   </Button>
-                  <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#17a6b8] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
+                  <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#b48b2f] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
                     <Mail className="w-4 h-4 mr-2" />
                     EMI Calculator
                   </Button>
@@ -503,6 +506,7 @@ export const MiniApartments = (): JSX.Element => {
 
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

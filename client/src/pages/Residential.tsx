@@ -6,10 +6,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MapPin, Phone, Mail, Bed, Bath, Square, Car, Star, CheckCircle, ArrowRight, Building } from "lucide-react";
+import { Footer } from "@/components/Footer";
+import { useNavigation } from "@/lib/navigation";
 
 export const Residential = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
+  const { navigate } = useNavigation();
   
   const navItems = [
     { name: "Home", path: "/", active: false },
@@ -108,8 +111,8 @@ export const Residential = (): JSX.Element => {
           <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
             <nav className="flex items-center justify-between py-4 mb-8 lg:mb-12">
               <div className="flex items-center space-x-2">
-                <Building className="w-8 h-8 text-[#17a6b8]" />
-                <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#17a6b8] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
+                <Building className="w-8 h-8 text-[#b48b2f]" />
+                <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
                   Smart Builders
                   <span className="block text-sm font-normal text-[#313131] tracking-normal">& Developers</span>
                 </div>
@@ -120,10 +123,10 @@ export const Residential = (): JSX.Element => {
                   {navItems.slice(0, 6).map((item, index) => (
                     <NavigationMenuItem key={index}>
                       <NavigationMenuLink
-                        href={item.path}
-                        className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#17a6b8] transition-colors cursor-pointer ${
+                        onClick={() => navigate(item.path)}
+                        className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#b48b2f] transition-colors cursor-pointer ${
                           item.active
-                            ? "font-semibold relative after:absolute after:w-1 after:h-1 after:bg-[#17a6b8] after:rounded-sm after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2"
+                            ? "font-semibold relative after:absolute after:w-1 after:h-1 after:bg-[#b48b2f] after:rounded-sm after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2"
                             : "font-normal"
                         }`}
                       >
@@ -136,7 +139,7 @@ export const Residential = (): JSX.Element => {
 
               <div className="hidden lg:flex items-center space-x-4">
                 <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-                  <MapPin className="w-4 h-4 mr-1 text-[#17a6b8]" />
+                  <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
                   Madurai, Tamil Nadu
                 </div>
               </div>
@@ -156,8 +159,8 @@ export const Residential = (): JSX.Element => {
                       <a
                         key={index}
                         href={item.path}
-                        className={`text-lg [font-family:'Poppins',Helvetica] hover:text-[#17a6b8] transition-colors px-4 py-2 ${
-                          item.active ? "font-semibold text-[#17a6b8] border-l-2 border-[#17a6b8]" : "font-normal text-[#313131]"
+                        className={`text-lg [font-family:'Poppins',Helvetica] hover:text-[#b48b2f] transition-colors px-4 py-2 ${
+                          item.active ? "font-semibold text-[#b48b2f] border-l-2 border-[#b48b2f]" : "font-normal text-[#313131]"
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -173,22 +176,22 @@ export const Residential = (): JSX.Element => {
           {/* Hero Section */}
           <section className="text-center mb-16 lg:mb-20">
             <div className="max-w-4xl mx-auto">
-              <Badge className="bg-[#17a6b8]/10 text-[#17a6b8] border-[#17a6b8]/20 font-medium mb-6">
+              <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] border-[#b48b2f]/20 font-medium mb-6">
                 Residential Projects in Madurai
               </Badge>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] leading-tight mb-6">
-                <span className="text-[#17a6b8]">Premium</span> Residential
+                <span className="text-[#b48b2f]">Premium</span> Residential
                 <br />
-                Projects for <span className="text-[#17a6b8]">Modern Living</span>
+                Projects for <span className="text-[#b48b2f]">Modern Living</span>
               </h1>
               <p className="text-lg sm:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-7 mb-8 max-w-2xl mx-auto">
                 Discover our carefully crafted residential projects featuring contemporary designs, premium amenities, and strategic locations across Madurai.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-[#17a6b8] hover:bg-[#148a9a] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
+                <Button className="bg-[#b48b2f] hover:bg-[#9d7829] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
                   View All Projects
                 </Button>
-                <Button variant="outline" className="border-2 border-[#17a6b8] text-[#17a6b8] hover:bg-[#17a6b8] hover:text-white rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
+                <Button variant="outline" className="border-2 border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
                   <Phone className="w-4 h-4 mr-2" />
                   Schedule Visit
                 </Button>
@@ -213,15 +216,15 @@ export const Residential = (): JSX.Element => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project) => (
                 <Card key={project.id} className="group hover:shadow-2xl transition-all duration-300 border-none overflow-hidden">
-                  <div className="relative h-64 bg-gradient-to-br from-[#17a6b8]/10 to-[#17a6b8]/20">
-                    <Badge className="absolute top-4 right-4 bg-[#17a6b8] text-white z-10">
+                  <div className="relative h-64 bg-gradient-to-br from-[#b48b2f]/10 to-[#b48b2f]/20">
+                    <Badge className="absolute top-4 right-4 bg-[#b48b2f] text-white z-10">
                       {project.badge}
                     </Badge>
-                    <Badge className="absolute top-4 left-4 bg-white text-[#17a6b8] z-10">
+                    <Badge className="absolute top-4 left-4 bg-white text-[#b48b2f] z-10">
                       {project.status}
                     </Badge>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Building className="w-20 h-20 text-[#17a6b8] opacity-40" />
+                      <Building className="w-20 h-20 text-[#b48b2f] opacity-40" />
                     </div>
                   </div>
                   
@@ -232,7 +235,7 @@ export const Residential = (): JSX.Element => {
                           {project.name}
                         </CardTitle>
                         <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-                          <MapPin className="w-4 h-4 mr-1 text-[#17a6b8]" />
+                          <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
                           {project.location}
                         </div>
                       </div>
@@ -244,25 +247,25 @@ export const Residential = (): JSX.Element => {
 
                     <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
                       <div className="flex items-center text-[#6b6b6b]">
-                        <Bed className="w-4 h-4 mr-2 text-[#17a6b8]" />
+                        <Bed className="w-4 h-4 mr-2 text-[#b48b2f]" />
                         {project.bedrooms}
                       </div>
                       <div className="flex items-center text-[#6b6b6b]">
-                        <Bath className="w-4 h-4 mr-2 text-[#17a6b8]" />
+                        <Bath className="w-4 h-4 mr-2 text-[#b48b2f]" />
                         {project.bathrooms}
                       </div>
                       <div className="flex items-center text-[#6b6b6b]">
-                        <Square className="w-4 h-4 mr-2 text-[#17a6b8]" />
+                        <Square className="w-4 h-4 mr-2 text-[#b48b2f]" />
                         {project.area}
                       </div>
                       <div className="flex items-center text-[#6b6b6b]">
-                        <Car className="w-4 h-4 mr-2 text-[#17a6b8]" />
+                        <Car className="w-4 h-4 mr-2 text-[#b48b2f]" />
                         {project.parking}
                       </div>
                     </div>
 
                     <div className="mb-4">
-                      <div className="font-bold text-lg text-[#17a6b8] [font-family:'Poppins',Helvetica] mb-2">
+                      <div className="font-bold text-lg text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-2">
                         {project.price}
                       </div>
                       <div className="flex flex-wrap gap-1">
@@ -280,11 +283,11 @@ export const Residential = (): JSX.Element => {
                     </div>
 
                     <div className="flex gap-2">
-                      <Button className="flex-1 bg-[#17a6b8] hover:bg-[#148a9a] text-white rounded-[20px_2px_20px_2px] font-medium [font-family:'Poppins',Helvetica]">
+                      <Button className="flex-1 bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[20px_2px_20px_2px] font-medium [font-family:'Poppins',Helvetica]">
                         View Details
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
-                      <Button variant="outline" className="border-[#17a6b8] text-[#17a6b8] hover:bg-[#17a6b8] hover:text-white rounded-[20px_2px_20px_2px]">
+                      <Button variant="outline" className="border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white rounded-[20px_2px_20px_2px]">
                         <Phone className="w-4 h-4" />
                       </Button>
                     </div>
@@ -298,7 +301,7 @@ export const Residential = (): JSX.Element => {
           <section className="mb-16 lg:mb-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                Why Choose <span className="text-[#17a6b8]">Smart Builders</span>
+                Why Choose <span className="text-[#b48b2f]">Smart Builders</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
                 We bring 25+ years of expertise in creating exceptional residential spaces that combine quality, comfort, and value.
@@ -309,7 +312,7 @@ export const Residential = (): JSX.Element => {
               {features.map((feature, index) => (
                 <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
                   <CardContent className="p-0">
-                    <feature.icon className="w-12 h-12 mx-auto mb-4 text-[#17a6b8]" />
+                    <feature.icon className="w-12 h-12 mx-auto mb-4 text-[#b48b2f]" />
                     <CardTitle className="text-lg font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
                       {feature.title}
                     </CardTitle>
@@ -324,7 +327,7 @@ export const Residential = (): JSX.Element => {
 
           {/* CTA Section */}
           <section className="mb-16">
-            <Card className="bg-gradient-to-r from-[#17a6b8] to-[#148a9a] border-none text-white p-8 lg:p-12 text-center">
+            <Card className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] border-none text-white p-8 lg:p-12 text-center">
               <CardContent className="p-0">
                 <h2 className="text-2xl lg:text-3xl font-bold [font-family:'Poppins',Helvetica] mb-4">
                   Find Your Perfect Home Today
@@ -333,11 +336,11 @@ export const Residential = (): JSX.Element => {
                   Book a site visit or speak with our experts to explore the best residential options in Madurai.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-white text-[#17a6b8] hover:bg-gray-100 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
+                  <Button className="bg-white text-[#b48b2f] hover:bg-gray-100 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
                     <Phone className="w-4 h-4 mr-2" />
                     Call +91 98765 43210
                   </Button>
-                  <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#17a6b8] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
+                  <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#b48b2f] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
                     <Mail className="w-4 h-4 mr-2" />
                     Request Brochure
                   </Button>
@@ -348,6 +351,7 @@ export const Residential = (): JSX.Element => {
 
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
