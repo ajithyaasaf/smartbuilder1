@@ -177,8 +177,28 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 24, 2025: Updated primary brand color to #b48b2f (gold) throughout application
+- January 24, 2025: Added company logo to all page headers 
+- January 24, 2025: Created centralized forms structure with 4 form components
+- January 24, 2025: Fixed desktop navigation routing across all pages
+- January 24, 2025: Added professional footer to all pages
 - January 15, 2025: Complete project analysis and migration completed
 - January 15, 2025: All components, design patterns, and architecture documented
+
+## Forms Architecture
+**Centralized Location**: `client/src/components/forms/`
+- **ContactForm**: Comprehensive contact form with project type, budget, and detailed message
+- **QuickInquiryForm**: Simplified callback request form for instant contact
+- **SiteVisitForm**: Scheduled visit booking with date/time selection and visitor count
+- **EMICalculatorForm**: Interactive loan calculator with sliders and instant results
+
+**Integration**: Each page uses appropriate forms based on context:
+- Home: ContactForm + QuickInquiryForm
+- Residential: SiteVisitForm for project tours
+- Apartments: SiteVisitForm + ContactForm for pricing
+- Villas: SiteVisitForm + ContactForm for luxury inquiries
+- Mini Apartments: EMICalculatorForm + QuickInquiryForm for loan guidance
+- Land Promotion: QuickInquiryForm + ContactForm for investment consultation
 
 ## User Preferences
 

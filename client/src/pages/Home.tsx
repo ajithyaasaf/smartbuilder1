@@ -12,6 +12,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MapPin, Phone, Mail, Clock, Star, Users, Building, Award } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
+import { ContactForm, QuickInquiryForm } from "@/components/forms";
 
 export const Home = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -101,8 +102,12 @@ export const Home = (): JSX.Element => {
             <div className="relative">
               {/* Navigation */}
               <nav className="flex items-center justify-between py-4 mb-8 lg:mb-16">
-                <div className="flex items-center space-x-2">
-                  <Building className="w-8 h-8 text-[#b48b2f]" />
+                <div className="flex items-center space-x-3">
+                  <img 
+                    src="/attached_assets/construction_1750785320323.jpg" 
+                    alt="Smart Builders & Developers" 
+                    className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
+                  />
                   <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
                     Smart Builders
                     <span className="block text-sm font-normal text-[#313131] tracking-normal">& Developers</span>
@@ -333,33 +338,24 @@ export const Home = (): JSX.Element => {
             </div>
           </section>
 
-          {/* CTA Section */}
+          {/* Contact Forms Section */}
           <section className="mt-16 lg:mt-24 mb-16">
-            <Card className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] border-none text-white p-8 lg:p-12 text-center">
-              <CardContent className="p-0">
-                <h2 className="text-2xl lg:text-3xl xl:text-[40px] font-bold [font-family:'Poppins',Helvetica] mb-4">
-                  Ready to Build Your Dream Home?
-                </h2>
-                <p className="text-lg lg:text-xl [font-family:'Poppins',Helvetica] mb-8 opacity-90 max-w-2xl mx-auto">
-                  Get in touch with our expert team for a free consultation and personalized project planning.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    className="bg-white text-[#b48b2f] hover:bg-gray-100 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]"
-                  >
-                    <Phone className="w-4 h-4 mr-2" />
-                    Call Us Now
-                  </Button>
-                  <Button 
-                    variant="outline"
-                    className="border-2 border-white text-white hover:bg-white hover:text-[#b48b2f] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]"
-                  >
-                    <Mail className="w-4 h-4 mr-2" />
-                    Get Quote
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl xl:text-[48px] font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+                Get in <span className="text-[#b48b2f]">Touch</span>
+              </h2>
+              <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
+                Ready to start your dream project? Contact our experts for personalized guidance and free consultation.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Quick Inquiry Form */}
+              <QuickInquiryForm />
+              
+              {/* Contact Form */}
+              <ContactForm />
+            </div>
           </section>
 
         </div>

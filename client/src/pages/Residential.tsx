@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MapPin, Phone, Mail, Bed, Bath, Square, Car, Star, CheckCircle, ArrowRight, Building } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
+import { SiteVisitForm } from "@/components/forms";
 
 export const Residential = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -110,8 +111,12 @@ export const Residential = (): JSX.Element => {
           {/* Navigation */}
           <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
             <nav className="flex items-center justify-between py-4 mb-8 lg:mb-12">
-              <div className="flex items-center space-x-2">
-                <Building className="w-8 h-8 text-[#b48b2f]" />
+              <div className="flex items-center space-x-3">
+                <img 
+                  src="/attached_assets/construction_1750785320323.jpg" 
+                  alt="Smart Builders & Developers" 
+                  className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
+                />
                 <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
                   Smart Builders
                   <span className="block text-sm font-normal text-[#313131] tracking-normal">& Developers</span>

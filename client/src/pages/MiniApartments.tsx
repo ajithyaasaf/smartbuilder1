@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MapPin, Phone, Mail, Bed, Bath, Square, Car, Star, CheckCircle, ArrowRight, Building, Wifi, Coffee, Briefcase, GraduationCap, Heart } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
+import { EMICalculatorForm, QuickInquiryForm } from "@/components/forms";
 
 export const MiniApartments = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -148,7 +149,12 @@ export const MiniApartments = (): JSX.Element => {
           <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
             <nav className="flex items-center justify-between py-4 mb-8 lg:mb-12">
               <div className="flex items-center space-x-2">
-                <Building className="w-8 h-8 text-[#b48b2f]" />
+                
+                <img 
+                  src="/attached_assets/construction_1750785320323.jpg" 
+                  alt="Smart Builders & Developers" 
+                  className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
+                />
                 <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
                   Smart Builders
                   <span className="block text-sm font-normal text-[#313131] tracking-normal">& Developers</span>
@@ -480,28 +486,24 @@ export const MiniApartments = (): JSX.Element => {
             </div>
           </section>
 
-          {/* CTA Section */}
-          <section className="mb-16">
-            <Card className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] border-none text-white p-8 lg:p-12 text-center">
-              <CardContent className="p-0">
-                <h2 className="text-2xl lg:text-3xl font-bold [font-family:'Poppins',Helvetica] mb-4">
-                  Start Your Homeownership Journey
-                </h2>
-                <p className="text-lg [font-family:'Poppins',Helvetica] mb-8 opacity-90 max-w-2xl mx-auto">
-                  Get pre-approved for home loans and explore our mini apartments with zero booking amount offers.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-white text-[#b48b2f] hover:bg-gray-100 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
-                    <Phone className="w-4 h-4 mr-2" />
-                    Call +91 98765 43210
-                  </Button>
-                  <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#b48b2f] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
-                    <Mail className="w-4 h-4 mr-2" />
-                    EMI Calculator
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+          {/* EMI Calculator & Quick Inquiry Section */}
+          <section className="mt-16 lg:mt-24 mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl xl:text-[48px] font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+                Plan Your <span className="text-[#b48b2f]">Investment</span>
+              </h2>
+              <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
+                Calculate affordable EMI options and get instant callback from our housing loan experts.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <EMICalculatorForm defaultPrice={2500000} />
+              <QuickInquiryForm 
+                title="Get Instant Callback"
+                subtitle="Our loan experts will help you with the best financing options"
+              />
+            </div>
           </section>
 
         </div>
