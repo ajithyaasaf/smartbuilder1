@@ -150,39 +150,6 @@ export const MiniApartments = (): JSX.Element => {
             <nav className="flex items-center justify-between py-4 mb-8 lg:mb-12">
               <div className="flex items-center ">
                 
-                <img 
-                  src="/attached_assets/construction_1750785320323.jpg" 
-                  alt="Smart Builders & Developers" 
-                  className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
-                />
-              </div>
-              
-              <NavigationMenu className="hidden lg:flex">
-                <NavigationMenuList className="flex gap-6 xl:gap-8">
-                  {navItems.slice(0, 6).map((item, index) => (
-                    <NavigationMenuItem key={index}>
-                      <NavigationMenuLink
-                        onClick={() => navigate(item.path)}
-                        className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#b48b2f] transition-colors cursor-pointer ${
-                          item.active
-                            ? "font-semibold relative after:absolute after:w-1 after:h-1 after:bg-[#b48b2f] after:rounded-sm after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2"
-                            : "font-normal"
-                        }`}
-                      >
-                        {item.name}
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  ))}
-                </NavigationMenuList>
-              </NavigationMenu>
-
-              <div className="hidden lg:flex items-center space-x-4">
-                <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-                  <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
-                  Madurai, Tamil Nadu
-                </div>
-              </div>
-
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" className="lg:hidden p-2">
