@@ -376,30 +376,7 @@ export const Contact = (): JSX.Element => {
             </div>
           </section>
 
-          {/* Emergency Contact */}
-          <section className="mb-16">
-            <Card className="bg-gradient-to-r from-red-500 to-red-600 border-none text-white p-8 lg:p-12 text-center">
-              <CardContent className="p-0">
-                <h2 className="text-2xl lg:text-3xl font-bold [font-family:'Poppins',Helvetica] mb-4">
-                  Emergency Support Available 24/7
-                </h2>
-                <p className="text-lg [font-family:'Poppins',Helvetica] mb-8 opacity-90 max-w-2xl mx-auto">
-                  For urgent construction issues, maintenance requests, or emergency situations, 
-                  our support team is available round the clock.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-white text-red-600 hover:bg-gray-100 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
-                    <Phone className="w-4 h-4 mr-2" />
-                    Emergency Hotline: +91 98765 00000
-                  </Button>
-                  <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-red-600 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
-                    <Mail className="w-4 h-4 mr-2" />
-                    emergency@buildmasters.com
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
+          
         </div>
       </div>
       <Footer />
