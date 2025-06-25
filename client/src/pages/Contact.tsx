@@ -85,20 +85,6 @@ export const Contact = (): JSX.Element => {
       phone: "+91 98765 43210",
       email: "madurai@buildmasters.com",
       type: "Head Office"
-    },
-    {
-      city: "Chennai",
-      address: "456 Metro Plaza, Chennai - 600001",
-      phone: "+91 98765 43211",
-      email: "chennai@buildmasters.com",
-      type: "Branch Office"
-    },
-    {
-      city: "Coimbatore",
-      address: "789 Business Park, Coimbatore - 641001",
-      phone: "+91 98765 43212",
-      email: "coimbatore@buildmasters.com",
-      type: "Regional Office"
     }
   ];
 
@@ -295,11 +281,11 @@ export const Contact = (): JSX.Element => {
                 Our <span className="text-[#b48b2f]">Locations</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                Visit any of our offices across Tamil Nadu for in-person consultation.
+                Visit our head office in Madurai for in-person consultation.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 max-w-md mx-auto">
               {officeLocations.map((office, index) => (
                 <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300">
                   <CardHeader className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] text-white p-6">
