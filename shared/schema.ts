@@ -19,7 +19,7 @@ export type User = typeof users.$inferSelect;
 // Form submission schemas
 export const formSubmissionSchema = z.object({
   id: z.string(),
-  formType: z.enum(["contact", "quickInquiry", "siteVisit", "emiCalculator"]),
+  formType: z.enum(["contact", "quickInquiry", "siteVisit", "emiCalculator", "newsletter"]),
   timestamp: z.string(),
   data: z.record(z.any()),
 });

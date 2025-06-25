@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MapPin, Phone, Mail, Clock, MessageSquare, Building, Users, Calendar } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
-import { ContactForm, QuickInquiryForm, SiteVisitForm } from "@/components/forms";
+import { ContactForm, QuickInquiryForm, SiteVisitForm, EMICalculatorForm } from "@/components/forms";
 import { useGSAP } from "@/hooks/useGSAP";
 import { 
   animatePageTransition, 
@@ -256,7 +256,7 @@ export const Contact = (): JSX.Element => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
               {/* Quick Inquiry */}
               <div className="contact-form">
                 <QuickInquiryForm 
@@ -279,6 +279,11 @@ export const Contact = (): JSX.Element => {
                   title="Schedule Site Visit"
                   subtitle="Book a visit to our ongoing projects"
                 />
+              </div>
+
+              {/* EMI Calculator */}
+              <div className="contact-form">
+                <EMICalculatorForm className="h-full" />
               </div>
             </div>
           </section>

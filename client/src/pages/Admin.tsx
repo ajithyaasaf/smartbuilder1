@@ -23,7 +23,7 @@ import { apiRequest } from "@/lib/queryClient";
 
 interface FormSubmission {
   id: string;
-  formType: "contact" | "quickInquiry" | "siteVisit" | "emiCalculator";
+  formType: "contact" | "quickInquiry" | "siteVisit" | "emiCalculator" | "newsletter";
   timestamp: string;
   data: Record<string, any>;
 }
@@ -126,7 +126,8 @@ export const Admin = (): JSX.Element => {
       contact: "Contact Form",
       quickInquiry: "Quick Inquiry",
       siteVisit: "Site Visit",
-      emiCalculator: "EMI Calculator"
+      emiCalculator: "EMI Calculator",
+      newsletter: "Newsletter"
     };
     return types[type as keyof typeof types] || type;
   };
@@ -303,6 +304,7 @@ export const Admin = (): JSX.Element => {
                   <SelectItem value="quickInquiry">Quick Inquiry</SelectItem>
                   <SelectItem value="siteVisit">Site Visit</SelectItem>
                   <SelectItem value="emiCalculator">EMI Calculator</SelectItem>
+                  <SelectItem value="newsletter">Newsletter</SelectItem>
                 </SelectContent>
               </Select>
             </div>

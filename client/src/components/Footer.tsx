@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { MapPin, Phone, Mail, Clock, Building, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { NewsletterForm } from "@/components/forms";
 
 export const Footer = (): JSX.Element => {
   const quickLinks = [
@@ -103,18 +104,14 @@ export const Footer = (): JSX.Element => {
             </ul>
           </div>
 
-          {/* Project Locations */}
+          {/* Newsletter Subscription */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
-              Project Locations
-            </h3>
-            <ul className="space-y-2">
-              {locations.map((location, index) => (
-                <li key={index} className="text-gray-300 text-sm [font-family:'Poppins',Helvetica]">
-                  {location}
-                </li>
-              ))}
-            </ul>
+            <NewsletterForm 
+              title="Stay Updated"
+              subtitle="Get latest updates & offers"
+              variant="inline"
+              className="bg-gray-800 p-4 rounded-lg"
+            />
             <div className="mt-6">
               <h4 className="text-sm font-semibold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-3">
                 Follow Us
