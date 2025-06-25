@@ -219,7 +219,8 @@ export const animateFormEntrance = (selector: string) => {
     
     forms.forEach((form) => {
       if (form && typeof form.querySelectorAll === 'function') {
-        const formElements = form.querySelectorAll('input, button, label, select, textarea');
+        // Exclude problematic select components from animation
+        const formElements = form.querySelectorAll('input, button, label, textarea');
         
         if (formElements.length > 0) {
           const tl = gsap.timeline({
@@ -230,10 +231,16 @@ export const animateFormEntrance = (selector: string) => {
             }
           });
           
-          tl.fromTo(formElements, 
-            { y: 20, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.5, ease: "power2.out", stagger: 0.1 }
-          );
+          // Animate only safe elements, not select dropdowns
+          Array.from(formElements).forEach((element, index) => {
+            if (element && element.offsetParent !== null) {
+              gsap.set(element, { y: 20, opacity: 0 });
+              tl.to(element, 
+                { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+                index * 0.1
+              );
+            }
+          });
         }
       }
     });

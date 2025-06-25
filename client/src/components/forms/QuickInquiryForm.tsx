@@ -143,13 +143,16 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
               <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                 Interested In *
               </FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} value={field.value || ""}>
                 <FormControl>
-                  <SelectTrigger className="[font-family:'Poppins',Helvetica]">
+                  <SelectTrigger 
+                    className="[font-family:'Poppins',Helvetica]"
+                    style={{ pointerEvents: 'auto' }}
+                  >
                     <SelectValue placeholder="Select option" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent className="z-50">
                   <SelectItem value="apartments">Apartments</SelectItem>
                   <SelectItem value="villas">Villas</SelectItem>
                   <SelectItem value="mini-apartments">Mini Apartments</SelectItem>
