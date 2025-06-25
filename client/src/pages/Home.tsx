@@ -54,13 +54,10 @@ export const Home = (): JSX.Element => {
   
   const navItems = [
     { name: "Home", path: "/", active: true },
-    { name: "Residential", path: "/residential", active: false },
-    { name: "Apartments", path: "/apartments", active: false },
-    { name: "Villas", path: "/villas", active: false },
-    { name: "Mini Apartments", path: "/mini-apartments", active: false },
-    { name: "Land Promotion", path: "/land-promotion", active: false },
     { name: "About", path: "/about", active: false },
+    { name: "Services", path: "/services", active: false },
     { name: "Contact", path: "/contact", active: false },
+    { name: "Gallery", path: "/gallery", active: false }
   ];
 
   const stats = [
@@ -226,10 +223,14 @@ export const Home = (): JSX.Element => {
 
                   {/* CTA Buttons */}
                   <div className="hero-buttons flex flex-col sm:flex-row gap-4 sm:gap-3">
-                    <Button className="animate-button w-full sm:w-auto px-8 py-4 h-auto bg-[#b48b2f] hover:bg-[#9d7829] rounded-[40px_5px_40px_5px] shadow-lg text-white text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px]">
+                    <Button 
+                      onClick={() => navigate('/services')}
+                      className="animate-button w-full sm:w-auto px-8 py-4 h-auto bg-[#b48b2f] hover:bg-[#9d7829] rounded-[40px_5px_40px_5px] shadow-lg text-white text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px]"
+                    >
                       View Projects
                     </Button>
                     <Button
+                      onClick={() => navigate('/contact')}
                       variant="outline"
                       className="animate-button w-full sm:w-auto px-8 py-4 h-auto rounded-[40px_5px_40px_5px] border-2 border-[#b48b2f] hover:bg-[#b48b2f] hover:text-white text-[#b48b2f] text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px] shadow-lg"
                     >

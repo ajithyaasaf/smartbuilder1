@@ -177,33 +177,36 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
-- January 24, 2025: Increased logo size across all pages for better brand visibility (mobile: 80×48px, tablet: 96×64px, desktop: 128×80px)
-- January 24, 2025: Fixed logo display issue by moving image to public directory with proper permissions
-- January 24, 2025: Removed "Smart Builders" text from all page headers, updated to logo-only branding
-- January 24, 2025: Updated all logo images to new construction skyline design
-- January 24, 2025: Changed email from smartbuilders.com to buildmasters.com in footer
+- January 25, 2025: Restructured website to 5 main pages: Home, About, Services, Contact, Gallery
+- January 25, 2025: Removed old individual service pages (Apartments, Villas, etc.) and consolidated into Services page
+- January 25, 2025: Created comprehensive About page with company story, timeline, values, and leadership team
+- January 25, 2025: Built Services page with tabbed interface showcasing all 5 service categories
+- January 25, 2025: Developed Contact page with multiple contact forms, office locations, and FAQ section
+- January 25, 2025: Added creative Gallery page with categorized portfolio, project stats, and visual showcase
+- January 25, 2025: Updated navigation across all pages to reflect new structure
+- January 25, 2025: Implemented GSAP animations with robust error handling and DOM readiness checks
 - January 24, 2025: Updated primary brand color to #b48b2f (gold) throughout application
-- January 24, 2025: Added company logo to all page headers 
 - January 24, 2025: Created centralized forms structure with 4 form components
-- January 24, 2025: Fixed desktop navigation routing across all pages
-- January 24, 2025: Added professional footer to all pages
 - January 15, 2025: Complete project analysis and migration completed
-- January 15, 2025: All components, design patterns, and architecture documented
 
-## Forms Architecture
+## Current Site Structure (5 Pages)
+**Main Navigation**: Home, About, Services, Contact, Gallery
+
+**Page Architecture**:
+- **Home**: Hero section, company overview, service highlights, statistics, testimonials, CTA
+- **About**: Company story, timeline of milestones, core values, leadership team, awards & recognition  
+- **Services**: Tabbed interface for all 5 services (Residential, Apartments, Villas, Mini Apartments, Land Promoters), process steps, why choose us
+- **Contact**: Multiple contact forms, office locations, FAQ section, emergency support
+- **Gallery**: Portfolio showcase with categories (completed, ongoing, process, awards), project stats, virtual tours
+
+**Forms Architecture**:
 **Centralized Location**: `client/src/components/forms/`
 - **ContactForm**: Comprehensive contact form with project type, budget, and detailed message
-- **QuickInquiryForm**: Simplified callback request form for instant contact
+- **QuickInquiryForm**: Simplified callback request form for instant contact  
 - **SiteVisitForm**: Scheduled visit booking with date/time selection and visitor count
 - **EMICalculatorForm**: Interactive loan calculator with sliders and instant results
 
-**Integration**: Each page uses appropriate forms based on context:
-- Home: ContactForm + QuickInquiryForm
-- Residential: SiteVisitForm for project tours
-- Apartments: SiteVisitForm + ContactForm for pricing
-- Villas: SiteVisitForm + ContactForm for luxury inquiries
-- Mini Apartments: EMICalculatorForm + QuickInquiryForm for loan guidance
-- Land Promotion: QuickInquiryForm + ContactForm for investment consultation
+**Integration**: Forms distributed across Contact page with appropriate context
 
 ## User Preferences
 

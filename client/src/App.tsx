@@ -6,23 +6,19 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 
 import { Home } from "@/pages/Home";
-import { Residential } from "@/pages/Residential";
-import { Apartments } from "@/pages/Apartments";
-import { Villas } from "@/pages/Villas";
-import { MiniApartments } from "@/pages/MiniApartments";
-import { LandPromotion } from "@/pages/LandPromotion";
+import { About } from "@/pages/About";
+import { Services } from "@/pages/Services";
+import { Contact } from "@/pages/Contact";
+import { Gallery } from "@/pages/Gallery";
 
 function Router() {
   return (
     <Switch>
-      {/* Add pages below */}
       <Route path="/" component={Home} />
-      <Route path="/residential" component={Residential} />
-      <Route path="/apartments" component={Apartments} />
-      <Route path="/villas" component={Villas} />
-      <Route path="/mini-apartments" component={MiniApartments} />
-      <Route path="/land-promotion" component={LandPromotion} />
-      {/* Fallback to 404 */}
+      <Route path="/about" component={About} />
+      <Route path="/services" component={Services} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/gallery" component={Gallery} />
       <Route component={NotFound} />
     </Switch>
   );
