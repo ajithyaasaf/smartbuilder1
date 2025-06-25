@@ -127,7 +127,7 @@ export const Home = (): JSX.Element => {
         canonicalUrl="https://buildmasters.replit.app/"
         schema={getOrganizationSchema()}
       />
-      <a href="#main-content" className="skip-link">Skip to main content</a>
+      
       <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative page-content">
           {/* Background decorative elements */}
