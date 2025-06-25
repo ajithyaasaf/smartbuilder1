@@ -704,7 +704,7 @@ export const Admin = (): JSX.Element => {
                   {filteredSubmissions.map((submission) => (
                     <TableRow key={submission.id}>
                       <TableCell className="font-mono text-xs">
-                        {submission.id.split("_")[1]?.substring(0, 8)}...
+                        {submission.id ? submission.id.split("_")[1]?.substring(0, 8) + "..." : "N/A"}
                       </TableCell>
                       <TableCell>
                         <Badge
