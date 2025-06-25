@@ -249,15 +249,8 @@ export const About = (): JSX.Element => {
               {milestones.map((milestone, index) => (
                 <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group">
                   <CardContent className="p-8 text-center">
-                    <div className="relative mb-6">
-                      <div className="w-20 h-20 mx-auto bg-gradient-to-br from-[#b48b2f] to-[#9d7829] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-2xl font-bold text-white [font-family:'Poppins',Helvetica]">
-                          {milestone.year.slice(-2)}
-                        </span>
-                      </div>
-                      <Badge className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-[#b48b2f] text-white font-bold px-3 py-1">
-                        {milestone.year}
-                      </Badge>
+                    <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-[#b48b2f] to-[#9d7829] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Award className="w-8 h-8 text-white" />
                     </div>
                     <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-3 group-hover:text-[#b48b2f] transition-colors">
                       {milestone.title}
