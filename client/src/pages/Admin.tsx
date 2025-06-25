@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as XLSX from "xlsx";
 import {
   Card,
   CardContent,
@@ -178,25 +179,56 @@ export const Admin = (): JSX.Element => {
   };
 
   const exportData = () => {
-    const exportPayload = {
-      exportDate: new Date().toISOString(),
-      stats: stats,
-      submissions: submissions,
-      totalCount: submissions.length,
-    };
+    // Create a workbook with multiple sheets
+    const workbook = XLSX.utils.book_new();
 
-    const dataStr = JSON.stringify(exportPayload, null, 2);
-    const dataBlob = new Blob([dataStr], { type: "application/json" });
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `buildmasters-submissions-${new Date().toISOString().split("T")[0]}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
+    // Sheet 1: Submissions Data
+    const submissionsData = submissions.map((submission, index) => ({
+      'S.No': index + 1,
+      'Submission ID': submission.id,
+      'Form Type': formatFormType(submission.formType),
+      'Date & Time': formatTimestamp(submission.timestamp),
+      'Customer Name': submission.data.name || 'N/A',
+      'Email': submission.data.email || 'N/A',
+      'Phone': submission.data.phone || 'N/A',
+      'Project Type': submission.data.projectType || submission.data.project || 'N/A',
+      'Budget': submission.data.budget || 'N/A',
+      'Message': submission.data.message || 'N/A',
+      'Preferred Date': submission.data.preferredDate || 'N/A',
+      'Visitors': submission.data.visitors || 'N/A',
+      'Call Time': submission.data.callTime || 'N/A',
+      'EMI Amount': submission.data.emi || 'N/A',
+      'Loan Amount': submission.data.loanAmount || 'N/A',
+      'Interest Rate': submission.data.interestRate || 'N/A',
+      'Tenure': submission.data.tenure || 'N/A'
+    }));
+
+    const submissionsSheet = XLSX.utils.json_to_sheet(submissionsData);
+    XLSX.utils.book_append_sheet(workbook, submissionsSheet, "Form Submissions");
+
+    // Sheet 2: Statistics Summary
+    const statsData = [
+      { 'Metric': 'Total Submissions', 'Value': stats.total },
+      { 'Metric': 'Export Date', 'Value': new Date().toLocaleDateString('en-IN') },
+      { 'Metric': 'Export Time', 'Value': new Date().toLocaleTimeString('en-IN') },
+      { 'Metric': '', 'Value': '' }, // Empty row
+      { 'Metric': 'Form Type Breakdown', 'Value': '' },
+      ...Object.entries(stats.byType).map(([type, count]) => ({
+        'Metric': formatFormType(type),
+        'Value': count
+      }))
+    ];
+
+    const statsSheet = XLSX.utils.json_to_sheet(statsData);
+    XLSX.utils.book_append_sheet(workbook, statsSheet, "Statistics");
+
+    // Generate and download the Excel file
+    const fileName = `BuildMasters-Submissions-${new Date().toISOString().split('T')[0]}.xlsx`;
+    XLSX.writeFile(workbook, fileName);
 
     toast({
-      title: "Data Exported",
-      description: `${submissions.length} submissions exported successfully`,
+      title: "Excel Export Successful",
+      description: `${submissions.length} submissions exported to Excel file`,
     });
   };
 
