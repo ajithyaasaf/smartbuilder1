@@ -272,7 +272,11 @@ export const About = (): JSX.Element => {
                           <img 
                             src={member.image} 
                             alt={member.name}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover object-top scale-110"
+                            style={{ 
+                              objectPosition: 'center top',
+                              transform: 'scale(1.1) translateY(-10%)'
+                            }}
                           />
                         </div>
                       </div>
