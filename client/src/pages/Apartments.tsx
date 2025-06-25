@@ -45,6 +45,8 @@ export const Apartments = (): JSX.Element => {
       amenities: ["Swimming Pool", "Gym", "Children's Play Area", "24/7 Security", "Power Backup", "Lift", "Intercom", "CCTV"],
       highlights: ["Vastu Compliant", "Earthquake Resistant", "Rain Water Harvesting", "Solar Lighting"],
       launchDate: "Possession Ready",
+      developer: "Smart Builders",
+      rera: "TN/04/Building/0123/2023"
     },
     {
       id: 2,
@@ -65,6 +67,8 @@ export const Apartments = (): JSX.Element => {
       amenities: ["Sky Garden", "Terrace Pool", "Yoga Deck", "Club House", "Banquet Hall", "EV Charging", "Smart Home", "Concierge"],
       highlights: ["Premium Location", "Green Building", "Smart Automation", "High-Speed Elevators"],
       launchDate: "Expected Dec 2025",
+      developer: "Smart Builders",
+      rera: "TN/04/Building/0456/2024"
     },
     {
       id: 3,
@@ -85,6 +89,8 @@ export const Apartments = (): JSX.Element => {
       amenities: ["Garden", "Security", "Power Backup", "Water Supply", "Parking", "Lift", "Fire Safety", "Waste Management"],
       highlights: ["Metro Connectivity", "IT Hub Proximity", "Budget Friendly", "First Home Buyers"],
       launchDate: "Possession: Aug 2025",
+      developer: "Smart Builders",
+      rera: "TN/04/Building/0789/2024"
     }
   ];
 
@@ -109,7 +115,45 @@ export const Apartments = (): JSX.Element => {
           {/* Navigation */}
           <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
             <nav className="flex items-center justify-between py-4 mb-8 lg:mb-12">
-              <div className="flex items-center">
+              <div className="flex items-center space-x-2">
+                
+                <img 
+                  src="/attached_assets/construction_1750785320323.jpg" 
+                  alt="Smart Builders & Developers" 
+                  className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
+                />
+                <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
+                  Smart Builders
+                  <span className="block text-sm font-normal text-[#313131] tracking-normal">& Developers</span>
+                </div>
+              </div>
+              
+              <NavigationMenu className="hidden lg:flex">
+                <NavigationMenuList className="flex gap-6 xl:gap-8">
+                  {navItems.slice(0, 6).map((item, index) => (
+                    <NavigationMenuItem key={index}>
+                      <NavigationMenuLink
+                        onClick={() => navigate(item.path)}
+                        className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#b48b2f] transition-colors cursor-pointer ${
+                          item.active
+                            ? "font-semibold relative after:absolute after:w-1 after:h-1 after:bg-[#b48b2f] after:rounded-sm after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2"
+                            : "font-normal"
+                        }`}
+                      >
+                        {item.name}
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+
+              <div className="hidden lg:flex items-center space-x-4">
+                <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+                  <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
+                  Madurai, Tamil Nadu
+                </div>
+              </div>
+
               {/* Mobile Menu */}
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
@@ -322,6 +366,58 @@ export const Apartments = (): JSX.Element => {
                   <CardContent className="p-0">
                     <div className="w-16 h-16 mx-auto mb-4 bg-[#b48b2f]/10 rounded-full flex items-center justify-center">
                       
+                <img 
+                  src="/attached_assets/construction_1750785320323.jpg" 
+                  alt="Smart Builders & Developers" 
+                  className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
+                />
+                    </div>
+                    <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+                      {plan.type}
+                    </CardTitle>
+                    <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica] mb-2">
+                      {plan.area}
+                    </div>
+                    <div className="font-semibold text-lg text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-3">
+                      {plan.price}
+                    </div>
+                    <div className="text-xs text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-4">
+                      {plan.rooms}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* Common Amenities */}
+          <section className="mb-16 lg:mb-20">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+                <span className="text-[#b48b2f]">Premium</span> Amenities
+              </h2>
+              <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
+                Enjoy world-class facilities designed for comfort, convenience, and community living.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {commonAmenities.map((amenity, index) => (
+                <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
+                  <CardContent className="p-0">
+                    <amenity.icon className="w-12 h-12 mx-auto mb-4 text-[#b48b2f]" />
+                    <CardTitle className="text-lg font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+                      {amenity.name}
+                    </CardTitle>
+                    <CardDescription className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+                      {amenity.desc}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+
           {/* Contact Section */}
           <section className="mt-16 lg:mt-24 mb-16">
             <div className="text-center mb-12">

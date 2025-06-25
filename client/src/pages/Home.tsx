@@ -67,6 +67,9 @@ export const Home = (): JSX.Element => {
     {
       name: "Rajesh Kumar",
       role: "Villa Owner",
+      content: "Smart Builders delivered our dream villa on time with exceptional quality. The attention to detail is remarkable.",
+      rating: 5,
+      location: "Anna Nagar, Madurai"
     },
     {
       name: "Priya Selvam",
@@ -89,6 +92,55 @@ export const Home = (): JSX.Element => {
       <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative">
           {/* Background decorative elements */}
+          <img
+            className="absolute w-48 h-48 sm:w-80 sm:h-80 lg:w-[632px] lg:h-[608px] top-96 sm:top-80 lg:top-[565px] left-0 opacity-10 lg:opacity-20 -z-10"
+            alt="Vector"
+            src="/figmaAssets/vector-11.svg"
+          />
+
+          <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
+            <div className="relative">
+              {/* Navigation */}
+              <nav className="flex items-center justify-between py-4 mb-8 lg:mb-16">
+                <div className="flex items-center space-x-3">
+                  <img 
+                    src="/attached_assets/construction_1750785320323.jpg" 
+                    alt="Smart Builders & Developers" 
+                    className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
+                  />
+                  <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
+                    Smart Builders
+                    <span className="block text-sm font-normal text-[#313131] tracking-normal">& Developers</span>
+                  </div>
+                </div>
+                
+                {/* Desktop Navigation */}
+                <NavigationMenu className="hidden lg:flex">
+                  <NavigationMenuList className="flex gap-6 xl:gap-8">
+                    {navItems.slice(0, 6).map((item, index) => (
+                      <NavigationMenuItem key={index}>
+                        <NavigationMenuLink
+                          onClick={() => navigate(item.path)}
+                          className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#b48b2f] transition-colors cursor-pointer ${
+                            item.active
+                              ? "font-semibold relative after:absolute after:w-1 after:h-1 after:bg-[#b48b2f] after:rounded-sm after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2"
+                              : "font-normal"
+                          }`}
+                        >
+                          {item.name}
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    ))}
+                  </NavigationMenuList>
+                </NavigationMenu>
+
+                <div className="hidden lg:flex items-center space-x-4">
+                  <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+                    <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
+                    Madurai, Tamil Nadu
+                  </div>
+                </div>
+
                 {/* Mobile Menu */}
                 <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                   <SheetTrigger asChild>
@@ -174,6 +226,36 @@ export const Home = (): JSX.Element => {
                   <div className="absolute bottom-4 sm:bottom-8 lg:bottom-[50px] right-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[238px] lg:h-[213px] bg-[#c9e7ff] rounded-[106.5px_5px_5px_5px] opacity-40 rotate-180" />
                   
                   <div className="absolute inset-2 sm:inset-4 md:inset-6 lg:inset-12 flex items-center justify-center">
+                    <img
+                      className="w-full h-full object-contain"
+                      alt="Smart Builders premium construction projects in Madurai"
+                      src="/figmaAssets/mask-group.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          {/* Statistics Section */}
+          <section className="mt-16 lg:mt-24 mb-16" aria-label="Our achievements">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              {stats.map((stat, index) => (
+                <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
+                  <CardContent className="p-0">
+                    <stat.icon className={`w-8 h-8 mx-auto mb-4 ${stat.color}`} />
+                    <div className="text-2xl lg:text-3xl xl:text-[40px] font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm lg:text-base text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+                      {stat.label}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+
           {/* Services Section */}
           <section className="mt-16 lg:mt-24 mb-16" aria-label="Our services">
             <div className="text-center mb-12">

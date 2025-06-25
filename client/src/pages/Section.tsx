@@ -42,6 +42,20 @@ export const Section = (): JSX.Element => {
       <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative">
           {/* Background decorative element */}
+          <img
+            className="absolute w-48 h-48 sm:w-80 sm:h-80 lg:w-[632px] lg:h-[608px] top-96 sm:top-80 lg:top-[565px] left-0 opacity-30 lg:opacity-100 -z-10"
+            alt="Vector"
+            src="/figmaAssets/vector-11.svg"
+          />
+
+          <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
+            <div className="relative">
+              {/* Navigation */}
+              <nav className="flex items-center justify-between py-4 mb-8 lg:mb-16">
+                <div className="text-xl sm:text-2xl lg:text-[25px] font-semibold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
+                  BuildMasters
+                </div>
+                
                 {/* Desktop Navigation */}
                 <NavigationMenu className="hidden lg:flex">
                   <NavigationMenuList className="flex gap-6 xl:gap-8">
@@ -147,11 +161,62 @@ export const Section = (): JSX.Element => {
                     <div className="grid grid-cols-3 gap-4 sm:gap-8 lg:gap-12">
                       {stats.map((stat, index) => (
                         <div key={index} className="text-center relative">
+                          <img
+                            className="w-6 h-6 sm:w-8 sm:h-8 lg:w-[34px] lg:h-[38px] mx-auto mb-2 opacity-60"
+                            alt="Ellipse"
+                            src="/figmaAssets/ellipse-741.svg"
+                          />
+                          <div className="text-xl sm:text-2xl lg:text-3xl xl:text-[40px] font-medium text-[#313131] [font-family:'Poppins',Helvetica] leading-tight">
+                            {stat.value}
+                          </div>
+                          <div className="text-sm sm:text-base lg:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-6">
+                            {stat.label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right side with image and decorative elements */}
+                <div className="order-1 lg:order-2 relative h-64 sm:h-80 md:h-96 lg:h-[600px] xl:h-[700px]">
+                  {/* Decorative elements */}
+                  <div className="absolute top-4 sm:top-8 lg:top-[97px] left-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[238px] lg:h-[213px] bg-[#c9e7ff] rounded-[106.5px_5px_5px_5px] opacity-40" />
+                  <div className="absolute bottom-4 sm:bottom-8 lg:bottom-[50px] right-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[238px] lg:h-[213px] bg-[#c9e7ff] rounded-[106.5px_5px_5px_5px] opacity-40 rotate-180" />
+                  
                   {/* Main building image */}
                   <div className="absolute inset-2 sm:inset-4 md:inset-6 lg:inset-12 flex items-center justify-center">
+                    <img
+                      className="w-full h-full object-contain"
+                      alt="Modern building showcasing BuildMasters' construction expertise"
+                      src="/figmaAssets/mask-group.png"
+                    />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </header>
+
           {/* Partners section */}
           <section className="mt-16 lg:mt-24 mb-8" aria-label="Our trusted partners">
             <Card className="mx-auto bg-neutral-50 rounded-3xl sm:rounded-[60px] lg:rounded-[150px] border-none p-6 sm:p-8 lg:p-12">
               <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 2xl:gap-[100px]">
                 {partnerLogos.map((logo, index) => (
                   <div key={index} className="flex items-center justify-center h-6 sm:h-8 md:h-10 lg:h-12">
+                    <img
+                      className="max-h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                      alt={`${logo.alt} - Trusted partner`}
+                      src={logo.src}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </section>
+        </div>
+      </div>
+    </div>
+  );
+};
