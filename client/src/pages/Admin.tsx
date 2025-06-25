@@ -18,9 +18,11 @@ import {
   Eye,
   Filter,
   RefreshCw,
-  Clock
+  Clock,
+  Trash2
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 interface FormSubmission {
   id: string;
@@ -46,6 +48,7 @@ export const Admin = (): JSX.Element => {
   const [filterType, setFilterType] = useState<string>("all");
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -152,6 +155,40 @@ export const Admin = (): JSX.Element => {
       title: "Data Exported",
       description: `${submissions.length} submissions exported successfully`,
     });
+  };
+
+  const handleDelete = async (id: string) => {
+    setDeletingId(id);
+    try {
+      const response = await fetch(`/api/admin/submissions/${id}`, {
+        method: "DELETE",
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Remove from local state immediately
+        setSubmissions(prev => prev.filter(sub => sub.id !== id));
+        
+        // Refresh stats
+        await fetchStats();
+        
+        toast({
+          title: "Deleted Successfully",
+          description: "Form submission has been permanently deleted",
+        });
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      toast({
+        title: "Delete Failed",
+        description: "Failed to delete submission. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const formatFormType = (type: string) => {
@@ -524,9 +561,41 @@ export const Admin = (): JSX.Element => {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Button variant="ghost" size="sm">
-                          <Eye className="w-4 h-4" />
-                        </Button>
+                        <div className="flex items-center space-x-2">
+                          <Button variant="ghost" size="sm">
+                            <Eye className="w-4 h-4" />
+                          </Button>
+                          
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                disabled={deletingId === submission.id}
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Delete Submission</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  Are you sure you want to delete this form submission? This action cannot be undone and will permanently remove the data from both memory and file storage.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction
+                                  onClick={() => handleDelete(submission.id)}
+                                  className="bg-red-600 hover:bg-red-700"
+                                >
+                                  Delete
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}

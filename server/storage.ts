@@ -12,6 +12,7 @@ export interface IStorage {
   getFormSubmissions(): Promise<FormSubmission[]>;
   getFormSubmissionsByType(formType: FormSubmission['formType']): Promise<FormSubmission[]>;
   getFormSubmissionStats(): Promise<{ total: number; byType: Record<string, number>; recent: FormSubmission[] }>;
+  deleteFormSubmission(id: string): Promise<boolean>;
   
   // Admin methods
   validateAdmin(username: string, password: string): Promise<boolean>;
@@ -80,6 +81,22 @@ export class MemStorage implements IStorage {
     }
   }
 
+  private deleteSubmissionFile(id: string) {
+    try {
+      const fileName = `${id}.json`;
+      const filePath = path.join(this.usersDir, fileName);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+        console.log(`Deleted submission file: ${fileName}`);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Error deleting submission file:", error);
+      return false;
+    }
+  }
+
   async getUser(id: number): Promise<User | undefined> {
     return this.users.get(id);
   }
@@ -145,6 +162,23 @@ export class MemStorage implements IStorage {
       byType,
       recent
     };
+  }
+
+  async deleteFormSubmission(id: string): Promise<boolean> {
+    try {
+      // Delete from memory
+      const deleted = this.formSubmissions.delete(id);
+      
+      // Delete file
+      if (deleted) {
+        this.deleteSubmissionFile(id);
+      }
+      
+      return deleted;
+    } catch (error) {
+      console.error("Error deleting form submission:", error);
+      return false;
+    }
   }
 
   async validateAdmin(username: string, password: string): Promise<boolean> {
