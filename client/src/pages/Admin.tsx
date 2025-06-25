@@ -16,10 +16,11 @@ import {
   Search,
   LogOut,
   Eye,
-  Filter
+  Filter,
+  RefreshCw,
+  Clock
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 
 interface FormSubmission {
   id: string;
@@ -39,10 +40,12 @@ export const Admin = (): JSX.Element => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
-  const [stats, setStats] = useState<Stats | null>(null);
+  const [stats, setStats] = useState<Stats>({ total: 0, byType: {}, recent: [] });
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState<string>("all");
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const { toast } = useToast();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -66,7 +69,7 @@ export const Admin = (): JSX.Element => {
           title: "Login Successful",
           description: "Welcome to the admin dashboard",
         });
-        fetchData();
+        await fetchData();
       } else {
         throw new Error(result.message);
       }
@@ -81,24 +84,39 @@ export const Admin = (): JSX.Element => {
     }
   };
 
-  const fetchData = async () => {
+  const fetchStats = async () => {
     try {
-      const [submissionsResponse, statsResponse] = await Promise.all([
-        fetch("/api/admin/submissions"),
-        fetch("/api/admin/stats"),
-      ]);
-      
-      const submissionsData = await submissionsResponse.json();
-      const statsData = await statsResponse.json();
-      
-      setSubmissions(submissionsData);
-      setStats(statsData);
+      const response = await fetch("/api/admin/stats");
+      const data = await response.json();
+      setStats(data);
+      setLastUpdated(new Date());
+    } catch (error) {
+      console.error("Failed to fetch stats:", error);
+    }
+  };
+
+  const fetchSubmissions = async () => {
+    try {
+      const response = await fetch("/api/admin/submissions");
+      const data = await response.json();
+      setSubmissions(data);
+    } catch (error) {
+      console.error("Failed to fetch submissions:", error);
+    }
+  };
+
+  const fetchData = async () => {
+    setIsRefreshing(true);
+    try {
+      await Promise.all([fetchStats(), fetchSubmissions()]);
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to fetch dashboard data",
         variant: "destructive",
       });
+    } finally {
+      setIsRefreshing(false);
     }
   };
 
@@ -107,18 +125,33 @@ export const Admin = (): JSX.Element => {
     setUsername("");
     setPassword("");
     setSubmissions([]);
-    setStats(null);
+    setStats({ total: 0, byType: {}, recent: [] });
+    setSearchTerm("");
+    setFilterType("all");
+    setLastUpdated(null);
   };
 
   const exportData = () => {
-    const dataStr = JSON.stringify(submissions, null, 2);
+    const exportPayload = {
+      exportDate: new Date().toISOString(),
+      stats: stats,
+      submissions: submissions,
+      totalCount: submissions.length
+    };
+    
+    const dataStr = JSON.stringify(exportPayload, null, 2);
     const dataBlob = new Blob([dataStr], { type: "application/json" });
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `form-submissions-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `buildmasters-submissions-${new Date().toISOString().split('T')[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
+    
+    toast({
+      title: "Data Exported",
+      description: `${submissions.length} submissions exported successfully`,
+    });
   };
 
   const formatFormType = (type: string) => {
@@ -132,15 +165,59 @@ export const Admin = (): JSX.Element => {
     return types[type as keyof typeof types] || type;
   };
 
-  const filteredSubmissions = submissions.filter(submission => {
-    const matchesSearch = searchTerm === "" || 
-      JSON.stringify(submission.data).toLowerCase().includes(searchTerm.toLowerCase()) ||
-      submission.formType.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesFilter = filterType === "all" || submission.formType === filterType;
-    
-    return matchesSearch && matchesFilter;
-  });
+  const formatTimestamp = (timestamp: string) => {
+    return new Date(timestamp).toLocaleString('en-IN', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  const getFormTypeColor = (type: string) => {
+    const colors = {
+      contact: "bg-blue-100 text-blue-800",
+      quickInquiry: "bg-green-100 text-green-800",
+      siteVisit: "bg-purple-100 text-purple-800",
+      emiCalculator: "bg-orange-100 text-orange-800",
+      newsletter: "bg-pink-100 text-pink-800"
+    };
+    return colors[type as keyof typeof colors] || "bg-gray-100 text-gray-800";
+  };
+
+  const filteredSubmissions = submissions
+    .filter(submission => {
+      const matchesFilter = filterType === "all" || submission.formType === filterType;
+      const matchesSearch = searchTerm === "" || 
+        JSON.stringify(submission.data).toLowerCase().includes(searchTerm.toLowerCase()) ||
+        submission.formType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        submission.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        formatTimestamp(submission.timestamp).toLowerCase().includes(searchTerm.toLowerCase());
+      
+      return matchesFilter && matchesSearch;
+    })
+    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+  const getMostPopularForm = () => {
+    if (Object.keys(stats.byType).length === 0) return { type: "None Yet", count: 0 };
+    const [type, count] = Object.entries(stats.byType).sort(([,a], [,b]) => b - a)[0];
+    return { type: formatFormType(type), count };
+  };
+
+  // Set up real-time polling
+  useEffect(() => {
+    if (isLoggedIn) {
+      fetchData();
+      
+      const interval = setInterval(() => {
+        fetchStats();
+        fetchSubmissions();
+      }, 10000); // Refresh every 10 seconds
+      
+      return () => clearInterval(interval);
+    }
+  }, [isLoggedIn]);
 
   if (!isLoggedIn) {
     return (
@@ -164,6 +241,7 @@ export const Admin = (): JSX.Element => {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
+                  placeholder="admin"
                 />
               </div>
               <div className="space-y-2">
@@ -174,6 +252,7 @@ export const Admin = (): JSX.Element => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  placeholder="buildmasters2025"
                 />
               </div>
               <Button 
@@ -190,171 +269,246 @@ export const Admin = (): JSX.Element => {
     );
   }
 
+  const popularForm = getMostPopularForm();
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div>
+            <div className="flex items-center space-x-4">
               <h1 className="text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
                 BuildMasters <span className="text-[#b48b2f]">Admin</span>
               </h1>
+              {lastUpdated && (
+                <div className="flex items-center text-sm text-gray-500">
+                  <Clock className="w-4 h-4 mr-1" />
+                  Last updated: {lastUpdated.toLocaleTimeString()}
+                </div>
+              )}
             </div>
-            <Button onClick={handleLogout} variant="outline" size="sm">
-              <LogOut className="w-4 h-4 mr-2" />
-              Logout
-            </Button>
+            <div className="flex items-center space-x-3">
+              <Button
+                onClick={fetchData}
+                variant="outline"
+                size="sm"
+                disabled={isRefreshing}
+                className="flex items-center"
+              >
+                <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+                {isRefreshing ? "Refreshing..." : "Refresh"}
+              </Button>
+              <Button onClick={handleLogout} variant="outline" size="sm">
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+            </div>
           </div>
         </div>
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Overview */}
-        {stats && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <FileText className="h-8 w-8 text-[#b48b2f]" />
-                  <div className="ml-4">
-                    <p className="text-2xl font-bold text-[#313131]">{stats.total}</p>
-                    <p className="text-sm text-[#6b6b6b]">Total Submissions</p>
+        {/* Real-Time Stats Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card className="border-none shadow-lg">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold text-[#313131]">
+                  Total Submissions
+                </CardTitle>
+                <FileText className="w-8 h-8 text-[#b48b2f]" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-[#b48b2f]">
+                {stats.total}
+              </div>
+              <p className="text-sm text-[#6b6b6b] mt-1">
+                All forms {stats.total > 0 && "(Live Data)"}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-none shadow-lg">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold text-[#313131]">
+                  Most Popular
+                </CardTitle>
+                <BarChart3 className="w-8 h-8 text-[#b48b2f]" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-[#b48b2f]">
+                {popularForm.type}
+              </div>
+              <p className="text-sm text-[#6b6b6b] mt-1">
+                {popularForm.count > 0 ? `${popularForm.count} submissions` : "Waiting for data"}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-none shadow-lg">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold text-[#313131]">
+                  Form Types
+                </CardTitle>
+                <Users className="w-8 h-8 text-[#b48b2f]" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-[#b48b2f]">
+                {Object.keys(stats.byType).length}
+              </div>
+              <p className="text-sm text-[#6b6b6b] mt-1">
+                Active form types
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-none shadow-lg">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold text-[#313131]">
+                  Recent Activity
+                </CardTitle>
+                <Calendar className="w-8 h-8 text-[#b48b2f]" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-[#b48b2f]">
+                {stats.recent.length}
+              </div>
+              <p className="text-sm text-[#6b6b6b] mt-1">
+                Latest entries {stats.recent.length > 0 && "(Auto-refresh)"}
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Form Type Breakdown */}
+        {Object.keys(stats.byType).length > 0 && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold text-[#313131]">
+                Form Type Breakdown
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {Object.entries(stats.byType).map(([type, count]) => (
+                  <div key={type} className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-2xl font-bold text-[#b48b2f]">{count}</div>
+                    <div className="text-sm text-[#6b6b6b]">{formatFormType(type)}</div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <Users className="h-8 w-8 text-blue-600" />
-                  <div className="ml-4">
-                    <p className="text-2xl font-bold text-[#313131]">{stats.byType.contact || 0}</p>
-                    <p className="text-sm text-[#6b6b6b]">Contact Forms</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <Calendar className="h-8 w-8 text-green-600" />
-                  <div className="ml-4">
-                    <p className="text-2xl font-bold text-[#313131]">{stats.byType.siteVisit || 0}</p>
-                    <p className="text-sm text-[#6b6b6b]">Site Visits</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <BarChart3 className="h-8 w-8 text-purple-600" />
-                  <div className="ml-4">
-                    <p className="text-2xl font-bold text-[#313131]">{stats.byType.quickInquiry || 0}</p>
-                    <p className="text-sm text-[#6b6b6b]">Quick Inquiries</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         )}
 
-        {/* Main Content */}
+        {/* Submissions Management */}
         <Card>
           <CardHeader>
-            <div className="flex justify-between items-start">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
-                <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
-                  Form Submissions
+                <CardTitle className="text-xl font-semibold text-[#313131]">
+                  Form Submissions ({filteredSubmissions.length})
                 </CardTitle>
                 <CardDescription>
-                  Manage and view all form submissions from your website
+                  Manage and export all form submissions
                 </CardDescription>
               </div>
-              <Button onClick={exportData} variant="outline" size="sm">
+              <Button onClick={exportData} className="bg-[#b48b2f] hover:bg-[#9d7829] text-white">
                 <Download className="w-4 h-4 mr-2" />
-                Export JSON
+                Export Data
               </Button>
             </div>
           </CardHeader>
           <CardContent>
-            {/* Filters */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Search submissions..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-9"
-                />
+            {/* Search and Filter Controls */}
+            <div className="flex flex-col md:flex-row gap-4 mb-6">
+              <div className="flex-1">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input
+                    placeholder="Search submissions..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
               </div>
-              <Select value={filterType} onValueChange={setFilterType}>
-                <SelectTrigger className="w-full sm:w-48">
-                  <Filter className="w-4 h-4 mr-2" />
-                  <SelectValue placeholder="Filter by type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
-                  <SelectItem value="contact">Contact Form</SelectItem>
-                  <SelectItem value="quickInquiry">Quick Inquiry</SelectItem>
-                  <SelectItem value="siteVisit">Site Visit</SelectItem>
-                  <SelectItem value="emiCalculator">EMI Calculator</SelectItem>
-                  <SelectItem value="newsletter">Newsletter</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="md:w-48">
+                <Select value={filterType} onValueChange={setFilterType}>
+                  <SelectTrigger>
+                    <Filter className="w-4 h-4 mr-2" />
+                    <SelectValue placeholder="Filter by type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Types</SelectItem>
+                    <SelectItem value="contact">Contact Form</SelectItem>
+                    <SelectItem value="quickInquiry">Quick Inquiry</SelectItem>
+                    <SelectItem value="siteVisit">Site Visit</SelectItem>
+                    <SelectItem value="emiCalculator">EMI Calculator</SelectItem>
+                    <SelectItem value="newsletter">Newsletter</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             {/* Submissions Table */}
-            <div className="rounded-md border">
+            <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Date</TableHead>
+                    <TableHead>ID</TableHead>
                     <TableHead>Type</TableHead>
-                    <TableHead>Details</TableHead>
-                    <TableHead>Contact</TableHead>
+                    <TableHead>Timestamp</TableHead>
+                    <TableHead>Customer Info</TableHead>
+                    <TableHead>Contact Details</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filteredSubmissions.map((submission) => (
                     <TableRow key={submission.id}>
-                      <TableCell>
-                        {new Date(submission.timestamp).toLocaleDateString('en-IN', {
-                          day: '2-digit',
-                          month: 'short',
-                          year: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}
+                      <TableCell className="font-mono text-xs">
+                        {submission.id.split('_')[1]?.substring(0, 8)}...
                       </TableCell>
                       <TableCell>
-                        <Badge variant="secondary">
+                        <Badge className={getFormTypeColor(submission.formType)}>
                           {formatFormType(submission.formType)}
                         </Badge>
+                      </TableCell>
+                      <TableCell className="text-sm">
+                        {formatTimestamp(submission.timestamp)}
                       </TableCell>
                       <TableCell>
                         <div className="space-y-1">
                           {submission.data.name && (
-                            <div className="font-medium">{submission.data.name}</div>
-                          )}
-                          {submission.data.message && (
-                            <div className="text-sm text-gray-600 truncate max-w-xs">
-                              {submission.data.message}
-                            </div>
+                            <div className="font-medium text-sm">{submission.data.name}</div>
                           )}
                           {submission.data.projectType && (
-                            <div className="text-sm text-gray-600">
+                            <div className="text-xs text-gray-600">
                               Project: {submission.data.projectType}
                             </div>
                           )}
-                          {submission.data.visitDate && (
-                            <div className="text-sm text-gray-600">
-                              Visit: {submission.data.visitDate}
+                          {submission.data.project && (
+                            <div className="text-xs text-gray-600">
+                              Project: {submission.data.project}
+                            </div>
+                          )}
+                          {submission.data.budget && (
+                            <div className="text-xs text-gray-600">
+                              Budget: {submission.data.budget}
+                            </div>
+                          )}
+                          {submission.data.preferredDate && (
+                            <div className="text-xs text-gray-600">
+                              Visit: {submission.data.preferredDate}
                             </div>
                           )}
                         </div>
@@ -369,6 +523,11 @@ export const Admin = (): JSX.Element => {
                           )}
                         </div>
                       </TableCell>
+                      <TableCell>
+                        <Button variant="ghost" size="sm">
+                          <Eye className="w-4 h-4" />
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -376,7 +535,10 @@ export const Admin = (): JSX.Element => {
               
               {filteredSubmissions.length === 0 && (
                 <div className="text-center py-12 text-gray-500">
-                  No submissions found matching your criteria
+                  {submissions.length === 0 
+                    ? "No submissions yet. Forms will appear here once submitted."
+                    : "No submissions found matching your search criteria."
+                  }
                 </div>
               )}
             </div>
