@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SimpleSelect as Select, SimpleSelectContent as SelectContent, SimpleSelectItem as SelectItem, SimpleSelectTrigger as SelectTrigger, SimpleSelectValue as SelectValue } from "@/components/ui/simple-select";
 import { Phone, Mail, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -180,21 +180,21 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Project Type *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="[font-family:'Poppins',Helvetica]">
-                        <SelectValue placeholder="Select project type" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
+                  <FormControl>
+                    <Select 
+                      onValueChange={field.onChange} 
+                      value={field.value || ""} 
+                      placeholder="Select project type"
+                      className="[font-family:'Poppins',Helvetica]"
+                    >
                       <SelectItem value="residential">Residential Project</SelectItem>
                       <SelectItem value="apartments">Apartments</SelectItem>
                       <SelectItem value="villas">Independent Villas</SelectItem>
                       <SelectItem value="mini-apartments">Mini Apartments</SelectItem>
                       <SelectItem value="land">Land Development</SelectItem>
                       <SelectItem value="renovation">Renovation</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    </Select>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -209,21 +209,21 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                   Budget Range *
                 </FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger className="[font-family:'Poppins',Helvetica]">
-                      <SelectValue placeholder="Select your budget range" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
+                <FormControl>
+                  <Select 
+                    onValueChange={field.onChange} 
+                    value={field.value || ""} 
+                    placeholder="Select your budget range"
+                    className="[font-family:'Poppins',Helvetica]"
+                  >
                     <SelectItem value="below-25">Below ₹25 Lakhs</SelectItem>
                     <SelectItem value="25-50">₹25 - ₹50 Lakhs</SelectItem>
                     <SelectItem value="50-75">₹50 - ₹75 Lakhs</SelectItem>
                     <SelectItem value="75-100">₹75 Lakhs - ₹1 Crore</SelectItem>
                     <SelectItem value="100-150">₹1 - ₹1.5 Crores</SelectItem>
                     <SelectItem value="above-150">Above ₹1.5 Crores</SelectItem>
-                  </SelectContent>
-                </Select>
+                  </Select>
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}

@@ -5,7 +5,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SimpleSelect as Select, SimpleSelectContent as SelectContent, SimpleSelectItem as SelectItem, SimpleSelectTrigger as SelectTrigger, SimpleSelectValue as SelectValue } from "@/components/ui/simple-select";
 import { Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -167,20 +167,20 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
               <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                 Interested In *
               </FormLabel>
-              <Select onValueChange={field.onChange} value={field.value || ""}>
-                <FormControl>
-                  <SelectTrigger className="[font-family:'Poppins',Helvetica]">
-                    <SelectValue placeholder="Select option" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
+              <FormControl>
+                <Select 
+                  onValueChange={field.onChange} 
+                  value={field.value || ""} 
+                  placeholder="Select option"
+                  className="[font-family:'Poppins',Helvetica]"
+                >
                   <SelectItem value="apartments">Apartments</SelectItem>
                   <SelectItem value="villas">Villas</SelectItem>
                   <SelectItem value="mini-apartments">Mini Apartments</SelectItem>
                   <SelectItem value="land">Land Development</SelectItem>
                   <SelectItem value="consultation">Free Consultation</SelectItem>
-                </SelectContent>
-              </Select>
+                </Select>
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

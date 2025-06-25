@@ -5,7 +5,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SimpleSelect as Select, SimpleSelectContent as SelectContent, SimpleSelectItem as SelectItem, SimpleSelectTrigger as SelectTrigger, SimpleSelectValue as SelectValue } from "@/components/ui/simple-select";
 import { Calendar, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -211,21 +211,21 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Project *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="[font-family:'Poppins',Helvetica]">
-                        <SelectValue placeholder="Select project to visit" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
+                  <FormControl>
+                    <Select 
+                      onValueChange={field.onChange} 
+                      value={field.value || ""} 
+                      placeholder="Select project to visit"
+                      className="[font-family:'Poppins',Helvetica]"
+                    >
                       <SelectItem value="green-meadows">Green Meadows Residency</SelectItem>
                       <SelectItem value="royal-gardens">Royal Gardens</SelectItem>
                       <SelectItem value="sunrise-heights">Sunrise Heights</SelectItem>
                       <SelectItem value="golden-villas">Golden Villas</SelectItem>
                       <SelectItem value="smart-homes">Smart Homes Complex</SelectItem>
                       <SelectItem value="pearl-apartments">Pearl Apartments</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    </Select>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -241,20 +241,20 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Preferred Date *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="[font-family:'Poppins',Helvetica]">
-                        <SelectValue placeholder="Select date" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
+                  <FormControl>
+                    <Select 
+                      onValueChange={field.onChange} 
+                      value={field.value || ""} 
+                      placeholder="Select date"
+                      className="[font-family:'Poppins',Helvetica]"
+                    >
                       {getNextDays().map((day) => (
                         <SelectItem key={day.value} value={day.value}>
                           {day.label}
                         </SelectItem>
                       ))}
-                    </SelectContent>
-                  </Select>
+                    </Select>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -268,20 +268,20 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Preferred Time *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="[font-family:'Poppins',Helvetica]">
-                        <SelectValue placeholder="Select time" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
+                  <FormControl>
+                    <Select 
+                      onValueChange={field.onChange} 
+                      value={field.value || ""} 
+                      placeholder="Select time"
+                      className="[font-family:'Poppins',Helvetica]"
+                    >
                       {timeSlots.map((slot) => (
                         <SelectItem key={slot.value} value={slot.value}>
                           {slot.label}
                         </SelectItem>
                       ))}
-                    </SelectContent>
-                  </Select>
+                    </Select>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -295,20 +295,20 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     No. of Visitors *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="[font-family:'Poppins',Helvetica]">
-                        <SelectValue placeholder="How many?" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
+                  <FormControl>
+                    <Select 
+                      onValueChange={field.onChange} 
+                      value={field.value || ""} 
+                      placeholder="How many?"
+                      className="[font-family:'Poppins',Helvetica]"
+                    >
                       <SelectItem value="1">1 Person</SelectItem>
                       <SelectItem value="2">2 People</SelectItem>
                       <SelectItem value="3">3 People</SelectItem>
                       <SelectItem value="4">4 People</SelectItem>
                       <SelectItem value="5+">5+ People</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    </Select>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
