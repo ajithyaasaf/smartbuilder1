@@ -177,6 +177,8 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 24, 2025: Increased logo size across all pages for better brand visibility (mobile: 80×48px, tablet: 96×64px, desktop: 128×80px)
+- January 24, 2025: Fixed logo display issue by moving image to public directory with proper permissions
 - January 24, 2025: Removed "Smart Builders" text from all page headers, updated to logo-only branding
 - January 24, 2025: Updated all logo images to new construction skyline design
 - January 24, 2025: Changed email from smartbuilders.com to buildmasters.com in footer

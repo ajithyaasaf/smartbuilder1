@@ -120,7 +120,7 @@ export const Apartments = (): JSX.Element => {
                 <img 
                   src="/logo.jpg" 
                   alt="Company Logo" 
-                  className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
+                  className="w-20 h-12 sm:w-24 sm:h-16 lg:w-32 lg:h-20 object-contain"
                 />
 
               </div>
@@ -366,7 +366,7 @@ export const Apartments = (): JSX.Element => {
                 <img 
                   src="/logo.jpg" 
                   alt="Company Logo" 
-                  className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
+                  className="w-20 h-12 sm:w-24 sm:h-16 lg:w-32 lg:h-20 object-contain"
                 />
                     </div>
                     <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
