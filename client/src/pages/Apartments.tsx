@@ -24,26 +24,18 @@ export const Apartments = (): JSX.Element => {
   const { navigate } = useNavigation();
 
   const containerRef = useGSAP(() => {
-    // Page entrance animation
-    animatePageTransition();
-    
-    // Navigation animation
-    animateNavigation();
-    
-    // Cards scroll animations with fallbacks
-    animateCardsOnScroll(".apartment-card");
-    animateCardsOnScroll(".amenity-card");
-    animateCardsOnScroll(".Card");
-    animateCardsOnScroll("[class*='overflow-hidden']");
-    
-    // Button hover animations
-    setupButtonHoverAnimations();
-    
-    // Floating decorative elements
-    animateFloatingElements();
-    
-    // Parallax images
-    setupParallaxImages();
+    try {
+      setTimeout(() => {
+        animatePageTransition();
+        animateNavigation();
+        animateCardsOnScroll(".overflow-hidden");
+        setupButtonHoverAnimations();
+        animateFloatingElements();
+        setupParallaxImages();
+      }, 100);
+    } catch (error) {
+      console.debug("Animation initialization error:", error);
+    }
   }, []);
   
   const navItems = [

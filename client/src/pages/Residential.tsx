@@ -26,16 +26,19 @@ export const Residential = (): JSX.Element => {
   const { navigate } = useNavigation();
 
   const containerRef = useGSAP(() => {
-    animatePageTransition();
-    animateNavigation();
-    animateCardsOnScroll(".project-card");
-    animateCardsOnScroll(".feature-card");
-    animateCardsOnScroll(".Card");
-    animateCardsOnScroll("[class*='overflow-hidden']");
-    animateFormEntrance(".site-visit-form");
-    setupButtonHoverAnimations();
-    animateFloatingElements();
-    setupParallaxImages();
+    try {
+      setTimeout(() => {
+        animatePageTransition();
+        animateNavigation();
+        animateCardsOnScroll(".overflow-hidden");
+        animateFormEntrance(".site-visit-form");
+        setupButtonHoverAnimations();
+        animateFloatingElements();
+        setupParallaxImages();
+      }, 100);
+    } catch (error) {
+      console.debug("Animation initialization error:", error);
+    }
   }, []);
   
   const navItems = [

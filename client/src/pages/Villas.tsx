@@ -25,15 +25,18 @@ export const Villas = (): JSX.Element => {
   const { navigate } = useNavigation();
 
   const containerRef = useGSAP(() => {
-    animatePageTransition();
-    animateNavigation();
-    animateCardsOnScroll(".villa-card");
-    animateCardsOnScroll(".feature-card");
-    animateCardsOnScroll(".Card");
-    animateCardsOnScroll("[class*='overflow-hidden']");
-    setupButtonHoverAnimations();
-    animateFloatingElements();
-    setupParallaxImages();
+    try {
+      setTimeout(() => {
+        animatePageTransition();
+        animateNavigation();
+        animateCardsOnScroll(".overflow-hidden");
+        setupButtonHoverAnimations();
+        animateFloatingElements();
+        setupParallaxImages();
+      }, 100);
+    } catch (error) {
+      console.debug("Animation initialization error:", error);
+    }
   }, []);
   
   const navItems = [

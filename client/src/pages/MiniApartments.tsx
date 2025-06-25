@@ -24,16 +24,19 @@ export const MiniApartments = (): JSX.Element => {
   const { navigate } = useNavigation();
 
   const containerRef = useGSAP(() => {
-    animatePageTransition();
-    animateNavigation();
-    animateCardsOnScroll(".mini-apartment-card");
-    animateCardsOnScroll(".feature-card");
-    animateCardsOnScroll(".Card");
-    animateCardsOnScroll("[class*='overflow-hidden']");
-    animateFormEntrance(".emi-calculator");
-    setupButtonHoverAnimations();
-    animateFloatingElements();
-    setupParallaxImages();
+    try {
+      setTimeout(() => {
+        animatePageTransition();
+        animateNavigation();
+        animateCardsOnScroll(".overflow-hidden");
+        animateFormEntrance(".emi-calculator");
+        setupButtonHoverAnimations();
+        animateFloatingElements();
+        setupParallaxImages();
+      }, 100);
+    } catch (error) {
+      console.debug("Animation initialization error:", error);
+    }
   }, []);
   
   const navItems = [

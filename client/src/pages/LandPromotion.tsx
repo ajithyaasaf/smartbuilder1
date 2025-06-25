@@ -26,16 +26,19 @@ export const LandPromotion = (): JSX.Element => {
   const { navigate } = useNavigation();
 
   const containerRef = useGSAP(() => {
-    animatePageTransition();
-    animateNavigation();
-    animateCardsOnScroll(".land-card");
-    animateCardsOnScroll(".service-card");
-    animateCardsOnScroll(".Card");
-    animateCardsOnScroll("[class*='overflow-hidden']");
-    animateTextReveal(".land-title");
-    setupButtonHoverAnimations();
-    animateFloatingElements();
-    setupParallaxImages();
+    try {
+      setTimeout(() => {
+        animatePageTransition();
+        animateNavigation();
+        animateCardsOnScroll(".overflow-hidden");
+        animateTextReveal(".land-title");
+        setupButtonHoverAnimations();
+        animateFloatingElements();
+        setupParallaxImages();
+      }, 100);
+    } catch (error) {
+      console.debug("Animation initialization error:", error);
+    }
   }, []);
   
   const navItems = [

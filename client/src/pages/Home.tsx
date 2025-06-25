@@ -30,29 +30,20 @@ export const Home = (): JSX.Element => {
   const { navigate } = useNavigation();
 
   const containerRef = useGSAP(() => {
-    // Hero entrance animation
-    animateHeroEntrance();
-    
-    // Navigation animation
-    animateNavigation();
-    
-    // Cards scroll animations for all card-like elements
-    animateCardsOnScroll(".service-card");
-    animateCardsOnScroll(".testimonial-card");
-    animateCardsOnScroll(".Card");
-    animateCardsOnScroll("[class*='Card']");
-    
-    // Stats counter animation
-    animateStatsCounter(".stats-section");
-    
-    // Button hover animations
-    setupButtonHoverAnimations();
-    
-    // Floating decorative elements
-    animateFloatingElements();
-    
-    // Parallax images
-    setupParallaxImages();
+    // Temporarily disable animations to fix runtime error
+    try {
+      setTimeout(() => {
+        animateHeroEntrance();
+        animateNavigation();
+        animateCardsOnScroll(".overflow-hidden");
+        animateStatsCounter(".stats-section");
+        setupButtonHoverAnimations();
+        animateFloatingElements();
+        setupParallaxImages();
+      }, 100);
+    } catch (error) {
+      console.debug("Animation initialization error:", error);
+    }
   }, []);
 
   useEffect(() => {

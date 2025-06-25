@@ -1,325 +1,473 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Register GSAP plugins
+// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-// Animation presets for consistent branding
 export const animationConfig = {
   duration: {
     fast: 0.3,
     normal: 0.6,
-    slow: 1.2,
-    extraSlow: 2.0,
+    slow: 1.0,
   },
   ease: {
     smooth: "power2.out",
     bounce: "back.out(1.7)",
     elastic: "elastic.out(1, 0.3)",
-    expo: "expo.out",
   },
   stagger: 0.1,
 };
 
-// Hero section entrance animation
-export const animateHeroEntrance = () => {
-  const tl = gsap.timeline();
-  
-  tl.from(".hero-heading", {
-    y: 100,
-    opacity: 0,
-    duration: animationConfig.duration.slow,
-    ease: animationConfig.ease.smooth,
-  })
-  .from(".hero-subtext", {
-    y: 50,
-    opacity: 0,
-    duration: animationConfig.duration.normal,
-    ease: animationConfig.ease.smooth,
-  }, "-=0.3")
-  .from(".hero-buttons", {
-    y: 30,
-    opacity: 0,
-    duration: animationConfig.duration.normal,
-    ease: animationConfig.ease.smooth,
-  }, "-=0.2")
-  .from(".hero-stats", {
-    scale: 0.8,
-    opacity: 0,
-    duration: animationConfig.duration.normal,
-    ease: animationConfig.ease.bounce,
-    stagger: animationConfig.stagger,
-  }, "-=0.1")
-  .from(".hero-image", {
-    scale: 0.9,
-    opacity: 0,
-    duration: animationConfig.duration.slow,
-    ease: animationConfig.ease.smooth,
-  }, "-=0.8");
-
-  return tl;
-};
-
-// Navigation animation
-export const animateNavigation = () => {
-  gsap.from(".nav-item", {
-    y: -20,
-    opacity: 0,
-    duration: animationConfig.duration.normal,
-    ease: animationConfig.ease.smooth,
-    stagger: animationConfig.stagger,
-    delay: 0.2,
-  });
-
-  gsap.from(".nav-logo", {
-    scale: 0,
-    opacity: 0,
-    duration: animationConfig.duration.normal,
-    ease: animationConfig.ease.bounce,
-  });
-};
-
-// Card reveal animations with scroll trigger
-export const animateCardsOnScroll = (selector: string) => {
-  gsap.fromTo(selector, 
-    {
-      y: 80,
-      opacity: 0,
-      scale: 0.95,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      duration: animationConfig.duration.normal,
-      ease: animationConfig.ease.smooth,
-      stagger: animationConfig.stagger,
-      scrollTrigger: {
-        trigger: selector,
-        start: "top 85%",
-        end: "bottom 15%",
-        toggleActions: "play none none reverse",
-      },
-    }
-  );
-};
-
-// Form entrance animation
-export const animateFormEntrance = (selector: string) => {
-  const tl = gsap.timeline();
-  
-  tl.from(`${selector} .form-header`, {
-    y: -30,
-    opacity: 0,
-    duration: animationConfig.duration.normal,
-    ease: animationConfig.ease.smooth,
-  })
-  .from(`${selector} .form-field`, {
-    x: -20,
-    opacity: 0,
-    duration: animationConfig.duration.fast,
-    ease: animationConfig.ease.smooth,
-    stagger: 0.08,
-  }, "-=0.2")
-  .from(`${selector} .form-button`, {
-    scale: 0.8,
-    opacity: 0,
-    duration: animationConfig.duration.normal,
-    ease: animationConfig.ease.bounce,
-  }, "-=0.1");
-
-  return tl;
-};
-
-// Stats counter animation
-export const animateStatsCounter = (selector: string) => {
-  const statsElements = document.querySelectorAll(`${selector} .stat-number`);
-  
-  statsElements.forEach((element) => {
-    const finalValue = parseInt(element.textContent || "0");
-    const obj = { value: 0 };
-    
-    gsap.to(obj, {
-      value: finalValue,
-      duration: animationConfig.duration.extraSlow,
-      ease: animationConfig.ease.expo,
-      onUpdate: () => {
-        if (element.textContent?.includes("+")) {
-          element.textContent = Math.round(obj.value) + "+";
-        } else if (element.textContent?.includes(".")) {
-          element.textContent = obj.value.toFixed(1);
-        } else {
-          element.textContent = Math.round(obj.value).toString();
-        }
-      },
-      scrollTrigger: {
-        trigger: element,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-    });
-  });
-};
-
-// Button hover animations
-export const setupButtonHoverAnimations = () => {
-  const buttons = document.querySelectorAll(".animate-button");
-  
-  buttons.forEach((button) => {
-    button.addEventListener("mouseenter", () => {
-      gsap.to(button, {
-        scale: 1.05,
-        y: -2,
-        duration: animationConfig.duration.fast,
-        ease: animationConfig.ease.smooth,
-      });
-    });
-    
-    button.addEventListener("mouseleave", () => {
-      gsap.to(button, {
-        scale: 1,
-        y: 0,
-        duration: animationConfig.duration.fast,
-        ease: animationConfig.ease.smooth,
-      });
-    });
-  });
-};
-
-// Page transition animation
-export const animatePageTransition = () => {
-  const tl = gsap.timeline();
-  
-  tl.from(".page-content", {
-    opacity: 0,
-    y: 30,
-    duration: animationConfig.duration.normal,
-    ease: animationConfig.ease.smooth,
-  })
-  .from(".page-header", {
-    opacity: 0,
-    scale: 0.95,
-    duration: animationConfig.duration.normal,
-    ease: animationConfig.ease.smooth,
-  }, "-=0.4");
-
-  return tl;
-};
-
-// Floating elements animation
-export const animateFloatingElements = () => {
-  gsap.to(".floating-element", {
-    y: -10,
-    duration: 2,
-    ease: "sine.inOut",
-    yoyo: true,
-    repeat: -1,
-    stagger: 0.3,
-  });
-};
-
-// Text reveal animation
-export const animateTextReveal = (selector: string) => {
-  const textElements = document.querySelectorAll(selector);
-  
-  textElements.forEach((element) => {
-    const text = element.textContent;
-    if (!text) return;
-    
-    element.innerHTML = text
-      .split("")
-      .map((char) => `<span class="char">${char === " " ? "&nbsp;" : char}</span>`)
-      .join("");
-    
-    gsap.from(`${selector} .char`, {
-      opacity: 0,
-      y: 20,
-      duration: animationConfig.duration.fast,
-      ease: animationConfig.ease.smooth,
-      stagger: 0.02,
-      scrollTrigger: {
-        trigger: element,
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
-    });
-  });
-};
-
-// Image parallax effect
-export const setupParallaxImages = () => {
-  const parallaxImages = document.querySelectorAll(".parallax-image");
-  
-  parallaxImages.forEach((image) => {
-    gsap.to(image, {
-      yPercent: -50,
-      ease: "none",
-      scrollTrigger: {
-        trigger: image,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
-  });
-};
-
-// Mobile menu animation
-export const animateMobileMenu = (isOpen: boolean) => {
-  const tl = gsap.timeline();
-  
-  if (isOpen) {
-    tl.to(".mobile-menu-overlay", {
-      opacity: 1,
-      duration: animationConfig.duration.fast,
-      ease: animationConfig.ease.smooth,
-    })
-    .from(".mobile-menu-item", {
-      x: -30,
-      opacity: 0,
-      duration: animationConfig.duration.fast,
-      ease: animationConfig.ease.smooth,
-      stagger: 0.05,
-    }, "-=0.1");
-  } else {
-    tl.to(".mobile-menu-item", {
-      x: -30,
-      opacity: 0,
-      duration: animationConfig.duration.fast,
-      ease: animationConfig.ease.smooth,
-      stagger: 0.02,
-    })
-    .to(".mobile-menu-overlay", {
-      opacity: 0,
-      duration: animationConfig.duration.fast,
-      ease: animationConfig.ease.smooth,
-    }, "-=0.1");
+// Helper function to find elements with multiple selector fallbacks
+const findElements = (selectors: string[]): Element[] => {
+  // Check if DOM is ready
+  if (!document || !document.body) {
+    return [];
   }
   
-  return tl;
-};
-
-// Success/Error message animations
-export const animateNotification = (type: "success" | "error") => {
-  const selector = `.toast-${type}`;
-  
-  gsap.fromTo(selector, 
-    {
-      scale: 0.8,
-      opacity: 0,
-      y: 20,
-    },
-    {
-      scale: 1,
-      opacity: 1,
-      y: 0,
-      duration: animationConfig.duration.normal,
-      ease: animationConfig.ease.bounce,
+  for (const selector of selectors) {
+    try {
+      if (selector && typeof selector === 'string') {
+        const elements = document.querySelectorAll(selector);
+        if (elements && elements.length > 0) {
+          return Array.from(elements);
+        }
+      }
+    } catch (e) {
+      // Continue to next selector if current one fails
+      console.debug(`Selector failed: ${selector}`, e);
     }
-  );
+  }
+  return [];
 };
 
-// Cleanup function for scroll triggers
+export const animateHeroEntrance = () => {
+  try {
+    const tl = gsap.timeline();
+    
+    // Find heading elements
+    const headings = findElements([
+      "h1", 
+      ".text-3xl", 
+      ".text-4xl", 
+      ".font-bold"
+    ]);
+    
+    // Find subtext elements  
+    const subtexts = findElements([
+      "p", 
+      ".text-lg", 
+      ".text-xl"
+    ]);
+    
+    // Find button containers
+    const buttonContainers = findElements([
+      ".flex.gap-4", 
+      ".space-x-4"
+    ]);
+    
+    // Find stats sections
+    const statsElements = findElements([
+      ".grid.grid-cols-2",
+      ".grid.grid-cols-4"
+    ]);
+    
+    // Find image containers
+    const imageContainers = findElements([
+      ".order-1", 
+      ".relative.h-64",
+      ".h-80"
+    ]);
+    
+    // Animate found elements with safe checks
+    if (headings.length > 0) {
+      tl.fromTo(headings, 
+        { y: 100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
+      );
+    }
+    
+    if (subtexts.length > 0) {
+      tl.fromTo(subtexts, 
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+        "-=0.5"
+      );
+    }
+    
+    if (buttonContainers.length > 0) {
+      tl.fromTo(buttonContainers, 
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        "-=0.3"
+      );
+    }
+    
+    if (statsElements.length > 0) {
+      tl.fromTo(statsElements, 
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+        "-=0.2"
+      );
+    }
+    
+    if (imageContainers.length > 0) {
+      tl.fromTo(imageContainers, 
+        { x: 100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1.2, ease: "power2.out" },
+        "-=0.8"
+      );
+    }
+  } catch (error) {
+    console.debug("Hero animation error:", error);
+  }
+};
+
+export const animateNavigation = () => {
+  try {
+    // Find logo elements
+    const logos = findElements([
+      "nav img", 
+      "img"
+    ]);
+    
+    // Find navigation items
+    const navItems = findElements([
+      "nav a"
+    ]);
+    
+    if (logos.length > 0) {
+      gsap.fromTo(logos, 
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
+      );
+    }
+    
+    if (navItems.length > 0) {
+      gsap.fromTo(navItems, 
+        { y: -20, opacity: 0 },
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 0.6, 
+          ease: "power2.out",
+          stagger: 0.1 
+        }
+      );
+    }
+  } catch (error) {
+    console.debug("Navigation animation error:", error);
+  }
+};
+
+export const animateCardsOnScroll = (selector: string) => {
+  try {
+    // Enhanced selector system with fallbacks
+    const cardSelectors = [
+      ".overflow-hidden",
+      ".border-none",
+      ".bg-white",
+      ".p-6",
+      ".p-8"
+    ];
+    
+    const cards = findElements(cardSelectors);
+    
+    if (cards.length === 0) {
+      return;
+    }
+
+    cards.forEach((card, index) => {
+      if (card && typeof card === 'object') {
+        gsap.fromTo(card, 
+          {
+            y: 50,
+            opacity: 0,
+            scale: 0.95
+          },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            delay: index * 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              end: "bottom 10%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      }
+    });
+  } catch (error) {
+    console.debug("Cards animation error:", error);
+  }
+};
+
+export const animateFormEntrance = (selector: string) => {
+  try {
+    const formSelectors = [
+      "form",
+      ".space-y-4",
+      ".space-y-6"
+    ];
+    
+    const forms = findElements(formSelectors);
+    
+    forms.forEach((form) => {
+      if (form && typeof form.querySelectorAll === 'function') {
+        const formElements = form.querySelectorAll('input, button, label, select, textarea');
+        
+        if (formElements.length > 0) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: form,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          });
+          
+          tl.fromTo(formElements, 
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: "power2.out", stagger: 0.1 }
+          );
+        }
+      }
+    });
+  } catch (error) {
+    console.debug("Form animation error:", error);
+  }
+};
+
+export const animateStatsCounter = (selector: string) => {
+  try {
+    const statsSelectors = [
+      ".text-2xl",
+      ".text-3xl",
+      ".font-bold"
+    ];
+    
+    const stats = findElements(statsSelectors);
+    
+    stats.forEach((stat) => {
+      if (stat && stat.textContent) {
+        const numberElement = stat.textContent.match(/\d+/) ? stat : (stat.querySelector && stat.querySelector('[class*="text-"]'));
+        if (numberElement && numberElement.textContent) {
+          const finalNumber = numberElement.textContent;
+          const numericValue = parseInt(finalNumber.replace(/[^\d]/g, '') || '0');
+          
+          if (numericValue > 0) {
+            gsap.fromTo({ count: 0 }, {
+              count: numericValue,
+              duration: 2,
+              ease: "power2.out",
+              onUpdate: function() {
+                if (numberElement && numberElement.textContent !== undefined) {
+                  numberElement.textContent = Math.floor(this.targets()[0].count) + (finalNumber.includes('+') ? '+' : '');
+                }
+              },
+              scrollTrigger: {
+                trigger: stat,
+                start: "top 85%",
+                toggleActions: "play none none none"
+              }
+            });
+          }
+        }
+      }
+    });
+  } catch (error) {
+    console.debug("Stats counter error:", error);
+  }
+};
+
+export const setupButtonHoverAnimations = () => {
+  try {
+    const buttonSelectors = [
+      "button"
+    ];
+    
+    const buttons = findElements(buttonSelectors);
+    
+    buttons.forEach((button) => {
+      if (button && typeof button.addEventListener === 'function') {
+        button.addEventListener("mouseenter", () => {
+          gsap.to(button, {
+            scale: 1.02,
+            y: -1,
+            duration: 0.2,
+            ease: "power2.out"
+          });
+        });
+        
+        button.addEventListener("mouseleave", () => {
+          gsap.to(button, {
+            scale: 1,
+            y: 0,
+            duration: 0.2,
+            ease: "power2.out"
+          });
+        });
+      }
+    });
+  } catch (error) {
+    console.debug("Button animations error:", error);
+  }
+};
+
+export const animatePageTransition = () => {
+  try {
+    const pageElements = findElements([
+      "header",
+      "main"
+    ]);
+    
+    if (pageElements.length > 0) {
+      gsap.fromTo(pageElements, 
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", stagger: 0.1 }
+      );
+    }
+  } catch (error) {
+    console.debug("Page transition error:", error);
+  }
+};
+
+export const animateFloatingElements = () => {
+  try {
+    const floatingSelectors = [
+      ".opacity-40"
+    ];
+    
+    const floatingElements = findElements(floatingSelectors);
+    
+    floatingElements.forEach((element, index) => {
+      if (element && typeof element === 'object') {
+        gsap.to(element, {
+          y: "random(-10, 10)",
+          x: "random(-5, 5)",
+          rotation: "random(-3, 3)",
+          duration: "random(3, 5)",
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+          delay: index * 0.3
+        });
+      }
+    });
+  } catch (error) {
+    console.debug("Floating elements error:", error);
+  }
+};
+
+export const animateTextReveal = (selector: string) => {
+  try {
+    const textSelectors = [
+      "h2",
+      ".text-3xl",
+      ".text-4xl"
+    ];
+    
+    const textElements = findElements(textSelectors);
+    
+    textElements.forEach((element) => {
+      if (element && typeof element === 'object') {
+        gsap.fromTo(element, 
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      }
+    });
+  } catch (error) {
+    console.debug("Text reveal error:", error);
+  }
+};
+
+export const setupParallaxImages = () => {
+  try {
+    const imageSelectors = [
+      "img"
+    ];
+    
+    const images = findElements(imageSelectors);
+    
+    images.forEach((img) => {
+      if (img && typeof img === 'object') {
+        gsap.to(img, {
+          yPercent: -20,
+          ease: "none",
+          scrollTrigger: {
+            trigger: img,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1
+          }
+        });
+      }
+    });
+  } catch (error) {
+    console.debug("Parallax images error:", error);
+  }
+};
+
+export const animateMobileMenu = (isOpen: boolean) => {
+  const overlay = document.querySelector('.mobile-menu-overlay');
+  const items = document.querySelectorAll('.mobile-menu-item');
+  
+  if (isOpen) {
+    if (overlay) gsap.to(overlay, { opacity: 1, duration: 0.3 });
+    if (items.length > 0) {
+      gsap.fromTo(items, 
+        { x: 50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.4, stagger: 0.1, ease: "power2.out" }
+      );
+    }
+  } else {
+    if (overlay) gsap.to(overlay, { opacity: 0, duration: 0.3 });
+    if (items.length > 0) {
+      gsap.to(items, { x: 50, opacity: 0, duration: 0.3, stagger: 0.05 });
+    }
+  }
+};
+
+export const animateNotification = (type: "success" | "error") => {
+  const notification = document.querySelector('.notification');
+  if (notification) {
+    const tl = gsap.timeline();
+    
+    tl.fromTo(notification,
+      { x: 100, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
+    )
+    .to(notification,
+      { x: 100, opacity: 0, duration: 0.5, ease: "power2.in", delay: 3 }
+    );
+  }
+};
+
 export const cleanupScrollTriggers = () => {
-  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  try {
+    if (ScrollTrigger && ScrollTrigger.getAll) {
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger && trigger.kill) {
+          trigger.kill();
+        }
+      });
+    }
+  } catch (error) {
+    console.debug("Cleanup error:", error);
+  }
 };
