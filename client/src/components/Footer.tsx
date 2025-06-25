@@ -174,11 +174,15 @@ export const Footer = (): JSX.Element => {
             Get in touch with our experts for a free consultation
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button className="bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[20px_2px_20px_2px] px-6 py-2 font-medium [font-family:'Poppins',Helvetica]">
+            <Button 
+              onClick={() => window.open('tel:+1234567890', '_self')}
+              className="bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[20px_2px_20px_2px] px-6 py-2 font-medium [font-family:'Poppins',Helvetica]"
+            >
               <Phone className="w-4 h-4 mr-2" />
               Call Now
             </Button>
             <Button 
+              onClick={() => window.location.href = '/contact'}
               variant="outline" 
               className="border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white rounded-[20px_2px_20px_2px] px-6 py-2 font-medium [font-family:'Poppins',Helvetica]"
             >
