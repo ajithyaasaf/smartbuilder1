@@ -56,7 +56,7 @@ export const Gallery = (): JSX.Element => {
       category: "completed",
       type: "image",
       description: "Luxury apartment complex with 120 units",
-      location: "Madurai",
+      location: "KK Nagar, Madurai",
       year: "2023",
       image: "/figmaAssets/mask-group.png",
       stats: { units: 120, floors: 15, parking: 200 }
@@ -90,7 +90,7 @@ export const Gallery = (): JSX.Element => {
       category: "ongoing",
       type: "image",
       description: "Premium high-rise development",
-      location: "Madurai",
+      location: "Bypass Road, Madurai",
       year: "2024",
       image: "/figmaAssets/mask-group.png",
       progress: 65,
@@ -153,7 +153,7 @@ export const Gallery = (): JSX.Element => {
       category: "awards",
       type: "video",
       description: "Grand opening of Royal Residency",
-      location: "Madurai",
+      location: "Samayanallur, Madurai",
       year: "2023",
       image: "/figmaAssets/mask-group.png"
     }
@@ -216,7 +216,7 @@ export const Gallery = (): JSX.Element => {
                 <div className="hidden lg:flex items-center space-x-4">
                   <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
                     <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
-                    Madurai, Tamil Nadu
+                    Ramnagar, Madurai
                   </div>
                 </div>
 
