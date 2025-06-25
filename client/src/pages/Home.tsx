@@ -31,22 +31,15 @@ export const Home = (): JSX.Element => {
 
   const containerRef = useGSAP(() => {
     try {
-      // Wait for DOM to be fully ready before starting animations
-      const initAnimations = () => {
-        if (document.readyState === 'complete') {
-          animateHeroEntrance();
-          animateNavigation();
-          animateCardsOnScroll(".overflow-hidden");
-          animateStatsCounter(".stats-section");
-          setupButtonHoverAnimations();
-          animateFloatingElements();
-          setupParallaxImages();
-        } else {
-          setTimeout(initAnimations, 50);
-        }
-      };
-      
-      setTimeout(initAnimations, 200);
+      setTimeout(() => {
+        animateHeroEntrance();
+        animateNavigation();
+        animateCardsOnScroll(".overflow-hidden");
+        animateStatsCounter(".text-3xl");
+        setupButtonHoverAnimations();
+        animateFloatingElements();
+        setupParallaxImages();
+      }, 50);
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

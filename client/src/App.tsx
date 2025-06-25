@@ -29,16 +29,18 @@ function Router() {
 
 function App() {
   useEffect(() => {
-    // Add performance styles for faster navigation
+    // Add performance styles for faster navigation while keeping GSAP animations
     const style = document.createElement('style');
     style.textContent = `
-      /* Faster transitions */
-      * { transition-duration: 0.15s !important; }
+      /* Hardware acceleration for GSAP animations */
+      .gsap-animation { 
+        transform: translateZ(0);
+        will-change: transform, opacity; 
+      }
       
-      /* Hardware acceleration */
+      /* Optimize transitions without breaking GSAP */
       .page-transition { 
         transform: translateZ(0);
-        will-change: opacity; 
       }
     `;
     

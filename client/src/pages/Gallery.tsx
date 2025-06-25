@@ -29,8 +29,12 @@ export const Gallery = (): JSX.Element => {
       setTimeout(() => {
         animatePageTransition();
         animateNavigation();
+        animateCardsOnScroll(".overflow-hidden");
+        animateTextReveal(".section-title");
         setupButtonHoverAnimations();
-      }, 30);
+        animateFloatingElements();
+        setupParallaxImages();
+      }, 50);
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

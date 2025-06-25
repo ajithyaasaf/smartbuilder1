@@ -177,7 +177,8 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
-- January 25, 2025: Successfully completed migration from Replit Agent to standard Replit environment
+- January 25, 2025: Restored all GSAP animations across all pages while optimizing navigation performance (50ms timeouts)
+- January 25, 2025: Successfully completed migration from Replit Agent to standard Replit environment  
 - January 25, 2025: Fixed Footer buttons with proper click handlers for phone and contact functionality
 - January 25, 2025: Implemented live site visit counter with session tracking and admin reset functionality
 - January 25, 2025: Updated admin dashboard export functionality to generate Excel files instead of JSON
