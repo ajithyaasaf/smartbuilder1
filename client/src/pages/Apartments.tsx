@@ -118,8 +118,8 @@ export const Apartments = (): JSX.Element => {
               <div className="flex items-center space-x-2">
                 
                 <img 
-                  src="/attached_assets/construction_1750785320323.jpg" 
-                  alt="Smart Builders & Developers" 
+                  src="/attached_assets/construction_1750832040927.jpg" 
+                  alt="Company Logo" 
                   className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
                 />
 
@@ -364,8 +364,8 @@ export const Apartments = (): JSX.Element => {
                     <div className="w-16 h-16 mx-auto mb-4 bg-[#b48b2f]/10 rounded-full flex items-center justify-center">
                       
                 <img 
-                  src="/attached_assets/construction_1750785320323.jpg" 
-                  alt="Smart Builders & Developers" 
+                  src="/attached_assets/construction_1750832040927.jpg" 
+                  alt="Company Logo" 
                   className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
                 />
                     </div>

@@ -177,6 +177,9 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 24, 2025: Removed "Smart Builders" text from all page headers, updated to logo-only branding
+- January 24, 2025: Updated all logo images to new construction skyline design
+- January 24, 2025: Changed email from smartbuilders.com to buildmasters.com in footer
 - January 24, 2025: Updated primary brand color to #b48b2f (gold) throughout application
 - January 24, 2025: Added company logo to all page headers 
 - January 24, 2025: Created centralized forms structure with 4 form components
