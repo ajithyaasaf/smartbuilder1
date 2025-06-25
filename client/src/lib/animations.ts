@@ -6,16 +6,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const animationConfig = {
   duration: {
-    fast: 0.3,
-    normal: 0.6,
-    slow: 1.0,
+    fast: 0.15,  // Reduced for faster navigation
+    normal: 0.3, // Reduced for faster navigation
+    slow: 0.5,   // Reduced for faster navigation
   },
   ease: {
     smooth: "power2.out",
     bounce: "back.out(1.7)",
     elastic: "elastic.out(1, 0.3)",
   },
-  stagger: 0.1,
+  stagger: 0.05, // Reduced stagger for faster animations
 };
 
 // Helper function to find elements with multiple selector fallbacks

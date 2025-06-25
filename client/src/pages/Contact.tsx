@@ -28,12 +28,8 @@ export const Contact = (): JSX.Element => {
       setTimeout(() => {
         animatePageTransition();
         animateNavigation();
-        animateCardsOnScroll(".overflow-hidden");
-        animateFormEntrance(".contact-form");
         setupButtonHoverAnimations();
-        animateFloatingElements();
-        setupParallaxImages();
-      }, 100);
+      }, 30);
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

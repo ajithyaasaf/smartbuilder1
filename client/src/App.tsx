@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
+import { useEffect } from "react";
 
 import { Home } from "@/pages/Home";
 import { About } from "@/pages/About";
@@ -27,6 +28,26 @@ function Router() {
 }
 
 function App() {
+  useEffect(() => {
+    // Add performance styles for faster navigation
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Faster transitions */
+      * { transition-duration: 0.15s !important; }
+      
+      /* Hardware acceleration */
+      .page-transition { 
+        transform: translateZ(0);
+        will-change: opacity; 
+      }
+    `;
+    
+    if (!document.querySelector('#nav-speed')) {
+      style.id = 'nav-speed';
+      document.head.appendChild(style);
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>

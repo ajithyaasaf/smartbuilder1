@@ -27,12 +27,8 @@ export const About = (): JSX.Element => {
       setTimeout(() => {
         animatePageTransition();
         animateNavigation();
-        animateCardsOnScroll(".overflow-hidden");
-        animateTextReveal(".section-title");
         setupButtonHoverAnimations();
-        animateFloatingElements();
-        setupParallaxImages();
-      }, 100);
+      }, 30);
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }
