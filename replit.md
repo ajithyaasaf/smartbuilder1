@@ -219,12 +219,14 @@ This is a modern full-stack web application built with React (frontend), Express
 - Username: `admin`
 - Password: `buildmasters2025`
 
-**In-Memory Storage Features**:
-- All form submissions automatically saved to memory
-- Data persists during server runtime (perfect for 30 submissions/month)
-- Real-time statistics and analytics
-- Search and filter functionality
-- JSON export capability
+**In-Memory Storage System**:
+- **Storage Location**: Server RAM using JavaScript Map objects
+- **Data Persistence**: Maintains data during server runtime
+- **Capacity**: Perfect for 30 submissions/month volume
+- **Real-time Access**: Instant availability in admin dashboard
+- **Backup**: JSON export functionality for data preservation
+- **Performance**: Extremely fast search and filtering
+- **Zero Setup**: No database configuration required
 
 **Dashboard Components**:
 - **Overview Stats**: Total submissions, breakdown by form type
