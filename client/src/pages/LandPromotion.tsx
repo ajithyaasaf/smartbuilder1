@@ -171,13 +171,10 @@ export const LandPromotion = (): JSX.Element => {
                 
                 <img 
                   src="/attached_assets/construction_1750785320323.jpg" 
-                  alt="Smart Builders & Developers" 
+                  alt="Company Logo" 
                   className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
                 />
-                <div className="text-xl sm:text-2xl lg:text-[25px] font-bold text-[#b48b2f] tracking-[-1.50px] [font-family:'Poppins',Helvetica]">
-                  Smart Builders
-                  <span className="block text-sm font-normal text-[#313131] tracking-normal">& Developers</span>
-                </div>
+
               </div>
               
               <NavigationMenu className="hidden lg:flex">

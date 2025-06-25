@@ -105,7 +105,7 @@ export const Home = (): JSX.Element => {
                 <div className="flex items-center space-x-3">
                   <img 
                     src="/attached_assets/construction_1750785320323.jpg" 
-                    alt="Smart Builders & Developers" 
+                    alt="Company Logo" 
                     className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
                   />
 
