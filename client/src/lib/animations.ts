@@ -246,23 +246,36 @@ export const animateFormEntrance = (selector: string) => {
 
           if (validElements.length > 0) {
             validElements.forEach((element, index) => {
-              // Use individual animations instead of timeline to avoid conflicts
-              gsap.fromTo(element, 
-                { y: 20, opacity: 0 },
-                { 
-                  y: 0, 
-                  opacity: 1, 
-                  duration: 0.5, 
-                  delay: index * 0.1,
-                  ease: "power2.out",
-                  scrollTrigger: {
-                    trigger: form,
-                    start: "top 80%",
-                    toggleActions: "play none none none", // Only play once
-                    once: true // Prevent re-triggers
-                  }
+              try {
+                // Double-check element is still valid before animating
+                if (element && element.isConnected && element.offsetParent !== null) {
+                  gsap.fromTo(element, 
+                    { y: 20, opacity: 0 },
+                    { 
+                      y: 0, 
+                      opacity: 1, 
+                      duration: 0.5, 
+                      delay: index * 0.1,
+                      ease: "power2.out",
+                      overwrite: "auto", // Prevent conflicts with existing animations
+                      scrollTrigger: {
+                        trigger: form,
+                        start: "top 80%",
+                        toggleActions: "play none none none",
+                        once: true,
+                        onUpdate: () => {
+                          // Check if element is still valid during animation
+                          if (!element.isConnected) {
+                            ScrollTrigger.getById(element)?.kill();
+                          }
+                        }
+                      }
+                    }
+                  );
                 }
-              );
+              } catch (elemError) {
+                console.debug("Element animation error:", elemError);
+              }
             });
           }
         }

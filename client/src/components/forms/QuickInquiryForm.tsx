@@ -5,7 +5,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SafeSelect as Select, SafeSelectContent as SelectContent, SafeSelectItem as SelectItem, SafeSelectTrigger as SelectTrigger, SafeSelectValue as SelectValue } from "@/components/ui/safe-select";
 import { Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -39,6 +39,17 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
       // Mark this form as animation-safe
       formElement.setAttribute('data-animation-ready', 'true');
     }
+
+    // Add global error handler for this component
+    const handleError = (event: ErrorEvent) => {
+      if (event.message && event.message.includes('ResizeObserver')) {
+        event.preventDefault();
+        return true;
+      }
+    };
+
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
   }, []);
   
   const form = useForm<QuickInquiryData>({
@@ -158,14 +169,11 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
               </FormLabel>
               <Select onValueChange={field.onChange} value={field.value || ""}>
                 <FormControl>
-                  <SelectTrigger 
-                    className="[font-family:'Poppins',Helvetica]"
-                    data-no-animate="true"
-                  >
+                  <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                     <SelectValue placeholder="Select option" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent className="z-50" data-no-animate="true">
+                <SelectContent>
                   <SelectItem value="apartments">Apartments</SelectItem>
                   <SelectItem value="villas">Villas</SelectItem>
                   <SelectItem value="mini-apartments">Mini Apartments</SelectItem>
