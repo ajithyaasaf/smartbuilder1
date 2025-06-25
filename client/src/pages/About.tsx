@@ -268,17 +268,15 @@ export const About = (): JSX.Element => {
                   <div className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] p-8 lg:p-12 text-white">
                     <div className="flex flex-col lg:flex-row items-center gap-8">
                       <div className="flex-shrink-0">
-                        <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                          <img 
-                            src={member.image} 
-                            alt={member.name}
-                            className="w-full h-full object-cover object-top scale-110"
-                            style={{ 
-                              objectPosition: 'center top',
-                              transform: 'scale(1.1) translateY(-10%)'
-                            }}
-                          />
-                        </div>
+                        <div 
+                          className="w-32 h-32 lg:w-40 lg:h-40 rounded-full border-4 border-white shadow-lg"
+                          style={{
+                            backgroundImage: `url(${member.image})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center center',
+                            backgroundRepeat: 'no-repeat'
+                          }}
+                        ></div>
                       </div>
                       <div className="text-center lg:text-left flex-1">
                         <h3 className="text-3xl lg:text-4xl font-bold [font-family:'Poppins',Helvetica] mb-2">
