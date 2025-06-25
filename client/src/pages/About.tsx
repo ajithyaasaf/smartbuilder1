@@ -213,70 +213,7 @@ export const About = (): JSX.Element => {
             </div>
           </section>
 
-          {/* Journey Section - Redesigned */}
-          <section className="mb-20">
-            <div className="text-center mb-16">
-              <h2 className="section-title text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                Our <span className="text-[#b48b2f]">Journey</span>
-              </h2>
-              <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                From humble beginnings to industry leadership - discover the milestones that shaped our success story.
-              </p>
-            </div>
-            
-            {/* Journey Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-              <div className="text-center p-6 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-2xl">
-                <div className="text-3xl lg:text-4xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-2">25+</div>
-                <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Years of Excellence</div>
-              </div>
-              <div className="text-center p-6 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-2xl">
-                <div className="text-3xl lg:text-4xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-2">50+</div>
-                <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Projects Delivered</div>
-              </div>
-              <div className="text-center p-6 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-2xl">
-                <div className="text-3xl lg:text-4xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-2">1000+</div>
-                <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Happy Families</div>
-              </div>
-              <div className="text-center p-6 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-2xl">
-                <div className="text-3xl lg:text-4xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-2">₹500+</div>
-                <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Crores Worth Projects</div>
-              </div>
-            </div>
 
-            {/* Milestone Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {milestones.map((milestone, index) => (
-                <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-[#b48b2f] to-[#9d7829] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Award className="w-8 h-8 text-white" />
-                    </div>
-                    <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-3 group-hover:text-[#b48b2f] transition-colors">
-                      {milestone.title}
-                    </CardTitle>
-                    <CardDescription className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
-                      {milestone.desc}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Achievement Highlight */}
-            <div className="mt-16 bg-gradient-to-r from-[#b48b2f] to-[#9d7829] rounded-3xl p-8 lg:p-12 text-white text-center">
-              <div className="flex items-center justify-center mb-4">
-                <Award className="w-8 h-8 mr-3" />
-                <h3 className="text-2xl lg:text-3xl font-bold [font-family:'Poppins',Helvetica]">
-                  Our Legacy Continues
-                </h3>
-              </div>
-              <p className="text-lg [font-family:'Poppins',Helvetica] opacity-90 max-w-3xl mx-auto leading-relaxed">
-                With each passing year, we strengthen our commitment to excellence, innovation, and customer satisfaction. Join us as we build the future of construction in Tamil Nadu. 
-                Today, BuildMasters stands as a testament to what passion, dedication, and unwavering quality can achieve.
-              </p>
-            </div>
-          </section>
 
           {/* Values Section */}
           <section className="mb-20">
