@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 25, 2025: Added professional images to "Our Specialties" section on home page - residential projects, independent villas, luxury apartments, and mini apartments with hover effects and gradient overlays
 - January 25, 2025: Fixed toast notification timing issues in all forms by removing specific time indicators ("30 minutes", "24 hours") and replacing with "soon"
 - January 25, 2025: Added company branding "Smart Builders & Developers" to header navigation across all pages for consistent brand visibility
 - January 25, 2025: Updated company address to actual location: 23/72, Ramnagar, 3rd Street, Bypass Rd, S S Colony, Madurai, Tamil Nadu 625016

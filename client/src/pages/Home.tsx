@@ -71,25 +71,25 @@ export const Home = (): JSX.Element => {
     {
       title: "Residential Projects",
       description: "Premium homes designed for modern living with world-class amenities",
-      image: "/figmaAssets/residential.jpg",
+      image: "/residential-projects.jpg",
       badge: "Popular"
     },
     {
       title: "Luxury Apartments",
       description: "Spacious apartments with contemporary designs in prime locations",
-      image: "/figmaAssets/apartments.jpg",
+      image: "/luxury-apartments.jpg",
       badge: "Premium"
     },
     {
       title: "Independent Villas",
       description: "Elegant villas with private gardens and modern architecture",
-      image: "/figmaAssets/villas.jpg",
+      image: "/independent-villas.jpg",
       badge: "Exclusive"
     },
     {
       title: "Mini Apartments",
       description: "Compact yet comfortable living spaces for young professionals",
-      image: "/figmaAssets/mini-apt.jpg",
+      image: "/mini-apartments.jpg",
       badge: "Affordable"
     }
   ];
@@ -317,13 +317,16 @@ export const Home = (): JSX.Element => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.map((service, index) => (
                 <Card key={index} className="service-card group hover:shadow-xl transition-all duration-300 border-none overflow-hidden">
-                  <div className="relative h-48 bg-gradient-to-br from-[#b48b2f]/10 to-[#b48b2f]/20">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                     <Badge className="floating-element absolute top-4 right-4 bg-[#b48b2f] text-white">
                       {service.badge}
                     </Badge>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Building className="w-16 h-16 text-[#b48b2f] opacity-60" />
-                    </div>
                   </div>
                   <CardContent className="p-6">
                     <CardTitle className="text-xl font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
