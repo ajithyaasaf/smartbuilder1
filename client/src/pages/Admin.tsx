@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useVisitCounter } from "@/hooks/useVisitCounter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -88,7 +89,9 @@ export const Admin = (): JSX.Element => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [resetingVisits, setResetingVisits] = useState(false);
   const { toast } = useToast();
+  const { counter: visitCounter, refetch: refetchVisits } = useVisitCounter(10000);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -274,6 +277,44 @@ export const Admin = (): JSX.Element => {
       });
     } finally {
       setDeletingId(null);
+    }
+  };
+
+  const handleResetVisits = async (resetTo?: number, reason?: string) => {
+    setResetingVisits(true);
+    try {
+      const response = await fetch("/api/admin/visits/reset", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          resetTo, 
+          reason,
+          adminUsername: username 
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        await refetchVisits();
+        toast({
+          title: "Visit Counter Reset",
+          description: `Counter reset to ${resetTo || 0}. ${reason || 'Manual reset'}`,
+        });
+      } else {
+        throw new Error(result.message || "Reset failed");
+      }
+    } catch (error) {
+      console.error("Reset error:", error);
+      toast({
+        title: "Reset Failed",
+        description: error instanceof Error ? error.message : "Failed to reset visit counter",
+        variant: "destructive",
+      });
+    } finally {
+      setResetingVisits(false);
     }
   };
 
@@ -510,18 +551,55 @@ export const Admin = (): JSX.Element => {
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg font-semibold text-[#313131]">
-                  Recent Activity
+                  Site Visits
                 </CardTitle>
-                <Calendar className="w-8 h-8 text-[#b48b2f]" />
+                <Eye className="w-8 h-8 text-[#b48b2f]" />
               </div>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-[#b48b2f]">
-                {stats.recent.length}
+                {visitCounter?.totalVisits?.toLocaleString('en-IN') || '0'}
               </div>
               <p className="text-sm text-[#6b6b6b] mt-1">
-                Latest entries {stats.recent.length > 0 && "(Auto-refresh)"}
+                Total visits (Today: {visitCounter?.dailyVisits || 0})
               </p>
+              <div className="mt-3 flex space-x-2">
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="text-xs"
+                      disabled={resetingVisits}
+                    >
+                      Reset
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Reset Visit Counter</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This will reset the visit counter. You can set a custom starting number or reset to 0.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={() => handleResetVisits(0, "Reset to zero")}
+                        className="bg-red-600 hover:bg-red-700"
+                      >
+                        Reset to 0
+                      </AlertDialogAction>
+                      <AlertDialogAction
+                        onClick={() => handleResetVisits(1000, "Set to 1000")}
+                        className="bg-blue-600 hover:bg-blue-700"
+                      >
+                        Set to 1000
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
             </CardContent>
           </Card>
         </div>

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { formSubmissionSchema, adminSchema } from "@shared/schema";
+import { formSubmissionSchema, adminSchema, visitResetSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -86,6 +86,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting submission:", error);
       res.status(500).json({ success: false, message: "Failed to delete submission" });
+    }
+  });
+
+  // Visit counter endpoints
+  app.get("/api/visits", async (req, res) => {
+    try {
+      const counter = await storage.getVisitCounter();
+      res.json(counter);
+    } catch (error) {
+      console.error("Error fetching visit counter:", error);
+      res.status(500).json({ message: "Failed to fetch visit counter" });
+    }
+  });
+
+  // Admin visit counter reset endpoint
+  app.post("/api/admin/visits/reset", async (req, res) => {
+    try {
+      const resetData = visitResetSchema.parse(req.body);
+      
+      // For now, we'll use a simple admin check - in production you'd verify the session
+      const { adminUsername } = req.body;
+      if (!adminUsername || adminUsername !== "admin") {
+        return res.status(401).json({ success: false, message: "Admin authentication required" });
+      }
+
+      const counter = await storage.resetVisitCounter(resetData, adminUsername);
+      res.json({ success: true, message: "Visit counter reset successfully", counter });
+    } catch (error) {
+      console.error("Error resetting visit counter:", error);
+      res.status(500).json({ success: false, message: "Failed to reset visit counter" });
     }
   });
 

@@ -1,4 +1,4 @@
-import { users, type User, type InsertUser, type FormSubmission, type Admin } from "@shared/schema";
+import { users, type User, type InsertUser, type FormSubmission, type Admin, type VisitCounter, type VisitReset } from "@shared/schema";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -16,6 +16,11 @@ export interface IStorage {
   
   // Admin methods
   validateAdmin(username: string, password: string): Promise<boolean>;
+  
+  // Visit counter methods
+  getVisitCounter(): Promise<VisitCounter>;
+  incrementVisitCounter(sessionId: string): Promise<VisitCounter>;
+  resetVisitCounter(resetData: VisitReset, adminUsername: string): Promise<VisitCounter>;
 }
 
 export class MemStorage implements IStorage {
@@ -23,6 +28,9 @@ export class MemStorage implements IStorage {
   private formSubmissions: Map<string, FormSubmission>;
   private admin: Admin;
   private usersDir: string;
+  private visitCounter: VisitCounter;
+  private visitCounterFile: string;
+  private sessionIds: Set<string>;
   currentId: number;
 
   constructor() {
@@ -30,12 +38,17 @@ export class MemStorage implements IStorage {
     this.formSubmissions = new Map();
     this.currentId = 1;
     this.usersDir = path.join(process.cwd(), "users");
+    this.visitCounterFile = path.join(this.usersDir, "visit_counter.json");
+    this.sessionIds = new Set();
     
     // Create users directory if it doesn't exist
     this.ensureUsersDirectory();
     
     // Load existing submissions from files
     this.loadSubmissionsFromFiles();
+    
+    // Initialize visit counter
+    this.loadVisitCounter();
     
     // Default admin credentials
     this.admin = {
@@ -183,6 +196,89 @@ export class MemStorage implements IStorage {
 
   async validateAdmin(username: string, password: string): Promise<boolean> {
     return this.admin.username === username && this.admin.password === password;
+  }
+
+  private loadVisitCounter() {
+    try {
+      if (fs.existsSync(this.visitCounterFile)) {
+        const content = fs.readFileSync(this.visitCounterFile, 'utf-8');
+        this.visitCounter = JSON.parse(content);
+        
+        // Reset daily counter if it's a new day
+        const today = new Date().toISOString().split('T')[0];
+        const lastResetDate = this.visitCounter.lastResetDate.split('T')[0];
+        
+        if (today !== lastResetDate) {
+          this.visitCounter.dailyVisits = 0;
+          this.visitCounter.lastResetDate = new Date().toISOString();
+          this.saveVisitCounter();
+        }
+      } else {
+        // Initialize new visit counter
+        this.visitCounter = {
+          totalVisits: 0,
+          dailyVisits: 0,
+          lastResetDate: new Date().toISOString(),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+        this.saveVisitCounter();
+      }
+    } catch (error) {
+      console.error("Error loading visit counter:", error);
+      // Fallback to default
+      this.visitCounter = {
+        totalVisits: 0,
+        dailyVisits: 0,
+        lastResetDate: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+    }
+  }
+
+  private saveVisitCounter() {
+    try {
+      this.visitCounter.updatedAt = new Date().toISOString();
+      fs.writeFileSync(this.visitCounterFile, JSON.stringify(this.visitCounter, null, 2));
+    } catch (error) {
+      console.error("Error saving visit counter:", error);
+    }
+  }
+
+  async getVisitCounter(): Promise<VisitCounter> {
+    return { ...this.visitCounter };
+  }
+
+  async incrementVisitCounter(sessionId: string): Promise<VisitCounter> {
+    // Only increment if this session hasn't been counted yet
+    if (!this.sessionIds.has(sessionId)) {
+      this.sessionIds.add(sessionId);
+      this.visitCounter.totalVisits += 1;
+      this.visitCounter.dailyVisits += 1;
+      this.saveVisitCounter();
+    }
+    
+    return { ...this.visitCounter };
+  }
+
+  async resetVisitCounter(resetData: VisitReset, adminUsername: string): Promise<VisitCounter> {
+    const resetTo = resetData.resetTo || 0;
+    
+    this.visitCounter.totalVisits = resetTo;
+    this.visitCounter.dailyVisits = 0;
+    this.visitCounter.lastResetDate = new Date().toISOString();
+    this.visitCounter.lastResetBy = adminUsername;
+    this.visitCounter.lastResetReason = resetData.reason || "Manual reset";
+    
+    // Clear session tracking
+    this.sessionIds.clear();
+    
+    this.saveVisitCounter();
+    
+    console.log(`Visit counter reset to ${resetTo} by ${adminUsername}: ${resetData.reason || "Manual reset"}`);
+    
+    return { ...this.visitCounter };
   }
 }
 

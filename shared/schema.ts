@@ -33,3 +33,23 @@ export const adminSchema = z.object({
 });
 
 export type Admin = z.infer<typeof adminSchema>;
+
+// Visit counter schema
+export const visitCounterSchema = z.object({
+  totalVisits: z.number(),
+  dailyVisits: z.number(),
+  lastResetDate: z.string(),
+  lastResetBy: z.string().optional(),
+  lastResetReason: z.string().optional(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+
+export type VisitCounter = z.infer<typeof visitCounterSchema>;
+
+export const visitResetSchema = z.object({
+  resetTo: z.number().optional(),
+  reason: z.string().optional(),
+});
+
+export type VisitReset = z.infer<typeof visitResetSchema>;

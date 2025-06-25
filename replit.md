@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 25, 2025: Implemented live site visit counter with session tracking and admin reset functionality
 - January 25, 2025: Updated admin dashboard export functionality to generate Excel files instead of JSON
 - January 25, 2025: Successfully migrated project from Replit Agent to standard Replit environment
 - January 25, 2025: Implemented complete admin dashboard with in-memory storage system

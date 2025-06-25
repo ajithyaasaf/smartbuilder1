@@ -1,17 +1,20 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Phone, Mail, Clock, Building, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Building, Facebook, Twitter, Instagram, Linkedin, Eye } from "lucide-react";
 import { NewsletterForm } from "@/components/forms";
+import { useVisitCounter } from "@/hooks/useVisitCounter";
 
 export const Footer = (): JSX.Element => {
+  const { counter, loading } = useVisitCounter(30000); // Refresh every 30 seconds
+  
   const quickLinks = [
     { name: "Home", path: "/" },
-    { name: "Residential", path: "/residential" },
-    { name: "Apartments", path: "/apartments" },
-    { name: "Villas", path: "/villas" },
-    { name: "Mini Apartments", path: "/mini-apartments" },
-    { name: "Land Promotion", path: "/land-promotion" }
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Contact", path: "/contact" },
+    { name: "Gallery", path: "/gallery" },
+    { name: "Admin", path: "/admin" }
   ];
 
   const services = [
@@ -142,6 +145,18 @@ export const Footer = (): JSX.Element => {
             <div>© 2025 Smart Builders & Developers. All rights reserved.</div>
             <div className="hidden md:block">|</div>
             <div>RERA Reg: TN/04/Building/0123/2023</div>
+            <div className="hidden md:block">|</div>
+            <div className="flex items-center space-x-2">
+              <Eye className="w-4 h-4 text-[#b48b2f]" />
+              <span>
+                Site Visits: {loading ? '...' : counter?.totalVisits?.toLocaleString('en-IN') || '0'}
+              </span>
+              {counter?.dailyVisits !== undefined && (
+                <span className="text-xs text-gray-400 ml-2">
+                  (Today: {counter.dailyVisits})
+                </span>
+              )}
+            </div>
           </div>
           <div className="flex space-x-6 text-sm">
             <a href="#" className="text-gray-300 hover:text-[#b48b2f] transition-colors">Privacy Policy</a>
