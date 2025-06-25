@@ -64,25 +64,30 @@ export const About = (): JSX.Element => {
 
   const team = [
     {
-      name: "Rajesh Kumar",
+      name: "M Rajan",
       role: "Founder & CEO",
       experience: "25+ years",
-      expertise: "Project Management & Real Estate Development",
-      achievements: "Led 50+ successful projects worth ₹500+ Crores"
-    },
-    {
-      name: "Priya Sharma",
-      role: "Chief Architect",
-      experience: "18+ years",
-      expertise: "Sustainable Architecture & Urban Planning",
-      achievements: "Winner of 3 National Architecture Awards"
-    },
-    {
-      name: "Vikram Singh",
-      role: "Construction Head",
-      experience: "22+ years",
-      expertise: "Construction Technology & Quality Control",
-      achievements: "Zero-defect delivery record for 15 consecutive projects"
+      expertise: "Structural Engineering & Project Management",
+      achievements: "Led projects across Tamil Nadu with international experience in UAE",
+      image: "/rajan.jpg",
+      education: [
+        { year: "1996", degree: "Diploma in Civil Engineering" },
+        { year: "2000", degree: "Bachelor of Engineering (B.E)" }
+      ],
+      experience_details: [
+        "25+ years of construction experience including 3 years abroad",
+        "Worked as Site Engineer in Structural Detailing company",
+        "Executed projects in Residential, Commercial & Apartment buildings",
+        "Completed high-rise building projects in Sharjah, UAE",
+        "Projects delivered across Tamil Nadu"
+      ],
+      memberships: [
+        "Engineer Council of India (ECI - New Delhi)",
+        "Madurai Corporation",
+        "Local Planning Authority",
+        "Association of Madurai Civil Engineers",
+        "Junior Chamber International"
+      ]
     }
   ];
 
@@ -245,44 +250,119 @@ export const About = (): JSX.Element => {
             </div>
           </section>
 
-          {/* Leadership Team */}
+          {/* Leadership Team - Founder Profile */}
           <section className="mb-20">
             <div className="text-center mb-12">
               <h2 className="section-title text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
                 Leadership <span className="text-[#b48b2f]">Team</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                Meet the visionaries behind BuildMasters' success story.
+                Meet the visionary founder driving BuildMasters towards excellence in construction and real estate.
               </p>
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {team.map((member, index) => (
-                <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-[#b48b2f]/20 to-[#b48b2f]/10 rounded-full flex items-center justify-center">
-                      <Users className="w-12 h-12 text-[#b48b2f]" />
-                    </div>
-                    <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
-                      {member.name}
-                    </CardTitle>
-                    <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] mb-4">
-                      {member.role}
-                    </Badge>
-                    <div className="space-y-3 text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-                      <div className="flex items-center justify-center">
-                        <Calendar className="w-4 h-4 mr-2 text-[#b48b2f]" />
-                        {member.experience}
+            
+            {team.map((member, index) => (
+              <div key={index} className="max-w-4xl mx-auto">
+                <Card className="overflow-hidden shadow-xl bg-white border-0">
+                  {/* Header Section with Photo and Basic Info */}
+                  <div className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] p-8 lg:p-12 text-white">
+                    <div className="flex flex-col lg:flex-row items-center gap-8">
+                      <div className="flex-shrink-0">
+                        <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                          <img 
+                            src={member.image} 
+                            alt={member.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                       </div>
-                      <p className="font-medium">Expertise:</p>
-                      <p>{member.expertise}</p>
-                      <p className="font-medium">Key Achievement:</p>
-                      <p>{member.achievements}</p>
+                      <div className="text-center lg:text-left flex-1">
+                        <h3 className="text-3xl lg:text-4xl font-bold [font-family:'Poppins',Helvetica] mb-2">
+                          {member.name}
+                        </h3>
+                        <p className="text-xl lg:text-2xl font-semibold mb-3 opacity-90">
+                          {member.role}
+                        </p>
+                        <div className="flex items-center justify-center lg:justify-start gap-2 text-lg">
+                          <Calendar className="w-5 h-5" />
+                          <span>{member.experience}</span>
+                        </div>
+                        <p className="text-lg mt-2 opacity-90">{member.expertise}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <CardContent className="p-8 lg:p-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      {/* Education Section */}
+                      <div>
+                        <h4 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4 flex items-center">
+                          <Award className="w-5 h-5 mr-2 text-[#b48b2f]" />
+                          Education
+                        </h4>
+                        <div className="space-y-3">
+                          {member.education.map((edu, eduIndex) => (
+                            <div key={eduIndex} className="flex items-center p-3 bg-gray-50 rounded-lg">
+                              <div className="w-12 h-12 bg-[#b48b2f] rounded-full flex items-center justify-center text-white font-bold mr-4">
+                                {edu.year.slice(-2)}
+                              </div>
+                              <div>
+                                <p className="font-semibold text-[#313131]">{edu.degree}</p>
+                                <p className="text-sm text-[#6b6b6b]">Completed in {edu.year}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Professional Memberships */}
+                      <div>
+                        <h4 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4 flex items-center">
+                          <Shield className="w-5 h-5 mr-2 text-[#b48b2f]" />
+                          Professional Memberships
+                        </h4>
+                        <div className="space-y-2">
+                          {member.memberships.map((membership, memIndex) => (
+                            <div key={memIndex} className="flex items-center p-2">
+                              <div className="w-2 h-2 bg-[#b48b2f] rounded-full mr-3"></div>
+                              <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">{membership}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Experience Highlights */}
+                    <div className="mt-8">
+                      <h4 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4 flex items-center">
+                        <Target className="w-5 h-5 mr-2 text-[#b48b2f]" />
+                        Experience Highlights
+                      </h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {member.experience_details.map((exp, expIndex) => (
+                          <div key={expIndex} className="flex items-start p-4 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-lg">
+                            <div className="w-6 h-6 bg-[#b48b2f] rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-0.5 flex-shrink-0">
+                              {expIndex + 1}
+                            </div>
+                            <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm leading-relaxed">{exp}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Key Achievement Banner */}
+                    <div className="mt-8 p-6 bg-gradient-to-r from-[#b48b2f]/10 to-[#b48b2f]/5 rounded-xl border-l-4 border-[#b48b2f]">
+                      <h4 className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+                        Key Achievement
+                      </h4>
+                      <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] font-medium">
+                        {member.achievements}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
+              </div>
+            ))}
           </section>
 
           {/* Awards & Recognition */}

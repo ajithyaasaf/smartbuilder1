@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 25, 2025: Enhanced About page with comprehensive M Rajan founder profile including education, professional memberships, and detailed experience
 - January 25, 2025: Updated About and Services page buttons to show brand color by default instead of only on hover
 - January 25, 2025: Restored all GSAP animations across all pages while optimizing navigation performance (50ms timeouts)
 - January 25, 2025: Successfully completed migration from Replit Agent to standard Replit environment  
