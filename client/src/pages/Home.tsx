@@ -9,8 +9,9 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { MapPin, Phone, Mail, Clock, Star, Users, Building, Award } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Star, Users, Building, Award, Menu } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { SEOHead, getOrganizationSchema } from "@/components/SEOHead";
 import { useNavigation } from "@/lib/navigation";
 import { ContactForm, QuickInquiryForm } from "@/components/forms";
 import { useGSAP } from "@/hooks/useGSAP";
@@ -119,6 +120,14 @@ export const Home = (): JSX.Element => {
 
   return (
     <div ref={containerRef} className="bg-white min-h-screen w-full">
+      <SEOHead 
+        title="Premier Construction Company in Madurai"
+        description="BuildMasters - Leading construction company in Madurai with 25+ years experience. Specializing in residential projects, apartments, villas, and land development. 500+ projects completed."
+        keywords="construction company Madurai, builders Madurai, residential projects, apartments, villas, real estate Madurai, Tamil Nadu builders"
+        canonicalUrl="https://buildmasters.replit.app/"
+        schema={getOrganizationSchema()}
+      />
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative page-content">
           {/* Background decorative elements */}

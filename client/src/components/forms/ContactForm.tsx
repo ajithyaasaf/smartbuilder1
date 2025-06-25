@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -7,7 +7,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { SimpleSelect as Select, SimpleSelectContent as SelectContent, SimpleSelectItem as SelectItem, SimpleSelectTrigger as SelectTrigger, SimpleSelectValue as SelectValue } from "@/components/ui/simple-select";
-import { Phone, Mail, Send } from "lucide-react";
+import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
+import { Phone, Mail, Send, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const contactFormSchema = z.object({
@@ -33,6 +34,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   className = "",
 }) => {
   const { toast } = useToast();
+  const [isSubmitted, setIsSubmitted] = useState(false);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -73,7 +75,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         description: "Our team will contact you within 24 hours.",
       });
       
+      setIsSubmitted(true);
       form.reset();
+      
+      // Reset success state after 5 seconds
+      setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
       console.error("Contact form error:", error);
       
@@ -94,33 +100,57 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     }
   };
 
+  if (isSubmitted) {
+    return (
+      <div className={`bg-white rounded-lg shadow-lg p-6 lg:p-8 ${className}`}>
+        <div className="text-center py-8">
+          <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
+          <h3 className="text-2xl font-bold text-[#313131] mb-2">
+            Thank You!
+          </h3>
+          <p className="text-[#4a5568] mb-4">
+            Your message has been sent successfully. Our team will contact you within 24 hours.
+          </p>
+          <Button 
+            onClick={() => setIsSubmitted(false)}
+            className="bg-[#b48b2f] hover:bg-[#9d7829] text-white touch-target"
+          >
+            Send Another Message
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={`bg-white rounded-lg shadow-lg p-6 lg:p-8 ${className}`}>
+    <div className={`bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 ${className}`}>
       <div className="text-center mb-6">
-        <h3 className="text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+        <h3 className="text-xl sm:text-2xl font-bold text-[#313131] mb-2">
           {title}
         </h3>
-        <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+        <p className="text-[#4a5568] text-sm sm:text-base">
           {subtitle}
         </p>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" noValidate>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
-                    Full Name *
+                  <FormLabel className="text-[#313131] font-medium text-sm">
+                    Full Name <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Enter your full name"
                       {...field}
-                      className="[font-family:'Poppins',Helvetica]"
+                      className="touch-target transition-colors"
+                      aria-describedby={form.formState.errors.name ? "name-error" : undefined}
+                      aria-invalid={!!form.formState.errors.name}
                     />
                   </FormControl>
                   <FormMessage />
@@ -150,7 +180,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="phone"
