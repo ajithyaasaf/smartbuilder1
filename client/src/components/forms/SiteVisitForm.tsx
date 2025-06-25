@@ -211,7 +211,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Project *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value || ""}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="Select project to visit" />
@@ -241,7 +241,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Preferred Date *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value || ""}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="Select date" />
@@ -268,7 +268,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Preferred Time *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value || ""}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="Select time" />
@@ -295,7 +295,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     No. of Visitors *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value || ""}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="How many?" />

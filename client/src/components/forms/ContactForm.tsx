@@ -180,7 +180,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Project Type *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value || ""}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="Select project type" />
@@ -209,7 +209,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                   Budget Range *
                 </FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={field.onChange} value={field.value || ""}>
                   <FormControl>
                     <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                       <SelectValue placeholder="Select your budget range" />
