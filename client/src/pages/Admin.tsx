@@ -718,27 +718,27 @@ export const Admin = (): JSX.Element => {
                       </TableCell>
                       <TableCell>
                         <div className="space-y-1">
-                          {submission.data.name && (
+                          {submission.data?.name && (
                             <div className="font-medium text-sm">
                               {submission.data.name}
                             </div>
                           )}
-                          {submission.data.projectType && (
+                          {submission.data?.projectType && (
                             <div className="text-xs text-gray-600">
                               Project: {submission.data.projectType}
                             </div>
                           )}
-                          {submission.data.project && (
+                          {submission.data?.project && (
                             <div className="text-xs text-gray-600">
                               Project: {submission.data.project}
                             </div>
                           )}
-                          {submission.data.budget && (
+                          {submission.data?.budget && (
                             <div className="text-xs text-gray-600">
                               Budget: {submission.data.budget}
                             </div>
                           )}
-                          {submission.data.preferredDate && (
+                          {submission.data?.preferredDate && (
                             <div className="text-xs text-gray-600">
                               Visit: {submission.data.preferredDate}
                             </div>
@@ -747,12 +747,12 @@ export const Admin = (): JSX.Element => {
                       </TableCell>
                       <TableCell>
                         <div className="space-y-1">
-                          {submission.data.email && (
+                          {submission.data?.email && (
                             <div className="text-sm">
                               {submission.data.email}
                             </div>
                           )}
-                          {submission.data.phone && (
+                          {submission.data?.phone && (
                             <div className="text-sm">
                               {submission.data.phone}
                             </div>
