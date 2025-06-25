@@ -212,25 +212,25 @@ export const Contact = (): JSX.Element => {
           </section>
 
           {/* Contact Information Cards */}
-          <section className="mb-20">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <section className="mb-12 sm:mb-16 lg:mb-20 px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {contactInfo.map((info, index) => (
                 <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-                  <CardContent className="p-6">
-                    <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center`}>
-                      <info.icon className={`w-8 h-8 ${info.color}`} />
+                  <CardContent className="p-4 sm:p-6">
+                    <div className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-gray-100 flex items-center justify-center`}>
+                      <info.icon className={`w-6 h-6 sm:w-8 sm:h-8 ${info.color}`} />
                     </div>
-                    <CardTitle className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-3">
+                    <CardTitle className="text-base sm:text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2 sm:mb-3">
                       {info.title}
                     </CardTitle>
-                    <div className="space-y-1 mb-3">
+                    <div className="space-y-1 mb-2 sm:mb-3">
                       {info.details.map((detail, idx) => (
-                        <div key={idx} className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] font-medium">
+                        <div key={idx} className="text-sm sm:text-base text-[#6b6b6b] [font-family:'Poppins',Helvetica] font-medium break-words">
                           {detail}
                         </div>
                       ))}
                     </div>
-                    <CardDescription className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+                    <CardDescription className="text-xs sm:text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
                       {info.desc}
                     </CardDescription>
                   </CardContent>
@@ -240,17 +240,17 @@ export const Contact = (): JSX.Element => {
           </section>
 
           {/* Contact Forms Section */}
-          <section className="mb-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+          <section className="mb-12 sm:mb-16 lg:mb-20 px-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-3 sm:mb-4">
                 Send Us a <span className="text-[#b48b2f]">Message</span>
               </h2>
-              <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto px-4">
                 Choose the most convenient way to reach us. We'll respond promptly to all inquiries.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
               {/* Quick Inquiry */}
               <div className="contact-form">
                 <QuickInquiryForm 
@@ -283,17 +283,17 @@ export const Contact = (): JSX.Element => {
           </section>
 
           {/* Office Locations */}
-          <section className="mb-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+          <section className="mb-12 sm:mb-16 lg:mb-20 px-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-3 sm:mb-4">
                 Our <span className="text-[#b48b2f]">Locations</span>
               </h2>
-              <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto px-4">
                 Visit our head office in Madurai for in-person consultation.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 max-w-md mx-auto">
+            <div className="grid grid-cols-1 gap-6 sm:gap-8 max-w-lg mx-auto">
               {officeLocations.map((office, index) => (
                 <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300">
                   <CardHeader className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] text-white p-6">
@@ -341,26 +341,26 @@ export const Contact = (): JSX.Element => {
           </section>
 
           {/* FAQ Section */}
-          <section className="mb-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+          <section className="mb-12 sm:mb-16 lg:mb-20 px-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-3 sm:mb-4">
                 Frequently Asked <span className="text-[#b48b2f]">Questions</span>
               </h2>
-              <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto px-4">
                 Find answers to common questions about our services and processes.
               </p>
             </div>
 
             <div className="max-w-4xl mx-auto">
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {faqs.map((faq, index) => (
                   <Card key={index} className="overflow-hidden border-none shadow-lg">
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-3 flex items-start">
-                        <MessageSquare className="w-5 h-5 text-[#b48b2f] mr-3 mt-1 flex-shrink-0" />
-                        {faq.question}
+                    <CardContent className="p-4 sm:p-6">
+                      <h3 className="text-base sm:text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2 sm:mb-3 flex items-start">
+                        <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-[#b48b2f] mr-2 sm:mr-3 mt-1 flex-shrink-0" />
+                        <span className="min-w-0">{faq.question}</span>
                       </h3>
-                      <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed ml-8">
+                      <p className="text-sm sm:text-base text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed ml-6 sm:ml-8">
                         {faq.answer}
                       </p>
                     </CardContent>
