@@ -43,8 +43,16 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
 
   const onSubmit = async (data: QuickInquiryData) => {
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await fetch("/api/forms/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formType: "quickInquiry",
+          data: data,
+        }),
+      });
       
       toast({
         title: "Inquiry Submitted!",

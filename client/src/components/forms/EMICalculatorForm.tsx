@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
-import { Calculator, Download, Share2 } from "lucide-react";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { Calculator, Download, Share2, Save } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useToast } from "@/hooks/use-toast";
 
 interface EMIResult {
   emi: number;
@@ -11,6 +17,14 @@ interface EMIResult {
   totalInterest: number;
   principalAmount: number;
 }
+
+const saveCalculationSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  email: z.string().email("Invalid email address").optional().or(z.literal("")),
+});
+
+type SaveCalculationData = z.infer<typeof saveCalculationSchema>;
 
 interface EMICalculatorFormProps {
   className?: string;
@@ -25,6 +39,17 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
   const [interestRate, setInterestRate] = useState([8.5]);
   const [tenure, setTenure] = useState([20]);
   const [result, setResult] = useState<EMIResult | null>(null);
+  const [showSaveForm, setShowSaveForm] = useState(false);
+  const { toast } = useToast();
+
+  const form = useForm<SaveCalculationData>({
+    resolver: zodResolver(saveCalculationSchema),
+    defaultValues: {
+      name: "",
+      phone: "",
+      email: "",
+    },
+  });
 
   const calculateEMI = () => {
     const principal = loanAmount[0];
@@ -64,6 +89,45 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
       return `₹${(amount / 100000).toFixed(1)} L`;
     }
     return formatCurrency(amount);
+  };
+
+  const saveCalculation = async (data: SaveCalculationData) => {
+    try {
+      await fetch("/api/forms/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formType: "emiCalculator",
+          data: {
+            ...data,
+            calculation: {
+              loanAmount: loanAmount[0],
+              interestRate: interestRate[0],
+              tenure: tenure[0],
+              emi: result?.emi,
+              totalAmount: result?.totalAmount,
+              totalInterest: result?.totalInterest,
+            },
+          },
+        }),
+      });
+      
+      toast({
+        title: "Calculation Saved!",
+        description: "Our team will contact you with personalized loan options.",
+      });
+      
+      form.reset();
+      setShowSaveForm(false);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save calculation. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -204,19 +268,104 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
                 variant="outline"
                 size="sm"
                 className="flex-1 border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white [font-family:'Poppins',Helvetica]"
+                onClick={() => setShowSaveForm(!showSaveForm)}
               >
-                <Download className="w-4 h-4 mr-2" />
-                Download
+                <Save className="w-4 h-4 mr-2" />
+                Save & Contact
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 className="flex-1 border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white [font-family:'Poppins',Helvetica]"
               >
-                <Share2 className="w-4 h-4 mr-2" />
-                Share
+                <Download className="w-4 h-4 mr-2" />
+                Download
               </Button>
             </div>
+
+            {/* Save Form */}
+            {showSaveForm && (
+              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                <h4 className="font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+                  Get Personalized Loan Options
+                </h4>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(saveCalculation)} className="space-y-4">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
+                            Name *
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Your name"
+                              {...field}
+                              className="[font-family:'Poppins',Helvetica]"
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
+                            Phone *
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Your phone number"
+                              {...field}
+                              className="[font-family:'Poppins',Helvetica]"
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
+                            Email (Optional)
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Your email address"
+                              type="email"
+                              {...field}
+                              className="[font-family:'Poppins',Helvetica]"
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        type="submit"
+                        className="flex-1 bg-[#b48b2f] hover:bg-[#9d7829] text-white [font-family:'Poppins',Helvetica]"
+                      >
+                        Save & Get Options
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => setShowSaveForm(false)}
+                        className="flex-1 [font-family:'Poppins',Helvetica]"
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              </div>
+            )}
           </div>
         )}
 

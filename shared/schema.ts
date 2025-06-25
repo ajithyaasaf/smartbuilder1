@@ -15,3 +15,21 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+// Form submission schemas
+export const formSubmissionSchema = z.object({
+  id: z.string(),
+  formType: z.enum(["contact", "quickInquiry", "siteVisit", "emiCalculator"]),
+  timestamp: z.string(),
+  data: z.record(z.any()),
+});
+
+export type FormSubmission = z.infer<typeof formSubmissionSchema>;
+
+// Admin user schema
+export const adminSchema = z.object({
+  username: z.string(),
+  password: z.string(),
+});
+
+export type Admin = z.infer<typeof adminSchema>;

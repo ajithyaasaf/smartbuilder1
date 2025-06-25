@@ -51,8 +51,16 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
 
   const onSubmit = async (data: SiteVisitData) => {
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await fetch("/api/forms/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formType: "siteVisit",
+          data: data,
+        }),
+      });
       
       toast({
         title: "Site Visit Scheduled!",

@@ -48,8 +48,16 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await fetch("/api/forms/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formType: "contact",
+          data: data,
+        }),
+      });
       
       toast({
         title: "Message Sent Successfully!",
