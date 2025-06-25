@@ -93,7 +93,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - **Port Mapping**: Internal port 5000 mapped to external port 80
 - **Build Process**: Automated build on deployment
 
-## Complete Project Analysis - BuildMasters Website
+## Complete Project Analysis - Smart Builders & Developers Website
 
 ### Design System & Brand Identity
 **Primary Brand Color**: `#17a6b8` (Teal blue)
@@ -139,7 +139,7 @@ This is a modern full-stack web application built with React (frontend), Express
 
 ### Key Sections Analysis
 **Header/Navigation**:
-- Brand name: "BuildMasters" 
+- Brand name: "Smart Builders & Developers" 
 - Navigation items: Home, About Us, Services, Project
 - Mobile hamburger menu with slide-out panel
 - Active state indicators with custom dots
@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 25, 2025: Updated company name from "BuildMasters" to "Smart Builders & Developers" across all pages, SEO schemas, and admin credentials
 - January 25, 2025: Updated all pages (Home, Services, Gallery, Footer) to reflect correct 22+ years timeline and M Rajan's founding date of 2002
 - January 25, 2025: Updated About page timeline and content to accurately reflect M Rajan's professional journey from 1996-2024
 - January 25, 2025: Enhanced About page with comprehensive M Rajan founder profile including education, professional memberships, and detailed experience
@@ -227,7 +228,7 @@ This is a modern full-stack web application built with React (frontend), Express
 
 **Access**: `/admin` route with login credentials
 - Username: `admin`
-- Password: `buildmasters2025`
+- Password: `smartbuilders2025`
 
 **File-Based Storage System**:
 - **Storage Location**: JSON files in `/users` directory + Memory for fast access

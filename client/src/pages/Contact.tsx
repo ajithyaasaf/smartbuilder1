@@ -58,7 +58,7 @@ export const Contact = (): JSX.Element => {
     {
       icon: Mail,
       title: "Email Us",
-      details: ["info@buildmasters.com", "sales@buildmasters.com"],
+      details: ["info@smartbuilders.com", "sales@smartbuilders.com"],
       desc: "Get response within 2 hours",
       color: "text-blue-600"
     },
@@ -83,7 +83,7 @@ export const Contact = (): JSX.Element => {
       city: "Madurai",
       address: "123 Construction Lane, Madurai - 625001",
       phone: "+91 98765 43210",
-      email: "madurai@buildmasters.com",
+      email: "madurai@smartbuilders.com",
       type: "Head Office"
     }
   ];
@@ -126,7 +126,7 @@ export const Contact = (): JSX.Element => {
                 <div className="nav-logo flex items-center space-x-3">
                   <img 
                     src="/logo.jpg" 
-                    alt="BuildMasters Logo" 
+                    alt="Smart Builders Logo" 
                     className="w-20 h-12 sm:w-24 sm:h-16 lg:w-32 lg:h-20 object-contain"
                   />
                 </div>

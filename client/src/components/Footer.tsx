@@ -65,7 +65,7 @@ export const Footer = (): JSX.Element => {
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Mail className="w-4 h-4 mr-2 text-[#b48b2f]" />
-                info@buildmasters.com
+                info@smartbuilders.com
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Clock className="w-4 h-4 mr-2 text-[#b48b2f]" />

@@ -103,10 +103,10 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 export const getOrganizationSchema = () => ({
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "BuildMasters Construction Company",
-  "alternateName": "BuildMasters",
-  "url": "https://buildmasters.replit.app",
-  "logo": "https://buildmasters.replit.app/logo.png",
+  "name": "Smart Builders & Developers",
+  "alternateName": "Smart Builders",
+  "url": "https://smartbuilders.replit.app",
+  "logo": "https://smartbuilders.replit.app/logo.png",
   "description": "Premier construction company in Madurai specializing in residential projects, apartments, villas, and land development with 22+ years of experience under M Rajan's leadership.",
   "address": {
     "@type": "PostalAddress",
@@ -123,10 +123,10 @@ export const getOrganizationSchema = () => ({
     "availableLanguage": ["English", "Tamil"]
   },
   "sameAs": [
-    "https://facebook.com/buildmasters",
-    "https://twitter.com/buildmasters",
-    "https://instagram.com/buildmasters",
-    "https://linkedin.com/company/buildmasters"
+    "https://facebook.com/smartbuilders",
+    "https://twitter.com/smartbuilders",
+    "https://instagram.com/smartbuilders",
+    "https://linkedin.com/company/smartbuilders"
   ],
   "foundingDate": "2002",
   "numberOfEmployees": "50-100",
@@ -139,9 +139,9 @@ export const getOrganizationSchema = () => ({
 export const getRealEstateSchema = () => ({
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
-  "name": "BuildMasters Construction Company",
+  "name": "Smart Builders & Developers",
   "description": "Leading real estate developer and construction company in Madurai",
-  "url": "https://buildmasters.replit.app",
+  "url": "https://smartbuilders.replit.app",
   "priceRange": "₹18L - ₹2.5Cr",
   "areaServed": "Madurai, Tamil Nadu",
   "serviceType": ["Residential Construction", "Apartment Development", "Villa Construction", "Land Development"]

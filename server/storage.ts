@@ -53,7 +53,7 @@ export class MemStorage implements IStorage {
     // Default admin credentials
     this.admin = {
       username: "admin",
-      password: "buildmasters2025"
+      password: "smartbuilders2025"
     };
   }
 

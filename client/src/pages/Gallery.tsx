@@ -189,7 +189,7 @@ export const Gallery = (): JSX.Element => {
                 <div className="nav-logo flex items-center space-x-3">
                   <img 
                     src="/logo.jpg" 
-                    alt="BuildMasters Logo" 
+                    alt="Smart Builders Logo" 
                     className="w-20 h-12 sm:w-24 sm:h-16 lg:w-32 lg:h-20 object-contain"
                   />
                 </div>

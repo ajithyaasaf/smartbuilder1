@@ -49,7 +49,7 @@ export const About = (): JSX.Element => {
   const milestones = [
     { year: "1996", title: "Education Foundation", desc: "M Rajan completed Diploma in Civil Engineering" },
     { year: "2000", title: "Advanced Qualification", desc: "Completed Bachelor of Engineering (B.E)" },
-    { year: "2002", title: "Company Foundation", desc: "Started BuildMasters with a vision to transform Madurai's skyline" },
+    { year: "2002", title: "Company Foundation", desc: "Started Smart Builders & Developers with a vision to transform Madurai's skyline" },
     { year: "2005", title: "International Experience", desc: "Worked on high-rise building projects in Sharjah, UAE" },
     { year: "2010", title: "Tamil Nadu Expansion", desc: "Extended operations across Tamil Nadu" },
     { year: "2015", title: "Recognition", desc: "Established memberships with professional engineering bodies" },
@@ -104,7 +104,7 @@ export const About = (): JSX.Element => {
                 <div className="nav-logo flex items-center space-x-3">
                   <img 
                     src="/logo.jpg" 
-                    alt="BuildMasters Logo" 
+                    alt="Smart Builders Logo" 
                     className="w-20 h-12 sm:w-24 sm:h-16 lg:w-32 lg:h-20 object-contain"
                   />
                 </div>
@@ -193,7 +193,7 @@ export const About = (): JSX.Element => {
                 </h2>
                 <div className="space-y-4 text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
                   <p>
-                    BuildMasters was founded with a simple yet powerful vision: to create homes that 
+                    Smart Builders & Developers was founded with a simple yet powerful vision: to create homes that 
                     families would cherish for generations. What started as a small construction firm 
                     has evolved into one of Tamil Nadu's most respected real estate developers.
                   </p>
@@ -215,7 +215,7 @@ export const About = (): JSX.Element => {
                 <div className="floating-element absolute -bottom-4 -left-4 w-16 h-16 bg-[#b48b2f]/20 rounded-full"></div>
                 <img 
                   src="/figmaAssets/mask-group.png" 
-                  alt="BuildMasters construction site" 
+                  alt="Smart Builders construction site" 
                   className="w-full h-96 object-cover rounded-lg shadow-xl"
                 />
               </div>
@@ -413,7 +413,7 @@ export const About = (): JSX.Element => {
                   Ready to Build Your Dream Home?
                 </h2>
                 <p className="text-lg [font-family:'Poppins',Helvetica] mb-8 opacity-90 max-w-2xl mx-auto">
-                  Join over 1,000 satisfied families who have made BuildMasters their trusted construction partner under M Rajan's expert leadership.
+                  Join over 1,000 satisfied families who have made Smart Builders & Developers their trusted construction partner under M Rajan's expert leadership.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 

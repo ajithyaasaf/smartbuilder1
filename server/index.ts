@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Session middleware for visit tracking
 app.use(session({
-  secret: 'buildmasters-visit-counter-secret',
+  secret: 'smartbuilders-visit-counter-secret',
   resave: false,
   saveUninitialized: true,
   cookie: { 

@@ -122,9 +122,9 @@ export const Home = (): JSX.Element => {
     <div ref={containerRef} className="bg-white min-h-screen w-full">
       <SEOHead 
         title="Premier Construction Company in Madurai"
-        description="BuildMasters - Leading construction company in Madurai with 25+ years experience. Specializing in residential projects, apartments, villas, and land development. 500+ projects completed."
+        description="Smart Builders & Developers - Leading construction company in Madurai with 22+ years experience. Specializing in residential projects, apartments, villas, and land development. 500+ projects completed."
         keywords="construction company Madurai, builders Madurai, residential projects, apartments, villas, real estate Madurai, Tamil Nadu builders"
-        canonicalUrl="https://buildmasters.replit.app/"
+        canonicalUrl="https://smartbuilders.replit.app/"
         schema={getOrganizationSchema()}
       />
       
