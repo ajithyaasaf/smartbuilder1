@@ -52,7 +52,7 @@ export const Footer = (): JSX.Element => {
               </div>
             </div>
             <p className="text-gray-300 text-sm [font-family:'Poppins',Helvetica] leading-6">
-              Building dreams and creating lifestyles with 25+ years of excellence in construction and development across Madurai.
+              Building dreams and creating lifestyles with 22+ years of excellence in construction and development across Madurai.
             </p>
             <div className="space-y-2">
               <div className="flex items-center text-sm text-gray-300">

@@ -225,7 +225,7 @@ export const Home = (): JSX.Element => {
                       <span className="text-[#313131]">.</span>
                     </h1>
                     <p className="hero-subtext text-lg sm:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-7 max-w-lg">
-                      Premium residential projects in Madurai with 25+ years of excellence in construction and development.
+                      Premium residential projects in Madurai with 22+ years of excellence in construction and development.
                     </p>
                   </div>
 

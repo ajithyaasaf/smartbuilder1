@@ -111,7 +111,7 @@ export const Services = (): JSX.Element => {
   ];
 
   const whyChooseUs = [
-    { title: "25+ Years Experience", desc: "Quarter century of construction excellence", icon: Award },
+    { title: "22+ Years Experience", desc: "Two decades of construction excellence", icon: Award },
     { title: "1000+ Happy Families", desc: "Delivered dream homes across South India", icon: Users },
     { title: "Zero Compromise Quality", desc: "Premium materials and skilled craftsmanship", icon: CheckCircle },
     { title: "Timely Delivery", desc: "On-time project completion guarantee", icon: Star }

@@ -174,7 +174,7 @@ export const Gallery = (): JSX.Element => {
   const achievements = [
     { number: "50+", label: "Completed Projects", icon: Award },
     { number: "1000+", label: "Happy Families", icon: Users },
-    { number: "25+", label: "Years Experience", icon: Calendar },
+    { number: "22+", label: "Years Experience", icon: Calendar },
     { number: "500K+", label: "Sq.Ft Delivered", icon: Camera }
   ];
 
