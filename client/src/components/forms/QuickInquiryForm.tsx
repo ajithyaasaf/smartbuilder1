@@ -5,7 +5,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SafeSelect as Select, SafeSelectContent as SelectContent, SafeSelectItem as SelectItem, SafeSelectTrigger as SelectTrigger, SafeSelectValue as SelectValue } from "@/components/ui/safe-select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
