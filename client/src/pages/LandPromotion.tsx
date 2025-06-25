@@ -30,6 +30,8 @@ export const LandPromotion = (): JSX.Element => {
     animateNavigation();
     animateCardsOnScroll(".land-card");
     animateCardsOnScroll(".service-card");
+    animateCardsOnScroll(".Card");
+    animateCardsOnScroll("[class*='overflow-hidden']");
     animateTextReveal(".land-title");
     setupButtonHoverAnimations();
     animateFloatingElements();

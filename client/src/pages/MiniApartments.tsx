@@ -28,6 +28,8 @@ export const MiniApartments = (): JSX.Element => {
     animateNavigation();
     animateCardsOnScroll(".mini-apartment-card");
     animateCardsOnScroll(".feature-card");
+    animateCardsOnScroll(".Card");
+    animateCardsOnScroll("[class*='overflow-hidden']");
     animateFormEntrance(".emi-calculator");
     setupButtonHoverAnimations();
     animateFloatingElements();

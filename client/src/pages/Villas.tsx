@@ -29,6 +29,8 @@ export const Villas = (): JSX.Element => {
     animateNavigation();
     animateCardsOnScroll(".villa-card");
     animateCardsOnScroll(".feature-card");
+    animateCardsOnScroll(".Card");
+    animateCardsOnScroll("[class*='overflow-hidden']");
     setupButtonHoverAnimations();
     animateFloatingElements();
     setupParallaxImages();

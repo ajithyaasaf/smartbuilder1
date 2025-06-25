@@ -36,9 +36,11 @@ export const Home = (): JSX.Element => {
     // Navigation animation
     animateNavigation();
     
-    // Cards scroll animations
+    // Cards scroll animations for all card-like elements
     animateCardsOnScroll(".service-card");
     animateCardsOnScroll(".testimonial-card");
+    animateCardsOnScroll(".Card");
+    animateCardsOnScroll("[class*='Card']");
     
     // Stats counter animation
     animateStatsCounter(".stats-section");

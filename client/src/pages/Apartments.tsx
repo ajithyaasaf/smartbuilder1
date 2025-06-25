@@ -30,9 +30,11 @@ export const Apartments = (): JSX.Element => {
     // Navigation animation
     animateNavigation();
     
-    // Cards scroll animations
+    // Cards scroll animations with fallbacks
     animateCardsOnScroll(".apartment-card");
     animateCardsOnScroll(".amenity-card");
+    animateCardsOnScroll(".Card");
+    animateCardsOnScroll("[class*='overflow-hidden']");
     
     // Button hover animations
     setupButtonHoverAnimations();

@@ -30,6 +30,8 @@ export const Residential = (): JSX.Element => {
     animateNavigation();
     animateCardsOnScroll(".project-card");
     animateCardsOnScroll(".feature-card");
+    animateCardsOnScroll(".Card");
+    animateCardsOnScroll("[class*='overflow-hidden']");
     animateFormEntrance(".site-visit-form");
     setupButtonHoverAnimations();
     animateFloatingElements();
@@ -333,7 +335,7 @@ export const Residential = (): JSX.Element => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {features.map((feature, index) => (
-                <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
+                <Card key={index} className="feature-card text-center p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
                   <CardContent className="p-0">
                     <feature.icon className="w-12 h-12 mx-auto mb-4 text-[#b48b2f]" />
                     <CardTitle className="text-lg font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
