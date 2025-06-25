@@ -337,7 +337,7 @@ export const Services = (): JSX.Element => {
             <div className="bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-3xl p-8 lg:p-12">
               <div className="text-center mb-12">
                 <h2 className="section-title text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                  Why Choose <span className="text-[#b48b2f]">BuildMasters</span>
+                  Why Choose <span className="text-[#b48b2f]">Smart Builders</span>
                 </h2>
                 <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
                   Experience the difference that quality, integrity, and commitment make.

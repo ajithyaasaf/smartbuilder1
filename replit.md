@@ -190,7 +190,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - January 25, 2025: Successfully migrated project from Replit Agent to standard Replit environment
 - January 25, 2025: Implemented complete admin dashboard with in-memory storage system
 - January 25, 2025: Added form submission tracking for Contact, Quick Inquiry, Site Visit, and EMI Calculator
-- January 25, 2025: Created admin login system with credentials (admin/buildmasters2025)
+- January 25, 2025: Created admin login system with credentials (admin/smartbuilders2025)
 - January 25, 2025: Built real-time dashboard with stats, search, filter, and JSON export functionality
 - January 25, 2025: Removed timeline section from About page as requested
 - January 25, 2025: Restructured website to 5 main pages: Home, About, Services, Contact, Gallery

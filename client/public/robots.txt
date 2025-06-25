@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://buildmasters.replit.app/sitemap.xml
+Sitemap: https://smartbuilders.replit.app/sitemap.xml

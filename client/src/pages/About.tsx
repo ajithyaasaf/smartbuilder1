@@ -261,7 +261,7 @@ export const About = (): JSX.Element => {
                 Leadership <span className="text-[#b48b2f]">Team</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                Meet the visionary founder driving BuildMasters towards excellence in construction and real estate.
+                Meet the visionary founder driving Smart Builders & Developers towards excellence in construction and real estate.
               </p>
             </div>
             

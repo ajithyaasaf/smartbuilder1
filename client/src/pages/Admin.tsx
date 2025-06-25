@@ -227,7 +227,7 @@ export const Admin = (): JSX.Element => {
     XLSX.utils.book_append_sheet(workbook, statsSheet, "Statistics");
 
     // Generate and download the Excel file
-    const fileName = `BuildMasters-Submissions-${new Date().toISOString().split('T')[0]}.xlsx`;
+    const fileName = `SmartBuilders-Submissions-${new Date().toISOString().split('T')[0]}.xlsx`;
     XLSX.writeFile(workbook, fileName);
 
     toast({

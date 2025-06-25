@@ -19,8 +19,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   canonicalUrl,
   schema
 }) => {
-  const fullTitle = `${title} | BuildMasters - Premier Construction Company in Madurai`;
-  const baseUrl = "https://buildmasters.replit.app";
+  const fullTitle = `${title} | Smart Builders & Developers - Premier Construction Company in Madurai`;
+  const baseUrl = "https://smartbuilders.replit.app";
   const imageUrl = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
   
   React.useEffect(() => {
@@ -46,7 +46,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     // Basic meta tags
     updateMeta('description', description);
     updateMeta('keywords', keywords);
-    updateMeta('author', 'BuildMasters Construction Company');
+    updateMeta('author', 'Smart Builders & Developers');
     updateMeta('robots', 'index, follow');
     updateMeta('viewport', 'width=device-width, initial-scale=1.0');
     
@@ -57,7 +57,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     updateMeta('og:image', imageUrl, true);
     updateMeta('og:image:width', '1200', true);
     updateMeta('og:image:height', '630', true);
-    updateMeta('og:site_name', 'BuildMasters', true);
+    updateMeta('og:site_name', 'Smart Builders & Developers', true);
     updateMeta('og:locale', 'en_IN', true);
     
     // Twitter Card tags
@@ -65,13 +65,13 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     updateMeta('twitter:title', fullTitle);
     updateMeta('twitter:description', description);
     updateMeta('twitter:image', imageUrl);
-    updateMeta('twitter:site', '@buildmasters');
+    updateMeta('twitter:site', '@smartbuilders');
     
     // Additional SEO meta tags
     updateMeta('theme-color', '#b48b2f');
     updateMeta('msapplication-TileColor', '#b48b2f');
-    updateMeta('apple-mobile-web-app-title', 'BuildMasters');
-    updateMeta('application-name', 'BuildMasters');
+    updateMeta('apple-mobile-web-app-title', 'Smart Builders');
+    updateMeta('application-name', 'Smart Builders');
     
     // Canonical URL
     if (canonicalUrl) {
