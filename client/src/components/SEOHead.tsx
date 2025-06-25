@@ -110,10 +110,10 @@ export const getOrganizationSchema = () => ({
   "description": "Premier construction company in Madurai specializing in residential projects, apartments, villas, and land development with 22+ years of experience under M Rajan's leadership.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "123 Construction Lane",
+    "streetAddress": "23/72, Ramnagar, 3rd Street, Bypass Rd, S S Colony",
     "addressLocality": "Madurai",
     "addressRegion": "Tamil Nadu",
-    "postalCode": "625001",
+    "postalCode": "625016",
     "addressCountry": "IN"
   },
   "contactPoint": {

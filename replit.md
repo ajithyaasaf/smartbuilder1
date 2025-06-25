@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 25, 2025: Updated company address to actual location: 23/72, Ramnagar, 3rd Street, Bypass Rd, S S Colony, Madurai, Tamil Nadu 625016
 - January 25, 2025: Completed comprehensive company rebranding from "BuildMasters" to "Smart Builders & Developers" across all files including pages, SEO schemas, admin credentials, sitemap, robots.txt, and metadata
 - January 25, 2025: Updated all pages (Home, Services, Gallery, Footer) to reflect correct 22+ years timeline and M Rajan's founding date of 2002
 - January 25, 2025: Updated About page timeline and content to accurately reflect M Rajan's professional journey from 1996-2024

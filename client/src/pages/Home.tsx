@@ -100,7 +100,7 @@ export const Home = (): JSX.Element => {
       role: "Villa Owner",
       content: "Smart Builders delivered our dream villa on time with exceptional quality. The attention to detail is remarkable.",
       rating: 5,
-      location: "Anna Nagar, Madurai"
+      location: "Ramnagar, Madurai"
     },
     {
       name: "Priya Selvam",

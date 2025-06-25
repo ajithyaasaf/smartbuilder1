@@ -65,7 +65,7 @@ export const Contact = (): JSX.Element => {
     {
       icon: MapPin,
       title: "Visit Us",
-      details: ["123 Construction Lane", "Madurai, Tamil Nadu 625001"],
+      details: ["23/72, Ramnagar, 3rd Street, Bypass Rd", "S S Colony, Madurai, Tamil Nadu 625016"],
       desc: "Mon-Sat: 9AM-6PM, Sun: 10AM-4PM",
       color: "text-purple-600"
     },
@@ -81,7 +81,7 @@ export const Contact = (): JSX.Element => {
   const officeLocations = [
     {
       city: "Madurai",
-      address: "123 Construction Lane, Madurai - 625001",
+      address: "23/72, Ramnagar, 3rd Street, Bypass Rd, S S Colony, Madurai - 625016",
       phone: "+91 98765 43210",
       email: "madurai@smartbuilders.com",
       type: "Head Office"

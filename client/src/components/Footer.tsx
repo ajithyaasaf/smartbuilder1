@@ -27,7 +27,7 @@ export const Footer = (): JSX.Element => {
   ];
 
   const locations = [
-    "Anna Nagar, Madurai",
+    "Ramnagar, Madurai",
     "KK Nagar, Madurai", 
     "Samayanallur, Madurai",
     "Thiruparankundram, Madurai",
@@ -57,7 +57,7 @@ export const Footer = (): JSX.Element => {
             <div className="space-y-2">
               <div className="flex items-center text-sm text-gray-300">
                 <MapPin className="w-4 h-4 mr-2 text-[#b48b2f]" />
-                123 Main Road, Anna Nagar, Madurai - 625020
+                23/72, Ramnagar, 3rd Street, Bypass Rd, S S Colony, Madurai - 625016
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Phone className="w-4 h-4 mr-2 text-[#b48b2f]" />
