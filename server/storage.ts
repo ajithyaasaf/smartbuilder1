@@ -67,16 +67,28 @@ export class MemStorage implements IStorage {
   private loadSubmissionsFromFiles() {
     try {
       if (fs.existsSync(this.usersDir)) {
-        const files = fs.readdirSync(this.usersDir).filter(file => file.endsWith('.json'));
+        const files = fs.readdirSync(this.usersDir).filter(file => 
+          file.startsWith('form_') && file.endsWith('.json')
+        );
         
         for (const file of files) {
           const filePath = path.join(this.usersDir, file);
-          const content = fs.readFileSync(filePath, 'utf-8');
-          const submission: FormSubmission = JSON.parse(content);
-          this.formSubmissions.set(submission.id, submission);
+          try {
+            const content = fs.readFileSync(filePath, 'utf-8');
+            const submission: FormSubmission = JSON.parse(content);
+            
+            // Validate submission has required fields
+            if (submission.id && submission.formType && submission.timestamp && submission.data) {
+              this.formSubmissions.set(submission.id, submission);
+            } else {
+              console.warn(`Invalid submission structure in file ${file}, skipping`);
+            }
+          } catch (fileError) {
+            console.error(`Error parsing file ${file}:`, fileError);
+          }
         }
         
-        console.log(`Loaded ${files.length} form submissions from users directory`);
+        console.log(`Loaded ${this.formSubmissions.size} valid form submissions from users directory`);
       }
     } catch (error) {
       console.error("Error loading submissions from files:", error);
