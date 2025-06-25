@@ -244,67 +244,29 @@ export const About = (): JSX.Element => {
               </div>
             </div>
 
-            {/* Horizontal Timeline - Desktop */}
-            <div className="hidden lg:block relative">
-              <div className="relative overflow-x-auto">
-                {/* Timeline line */}
-                <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-[#b48b2f]/20 via-[#b48b2f] to-[#b48b2f]/20 transform -translate-y-1/2"></div>
-                
-                <div className="flex justify-between items-center min-w-full px-8 py-12">
-                  {milestones.map((milestone, index) => (
-                    <div key={index} className="relative flex flex-col items-center group">
-                      {/* Timeline dot */}
-                      <div className="w-6 h-6 bg-[#b48b2f] rounded-full border-4 border-white shadow-lg mb-8 group-hover:scale-125 transition-transform duration-300 z-10"></div>
-                      
-                      {/* Card */}
-                      <Card className="w-48 border-none shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 bg-white">
-                        <CardContent className="p-6 text-center">
-                          <Badge className="bg-[#b48b2f] text-white font-bold text-sm px-3 py-1 mb-3">
-                            {milestone.year}
-                          </Badge>
-                          <CardTitle className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
-                            {milestone.title}
-                          </CardTitle>
-                          <CardDescription className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
-                            {milestone.desc}
-                          </CardDescription>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Vertical Timeline - Mobile */}
-            <div className="lg:hidden space-y-8">
+            {/* Milestone Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {milestones.map((milestone, index) => (
-                <div key={index} className="relative flex items-start">
-                  {/* Timeline line and dot */}
-                  <div className="flex flex-col items-center mr-6">
-                    <div className="w-4 h-4 bg-[#b48b2f] rounded-full border-2 border-white shadow-lg"></div>
-                    {index < milestones.length - 1 && (
-                      <div className="w-0.5 h-16 bg-[#b48b2f]/20 mt-2"></div>
-                    )}
-                  </div>
-                  
-                  {/* Content */}
-                  <Card className="flex-1 border-none shadow-lg hover:shadow-xl transition-shadow bg-white">
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <Badge className="bg-[#b48b2f] text-white font-bold text-lg px-3 py-1">
-                          {milestone.year}
-                        </Badge>
+                <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group">
+                  <CardContent className="p-8 text-center">
+                    <div className="relative mb-6">
+                      <div className="w-20 h-20 mx-auto bg-gradient-to-br from-[#b48b2f] to-[#9d7829] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <span className="text-2xl font-bold text-white [font-family:'Poppins',Helvetica]">
+                          {milestone.year.slice(-2)}
+                        </span>
                       </div>
-                      <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
-                        {milestone.title}
-                      </CardTitle>
-                      <CardDescription className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
-                        {milestone.desc}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                </div>
+                      <Badge className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-[#b48b2f] text-white font-bold px-3 py-1">
+                        {milestone.year}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-3 group-hover:text-[#b48b2f] transition-colors">
+                      {milestone.title}
+                    </CardTitle>
+                    <CardDescription className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
+                      {milestone.desc}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
               ))}
             </div>
 
@@ -317,7 +279,7 @@ export const About = (): JSX.Element => {
                 </h3>
               </div>
               <p className="text-lg [font-family:'Poppins',Helvetica] opacity-90 max-w-3xl mx-auto leading-relaxed">
-                With each passing year, we strengthen our commitment to excellence, innovation, and customer satisfaction. 
+                With each passing year, we strengthen our commitment to excellence, innovation, and customer satisfaction. Join us as we build the future of construction in Tamil Nadu. 
                 Today, BuildMasters stands as a testament to what passion, dedication, and unwavering quality can achieve.
               </p>
             </div>
