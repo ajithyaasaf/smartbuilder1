@@ -67,6 +67,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Delete submission endpoint
+  app.delete("/api/admin/submissions/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      
+      if (!id) {
+        return res.status(400).json({ success: false, message: "Submission ID is required" });
+      }
+
+      const deleted = await storage.deleteFormSubmission(id);
+      
+      if (deleted) {
+        res.json({ success: true, message: "Submission deleted successfully" });
+      } else {
+        res.status(404).json({ success: false, message: "Submission not found" });
+      }
+    } catch (error) {
+      console.error("Error deleting submission:", error);
+      res.status(500).json({ success: false, message: "Failed to delete submission" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

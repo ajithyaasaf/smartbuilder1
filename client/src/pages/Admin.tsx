@@ -162,7 +162,14 @@ export const Admin = (): JSX.Element => {
     try {
       const response = await fetch(`/api/admin/submissions/${id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const result = await response.json();
 
@@ -178,12 +185,13 @@ export const Admin = (): JSX.Element => {
           description: "Form submission has been permanently deleted",
         });
       } else {
-        throw new Error(result.message);
+        throw new Error(result.message || "Delete operation failed");
       }
     } catch (error) {
+      console.error("Delete error:", error);
       toast({
         title: "Delete Failed",
-        description: "Failed to delete submission. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to delete submission. Please try again.",
         variant: "destructive",
       });
     } finally {
