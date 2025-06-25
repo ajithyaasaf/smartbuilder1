@@ -116,7 +116,7 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
       
       toast({
         title: "Calculation Saved!",
-        description: "Our team will contact you with personalized loan options.",
+        description: "Our team will contact you soon with personalized loan options.",
       });
       
       form.reset();

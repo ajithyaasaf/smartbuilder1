@@ -86,7 +86,7 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
       
       toast({
         title: "Inquiry Submitted!",
-        description: "We'll call you back within 30 minutes.",
+        description: "We'll call you back soon.",
       });
       
       form.reset();

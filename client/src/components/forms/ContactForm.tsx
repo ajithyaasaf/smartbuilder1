@@ -30,7 +30,7 @@ interface ContactFormProps {
 
 export const ContactForm: React.FC<ContactFormProps> = ({
   title = "Get Free Consultation",
-  subtitle = "Share your requirements and we'll get back to you within 24 hours",
+  subtitle = "Share your requirements and we'll get back to you soon",
   className = "",
 }) => {
   const { toast } = useToast();
@@ -72,7 +72,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       
       toast({
         title: "Message Sent Successfully!",
-        description: "Our team will contact you within 24 hours.",
+        description: "Our team will contact you soon.",
       });
       
       setIsSubmitted(true);
@@ -109,7 +109,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             Thank You!
           </h3>
           <p className="text-[#4a5568] mb-4">
-            Your message has been sent successfully. Our team will contact you within 24 hours.
+            Your message has been sent successfully. Our team will contact you soon.
           </p>
           <Button 
             onClick={() => setIsSubmitted(false)}
