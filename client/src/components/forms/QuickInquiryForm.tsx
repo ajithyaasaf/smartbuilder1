@@ -31,6 +31,15 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
   variant = "inline",
 }) => {
   const { toast } = useToast();
+
+  // Prevent GSAP from interfering with form elements
+  useEffect(() => {
+    const formElement = document.querySelector(`[data-form-id="quick-inquiry"]`);
+    if (formElement) {
+      // Mark this form as animation-safe
+      formElement.setAttribute('data-animation-ready', 'true');
+    }
+  }, []);
   
   const form = useForm<QuickInquiryData>({
     resolver: zodResolver(quickInquirySchema),
@@ -93,7 +102,11 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
 
   const formContent = (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form 
+        onSubmit={form.handleSubmit(onSubmit)} 
+        className="space-y-4"
+        data-form-id="quick-inquiry"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -147,12 +160,12 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
                 <FormControl>
                   <SelectTrigger 
                     className="[font-family:'Poppins',Helvetica]"
-                    style={{ pointerEvents: 'auto' }}
+                    data-no-animate="true"
                   >
                     <SelectValue placeholder="Select option" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent className="z-50">
+                <SelectContent className="z-50" data-no-animate="true">
                   <SelectItem value="apartments">Apartments</SelectItem>
                   <SelectItem value="villas">Villas</SelectItem>
                   <SelectItem value="mini-apartments">Mini Apartments</SelectItem>

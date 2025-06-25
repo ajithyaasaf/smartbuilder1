@@ -30,17 +30,23 @@ export const Home = (): JSX.Element => {
   const { navigate } = useNavigation();
 
   const containerRef = useGSAP(() => {
-    // Temporarily disable animations to fix runtime error
     try {
-      setTimeout(() => {
-        animateHeroEntrance();
-        animateNavigation();
-        animateCardsOnScroll(".overflow-hidden");
-        animateStatsCounter(".stats-section");
-        setupButtonHoverAnimations();
-        animateFloatingElements();
-        setupParallaxImages();
-      }, 100);
+      // Wait for DOM to be fully ready before starting animations
+      const initAnimations = () => {
+        if (document.readyState === 'complete') {
+          animateHeroEntrance();
+          animateNavigation();
+          animateCardsOnScroll(".overflow-hidden");
+          animateStatsCounter(".stats-section");
+          setupButtonHoverAnimations();
+          animateFloatingElements();
+          setupParallaxImages();
+        } else {
+          setTimeout(initAnimations, 50);
+        }
+      };
+      
+      setTimeout(initAnimations, 200);
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

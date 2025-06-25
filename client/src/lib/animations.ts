@@ -208,9 +208,66 @@ export const animateCardsOnScroll = (selector: string) => {
 };
 
 export const animateFormEntrance = (selector: string) => {
-  // Temporarily disabled to prevent runtime errors with select components
   try {
-    console.debug("Form animations temporarily disabled to prevent runtime errors");
+    // Wait for DOM to be fully ready
+    if (!document.body || !document.readyState === 'complete') {
+      setTimeout(() => animateFormEntrance(selector), 100);
+      return;
+    }
+
+    const formSelectors = [
+      "form",
+      ".space-y-4",
+      ".space-y-6"
+    ];
+    
+    const forms = findElements(formSelectors);
+    
+    forms.forEach((form) => {
+      if (form && typeof form.querySelectorAll === 'function') {
+        // Only animate static form elements, avoid dynamic components
+        const staticElements = form.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"], button[type="submit"], label:not([data-radix-label])');
+        
+        if (staticElements.length > 0) {
+          // Use a more defensive approach
+          const validElements = Array.from(staticElements).filter(el => {
+            return el && 
+                   el.offsetParent !== null && 
+                   !el.hasAttribute('data-no-animate') &&
+                   !el.closest('[data-no-animate]') &&
+                   !el.closest('[data-radix-collection-item]') && 
+                   !el.closest('[data-state]') &&
+                   !el.closest('[data-radix-select-trigger]') &&
+                   !el.closest('[data-radix-select-content]') &&
+                   !el.matches('[role="combobox"]') &&
+                   !el.matches('[aria-expanded]') &&
+                   getComputedStyle(el).position !== 'fixed'; // Avoid fixed positioned elements
+          });
+
+          if (validElements.length > 0) {
+            validElements.forEach((element, index) => {
+              // Use individual animations instead of timeline to avoid conflicts
+              gsap.fromTo(element, 
+                { y: 20, opacity: 0 },
+                { 
+                  y: 0, 
+                  opacity: 1, 
+                  duration: 0.5, 
+                  delay: index * 0.1,
+                  ease: "power2.out",
+                  scrollTrigger: {
+                    trigger: form,
+                    start: "top 80%",
+                    toggleActions: "play none none none", // Only play once
+                    once: true // Prevent re-triggers
+                  }
+                }
+              );
+            });
+          }
+        }
+      }
+    });
   } catch (error) {
     console.debug("Form animation error:", error);
   }
