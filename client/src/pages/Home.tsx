@@ -316,28 +316,29 @@ export const Home = (): JSX.Element => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.map((service, index) => (
-                <Card key={index} className="service-card group hover:shadow-xl transition-all duration-300 border-none overflow-hidden">
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                <Card key={index} className="service-card group hover:shadow-xl transition-all duration-300 border-none overflow-hidden h-full">
+                  <div className="relative h-56 overflow-hidden">
                     <img 
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      style={{ objectPosition: 'center' }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                    <Badge className="floating-element absolute top-4 right-4 bg-[#b48b2f] text-white">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    <Badge className="floating-element absolute top-4 right-4 bg-[#b48b2f] text-white shadow-lg">
                       {service.badge}
                     </Badge>
                   </div>
-                  <CardContent className="p-6">
-                    <CardTitle className="text-xl font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+                  <CardContent className="p-4 flex-1 flex flex-col">
+                    <CardTitle className="text-lg font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
                       {service.title}
                     </CardTitle>
-                    <CardDescription className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-6">
+                    <CardDescription className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-5 text-sm flex-1">
                       {service.description}
                     </CardDescription>
                     <Button 
                       variant="ghost" 
-                      className="animate-button w-full mt-4 text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white transition-colors"
+                      className="animate-button w-full mt-3 text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white transition-colors text-sm py-2"
                     >
                       Learn More
                     </Button>
