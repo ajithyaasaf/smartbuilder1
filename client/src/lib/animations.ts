@@ -208,42 +208,9 @@ export const animateCardsOnScroll = (selector: string) => {
 };
 
 export const animateFormEntrance = (selector: string) => {
+  // Temporarily disabled to prevent runtime errors with select components
   try {
-    const formSelectors = [
-      "form",
-      ".space-y-4",
-      ".space-y-6"
-    ];
-    
-    const forms = findElements(formSelectors);
-    
-    forms.forEach((form) => {
-      if (form && typeof form.querySelectorAll === 'function') {
-        // Exclude problematic select components from animation
-        const formElements = form.querySelectorAll('input, button, label, textarea');
-        
-        if (formElements.length > 0) {
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: form,
-              start: "top 80%",
-              toggleActions: "play none none reverse"
-            }
-          });
-          
-          // Animate only safe elements, not select dropdowns
-          Array.from(formElements).forEach((element, index) => {
-            if (element && element.offsetParent !== null) {
-              gsap.set(element, { y: 20, opacity: 0 });
-              tl.to(element, 
-                { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-                index * 0.1
-              );
-            }
-          });
-        }
-      }
-    });
+    console.debug("Form animations temporarily disabled to prevent runtime errors");
   } catch (error) {
     console.debug("Form animation error:", error);
   }
