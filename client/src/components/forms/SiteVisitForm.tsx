@@ -51,7 +51,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
 
   const onSubmit = async (data: SiteVisitData) => {
     try {
-      await fetch("/api/forms/submit", {
+      const response = await fetch("/api/forms/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,6 +61,10 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
           data: data,
         }),
       });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
       
       toast({
         title: "Site Visit Scheduled!",
@@ -69,6 +73,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
       
       form.reset();
     } catch (error) {
+      console.error("Site visit form error:", error);
       toast({
         title: "Error",
         description: "Failed to schedule visit. Please try again.",
