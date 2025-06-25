@@ -129,6 +129,14 @@ export const Contact = (): JSX.Element => {
                     alt="Smart Builders Logo" 
                     className="w-20 h-12 sm:w-24 sm:h-16 lg:w-32 lg:h-20 object-contain"
                   />
+                  <div className="hidden sm:block">
+                    <div className="text-xl lg:text-2xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] tracking-[-0.50px]">
+                      Smart Builders
+                    </div>
+                    <div className="text-sm lg:text-base text-[#6b6b6b] [font-family:'Poppins',Helvetica] mt-[-2px]">
+                      & Developers
+                    </div>
+                  </div>
                 </div>
                 
                 <NavigationMenu className="hidden lg:flex">
