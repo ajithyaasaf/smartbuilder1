@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SafeSelect as Select, SafeSelectContent as SelectContent, SafeSelectItem as SelectItem, SafeSelectTrigger as SelectTrigger, SafeSelectValue as SelectValue } from "@/components/ui/safe-select";
 import { Phone, Mail, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -48,16 +48,25 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      await fetch("/api/forms/submit", {
+      const validatedData = contactFormSchema.parse(data);
+      
+      const response = await fetch("/api/forms/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           formType: "contact",
-          data: data,
+          data: validatedData,
         }),
       });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      }
+      
+      await response.json();
       
       toast({
         title: "Message Sent Successfully!",
@@ -66,9 +75,20 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       
       form.reset();
     } catch (error) {
+      console.error("Contact form error:", error);
+      
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: "Please check all required fields and try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
         variant: "destructive",
       });
     }

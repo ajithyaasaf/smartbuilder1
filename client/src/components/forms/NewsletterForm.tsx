@@ -41,16 +41,25 @@ export const NewsletterForm: React.FC<NewsletterFormProps> = ({
 
   const onSubmit = async (data: NewsletterData) => {
     try {
-      await fetch("/api/forms/submit", {
+      const validatedData = newsletterSchema.parse(data);
+      
+      const response = await fetch("/api/forms/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           formType: "newsletter",
-          data: data,
+          data: validatedData,
         }),
       });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      }
+      
+      await response.json();
       
       toast({
         title: "Subscribed Successfully!",
@@ -59,9 +68,20 @@ export const NewsletterForm: React.FC<NewsletterFormProps> = ({
       
       form.reset();
     } catch (error) {
+      console.error("Newsletter form error:", error);
+      
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: "Please check all required fields and try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
       toast({
         title: "Error",
-        description: "Failed to subscribe. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to subscribe. Please try again.",
         variant: "destructive",
       });
     }

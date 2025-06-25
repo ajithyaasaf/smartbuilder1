@@ -5,7 +5,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SafeSelect as Select, SafeSelectContent as SelectContent, SafeSelectItem as SelectItem, SafeSelectTrigger as SelectTrigger, SafeSelectValue as SelectValue } from "@/components/ui/safe-select";
 import { Calendar, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -51,6 +51,8 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
 
   const onSubmit = async (data: SiteVisitData) => {
     try {
+      const validatedData = siteVisitSchema.parse(data);
+      
       const response = await fetch("/api/forms/submit", {
         method: "POST",
         headers: {
@@ -58,13 +60,16 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
         },
         body: JSON.stringify({
           formType: "siteVisit",
-          data: data,
+          data: validatedData,
         }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit form");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
       }
+      
+      await response.json();
       
       toast({
         title: "Site Visit Scheduled!",
@@ -74,9 +79,19 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
       form.reset();
     } catch (error) {
       console.error("Site visit form error:", error);
+      
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: "Please check all required fields and try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
       toast({
         title: "Error",
-        description: "Failed to schedule visit. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to schedule visit. Please try again.",
         variant: "destructive",
       });
     }

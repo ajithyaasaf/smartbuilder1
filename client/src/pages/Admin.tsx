@@ -22,12 +22,12 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  SafeSelect as Select,
+  SafeSelectContent as SelectContent,
+  SafeSelectItem as SelectItem,
+  SafeSelectTrigger as SelectTrigger,
+  SafeSelectValue as SelectValue,
+} from "@/components/ui/safe-select";
 import {
   BarChart3,
   Users,
