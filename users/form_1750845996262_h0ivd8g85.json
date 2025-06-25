@@ -1,0 +1,10 @@
+{
+  "id": "form_1750845996262_h0ivd8g85",
+  "timestamp": "2025-06-25T10:06:36.262Z",
+  "formType": "quickInquiry",
+  "data": {
+    "name": "Test",
+    "phone": "1234567890",
+    "projectType": "apartments"
+  }
+}

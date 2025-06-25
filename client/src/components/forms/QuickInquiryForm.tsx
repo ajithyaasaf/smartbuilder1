@@ -43,16 +43,26 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
 
   const onSubmit = async (data: QuickInquiryData) => {
     try {
-      await fetch("/api/forms/submit", {
+      // Validate data before submission
+      const validatedData = quickInquirySchema.parse(data);
+      
+      const response = await fetch("/api/forms/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           formType: "quickInquiry",
-          data: data,
+          data: validatedData,
         }),
       });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
       
       toast({
         title: "Inquiry Submitted!",
@@ -61,9 +71,21 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
       
       form.reset();
     } catch (error) {
+      console.error("Form submission error:", error);
+      
+      // Check if it's a validation error
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: "Please check all required fields and try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
       toast({
         title: "Error",
-        description: "Failed to submit inquiry. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to submit inquiry. Please try again.",
         variant: "destructive",
       });
     }
@@ -143,7 +165,7 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
         <Button
           type="submit"
           disabled={form.formState.isSubmitting}
-          className="w-full bg-[#b48b2f] hover:bg-[#9d7829] text-white font-medium [font-family:'Poppins',Helvetica] rounded-[20px_2px_20px_2px] py-3 h-auto"
+          className="w-full bg-[#b48b2f] hover:bg-[#9d7829] text-white font-medium [font-family:'Poppins',Helvetica] rounded-[20px_2px_20px_2px] py-3 h-auto disabled:opacity-50"
         >
           {form.formState.isSubmitting ? (
             "Processing..."
