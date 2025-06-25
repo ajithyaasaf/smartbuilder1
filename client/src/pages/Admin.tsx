@@ -90,6 +90,7 @@ export const Admin = (): JSX.Element => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [resetingVisits, setResetingVisits] = useState(false);
+  const [viewingSubmission, setViewingSubmission] = useState<FormSubmission | null>(null);
   const { toast } = useToast();
   const { counter: visitCounter, refetch: refetchVisits } = useVisitCounter(10000);
 
@@ -761,7 +762,12 @@ export const Admin = (): JSX.Element => {
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center space-x-2">
-                          <Button variant="ghost" size="sm">
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => setViewingSubmission(submission)}
+                            title="View Details"
+                          >
                             <Eye className="w-4 h-4" />
                           </Button>
 
@@ -817,6 +823,127 @@ export const Admin = (): JSX.Element => {
           </CardContent>
         </Card>
       </div>
+
+      {/* View Submission Dialog */}
+      {viewingSubmission && (
+        <AlertDialog open={!!viewingSubmission} onOpenChange={() => setViewingSubmission(null)}>
+          <AlertDialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            <AlertDialogHeader>
+              <AlertDialogTitle className="flex items-center gap-2">
+                <Eye className="w-5 h-5 text-[#b48b2f]" />
+                Submission Details
+              </AlertDialogTitle>
+              <AlertDialogDescription>
+                Form Type: <Badge className={getFormTypeColor(viewingSubmission.formType)}>
+                  {formatFormType(viewingSubmission.formType)}
+                </Badge>
+                <br />
+                Submitted: {formatTimestamp(viewingSubmission.timestamp)}
+                <br />
+                ID: <code className="text-xs bg-gray-100 px-1 rounded">{viewingSubmission.id}</code>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            
+            <div className="space-y-4 my-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Contact Information */}
+                {(viewingSubmission.data?.name || viewingSubmission.data?.email || viewingSubmission.data?.phone) && (
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-[#313131] border-b pb-1">Contact Information</h4>
+                    {viewingSubmission.data.name && (
+                      <div><strong>Name:</strong> {viewingSubmission.data.name}</div>
+                    )}
+                    {viewingSubmission.data.email && (
+                      <div><strong>Email:</strong> {viewingSubmission.data.email}</div>
+                    )}
+                    {viewingSubmission.data.phone && (
+                      <div><strong>Phone:</strong> {viewingSubmission.data.phone}</div>
+                    )}
+                  </div>
+                )}
+
+                {/* Project Details */}
+                {(viewingSubmission.data?.projectType || viewingSubmission.data?.project || viewingSubmission.data?.budget) && (
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-[#313131] border-b pb-1">Project Details</h4>
+                    {viewingSubmission.data.projectType && (
+                      <div><strong>Type:</strong> {viewingSubmission.data.projectType}</div>
+                    )}
+                    {viewingSubmission.data.project && (
+                      <div><strong>Project:</strong> {viewingSubmission.data.project}</div>
+                    )}
+                    {viewingSubmission.data.budget && (
+                      <div><strong>Budget:</strong> {viewingSubmission.data.budget}</div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Visit Details */}
+              {(viewingSubmission.data?.preferredDate || viewingSubmission.data?.preferredTime || viewingSubmission.data?.visitors) && (
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-[#313131] border-b pb-1">Visit Details</h4>
+                  {viewingSubmission.data.preferredDate && (
+                    <div><strong>Date:</strong> {viewingSubmission.data.preferredDate}</div>
+                  )}
+                  {viewingSubmission.data.preferredTime && (
+                    <div><strong>Time:</strong> {viewingSubmission.data.preferredTime}</div>
+                  )}
+                  {viewingSubmission.data.visitors && (
+                    <div><strong>Visitors:</strong> {viewingSubmission.data.visitors}</div>
+                  )}
+                </div>
+              )}
+
+              {/* EMI Calculator Details */}
+              {(viewingSubmission.data?.price || viewingSubmission.data?.downPayment || viewingSubmission.data?.loanTenure) && (
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-[#313131] border-b pb-1">EMI Details</h4>
+                  {viewingSubmission.data.price && (
+                    <div><strong>Property Price:</strong> ₹{Number(viewingSubmission.data.price).toLocaleString()}</div>
+                  )}
+                  {viewingSubmission.data.downPayment && (
+                    <div><strong>Down Payment:</strong> ₹{Number(viewingSubmission.data.downPayment).toLocaleString()}</div>
+                  )}
+                  {viewingSubmission.data.loanTenure && (
+                    <div><strong>Loan Tenure:</strong> {viewingSubmission.data.loanTenure} years</div>
+                  )}
+                  {viewingSubmission.data.interestRate && (
+                    <div><strong>Interest Rate:</strong> {viewingSubmission.data.interestRate}%</div>
+                  )}
+                  {viewingSubmission.data.emi && (
+                    <div><strong>Monthly EMI:</strong> ₹{Number(viewingSubmission.data.emi).toLocaleString()}</div>
+                  )}
+                </div>
+              )}
+
+              {/* Message */}
+              {viewingSubmission.data?.message && (
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-[#313131] border-b pb-1">Message</h4>
+                  <div className="bg-gray-50 p-3 rounded border text-sm">
+                    {viewingSubmission.data.message}
+                  </div>
+                </div>
+              )}
+
+              {/* Raw Data (for debugging) */}
+              <details className="text-xs">
+                <summary className="cursor-pointer text-gray-600 hover:text-gray-800">View Raw Data</summary>
+                <pre className="bg-gray-100 p-2 rounded mt-2 overflow-x-auto text-xs">
+                  {JSON.stringify(viewingSubmission.data, null, 2)}
+                </pre>
+              </details>
+            </div>
+
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={() => setViewingSubmission(null)}>
+                Close
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )}
     </div>
   );
 };
