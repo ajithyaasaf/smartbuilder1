@@ -213,45 +213,113 @@ export const About = (): JSX.Element => {
             </div>
           </section>
 
-          {/* Timeline Section */}
+          {/* Journey Section - Redesigned */}
           <section className="mb-20">
-            <div className="text-center mb-12">
+            <div className="text-center mb-16">
               <h2 className="section-title text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
                 Our <span className="text-[#b48b2f]">Journey</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                Key milestones that shaped our growth and success over the years.
+                From humble beginnings to industry leadership - discover the milestones that shaped our success story.
               </p>
             </div>
             
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-[#b48b2f]/20 h-full"></div>
-              
-              <div className="space-y-12">
-                {milestones.map((milestone, index) => (
-                  <div key={index} className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                    <Card className={`overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow w-full max-w-md ${index % 2 === 0 ? 'mr-auto lg:mr-8' : 'ml-auto lg:ml-8'}`}>
-                      <CardContent className="p-6">
-                        <div className="flex items-center mb-3">
-                          <Badge className="bg-[#b48b2f] text-white font-bold text-lg px-3 py-1">
+            {/* Journey Stats */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              <div className="text-center p-6 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-2xl">
+                <div className="text-3xl lg:text-4xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-2">25+</div>
+                <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Years of Excellence</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-2xl">
+                <div className="text-3xl lg:text-4xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-2">50+</div>
+                <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Projects Delivered</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-2xl">
+                <div className="text-3xl lg:text-4xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-2">1000+</div>
+                <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Happy Families</div>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-2xl">
+                <div className="text-3xl lg:text-4xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica] mb-2">₹500+</div>
+                <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Crores Worth Projects</div>
+              </div>
+            </div>
+
+            {/* Horizontal Timeline - Desktop */}
+            <div className="hidden lg:block relative">
+              <div className="relative overflow-x-auto">
+                {/* Timeline line */}
+                <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-[#b48b2f]/20 via-[#b48b2f] to-[#b48b2f]/20 transform -translate-y-1/2"></div>
+                
+                <div className="flex justify-between items-center min-w-full px-8 py-12">
+                  {milestones.map((milestone, index) => (
+                    <div key={index} className="relative flex flex-col items-center group">
+                      {/* Timeline dot */}
+                      <div className="w-6 h-6 bg-[#b48b2f] rounded-full border-4 border-white shadow-lg mb-8 group-hover:scale-125 transition-transform duration-300 z-10"></div>
+                      
+                      {/* Card */}
+                      <Card className="w-48 border-none shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 bg-white">
+                        <CardContent className="p-6 text-center">
+                          <Badge className="bg-[#b48b2f] text-white font-bold text-sm px-3 py-1 mb-3">
                             {milestone.year}
                           </Badge>
-                        </div>
-                        <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
-                          {milestone.title}
-                        </CardTitle>
-                        <CardDescription className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-                          {milestone.desc}
-                        </CardDescription>
-                      </CardContent>
-                    </Card>
-                    
-                    {/* Timeline dot */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#b48b2f] rounded-full border-4 border-white shadow-lg"></div>
-                  </div>
-                ))}
+                          <CardTitle className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+                            {milestone.title}
+                          </CardTitle>
+                          <CardDescription className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
+                            {milestone.desc}
+                          </CardDescription>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  ))}
+                </div>
               </div>
+            </div>
+
+            {/* Vertical Timeline - Mobile */}
+            <div className="lg:hidden space-y-8">
+              {milestones.map((milestone, index) => (
+                <div key={index} className="relative flex items-start">
+                  {/* Timeline line and dot */}
+                  <div className="flex flex-col items-center mr-6">
+                    <div className="w-4 h-4 bg-[#b48b2f] rounded-full border-2 border-white shadow-lg"></div>
+                    {index < milestones.length - 1 && (
+                      <div className="w-0.5 h-16 bg-[#b48b2f]/20 mt-2"></div>
+                    )}
+                  </div>
+                  
+                  {/* Content */}
+                  <Card className="flex-1 border-none shadow-lg hover:shadow-xl transition-shadow bg-white">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-3">
+                        <Badge className="bg-[#b48b2f] text-white font-bold text-lg px-3 py-1">
+                          {milestone.year}
+                        </Badge>
+                      </div>
+                      <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+                        {milestone.title}
+                      </CardTitle>
+                      <CardDescription className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
+                        {milestone.desc}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+
+            {/* Achievement Highlight */}
+            <div className="mt-16 bg-gradient-to-r from-[#b48b2f] to-[#9d7829] rounded-3xl p-8 lg:p-12 text-white text-center">
+              <div className="flex items-center justify-center mb-4">
+                <Award className="w-8 h-8 mr-3" />
+                <h3 className="text-2xl lg:text-3xl font-bold [font-family:'Poppins',Helvetica]">
+                  Our Legacy Continues
+                </h3>
+              </div>
+              <p className="text-lg [font-family:'Poppins',Helvetica] opacity-90 max-w-3xl mx-auto leading-relaxed">
+                With each passing year, we strengthen our commitment to excellence, innovation, and customer satisfaction. 
+                Today, BuildMasters stands as a testament to what passion, dedication, and unwavering quality can achieve.
+              </p>
             </div>
           </section>
 
