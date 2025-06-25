@@ -1,32 +1,66 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  BarChart3, 
-  Users, 
-  FileText, 
-  Calendar, 
-  Download, 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  BarChart3,
+  Users,
+  FileText,
+  Calendar,
+  Download,
   Search,
   LogOut,
   Eye,
   Filter,
   RefreshCw,
   Clock,
-  Trash2
+  Trash2,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface FormSubmission {
   id: string;
-  formType: "contact" | "quickInquiry" | "siteVisit" | "emiCalculator" | "newsletter";
+  formType:
+    | "contact"
+    | "quickInquiry"
+    | "siteVisit"
+    | "emiCalculator"
+    | "newsletter";
   timestamp: string;
   data: Record<string, any>;
 }
@@ -42,7 +76,11 @@ export const Admin = (): JSX.Element => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
-  const [stats, setStats] = useState<Stats>({ total: 0, byType: {}, recent: [] });
+  const [stats, setStats] = useState<Stats>({
+    total: 0,
+    byType: {},
+    recent: [],
+  });
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState<string>("all");
@@ -66,7 +104,7 @@ export const Admin = (): JSX.Element => {
 
       const result = await response.json();
 
-      if (result.success) {
+      if (response.ok && result.success) {
         setIsLoggedIn(true);
         toast({
           title: "Login Successful",
@@ -74,12 +112,17 @@ export const Admin = (): JSX.Element => {
         });
         await fetchData();
       } else {
-        throw new Error(result.message);
+        toast({
+          title: "Login Failed",
+          description: result.message || "Invalid username or password. Please check your credentials and try again.",
+          variant: "destructive",
+        });
       }
     } catch (error) {
+      console.error("Login error:", error);
       toast({
         title: "Login Failed",
-        description: "Invalid credentials",
+        description: "Unable to connect to server. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -139,18 +182,18 @@ export const Admin = (): JSX.Element => {
       exportDate: new Date().toISOString(),
       stats: stats,
       submissions: submissions,
-      totalCount: submissions.length
+      totalCount: submissions.length,
     };
-    
+
     const dataStr = JSON.stringify(exportPayload, null, 2);
     const dataBlob = new Blob([dataStr], { type: "application/json" });
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `buildmasters-submissions-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `buildmasters-submissions-${new Date().toISOString().split("T")[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
-    
+
     toast({
       title: "Data Exported",
       description: `${submissions.length} submissions exported successfully`,
@@ -175,11 +218,11 @@ export const Admin = (): JSX.Element => {
 
       if (result.success) {
         // Remove from local state immediately
-        setSubmissions(prev => prev.filter(sub => sub.id !== id));
-        
+        setSubmissions((prev) => prev.filter((sub) => sub.id !== id));
+
         // Refresh stats
         await fetchStats();
-        
+
         toast({
           title: "Deleted Successfully",
           description: "Form submission has been permanently deleted",
@@ -191,7 +234,10 @@ export const Admin = (): JSX.Element => {
       console.error("Delete error:", error);
       toast({
         title: "Delete Failed",
-        description: error instanceof Error ? error.message : "Failed to delete submission. Please try again.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to delete submission. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -205,18 +251,18 @@ export const Admin = (): JSX.Element => {
       quickInquiry: "Quick Inquiry",
       siteVisit: "Site Visit",
       emiCalculator: "EMI Calculator",
-      newsletter: "Newsletter"
+      newsletter: "Newsletter",
     };
     return types[type as keyof typeof types] || type;
   };
 
   const formatTimestamp = (timestamp: string) => {
-    return new Date(timestamp).toLocaleString('en-IN', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(timestamp).toLocaleString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
@@ -226,27 +272,39 @@ export const Admin = (): JSX.Element => {
       quickInquiry: "bg-green-100 text-green-800",
       siteVisit: "bg-purple-100 text-purple-800",
       emiCalculator: "bg-orange-100 text-orange-800",
-      newsletter: "bg-pink-100 text-pink-800"
+      newsletter: "bg-pink-100 text-pink-800",
     };
     return colors[type as keyof typeof colors] || "bg-gray-100 text-gray-800";
   };
 
   const filteredSubmissions = submissions
-    .filter(submission => {
-      const matchesFilter = filterType === "all" || submission.formType === filterType;
-      const matchesSearch = searchTerm === "" || 
-        JSON.stringify(submission.data).toLowerCase().includes(searchTerm.toLowerCase()) ||
+    .filter((submission) => {
+      const matchesFilter =
+        filterType === "all" || submission.formType === filterType;
+      const matchesSearch =
+        searchTerm === "" ||
+        JSON.stringify(submission.data)
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
         submission.formType.toLowerCase().includes(searchTerm.toLowerCase()) ||
         submission.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        formatTimestamp(submission.timestamp).toLowerCase().includes(searchTerm.toLowerCase());
-      
+        formatTimestamp(submission.timestamp)
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+
       return matchesFilter && matchesSearch;
     })
-    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    .sort(
+      (a, b) =>
+        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
+    );
 
   const getMostPopularForm = () => {
-    if (Object.keys(stats.byType).length === 0) return { type: "None Yet", count: 0 };
-    const [type, count] = Object.entries(stats.byType).sort(([,a], [,b]) => b - a)[0];
+    if (Object.keys(stats.byType).length === 0)
+      return { type: "None Yet", count: 0 };
+    const [type, count] = Object.entries(stats.byType).sort(
+      ([, a], [, b]) => b - a,
+    )[0];
     return { type: formatFormType(type), count };
   };
 
@@ -254,12 +312,12 @@ export const Admin = (): JSX.Element => {
   useEffect(() => {
     if (isLoggedIn) {
       fetchData();
-      
+
       const interval = setInterval(() => {
         fetchStats();
         fetchSubmissions();
       }, 10000); // Refresh every 10 seconds
-      
+
       return () => clearInterval(interval);
     }
   }, [isLoggedIn]);
@@ -273,7 +331,7 @@ export const Admin = (): JSX.Element => {
               Admin <span className="text-[#b48b2f]">Login</span>
             </CardTitle>
             <CardDescription>
-              Access the BuildMasters admin dashboard
+              Access the Smart builders and developers admin dashboard
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -297,11 +355,11 @@ export const Admin = (): JSX.Element => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  placeholder="buildmasters2025"
+                  placeholder="smartbuilder2025"
                 />
               </div>
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-[#b48b2f] hover:bg-[#9d7829] text-white"
                 disabled={loading}
               >
@@ -324,7 +382,8 @@ export const Admin = (): JSX.Element => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <h1 className="text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
-                BuildMasters <span className="text-[#b48b2f]">Admin</span>
+                Smart Builders & developers{" "}
+                <span className="text-[#b48b2f]">Admin</span>
               </h1>
               {lastUpdated && (
                 <div className="flex items-center text-sm text-gray-500">
@@ -341,7 +400,9 @@ export const Admin = (): JSX.Element => {
                 disabled={isRefreshing}
                 className="flex items-center"
               >
-                <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+                <RefreshCw
+                  className={`w-4 h-4 mr-2 ${isRefreshing ? "animate-spin" : ""}`}
+                />
                 {isRefreshing ? "Refreshing..." : "Refresh"}
               </Button>
               <Button onClick={handleLogout} variant="outline" size="sm">
@@ -389,7 +450,9 @@ export const Admin = (): JSX.Element => {
                 {popularForm.type}
               </div>
               <p className="text-sm text-[#6b6b6b] mt-1">
-                {popularForm.count > 0 ? `${popularForm.count} submissions` : "Waiting for data"}
+                {popularForm.count > 0
+                  ? `${popularForm.count} submissions`
+                  : "Waiting for data"}
               </p>
             </CardContent>
           </Card>
@@ -407,9 +470,7 @@ export const Admin = (): JSX.Element => {
               <div className="text-3xl font-bold text-[#b48b2f]">
                 {Object.keys(stats.byType).length}
               </div>
-              <p className="text-sm text-[#6b6b6b] mt-1">
-                Active form types
-              </p>
+              <p className="text-sm text-[#6b6b6b] mt-1">Active form types</p>
             </CardContent>
           </Card>
 
@@ -444,9 +505,16 @@ export const Admin = (): JSX.Element => {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {Object.entries(stats.byType).map(([type, count]) => (
-                  <div key={type} className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-[#b48b2f]">{count}</div>
-                    <div className="text-sm text-[#6b6b6b]">{formatFormType(type)}</div>
+                  <div
+                    key={type}
+                    className="text-center p-4 bg-gray-50 rounded-lg"
+                  >
+                    <div className="text-2xl font-bold text-[#b48b2f]">
+                      {count}
+                    </div>
+                    <div className="text-sm text-[#6b6b6b]">
+                      {formatFormType(type)}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -466,7 +534,10 @@ export const Admin = (): JSX.Element => {
                   Manage and export all form submissions
                 </CardDescription>
               </div>
-              <Button onClick={exportData} className="bg-[#b48b2f] hover:bg-[#9d7829] text-white">
+              <Button
+                onClick={exportData}
+                className="bg-[#b48b2f] hover:bg-[#9d7829] text-white"
+              >
                 <Download className="w-4 h-4 mr-2" />
                 Export Data
               </Button>
@@ -497,7 +568,9 @@ export const Admin = (): JSX.Element => {
                     <SelectItem value="contact">Contact Form</SelectItem>
                     <SelectItem value="quickInquiry">Quick Inquiry</SelectItem>
                     <SelectItem value="siteVisit">Site Visit</SelectItem>
-                    <SelectItem value="emiCalculator">EMI Calculator</SelectItem>
+                    <SelectItem value="emiCalculator">
+                      EMI Calculator
+                    </SelectItem>
                     <SelectItem value="newsletter">Newsletter</SelectItem>
                   </SelectContent>
                 </Select>
@@ -521,10 +594,12 @@ export const Admin = (): JSX.Element => {
                   {filteredSubmissions.map((submission) => (
                     <TableRow key={submission.id}>
                       <TableCell className="font-mono text-xs">
-                        {submission.id.split('_')[1]?.substring(0, 8)}...
+                        {submission.id.split("_")[1]?.substring(0, 8)}...
                       </TableCell>
                       <TableCell>
-                        <Badge className={getFormTypeColor(submission.formType)}>
+                        <Badge
+                          className={getFormTypeColor(submission.formType)}
+                        >
                           {formatFormType(submission.formType)}
                         </Badge>
                       </TableCell>
@@ -534,7 +609,9 @@ export const Admin = (): JSX.Element => {
                       <TableCell>
                         <div className="space-y-1">
                           {submission.data.name && (
-                            <div className="font-medium text-sm">{submission.data.name}</div>
+                            <div className="font-medium text-sm">
+                              {submission.data.name}
+                            </div>
                           )}
                           {submission.data.projectType && (
                             <div className="text-xs text-gray-600">
@@ -561,10 +638,14 @@ export const Admin = (): JSX.Element => {
                       <TableCell>
                         <div className="space-y-1">
                           {submission.data.email && (
-                            <div className="text-sm">{submission.data.email}</div>
+                            <div className="text-sm">
+                              {submission.data.email}
+                            </div>
                           )}
                           {submission.data.phone && (
-                            <div className="text-sm">{submission.data.phone}</div>
+                            <div className="text-sm">
+                              {submission.data.phone}
+                            </div>
                           )}
                         </div>
                       </TableCell>
@@ -573,12 +654,12 @@ export const Admin = (): JSX.Element => {
                           <Button variant="ghost" size="sm">
                             <Eye className="w-4 h-4" />
                           </Button>
-                          
+
                           <AlertDialog>
                             <AlertDialogTrigger asChild>
-                              <Button 
-                                variant="ghost" 
-                                size="sm" 
+                              <Button
+                                variant="ghost"
+                                size="sm"
                                 className="text-red-600 hover:text-red-700 hover:bg-red-50"
                                 disabled={deletingId === submission.id}
                               >
@@ -587,9 +668,14 @@ export const Admin = (): JSX.Element => {
                             </AlertDialogTrigger>
                             <AlertDialogContent>
                               <AlertDialogHeader>
-                                <AlertDialogTitle>Delete Submission</AlertDialogTitle>
+                                <AlertDialogTitle>
+                                  Delete Submission
+                                </AlertDialogTitle>
                                 <AlertDialogDescription>
-                                  Are you sure you want to delete this form submission? This action cannot be undone and will permanently remove the data from both memory and file storage.
+                                  Are you sure you want to delete this form
+                                  submission? This action cannot be undone and
+                                  will permanently remove the data from both
+                                  memory and file storage.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
                               <AlertDialogFooter>
@@ -609,13 +695,12 @@ export const Admin = (): JSX.Element => {
                   ))}
                 </TableBody>
               </Table>
-              
+
               {filteredSubmissions.length === 0 && (
                 <div className="text-center py-12 text-gray-500">
-                  {submissions.length === 0 
+                  {submissions.length === 0
                     ? "No submissions yet. Forms will appear here once submitted."
-                    : "No submissions found matching your search criteria."
-                  }
+                    : "No submissions found matching your search criteria."}
                 </div>
               )}
             </div>
