@@ -47,11 +47,13 @@ export const About = (): JSX.Element => {
   ];
 
   const milestones = [
-    { year: "1999", title: "Foundation", desc: "Started with a vision to transform Madurai's skyline" },
-    { year: "2005", title: "First Major Project", desc: "Completed our landmark residential complex" },
-    { year: "2010", title: "Recognition", desc: "Awarded 'Best Builder in Tamil Nadu'" },
-    { year: "2015", title: "Expansion", desc: "Extended operations across South India" },
-    { year: "2020", title: "Innovation", desc: "Introduced eco-friendly construction practices" },
+    { year: "1996", title: "Education Foundation", desc: "M Rajan completed Diploma in Civil Engineering" },
+    { year: "2000", title: "Advanced Qualification", desc: "Completed Bachelor of Engineering (B.E)" },
+    { year: "2002", title: "Company Foundation", desc: "Started BuildMasters with a vision to transform Madurai's skyline" },
+    { year: "2005", title: "International Experience", desc: "Worked on high-rise building projects in Sharjah, UAE" },
+    { year: "2010", title: "Tamil Nadu Expansion", desc: "Extended operations across Tamil Nadu" },
+    { year: "2015", title: "Recognition", desc: "Established memberships with professional engineering bodies" },
+    { year: "2020", title: "Innovation", desc: "Introduced modern construction practices and structural detailing" },
     { year: "2024", title: "Excellence", desc: "Delivered 50+ premium projects with 1000+ happy families" }
   ];
 
@@ -169,14 +171,15 @@ export const About = (): JSX.Element => {
           <section className="mb-20">
             <div className="text-center mb-16">
               <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] border-[#b48b2f]/20 font-medium mb-4">
-                25 Years of Excellence
+                22 Years of Excellence
               </Badge>
               <h1 className="section-title text-4xl sm:text-5xl lg:text-6xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-6">
-                Building <span className="text-[#b48b2f]">Dreams</span> Since 1999
+                Building <span className="text-[#b48b2f]">Dreams</span> Since 2002
               </h1>
               <p className="text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-3xl mx-auto leading-relaxed">
-                From humble beginnings to becoming Madurai's most trusted construction company, 
-                our journey has been defined by unwavering commitment to quality, innovation, and customer satisfaction.
+                Founded by M Rajan with his engineering expertise and international experience, 
+                our journey from humble beginnings to becoming Madurai's most trusted construction company 
+                has been defined by unwavering commitment to quality, innovation, and customer satisfaction.
               </p>
             </div>
           </section>
@@ -195,8 +198,9 @@ export const About = (): JSX.Element => {
                     has evolved into one of Tamil Nadu's most respected real estate developers.
                   </p>
                   <p>
-                    Our founder, with a background in civil engineering and a passion for architecture, 
-                    recognized the need for quality housing that combined modern amenities with traditional values. 
+                    Our founder M Rajan, with his Diploma in Civil Engineering (1996) and B.E degree (2000), 
+                    combined with 25+ years of experience including international projects in UAE, 
+                    recognized the need for quality housing that combines modern amenities with traditional values. 
                     This philosophy continues to guide every project we undertake.
                   </p>
                   <p>
@@ -409,7 +413,7 @@ export const About = (): JSX.Element => {
                   Ready to Build Your Dream Home?
                 </h2>
                 <p className="text-lg [font-family:'Poppins',Helvetica] mb-8 opacity-90 max-w-2xl mx-auto">
-                  Join over 1,000 satisfied families who have made BuildMasters their trusted construction partner.
+                  Join over 1,000 satisfied families who have made BuildMasters their trusted construction partner under M Rajan's expert leadership.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 

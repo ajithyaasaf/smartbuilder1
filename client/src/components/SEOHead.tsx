@@ -107,7 +107,7 @@ export const getOrganizationSchema = () => ({
   "alternateName": "BuildMasters",
   "url": "https://buildmasters.replit.app",
   "logo": "https://buildmasters.replit.app/logo.png",
-  "description": "Premier construction company in Madurai specializing in residential projects, apartments, villas, and land development with 25+ years of experience.",
+  "description": "Premier construction company in Madurai specializing in residential projects, apartments, villas, and land development with 22+ years of experience under M Rajan's leadership.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "123 Construction Lane",
@@ -128,7 +128,7 @@ export const getOrganizationSchema = () => ({
     "https://instagram.com/buildmasters",
     "https://linkedin.com/company/buildmasters"
   ],
-  "foundingDate": "1999",
+  "foundingDate": "2002",
   "numberOfEmployees": "50-100",
   "areaServed": {
     "@type": "Place",
