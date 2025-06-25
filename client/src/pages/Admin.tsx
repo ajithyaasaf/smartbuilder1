@@ -50,18 +50,25 @@ export const Admin = (): JSX.Element => {
     setLoading(true);
 
     try {
-      const response = await apiRequest("/api/admin/login", {
+      const response = await fetch("/api/admin/login", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ username, password }),
       });
 
-      if (response.success) {
+      const result = await response.json();
+
+      if (result.success) {
         setIsLoggedIn(true);
         toast({
           title: "Login Successful",
           description: "Welcome to the admin dashboard",
         });
         fetchData();
+      } else {
+        throw new Error(result.message);
       }
     } catch (error) {
       toast({
@@ -76,10 +83,13 @@ export const Admin = (): JSX.Element => {
 
   const fetchData = async () => {
     try {
-      const [submissionsData, statsData] = await Promise.all([
-        apiRequest("/api/admin/submissions"),
-        apiRequest("/api/admin/stats"),
+      const [submissionsResponse, statsResponse] = await Promise.all([
+        fetch("/api/admin/submissions"),
+        fetch("/api/admin/stats"),
       ]);
+      
+      const submissionsData = await submissionsResponse.json();
+      const statsData = await statsResponse.json();
       
       setSubmissions(submissionsData);
       setStats(statsData);
