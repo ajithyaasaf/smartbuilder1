@@ -9,11 +9,32 @@ import { MapPin, Phone, Mail, Square, TrendingUp, CheckCircle, ArrowRight, Build
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
 import { ContactForm, QuickInquiryForm } from "@/components/forms";
+import { useGSAP } from "@/hooks/useGSAP";
+import { 
+  animatePageTransition, 
+  animateNavigation, 
+  animateCardsOnScroll, 
+  setupButtonHoverAnimations,
+  animateFloatingElements,
+  setupParallaxImages,
+  animateTextReveal
+} from "@/lib/animations";
 
 export const LandPromotion = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("residential");
   const { navigate } = useNavigation();
+
+  const containerRef = useGSAP(() => {
+    animatePageTransition();
+    animateNavigation();
+    animateCardsOnScroll(".land-card");
+    animateCardsOnScroll(".service-card");
+    animateTextReveal(".land-title");
+    setupButtonHoverAnimations();
+    animateFloatingElements();
+    setupParallaxImages();
+  }, []);
   
   const navItems = [
     { name: "Home", path: "/", active: false },
@@ -161,9 +182,9 @@ export const LandPromotion = (): JSX.Element => {
   const filteredLands = landProjects.filter(land => land.category === activeTab);
 
   return (
-    <div className="bg-white min-h-screen w-full">
+    <div ref={containerRef} className="bg-white min-h-screen w-full">
       <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative">
+        <div className="relative page-content">
           {/* Navigation */}
           <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
             <nav className="flex items-center justify-between py-4 mb-8 lg:mb-12">

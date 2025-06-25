@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,10 +13,51 @@ import { MapPin, Phone, Mail, Clock, Star, Users, Building, Award } from "lucide
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
 import { ContactForm, QuickInquiryForm } from "@/components/forms";
+import { useGSAP } from "@/hooks/useGSAP";
+import { 
+  animateHeroEntrance, 
+  animateNavigation, 
+  animateCardsOnScroll, 
+  animateStatsCounter,
+  setupButtonHoverAnimations,
+  animateFloatingElements,
+  setupParallaxImages,
+  animateMobileMenu
+} from "@/lib/animations";
 
 export const Home = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { navigate } = useNavigation();
+
+  const containerRef = useGSAP(() => {
+    // Hero entrance animation
+    animateHeroEntrance();
+    
+    // Navigation animation
+    animateNavigation();
+    
+    // Cards scroll animations
+    animateCardsOnScroll(".service-card");
+    animateCardsOnScroll(".testimonial-card");
+    
+    // Stats counter animation
+    animateStatsCounter(".stats-section");
+    
+    // Button hover animations
+    setupButtonHoverAnimations();
+    
+    // Floating decorative elements
+    animateFloatingElements();
+    
+    // Parallax images
+    setupParallaxImages();
+  }, []);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      animateMobileMenu(true);
+    }
+  }, [isMobileMenuOpen]);
   
   const navItems = [
     { name: "Home", path: "/", active: true },
@@ -88,12 +129,12 @@ export const Home = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-white min-h-screen w-full">
+    <div ref={containerRef} className="bg-white min-h-screen w-full">
       <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative">
+        <div className="relative page-content">
           {/* Background decorative elements */}
           <img
-            className="absolute w-48 h-48 sm:w-80 sm:h-80 lg:w-[632px] lg:h-[608px] top-96 sm:top-80 lg:top-[565px] left-0 opacity-10 lg:opacity-20 -z-10"
+            className="absolute w-48 h-48 sm:w-80 sm:h-80 lg:w-[632px] lg:h-[608px] top-96 sm:top-80 lg:top-[565px] left-0 opacity-10 lg:opacity-20 -z-10 floating-element parallax-image"
             alt="Vector"
             src="/figmaAssets/vector-11.svg"
           />
@@ -102,7 +143,7 @@ export const Home = (): JSX.Element => {
             <div className="relative">
               {/* Navigation */}
               <nav className="flex items-center justify-between py-4 mb-8 lg:mb-16">
-                <div className="flex items-center space-x-3">
+                <div className="nav-logo flex items-center space-x-3">
                   <img 
                     src="/logo.jpg" 
                     alt="Company Logo" 
@@ -115,7 +156,7 @@ export const Home = (): JSX.Element => {
                 <NavigationMenu className="hidden lg:flex">
                   <NavigationMenuList className="flex gap-6 xl:gap-8">
                     {navItems.slice(0, 6).map((item, index) => (
-                      <NavigationMenuItem key={index}>
+                      <NavigationMenuItem key={index} className="nav-item">
                         <NavigationMenuLink
                           onClick={() => navigate(item.path)}
                           className={`[font-family:'Poppins',Helvetica] text-base xl:text-lg text-[#313131] hover:text-[#b48b2f] transition-colors cursor-pointer ${
@@ -176,7 +217,7 @@ export const Home = (): JSX.Element => {
                     <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] border-[#b48b2f]/20 font-medium">
                       #1 Builders in Madurai
                     </Badge>
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold [font-family:'Poppins',Helvetica] leading-tight lg:leading-[64px] tracking-[-1.64px]">
+                    <h1 className="hero-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold [font-family:'Poppins',Helvetica] leading-tight lg:leading-[64px] tracking-[-1.64px]">
                       <span className="text-[#b48b2f]">Building</span>
                       <span className="text-[#313131]"> Dreams,</span>
                       <br />
@@ -185,19 +226,19 @@ export const Home = (): JSX.Element => {
                       <span className="text-[#b48b2f]">Lifestyles</span>
                       <span className="text-[#313131]">.</span>
                     </h1>
-                    <p className="text-lg sm:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-7 max-w-lg">
+                    <p className="hero-subtext text-lg sm:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-7 max-w-lg">
                       Premium residential projects in Madurai with 25+ years of excellence in construction and development.
                     </p>
                   </div>
 
                   {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-3">
-                    <Button className="w-full sm:w-auto px-8 py-4 h-auto bg-[#b48b2f] hover:bg-[#9d7829] rounded-[40px_5px_40px_5px] shadow-lg text-white text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px]">
+                  <div className="hero-buttons flex flex-col sm:flex-row gap-4 sm:gap-3">
+                    <Button className="animate-button w-full sm:w-auto px-8 py-4 h-auto bg-[#b48b2f] hover:bg-[#9d7829] rounded-[40px_5px_40px_5px] shadow-lg text-white text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px]">
                       View Projects
                     </Button>
                     <Button
                       variant="outline"
-                      className="w-full sm:w-auto px-8 py-4 h-auto rounded-[40px_5px_40px_5px] border-2 border-[#b48b2f] hover:bg-[#b48b2f] hover:text-white text-[#b48b2f] text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px] shadow-lg"
+                      className="animate-button w-full sm:w-auto px-8 py-4 h-auto rounded-[40px_5px_40px_5px] border-2 border-[#b48b2f] hover:bg-[#b48b2f] hover:text-white text-[#b48b2f] text-base lg:text-[17px] font-medium [font-family:'Poppins',Helvetica] tracking-[-0.50px] shadow-lg"
                     >
                       <Phone className="w-4 h-4 mr-2" />
                       Call Now
@@ -218,13 +259,13 @@ export const Home = (): JSX.Element => {
                 </div>
 
                 {/* Right side with image */}
-                <div className="order-1 lg:order-2 relative h-64 sm:h-80 md:h-96 lg:h-[600px] xl:h-[700px]">
-                  <div className="absolute top-4 sm:top-8 lg:top-[97px] left-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[238px] lg:h-[213px] bg-[#c9e7ff] rounded-[106.5px_5px_5px_5px] opacity-40" />
-                  <div className="absolute bottom-4 sm:bottom-8 lg:bottom-[50px] right-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[238px] lg:h-[213px] bg-[#c9e7ff] rounded-[106.5px_5px_5px_5px] opacity-40 rotate-180" />
+                <div className="hero-image order-1 lg:order-2 relative h-64 sm:h-80 md:h-96 lg:h-[600px] xl:h-[700px]">
+                  <div className="floating-element absolute top-4 sm:top-8 lg:top-[97px] left-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[238px] lg:h-[213px] bg-[#c9e7ff] rounded-[106.5px_5px_5px_5px] opacity-40" />
+                  <div className="floating-element absolute bottom-4 sm:bottom-8 lg:bottom-[50px] right-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-[238px] lg:h-[213px] bg-[#c9e7ff] rounded-[106.5px_5px_5px_5px] opacity-40 rotate-180" />
                   
                   <div className="absolute inset-2 sm:inset-4 md:inset-6 lg:inset-12 flex items-center justify-center">
                     <img
-                      className="w-full h-full object-contain"
+                      className="parallax-image w-full h-full object-contain"
                       alt="Smart Builders premium construction projects in Madurai"
                       src="/figmaAssets/mask-group.png"
                     />
@@ -235,13 +276,13 @@ export const Home = (): JSX.Element => {
           </header>
 
           {/* Statistics Section */}
-          <section className="mt-16 lg:mt-24 mb-16" aria-label="Our achievements">
+          <section className="hero-stats stats-section mt-16 lg:mt-24 mb-16" aria-label="Our achievements">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {stats.map((stat, index) => (
                 <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
                   <CardContent className="p-0">
                     <stat.icon className={`w-8 h-8 mx-auto mb-4 ${stat.color}`} />
-                    <div className="text-2xl lg:text-3xl xl:text-[40px] font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+                    <div className="stat-number text-2xl lg:text-3xl xl:text-[40px] font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
                       {stat.value}
                     </div>
                     <div className="text-sm lg:text-base text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
@@ -266,9 +307,9 @@ export const Home = (): JSX.Element => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.map((service, index) => (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-none overflow-hidden">
+                <Card key={index} className="service-card group hover:shadow-xl transition-all duration-300 border-none overflow-hidden">
                   <div className="relative h-48 bg-gradient-to-br from-[#b48b2f]/10 to-[#b48b2f]/20">
-                    <Badge className="absolute top-4 right-4 bg-[#b48b2f] text-white">
+                    <Badge className="floating-element absolute top-4 right-4 bg-[#b48b2f] text-white">
                       {service.badge}
                     </Badge>
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -284,7 +325,7 @@ export const Home = (): JSX.Element => {
                     </CardDescription>
                     <Button 
                       variant="ghost" 
-                      className="w-full mt-4 text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white transition-colors"
+                      className="animate-button w-full mt-4 text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white transition-colors"
                     >
                       Learn More
                     </Button>
@@ -307,7 +348,7 @@ export const Home = (): JSX.Element => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
+                <Card key={index} className="testimonial-card p-6 hover:shadow-lg transition-shadow border-none bg-neutral-50/50">
                   <CardContent className="p-0">
                     <div className="flex items-center mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (

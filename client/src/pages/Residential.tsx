@@ -9,11 +9,32 @@ import { MapPin, Phone, Mail, Bed, Bath, Square, Car, Star, CheckCircle, ArrowRi
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
 import { SiteVisitForm } from "@/components/forms";
+import { useGSAP } from "@/hooks/useGSAP";
+import { 
+  animatePageTransition, 
+  animateNavigation, 
+  animateCardsOnScroll, 
+  setupButtonHoverAnimations,
+  animateFloatingElements,
+  setupParallaxImages,
+  animateFormEntrance
+} from "@/lib/animations";
 
 export const Residential = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const { navigate } = useNavigation();
+
+  const containerRef = useGSAP(() => {
+    animatePageTransition();
+    animateNavigation();
+    animateCardsOnScroll(".project-card");
+    animateCardsOnScroll(".feature-card");
+    animateFormEntrance(".site-visit-form");
+    setupButtonHoverAnimations();
+    animateFloatingElements();
+    setupParallaxImages();
+  }, []);
   
   const navItems = [
     { name: "Home", path: "/", active: false },
@@ -105,9 +126,9 @@ export const Residential = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-white min-h-screen w-full">
+    <div ref={containerRef} className="bg-white min-h-screen w-full">
       <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative">
+        <div className="relative page-content">
           {/* Navigation */}
           <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
             <nav className="flex items-center justify-between py-4 mb-8 lg:mb-12">
