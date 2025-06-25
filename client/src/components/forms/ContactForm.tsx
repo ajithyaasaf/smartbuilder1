@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SafeSelect as Select, SafeSelectContent as SelectContent, SafeSelectItem as SelectItem, SafeSelectTrigger as SelectTrigger, SafeSelectValue as SelectValue } from "@/components/ui/safe-select";
 import { Phone, Mail, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -180,7 +180,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Project Type *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value || ""}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="Select project type" />
@@ -209,7 +209,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                   Budget Range *
                 </FormLabel>
-                <Select onValueChange={field.onChange} value={field.value || ""}>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                       <SelectValue placeholder="Select your budget range" />

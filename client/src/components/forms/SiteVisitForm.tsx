@@ -5,7 +5,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SafeSelect as Select, SafeSelectContent as SelectContent, SafeSelectItem as SelectItem, SafeSelectTrigger as SelectTrigger, SafeSelectValue as SelectValue } from "@/components/ui/safe-select";
 import { Calendar, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -211,7 +211,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Project *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value || ""}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="Select project to visit" />
@@ -241,7 +241,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Preferred Date *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value || ""}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="Select date" />
@@ -268,7 +268,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     Preferred Time *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value || ""}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="Select time" />
@@ -295,7 +295,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
                   <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
                     No. of Visitors *
                   </FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value || ""}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="[font-family:'Poppins',Helvetica]">
                         <SelectValue placeholder="How many?" />
