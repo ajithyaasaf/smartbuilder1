@@ -170,7 +170,7 @@ export const LandPromotion = (): JSX.Element => {
               <div className="flex items-center space-x-2">
                 
                 <img 
-                  src="/attached_assets/construction_1750832040927.jpg" 
+                  src="/logo.jpg" 
                   alt="Company Logo" 
                   className="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12 object-contain"
                 />
