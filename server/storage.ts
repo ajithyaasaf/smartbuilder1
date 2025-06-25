@@ -1,4 +1,6 @@
 import { users, type User, type InsertUser, type FormSubmission, type Admin } from "@shared/schema";
+import * as fs from "fs";
+import * as path from "path";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -19,18 +21,63 @@ export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private formSubmissions: Map<string, FormSubmission>;
   private admin: Admin;
+  private usersDir: string;
   currentId: number;
 
   constructor() {
     this.users = new Map();
     this.formSubmissions = new Map();
     this.currentId = 1;
+    this.usersDir = path.join(process.cwd(), "users");
+    
+    // Create users directory if it doesn't exist
+    this.ensureUsersDirectory();
+    
+    // Load existing submissions from files
+    this.loadSubmissionsFromFiles();
     
     // Default admin credentials
     this.admin = {
       username: "admin",
       password: "buildmasters2025"
     };
+  }
+
+  private ensureUsersDirectory() {
+    if (!fs.existsSync(this.usersDir)) {
+      fs.mkdirSync(this.usersDir, { recursive: true });
+      console.log(`Created users directory: ${this.usersDir}`);
+    }
+  }
+
+  private loadSubmissionsFromFiles() {
+    try {
+      if (fs.existsSync(this.usersDir)) {
+        const files = fs.readdirSync(this.usersDir).filter(file => file.endsWith('.json'));
+        
+        for (const file of files) {
+          const filePath = path.join(this.usersDir, file);
+          const content = fs.readFileSync(filePath, 'utf-8');
+          const submission: FormSubmission = JSON.parse(content);
+          this.formSubmissions.set(submission.id, submission);
+        }
+        
+        console.log(`Loaded ${files.length} form submissions from users directory`);
+      }
+    } catch (error) {
+      console.error("Error loading submissions from files:", error);
+    }
+  }
+
+  private saveSubmissionToFile(submission: FormSubmission) {
+    try {
+      const fileName = `${submission.id}.json`;
+      const filePath = path.join(this.usersDir, fileName);
+      fs.writeFileSync(filePath, JSON.stringify(submission, null, 2));
+      console.log(`Saved submission to file: ${fileName}`);
+    } catch (error) {
+      console.error("Error saving submission to file:", error);
+    }
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -60,7 +107,12 @@ export class MemStorage implements IStorage {
       ...submission
     };
     
+    // Store in memory for fast access
     this.formSubmissions.set(id, formSubmission);
+    
+    // Save to JSON file for persistence
+    this.saveSubmissionToFile(formSubmission);
+    
     return formSubmission;
   }
 
