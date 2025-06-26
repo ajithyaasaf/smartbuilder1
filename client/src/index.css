@@ -319,4 +319,38 @@
   .overflow-y-auto {
     overscroll-behavior: contain;
   }
+
+  /* Custom animations for loading screen */
+  @keyframes swing {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  .animate-swing {
+    animation: swing 2s ease-in-out infinite;
+  }
+
+  /* Enhanced loading animations */
+  .construction-loader {
+    position: relative;
+  }
+
+  .construction-loader::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #b48b2f;
+    border-radius: 50%;
+    animation: constructionDots 1.5s ease-in-out infinite;
+  }
+
+  @keyframes constructionDots {
+    0%, 20% { opacity: 0; transform: translateX(-50%) translateY(0); }
+    40% { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+    60%, 100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
 }
