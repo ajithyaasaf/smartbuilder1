@@ -398,20 +398,20 @@ export const Admin = (): JSX.Element => {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-3 xs:p-4 sm:p-6">
+        <Card className="w-full max-w-xs xs:max-w-sm sm:max-w-md shadow-xl border-none">
+          <CardHeader className="text-center pb-4 xs:pb-6">
+            <CardTitle className="text-lg xs:text-xl sm:text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
               Admin <span className="text-[#b48b2f]">Login</span>
             </CardTitle>
-            <CardDescription>
-              Access the Smart builders and developers admin dashboard
+            <CardDescription className="text-xs xs:text-sm px-2">
+              Access the Smart Builders & Developers admin dashboard
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+          <CardContent className="px-4 xs:px-6">
+            <form onSubmit={handleLogin} className="space-y-3 xs:space-y-4">
+              <div className="space-y-1.5 xs:space-y-2">
+                <Label htmlFor="username" className="text-xs xs:text-sm font-medium">Username</Label>
                 <Input
                   id="username"
                   type="text"
@@ -419,22 +419,24 @@ export const Admin = (): JSX.Element => {
                   onChange={(e) => setUsername(e.target.value)}
                   required
                   placeholder="admin"
+                  className="min-h-[44px] text-sm xs:text-base"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+              <div className="space-y-1.5 xs:space-y-2">
+                <Label htmlFor="password" className="text-xs xs:text-sm font-medium">Password</Label>
                 <Input
                   id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  placeholder="smartbuilder2025"
+                  placeholder="smartbuilders2025"
+                  className="min-h-[44px] text-sm xs:text-base"
                 />
               </div>
               <Button
                 type="submit"
-                className="w-full bg-[#b48b2f] hover:bg-[#9d7829] text-white"
+                className="w-full bg-[#b48b2f] hover:bg-[#9d7829] text-white min-h-[44px] xs:min-h-[48px] text-sm xs:text-base font-medium transition-all duration-300"
                 disabled={loading}
               >
                 {loading ? "Logging in..." : "Login"}
@@ -450,80 +452,91 @@ export const Admin = (): JSX.Element => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
-                Smart Builders & developers{" "}
+      {/* Header - Enhanced Mobile Responsive */}
+      <header className="bg-white shadow-sm border-b sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-14 xs:h-16 sm:h-18">
+            <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4 min-w-0 flex-1">
+              <h1 className="text-sm xs:text-base sm:text-lg lg:text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] truncate">
+                <span className="hidden sm:inline">Smart Builders & Developers </span>
+                <span className="sm:hidden">Smart Builders </span>
                 <span className="text-[#b48b2f]">Admin</span>
               </h1>
               {lastUpdated && (
-                <div className="flex items-center text-sm text-gray-500">
-                  <Clock className="w-4 h-4 mr-1" />
-                  Last updated: {lastUpdated.toLocaleTimeString()}
+                <div className="hidden md:flex items-center text-xs lg:text-sm text-gray-500">
+                  <Clock className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
+                  <span className="hidden lg:inline">Last updated: </span>
+                  {lastUpdated.toLocaleTimeString()}
                 </div>
               )}
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-1.5 xs:space-x-2 sm:space-x-3">
               <Button
                 onClick={fetchData}
                 variant="outline"
                 size="sm"
                 disabled={isRefreshing}
-                className="flex items-center"
+                className="flex items-center min-h-[36px] xs:min-h-[40px] px-2 xs:px-3 text-xs xs:text-sm"
               >
                 <RefreshCw
-                  className={`w-4 h-4 mr-2 ${isRefreshing ? "animate-spin" : ""}`}
+                  className={`w-3 h-3 xs:w-4 xs:h-4 ${isRefreshing ? "animate-spin" : ""} ${isRefreshing ? "mr-1" : "xs:mr-2"}`}
                 />
-                {isRefreshing ? "Refreshing..." : "Refresh"}
+                <span className="hidden xs:inline">{isRefreshing ? "Refreshing..." : "Refresh"}</span>
               </Button>
-              <Button onClick={handleLogout} variant="outline" size="sm">
-                <LogOut className="w-4 h-4 mr-2" />
-                Logout
+              <Button 
+                onClick={handleLogout} 
+                variant="outline" 
+                size="sm"
+                className="flex items-center min-h-[36px] xs:min-h-[40px] px-2 xs:px-3 text-xs xs:text-sm"
+              >
+                <LogOut className="w-3 h-3 xs:w-4 xs:h-4 xs:mr-2" />
+                <span className="hidden xs:inline">Logout</span>
               </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Real-Time Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="border-none shadow-lg">
-            <CardHeader className="pb-2">
+      <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 py-4 xs:py-6 sm:py-8">
+        {/* Real-Time Stats Overview - Enhanced Mobile */}
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4 sm:gap-5 lg:gap-6 mb-6 xs:mb-8">
+          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardHeader className="pb-2 px-3 xs:px-4 sm:px-6 pt-3 xs:pt-4 sm:pt-6">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold text-[#313131]">
-                  Total Submissions
+                <CardTitle className="text-sm xs:text-base sm:text-lg font-semibold text-[#313131] leading-tight">
+                  <span className="hidden xs:inline">Total Submissions</span>
+                  <span className="xs:hidden">Submissions</span>
                 </CardTitle>
-                <FileText className="w-8 h-8 text-[#b48b2f]" />
+                <FileText className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-[#b48b2f] flex-shrink-0" />
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-[#b48b2f]">
+            <CardContent className="px-3 xs:px-4 sm:px-6 pb-3 xs:pb-4 sm:pb-6">
+              <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#b48b2f] leading-tight">
                 {stats.total}
               </div>
-              <p className="text-sm text-[#6b6b6b] mt-1">
-                All forms {stats.total > 0 && "(Live Data)"}
+              <p className="text-xs xs:text-sm text-[#6b6b6b] mt-1 leading-tight">
+                <span className="hidden xs:inline">All forms</span>
+                <span className="xs:hidden">Total</span>
+                {stats.total > 0 && <span className="hidden sm:inline"> (Live Data)</span>}
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-lg">
-            <CardHeader className="pb-2">
+          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardHeader className="pb-2 px-3 xs:px-4 sm:px-6 pt-3 xs:pt-4 sm:pt-6">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold text-[#313131]">
-                  Most Popular
+                <CardTitle className="text-sm xs:text-base sm:text-lg font-semibold text-[#313131] leading-tight">
+                  <span className="hidden xs:inline">Most Popular</span>
+                  <span className="xs:hidden">Popular</span>
                 </CardTitle>
-                <BarChart3 className="w-8 h-8 text-[#b48b2f]" />
+                <BarChart3 className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-[#b48b2f] flex-shrink-0" />
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-[#b48b2f]">
+            <CardContent className="px-3 xs:px-4 sm:px-6 pb-3 xs:pb-4 sm:pb-6">
+              <div className="text-lg xs:text-xl sm:text-2xl font-bold text-[#b48b2f] leading-tight line-clamp-1">
                 {popularForm.type}
               </div>
-              <p className="text-sm text-[#6b6b6b] mt-1">
+              <p className="text-xs xs:text-sm text-[#6b6b6b] mt-1 leading-tight">
                 {popularForm.count > 0
                   ? `${popularForm.count} submissions`
                   : "Waiting for data"}
@@ -531,46 +544,52 @@ export const Admin = (): JSX.Element => {
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-lg">
-            <CardHeader className="pb-2">
+          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardHeader className="pb-2 px-3 xs:px-4 sm:px-6 pt-3 xs:pt-4 sm:pt-6">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold text-[#313131]">
-                  Form Types
+                <CardTitle className="text-sm xs:text-base sm:text-lg font-semibold text-[#313131] leading-tight">
+                  <span className="hidden xs:inline">Form Types</span>
+                  <span className="xs:hidden">Types</span>
                 </CardTitle>
-                <Users className="w-8 h-8 text-[#b48b2f]" />
+                <Users className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-[#b48b2f] flex-shrink-0" />
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-[#b48b2f]">
+            <CardContent className="px-3 xs:px-4 sm:px-6 pb-3 xs:pb-4 sm:pb-6">
+              <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#b48b2f] leading-tight">
                 {Object.keys(stats.byType).length}
               </div>
-              <p className="text-sm text-[#6b6b6b] mt-1">Active form types</p>
+              <p className="text-xs xs:text-sm text-[#6b6b6b] mt-1 leading-tight">
+                <span className="hidden xs:inline">Active form types</span>
+                <span className="xs:hidden">Active</span>
+              </p>
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-lg">
-            <CardHeader className="pb-2">
+          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardHeader className="pb-2 px-3 xs:px-4 sm:px-6 pt-3 xs:pt-4 sm:pt-6">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold text-[#313131]">
-                  Site Visits
+                <CardTitle className="text-sm xs:text-base sm:text-lg font-semibold text-[#313131] leading-tight">
+                  <span className="hidden xs:inline">Site Visits</span>
+                  <span className="xs:hidden">Visits</span>
                 </CardTitle>
-                <Eye className="w-8 h-8 text-[#b48b2f]" />
+                <Eye className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-[#b48b2f] flex-shrink-0" />
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-[#b48b2f]">
+            <CardContent className="px-3 xs:px-4 sm:px-6 pb-3 xs:pb-4 sm:pb-6">
+              <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#b48b2f] leading-tight">
                 {visitCounter?.totalVisits?.toLocaleString('en-IN') || '0'}
               </div>
-              <p className="text-sm text-[#6b6b6b] mt-1">
-                Total visits (Today: {visitCounter?.dailyVisits || 0})
+              <p className="text-xs xs:text-sm text-[#6b6b6b] mt-1 leading-tight">
+                <span className="hidden sm:inline">Total visits (Today: {visitCounter?.dailyVisits || 0})</span>
+                <span className="sm:hidden">Today: {visitCounter?.dailyVisits || 0}</span>
               </p>
-              <div className="mt-3 flex space-x-2">
+              <div className="mt-2 xs:mt-3 flex space-x-1 xs:space-x-2">
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button 
                       size="sm" 
                       variant="outline" 
-                      className="text-xs"
+                      className="text-xs px-2 py-1 min-h-[32px] xs:min-h-[36px]"
                       disabled={resetingVisits}
                     >
                       Reset
@@ -605,25 +624,25 @@ export const Admin = (): JSX.Element => {
           </Card>
         </div>
 
-        {/* Form Type Breakdown */}
+        {/* Form Type Breakdown - Enhanced Mobile */}
         {Object.keys(stats.byType).length > 0 && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold text-[#313131]">
+          <Card className="mb-6 xs:mb-8 border-none shadow-lg">
+            <CardHeader className="px-3 xs:px-4 sm:px-6">
+              <CardTitle className="text-base xs:text-lg sm:text-xl font-semibold text-[#313131]">
                 Form Type Breakdown
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <CardContent className="px-3 xs:px-4 sm:px-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 xs:gap-3 sm:gap-4">
                 {Object.entries(stats.byType).map(([type, count]) => (
                   <div
                     key={type}
-                    className="text-center p-4 bg-gray-50 rounded-lg"
+                    className="text-center p-3 xs:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
                   >
-                    <div className="text-2xl font-bold text-[#b48b2f]">
+                    <div className="text-lg xs:text-xl sm:text-2xl font-bold text-[#b48b2f]">
                       {count}
                     </div>
-                    <div className="text-sm text-[#6b6b6b]">
+                    <div className="text-xs xs:text-sm text-[#6b6b6b] leading-tight">
                       {formatFormType(type)}
                     </div>
                   </div>
@@ -633,45 +652,48 @@ export const Admin = (): JSX.Element => {
           </Card>
         )}
 
-        {/* Submissions Management */}
-        <Card>
-          <CardHeader>
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-              <div>
-                <CardTitle className="text-xl font-semibold text-[#313131]">
-                  Form Submissions ({filteredSubmissions.length})
+        {/* Submissions Management - Enhanced Mobile */}
+        <Card className="border-none shadow-lg">
+          <CardHeader className="px-3 xs:px-4 sm:px-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+              <div className="min-w-0 flex-1">
+                <CardTitle className="text-base xs:text-lg sm:text-xl font-semibold text-[#313131] leading-tight">
+                  <span className="hidden xs:inline">Form Submissions ({filteredSubmissions.length})</span>
+                  <span className="xs:hidden">Submissions ({filteredSubmissions.length})</span>
                 </CardTitle>
-                <CardDescription>
-                  Manage and export all form submissions
+                <CardDescription className="text-xs xs:text-sm mt-1">
+                  <span className="hidden sm:inline">Manage and export all form submissions</span>
+                  <span className="sm:hidden">Manage submissions</span>
                 </CardDescription>
               </div>
               <Button
                 onClick={exportData}
-                className="bg-[#b48b2f] hover:bg-[#9d7829] text-white"
+                className="bg-[#b48b2f] hover:bg-[#9d7829] text-white min-h-[40px] xs:min-h-[44px] px-3 xs:px-4 text-xs xs:text-sm"
               >
-                <Download className="w-4 h-4 mr-2" />
-                Export Data
+                <Download className="w-3.5 h-3.5 xs:w-4 xs:h-4 mr-1.5 xs:mr-2" />
+                <span className="hidden xs:inline">Export Data</span>
+                <span className="xs:hidden">Export</span>
               </Button>
             </div>
           </CardHeader>
-          <CardContent>
-            {/* Search and Filter Controls */}
-            <div className="flex flex-col md:flex-row gap-4 mb-6">
-              <div className="flex-1">
+          <CardContent className="px-3 xs:px-4 sm:px-6">
+            {/* Search and Filter Controls - Mobile Optimized */}
+            <div className="flex flex-col sm:flex-row gap-2 xs:gap-3 sm:gap-4 mb-4 xs:mb-5 sm:mb-6">
+              <div className="flex-1 min-w-0">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-3.5 h-3.5 xs:w-4 xs:h-4" />
                   <Input
                     placeholder="Search submissions..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
+                    className="pl-9 xs:pl-10 min-h-[40px] xs:min-h-[44px] text-sm xs:text-base"
                   />
                 </div>
               </div>
-              <div className="md:w-48">
+              <div className="w-full sm:w-40 md:w-48">
                 <Select value={filterType} onValueChange={setFilterType}>
-                  <SelectTrigger>
-                    <Filter className="w-4 h-4 mr-2" />
+                  <SelectTrigger className="min-h-[40px] xs:min-h-[44px] text-sm xs:text-base">
+                    <Filter className="w-3.5 h-3.5 xs:w-4 xs:h-4 mr-1.5 xs:mr-2" />
                     <SelectValue placeholder="Filter by type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -679,26 +701,36 @@ export const Admin = (): JSX.Element => {
                     <SelectItem value="contact">Contact Form</SelectItem>
                     <SelectItem value="quickInquiry">Quick Inquiry</SelectItem>
                     <SelectItem value="siteVisit">Site Visit</SelectItem>
-                    <SelectItem value="emiCalculator">
-                      EMI Calculator
-                    </SelectItem>
+                    <SelectItem value="emiCalculator">EMI Calculator</SelectItem>
                     <SelectItem value="newsletter">Newsletter</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
 
-            {/* Submissions Table */}
-            <div className="overflow-x-auto">
-              <Table>
+            {/* Submissions Table - Mobile Responsive */}
+            <div className="overflow-x-auto -mx-3 xs:-mx-4 sm:mx-0 rounded-lg border border-gray-200">
+              <Table className="min-w-full">
                 <TableHeader>
-                  <TableRow>
-                    <TableHead>ID</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Timestamp</TableHead>
-                    <TableHead>Customer Info</TableHead>
-                    <TableHead>Contact Details</TableHead>
-                    <TableHead>Actions</TableHead>
+                  <TableRow className="bg-gray-50">
+                    <TableHead className="text-xs xs:text-sm font-medium px-2 xs:px-3 sm:px-4 py-2 xs:py-3">
+                      <span className="hidden sm:inline">ID</span>
+                      <span className="sm:hidden">#</span>
+                    </TableHead>
+                    <TableHead className="text-xs xs:text-sm font-medium px-2 xs:px-3 sm:px-4 py-2 xs:py-3">Type</TableHead>
+                    <TableHead className="text-xs xs:text-sm font-medium px-2 xs:px-3 sm:px-4 py-2 xs:py-3">
+                      <span className="hidden md:inline">Timestamp</span>
+                      <span className="md:hidden">Date</span>
+                    </TableHead>
+                    <TableHead className="text-xs xs:text-sm font-medium px-2 xs:px-3 sm:px-4 py-2 xs:py-3">
+                      <span className="hidden lg:inline">Customer Info</span>
+                      <span className="lg:hidden">Customer</span>
+                    </TableHead>
+                    <TableHead className="text-xs xs:text-sm font-medium px-2 xs:px-3 sm:px-4 py-2 xs:py-3">
+                      <span className="hidden lg:inline">Contact Details</span>
+                      <span className="lg:hidden">Contact</span>
+                    </TableHead>
+                    <TableHead className="text-xs xs:text-sm font-medium px-2 xs:px-3 sm:px-4 py-2 xs:py-3 text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
