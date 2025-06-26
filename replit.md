@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 26, 2025: Significantly improved scroll animations performance - made "Our Specialties" and Gallery sections smooth with reduced movement, faster durations, and better easing curves; Fixed Gallery page image display to match Home page background image technique; Accelerated hero image entrance animation from 1s to 0.5s for snappier loading
 - January 26, 2025: Implemented comprehensive senior-level performance optimizations including lazy loading, code splitting, service worker caching, optimized GSAP mobile animations, critical CSS inlining, resource preloading, and server-side caching headers resulting in significantly improved website speed
 - January 26, 2025: Fixed scroll indicator color to use primary brand color (#b48b2f) instead of old teal color
 - January 26, 2025: Enhanced mobile GSAP performance with device detection, simplified animations, reduced complexity, and mobile-specific optimizations for faster loading and smoother interactions

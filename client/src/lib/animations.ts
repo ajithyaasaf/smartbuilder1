@@ -226,16 +226,15 @@ export const animateHeroEntrance = () => {
     
     if (imageContainers.length > 0) {
       const imageAnimation = safeAnimate(imageContainers, 
-        { x: 80, opacity: 0, scale: 0.9 },
+        { x: 30, opacity: 0 },
         { 
           x: 0, 
-          opacity: 1, 
-          scale: 1,
-          duration: 1, 
-          ease: "power2.out" 
+          opacity: 1,
+          duration: 0.5, 
+          ease: "power1.out" 
         }
       );
-      if (imageAnimation) tl.add(imageAnimation, "-=0.8");
+      if (imageAnimation) tl.add(imageAnimation, "-=0.4");
     }
 
     // Skip floating animations on mobile for performance
