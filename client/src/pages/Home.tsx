@@ -272,17 +272,16 @@ export const Home = (): JSX.Element => {
               {/* Hero Section */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] xl:min-h-[75vh]">
                 {/* Left Content */}
-                <div className="order-2 lg:order-1 space-y-4 sm:space-y-6 lg:space-y-8 px-4 sm:px-6 lg:px-0">
+                <div className="order-2 lg:order-1 space-y-4 sm:space-y-6 lg:space-y-8 pl-0 pr-4 sm:px-6 lg:px-0">
                   <div className="space-y-3 sm:space-y-4">
                     <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] border-[#b48b2f]/20 font-medium text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2">
                       #1 Builders in Madurai
                     </Badge>
-                    <h1 className="hero-heading text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] 2xl:text-[72px] font-bold [font-family:'Poppins',Helvetica] leading-tight sm:leading-tight lg:leading-[64px] xl:leading-[72px] tracking-[-0.5px] sm:tracking-[-1px] lg:tracking-[-1.64px]">
+                    <h1 className="hero-heading text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] 2xl:text-[72px] font-bold [font-family:'Poppins',Helvetica] leading-tight sm:leading-tight lg:leading-[64px] xl:leading-[72px] tracking-[-0.5px] sm:tracking-[-1px] lg:tracking-[-1.64px] max-w-full overflow-hidden">
                       <span className="text-[#b48b2f]">Building</span>
                       <span className="text-[#313131]"> Dreams,</span>
-                      <br className="hidden xs:block" />
-                      <span className="text-[#313131]">Creating</span>
-                      <br className="hidden xs:block" />
+                      <br />
+                      <span className="text-[#313131]">Creating </span>
                       <span className="text-[#b48b2f]">Lifestyles</span>
                       <span className="text-[#313131]">.</span>
                     </h1>
