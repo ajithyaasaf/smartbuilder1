@@ -117,7 +117,7 @@ export const NewsletterForm: React.FC<NewsletterFormProps> = ({
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
+              <FormLabel className="text-white [font-family:'Poppins',Helvetica]">
                 Email Address *
               </FormLabel>
               <FormControl>

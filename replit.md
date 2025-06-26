@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 26, 2025: Changed NewsletterForm label text color to white for better visibility on dark backgrounds
 - January 26, 2025: Added logo to footer with white background container for visibility on dark background - maintains brand consistency between header and footer
 - January 26, 2025: Added navigation functionality to "Learn More" buttons in Home page "Our Specialties" section - now directs users to Services page for detailed service information
 - January 26, 2025: Completely redesigned Home page animations to match Services page smoothness - eliminated complex timelines, scale transforms, and heavy movements; Replaced with ultra-simple fade-ins (0.2s) for butter-smooth performance; Fixed stuttering in "Our Specialties" and Gallery sections; Accelerated hero image entrance to instant 0.2s loading
