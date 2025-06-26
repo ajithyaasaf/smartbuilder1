@@ -119,132 +119,28 @@ const safeAnimate = (elements: Element[] | Element | string, fromVars: any, toVa
 
 export const animateHeroEntrance = () => {
   try {
-    const tl = gsap.timeline();
-    
-    // Enhanced selectors for better element targeting
-    const headings = findElements([
-      "h1", 
-      ".text-3xl", 
-      ".text-4xl", 
-      ".text-5xl",
-      ".text-6xl",
-      ".font-bold:first-child"
-    ]);
-    
-    const subtexts = findElements([
-      "p", 
-      ".text-lg", 
-      ".text-xl",
-      ".text-[#6b6b6b]"
-    ]);
-    
-    const buttonContainers = findElements([
-      ".flex.gap-4", 
-      ".space-x-4",
-      ".flex.flex-col.sm\\:flex-row"
-    ]);
-    
-    const statsElements = findElements([
-      ".grid.grid-cols-2",
-      ".grid.grid-cols-4",
-      ".grid.grid-cols-1.md\\:grid-cols-4"
-    ]);
-    
-    const imageContainers = findElements([
-      ".order-1", 
-      ".relative.h-64",
-      ".h-80",
-      ".aspect-\\[4\\/3\\]",
-      ".h-48"
+    // Ultra-simple animations - no complex timelines or movements
+    const elements = findElements([
+      ".hero-heading",
+      ".hero-subtext", 
+      ".hero-buttons",
+      ".parallax-image"
     ]);
 
-    // Create smooth entrance effects without DOM manipulation
-    if (headings.length > 0) {
-      const headingAnimation = safeAnimate(headings, 
-        { y: 60, opacity: 0, scale: 0.9 },
-        { 
-          y: 0, 
-          opacity: 1, 
-          scale: 1,
-          duration: 0.8, 
-          ease: "power3.out",
-          stagger: 0.05
-        }
-      );
-      if (headingAnimation) tl.add(headingAnimation);
-    }
-    
-    if (subtexts.length > 0) {
-      const subtextAnimation = safeAnimate(subtexts, 
-        { y: 40, opacity: 0 },
-        { 
-          y: 0, 
-          opacity: 1,
-          duration: 0.6, 
-          ease: "power2.out",
-          delay: 0.3
-        }
-      );
-      if (subtextAnimation) tl.add(subtextAnimation, "-=0.4");
-    }
-    
-    if (buttonContainers.length > 0) {
-      const buttons = buttonContainers[0]?.querySelectorAll('button');
-      if (buttons && buttons.length > 0) {
-        const buttonAnimation = safeAnimate(Array.from(buttons), 
-          { y: 30, opacity: 0, scale: 0.95 },
+    // Simple fade-in only
+    elements.forEach((element, index) => {
+      if (element && element.nodeType === 1) {
+        safeAnimate(element, 
+          { opacity: 0 },
           { 
-            y: 0, 
-            opacity: 1, 
-            scale: 1,
-            duration: 0.5, 
-            ease: "power2.out",
-            stagger: 0.1
+            opacity: 1,
+            duration: 0.2,
+            ease: "power1.out",
+            delay: index * 0.05
           }
         );
-        if (buttonAnimation) tl.add(buttonAnimation, "-=0.2");
       }
-    }
-    
-    if (statsElements.length > 0) {
-      const statItems = statsElements[0]?.querySelectorAll('div');
-      if (statItems && statItems.length > 0) {
-        const statAnimation = safeAnimate(Array.from(statItems), 
-          { y: 30, opacity: 0, scale: 0.95 },
-          { 
-            y: 0, 
-            opacity: 1, 
-            scale: 1,
-            duration: 0.6, 
-            ease: "power2.out",
-            stagger: 0.08
-          }
-        );
-        if (statAnimation) tl.add(statAnimation, "-=0.2");
-      }
-    }
-    
-    if (imageContainers.length > 0) {
-      const imageAnimation = safeAnimate(imageContainers, 
-        { x: 20, opacity: 0 },
-        { 
-          x: 0, 
-          opacity: 1,
-          duration: 0.2, 
-          ease: "power1.out" 
-        }
-      );
-      if (imageAnimation) tl.add(imageAnimation, "-=0.3");
-    }
-
-    // Skip floating animations on mobile for performance
-    if (!isMobile()) {
-      tl.call(() => {
-        setTimeout(() => {
-          animateFloatingElements();
-        }, 1000);
-      });
-    }
+    });
 
   } catch (error) {
     console.debug("Hero animation error:", error);

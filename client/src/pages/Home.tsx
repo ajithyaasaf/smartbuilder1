@@ -42,18 +42,17 @@ export const Home = (): JSX.Element => {
       initMobileOptimizations();
       
       setTimeout(() => {
-        // Core entrance animations
+        // Ultra-simple animations like Services page
         animateHeroEntrance();
         animateNavigation();
         
-        // Smooth visual effects only
+        // Only essential smooth effects
         animateImageReveal();
         animateStaggeredCards();
         
         // Essential interactions
         setupButtonHoverAnimations();
-        animateCardsOnScroll(".service-card");
-      }, 100);
+      }, 50);
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }
