@@ -177,7 +177,8 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
-- January 26, 2025: Fixed Contact page responsive design - "Send Us a Message" section now uses progressive breakpoints (mobile: 1 column, tablet: 2 columns, desktop: 4 columns) for optimal viewing across all devices
+- January 26, 2025: Removed Schedule Site Visit form from Contact page and updated layout to 3-column grid (Quick Inquiry, Detailed Inquiry, EMI Calculator) for cleaner design
+- January 26, 2025: Fixed Contact page responsive design - "Send Us a Message" section now uses progressive breakpoints with mobile-first form layouts
 - January 26, 2025: Resolved React DOM manipulation errors in GSAP animations by removing text content modifications that conflicted with React's virtual DOM, ensuring ultra-smooth performance
 - January 26, 2025: Fixed hero section text overflow issue - "Building Dreams, Creating Lifestyles" now displays properly without being cut off on any screen size
 - January 25, 2025: Enhanced admin dashboard with senior-level responsive design standards including mobile-optimized login, statistics cards, data tables, and touch-friendly interfaces for production deployment
