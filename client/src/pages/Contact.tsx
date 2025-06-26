@@ -263,9 +263,9 @@ export const Contact = (): JSX.Element => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {/* Quick Inquiry */}
-              <div className="contact-form">
+              <div className="contact-form w-full">
                 <QuickInquiryForm 
                   title="Quick Inquiry"
                   subtitle="Get a callback within 2 hours"
@@ -273,7 +273,7 @@ export const Contact = (): JSX.Element => {
               </div>
 
               {/* Detailed Contact */}
-              <div className="contact-form">
+              <div className="contact-form w-full">
                 <ContactForm 
                   title="Detailed Inquiry"
                   subtitle="Tell us about your project requirements"
@@ -281,7 +281,7 @@ export const Contact = (): JSX.Element => {
               </div>
 
               {/* Site Visit */}
-              <div className="contact-form">
+              <div className="contact-form w-full">
                 <SiteVisitForm 
                   title="Schedule Site Visit"
                   subtitle="Book a visit to our ongoing projects"
@@ -289,8 +289,8 @@ export const Contact = (): JSX.Element => {
               </div>
 
               {/* EMI Calculator */}
-              <div className="contact-form">
-                <EMICalculatorForm className="h-full" />
+              <div className="contact-form w-full">
+                <EMICalculatorForm className="h-full w-full" />
               </div>
             </div>
           </section>
