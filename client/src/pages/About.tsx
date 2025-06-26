@@ -112,12 +112,12 @@ export const About = (): JSX.Element => {
 
   return (
     <div ref={containerRef} className="bg-white min-h-screen w-full">
-      <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-white overflow-hidden max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
         <div className="relative page-content">
           {/* Navigation */}
-          <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
+          <header className="relative bg-transparent pt-3 xs:pt-4 sm:pt-6 lg:pt-8 xl:pt-12">
             <div className="relative">
-              <nav className="flex items-center justify-between py-4 mb-8 lg:mb-16">
+              <nav className="flex items-center justify-between py-3 xs:py-4 mb-6 sm:mb-8 lg:mb-12 xl:mb-16">
                 <div className="nav-logo flex items-center space-x-3">
                   <img 
                     src="/logo.jpg" 

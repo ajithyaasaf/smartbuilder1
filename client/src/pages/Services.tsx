@@ -139,12 +139,12 @@ export const Services = (): JSX.Element => {
 
   return (
     <div ref={containerRef} className="bg-white min-h-screen w-full">
-      <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-white overflow-hidden max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
         <div className="relative page-content">
           {/* Navigation */}
-          <header className="relative bg-transparent pt-4 sm:pt-8 lg:pt-12">
+          <header className="relative bg-transparent pt-3 xs:pt-4 sm:pt-6 lg:pt-8 xl:pt-12">
             <div className="relative">
-              <nav className="flex items-center justify-between py-4 mb-8 lg:mb-16">
+              <nav className="flex items-center justify-between py-3 xs:py-4 mb-6 sm:mb-8 lg:mb-12 xl:mb-16">
                 <div className="nav-logo flex items-center space-x-3">
                   <img 
                     src="/logo.jpg" 
@@ -217,58 +217,59 @@ export const Services = (): JSX.Element => {
             </div>
           </header>
 
-          {/* Hero Section */}
-          <section className="mb-20">
-            <div className="text-center mb-16">
-              <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] border-[#b48b2f]/20 font-medium mb-4">
+          {/* Hero Section - Enhanced Responsive */}
+          <section className="mb-12 sm:mb-16 lg:mb-20">
+            <div className="text-center mb-10 sm:mb-12 lg:mb-16 px-2 xs:px-4">
+              <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] border-[#b48b2f]/20 font-medium mb-3 sm:mb-4 text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2">
                 Comprehensive Construction Services
               </Badge>
-              <h1 className="section-title text-4xl sm:text-5xl lg:text-6xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-6">
+              <h1 className="section-title text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4 sm:mb-6 leading-tight">
                 Building Your <span className="text-[#b48b2f]">Dream Spaces</span>
               </h1>
-              <p className="text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-3xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-xs sm:max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-2">
                 From residential complexes to luxury villas, we offer comprehensive construction services 
                 tailored to meet your unique requirements and budget.
               </p>
             </div>
           </section>
 
-          {/* Services Tabs */}
-          <section className="mb-20">
+          {/* Services Tabs - Enhanced Mobile Responsive */}
+          <section className="mb-12 sm:mb-16 lg:mb-20">
             <Tabs value={activeService} onValueChange={setActiveService} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-12 h-auto p-1 bg-gray-100 rounded-lg">
+              <TabsList className="grid w-full grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mb-8 sm:mb-10 lg:mb-12 h-auto p-1 bg-gray-100 rounded-lg gap-1">
                 {services.map((service) => (
                   <TabsTrigger 
                     key={service.id} 
                     value={service.id}
-                    className="flex flex-col items-center p-4 data-[state=active]:bg-[#b48b2f] data-[state=active]:text-white rounded-md transition-all duration-200"
+                    className="flex flex-col xs:flex-row lg:flex-col items-center justify-center p-2 xs:p-3 sm:p-4 data-[state=active]:bg-[#b48b2f] data-[state=active]:text-white rounded-md transition-all duration-200 min-h-[60px] xs:min-h-[70px] sm:min-h-[80px]"
                   >
-                    <service.icon className="w-6 h-6 mb-2" />
-                    <span className="text-sm font-medium [font-family:'Poppins',Helvetica]">
-                      {service.title}
+                    <service.icon className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 mb-1 xs:mb-0 xs:mr-2 lg:mr-0 lg:mb-2 flex-shrink-0" />
+                    <span className="text-xs xs:text-sm sm:text-sm font-medium [font-family:'Poppins',Helvetica] text-center xs:text-left lg:text-center leading-tight">
+                      <span className="hidden xs:inline lg:hidden">{service.title}</span>
+                      <span className="xs:hidden lg:inline">{service.title}</span>
                     </span>
                   </TabsTrigger>
                 ))}
               </TabsList>
 
               {services.map((service) => (
-                <TabsContent key={service.id} value={service.id} className="space-y-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                    {/* Service Image */}
-                    <div className="lg:col-span-1">
-                      <Card className="overflow-hidden border-none shadow-xl">
+                <TabsContent key={service.id} value={service.id} className="space-y-6 sm:space-y-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
+                    {/* Service Image - Enhanced Mobile */}
+                    <div className="lg:col-span-1 order-1 lg:order-1">
+                      <Card className="overflow-hidden border-none shadow-lg sm:shadow-xl">
                         <div 
-                          className="relative w-full h-64 bg-cover bg-center bg-no-repeat"
+                          className="relative w-full h-48 xs:h-56 sm:h-64 lg:h-72 bg-cover bg-center bg-no-repeat"
                           style={{
                             backgroundImage: `url(${service.image})`
                           }}
                         >
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                          <div className="absolute bottom-4 left-4 text-white">
-                            <Badge className="bg-[#b48b2f] text-white mb-2">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                          <div className="absolute bottom-3 xs:bottom-4 left-3 xs:left-4 text-white">
+                            <Badge className="bg-[#b48b2f] text-white mb-1.5 xs:mb-2 text-xs xs:text-sm px-2 py-1">
                               {service.completedProjects}+ Projects
                             </Badge>
-                            <h3 className="text-lg font-bold [font-family:'Poppins',Helvetica]">
+                            <h3 className="text-base xs:text-lg font-bold [font-family:'Poppins',Helvetica] leading-tight">
                               {service.title}
                             </h3>
                           </div>

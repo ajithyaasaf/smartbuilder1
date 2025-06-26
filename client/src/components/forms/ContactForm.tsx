@@ -102,18 +102,18 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
   if (isSubmitted) {
     return (
-      <div className={`bg-white rounded-lg shadow-lg p-6 lg:p-8 ${className}`}>
-        <div className="text-center py-8">
-          <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-[#313131] mb-2">
+      <div className={`bg-white rounded-lg shadow-lg p-4 xs:p-6 sm:p-8 lg:p-10 ${className}`}>
+        <div className="text-center py-6 xs:py-8 sm:py-10">
+          <CheckCircle className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 text-green-600 mx-auto mb-3 xs:mb-4" />
+          <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-[#313131] mb-2">
             Thank You!
           </h3>
-          <p className="text-[#4a5568] mb-4">
+          <p className="text-[#4a5568] mb-4 xs:mb-6 text-sm xs:text-base px-2">
             Your message has been sent successfully. Our team will contact you soon.
           </p>
           <Button 
             onClick={() => setIsSubmitted(false)}
-            className="bg-[#b48b2f] hover:bg-[#9d7829] text-white touch-target"
+            className="bg-[#b48b2f] hover:bg-[#9d7829] text-white min-h-[44px] xs:min-h-[48px] px-6 xs:px-8 text-sm xs:text-base"
           >
             Send Another Message
           </Button>
@@ -123,32 +123,32 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   }
 
   return (
-    <div className={`bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 ${className}`}>
-      <div className="text-center mb-6">
-        <h3 className="text-xl sm:text-2xl font-bold text-[#313131] mb-2">
+    <div className={`bg-white rounded-lg shadow-lg p-3 xs:p-4 sm:p-6 lg:p-8 xl:p-10 ${className}`}>
+      <div className="text-center mb-4 xs:mb-5 sm:mb-6 lg:mb-8">
+        <h3 className="text-lg xs:text-xl sm:text-2xl lg:text-3xl font-bold text-[#313131] mb-2">
           {title}
         </h3>
-        <p className="text-[#4a5568] text-sm sm:text-base">
+        <p className="text-[#4a5568] text-xs xs:text-sm sm:text-base px-2">
           {subtitle}
         </p>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" noValidate>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 xs:space-y-4 sm:space-y-5" noValidate>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 xs:gap-4 sm:gap-5 lg:gap-6">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[#313131] font-medium text-sm">
+                  <FormLabel className="text-[#313131] font-medium text-xs xs:text-sm">
                     Full Name <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Enter your full name"
                       {...field}
-                      className="touch-target transition-colors"
+                      className="min-h-[44px] xs:min-h-[48px] text-sm xs:text-base transition-colors focus:ring-2 focus:ring-[#b48b2f]/20"
                       aria-describedby={form.formState.errors.name ? "name-error" : undefined}
                       aria-invalid={!!form.formState.errors.name}
                     />
@@ -163,15 +163,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[#313131] [font-family:'Poppins',Helvetica]">
-                    Email Address *
+                  <FormLabel className="text-[#313131] font-medium text-xs xs:text-sm [font-family:'Poppins',Helvetica]">
+                    Email Address <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="Enter your email"
+                      placeholder="Enter your email address"
                       {...field}
-                      className="[font-family:'Poppins',Helvetica]"
+                      className="min-h-[44px] xs:min-h-[48px] text-sm xs:text-base [font-family:'Poppins',Helvetica] focus:ring-2 focus:ring-[#b48b2f]/20"
                     />
                   </FormControl>
                   <FormMessage />
@@ -180,7 +180,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4 sm:gap-5 lg:gap-6">
             <FormField
               control={form.control}
               name="phone"
@@ -283,26 +283,26 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <Button
             type="submit"
             disabled={form.formState.isSubmitting}
-            className="w-full bg-[#b48b2f] hover:bg-[#9d7829] text-white font-medium [font-family:'Poppins',Helvetica] rounded-[20px_2px_20px_2px] py-3 h-auto"
+            className="w-full bg-[#b48b2f] hover:bg-[#9d7829] text-white font-medium [font-family:'Poppins',Helvetica] rounded-[20px_2px_20px_2px] py-3 xs:py-4 h-auto min-h-[44px] xs:min-h-[48px] text-sm xs:text-base transition-all duration-300 hover:shadow-lg disabled:opacity-50"
           >
             {form.formState.isSubmitting ? (
               "Sending..."
             ) : (
               <>
-                <Send className="w-4 h-4 mr-2" />
+                <Send className="w-3.5 h-3.5 xs:w-4 xs:h-4 mr-2" />
                 Send Message
               </>
             )}
           </Button>
 
-          <div className="flex items-center justify-center space-x-6 pt-4 text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+          <div className="flex flex-col xs:flex-row items-center justify-center space-y-2 xs:space-y-0 xs:space-x-4 sm:space-x-6 pt-3 xs:pt-4 text-xs xs:text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
             <div className="flex items-center">
-              <Phone className="w-4 h-4 mr-1 text-[#b48b2f]" />
-              +91 98765 43210
+              <Phone className="w-3.5 h-3.5 xs:w-4 xs:h-4 mr-1 text-[#b48b2f] flex-shrink-0" />
+              <span className="whitespace-nowrap">+91 98765 43210</span>
             </div>
             <div className="flex items-center">
-              <Mail className="w-4 h-4 mr-1 text-[#b48b2f]" />
-              info@smartbuilders.com
+              <Mail className="w-3.5 h-3.5 xs:w-4 xs:h-4 mr-1 text-[#b48b2f] flex-shrink-0" />
+              <span className="whitespace-nowrap">info@smartbuilders.com</span>
             </div>
           </div>
         </form>
