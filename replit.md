@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 25, 2025: Enhanced Services page with professional project images and improved 3-column layout for better visual presentation
 - January 25, 2025: Fixed image fitting issues in "Our Specialties" section by switching to CSS background images for perfect container coverage without white space
 - January 25, 2025: Added professional images to "Our Specialties" section on home page - residential projects, independent villas, luxury apartments, and mini apartments with hover effects and gradient overlays
 - January 25, 2025: Fixed toast notification timing issues in all forms by removing specific time indicators ("30 minutes", "24 hours") and replacing with "soon"

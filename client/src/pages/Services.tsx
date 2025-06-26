@@ -57,7 +57,8 @@ export const Services = (): JSX.Element => {
       features: ["Gated Communities", "24/7 Security", "Power Backup", "Water Supply", "Parking", "Garden Areas"],
       projects: ["Green Valley Homes", "Royal Residency", "Paradise Heights"],
       priceRange: "₹45L - ₹1.2Cr",
-      completedProjects: 25
+      completedProjects: 25,
+      image: "/residential-projects.jpg"
     },
     {
       id: "apartments",
@@ -67,7 +68,8 @@ export const Services = (): JSX.Element => {
       features: ["Swimming Pool", "Gym", "Club House", "Children's Play Area", "Lift", "Intercom"],
       projects: ["Sky Gardens", "Elite Towers", "Grand Plaza"],
       priceRange: "₹35L - ₹85L",
-      completedProjects: 18
+      completedProjects: 18,
+      image: "/luxury-apartments.jpg"
     },
     {
       id: "villas",
@@ -77,7 +79,8 @@ export const Services = (): JSX.Element => {
       features: ["Private Garden", "Car Porch", "Servant Quarter", "Solar Panels", "Rain Water Harvesting", "Modern Kitchen"],
       projects: ["Villa Serena", "Royal Villas", "Green Meadows"],
       priceRange: "₹85L - ₹2.5Cr",
-      completedProjects: 12
+      completedProjects: 12,
+      image: "/independent-villas.jpg"
     },
     {
       id: "mini-apartments",
@@ -87,7 +90,8 @@ export const Services = (): JSX.Element => {
       features: ["Compact Design", "Modern Amenities", "Easy EMI", "Ready to Move", "Prime Location", "Investment Friendly"],
       projects: ["Smart Homes", "Urban Nest", "City Square"],
       priceRange: "₹18L - ₹45L",
-      completedProjects: 15
+      completedProjects: 15,
+      image: "/mini-apartments.jpg"
     },
     {
       id: "land-promotion",
@@ -97,7 +101,8 @@ export const Services = (): JSX.Element => {
       features: ["Clear Title", "DTCP Approved", "Bank Loan", "Basic Infrastructure", "Registration Support", "Investment Guidance"],
       projects: ["Golden Valley", "Metro Lands", "Future City"],
       priceRange: "₹800/sq ft - ₹2500/sq ft",
-      completedProjects: 8
+      completedProjects: 8,
+      image: "/residential-projects.jpg"
     }
   ];
 
@@ -233,74 +238,101 @@ export const Services = (): JSX.Element => {
 
               {services.map((service) => (
                 <TabsContent key={service.id} value={service.id} className="space-y-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                      <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                        {service.title}
-                      </h2>
-                      <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] mb-6 leading-relaxed">
-                        {service.description}
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="text-center p-4 bg-[#b48b2f]/5 rounded-lg">
-                          <div className="text-2xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
-                            {service.completedProjects}+
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    {/* Service Image */}
+                    <div className="lg:col-span-1">
+                      <Card className="overflow-hidden border-none shadow-xl">
+                        <div 
+                          className="relative w-full h-64 bg-cover bg-center bg-no-repeat"
+                          style={{
+                            backgroundImage: `url(${service.image})`
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                          <div className="absolute bottom-4 left-4 text-white">
+                            <Badge className="bg-[#b48b2f] text-white mb-2">
+                              {service.completedProjects}+ Projects
+                            </Badge>
+                            <h3 className="text-lg font-bold [font-family:'Poppins',Helvetica]">
+                              {service.title}
+                            </h3>
                           </div>
-                          <div className="text-sm text-[#6b6b6b]">Completed Projects</div>
                         </div>
-                        <div className="text-center p-4 bg-[#b48b2f]/5 rounded-lg">
-                          <div className="text-lg font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
-                            {service.priceRange}
-                          </div>
-                          <div className="text-sm text-[#6b6b6b]">Price Range</div>
-                        </div>
-                      </div>
-
-                      <Button className="bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]">
-                        <Phone className="w-4 h-4 mr-2" />
-                        Get Quote
-                      </Button>
+                      </Card>
                     </div>
 
-                    <div>
-                      <Card className="overflow-hidden border-none shadow-xl">
-                        <CardHeader className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] text-white p-6">
-                          <CardTitle className="text-xl font-bold [font-family:'Poppins',Helvetica]">
-                            Key Features
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-6">
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {service.features.map((feature, index) => (
-                              <div key={index} className="flex items-center">
-                                <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                                <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-                                  {feature}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
+                    {/* Service Details */}
+                    <div className="lg:col-span-2">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                          <h2 className="text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+                            {service.title}
+                          </h2>
+                          <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] mb-6 leading-relaxed">
+                            {service.description}
+                          </p>
                           
-                          <div className="mt-6 pt-6 border-t border-gray-100">
-                            <h4 className="font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-3">
-                              Recent Projects:
-                            </h4>
-                            <div className="space-y-2">
-                              {service.projects.map((project, index) => (
-                                <div key={index} className="flex items-center justify-between">
-                                  <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-                                    {project}
-                                  </span>
-                                  <Badge className="bg-green-100 text-green-800 text-xs">
-                                    Completed
-                                  </Badge>
-                                </div>
-                              ))}
+                          <div className="grid grid-cols-2 gap-4 mb-6">
+                            <div className="text-center p-4 bg-[#b48b2f]/5 rounded-lg">
+                              <div className="text-2xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
+                                {service.completedProjects}+
+                              </div>
+                              <div className="text-sm text-[#6b6b6b]">Completed Projects</div>
+                            </div>
+                            <div className="text-center p-4 bg-[#b48b2f]/5 rounded-lg">
+                              <div className="text-lg font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
+                                {service.priceRange}
+                              </div>
+                              <div className="text-sm text-[#6b6b6b]">Price Range</div>
                             </div>
                           </div>
-                        </CardContent>
-                      </Card>
+
+                          <Button className="bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica] w-full lg:w-auto">
+                            <Phone className="w-4 h-4 mr-2" />
+                            Get Quote
+                          </Button>
+                        </div>
+
+                        <div>
+                          <Card className="overflow-hidden border-none shadow-lg h-full">
+                            <CardHeader className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] text-white p-4">
+                              <CardTitle className="text-lg font-bold [font-family:'Poppins',Helvetica]">
+                                Key Features
+                              </CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-4">
+                              <div className="grid grid-cols-1 gap-3">
+                                {service.features.map((feature, index) => (
+                                  <div key={index} className="flex items-center">
+                                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                                    <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm">
+                                      {feature}
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                              
+                              <div className="mt-4 pt-4 border-t border-gray-100">
+                                <h4 className="font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2 text-sm">
+                                  Recent Projects:
+                                </h4>
+                                <div className="space-y-2">
+                                  {service.projects.map((project, index) => (
+                                    <div key={index} className="flex items-center justify-between">
+                                      <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm">
+                                        {project}
+                                      </span>
+                                      <Badge className="bg-green-100 text-green-800 text-xs">
+                                        Completed
+                                      </Badge>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </TabsContent>
