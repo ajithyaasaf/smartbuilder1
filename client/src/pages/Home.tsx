@@ -23,7 +23,12 @@ import {
   setupButtonHoverAnimations,
   animateFloatingElements,
   setupParallaxImages,
-  animateMobileMenu
+  animateMobileMenu,
+  animateImageReveal,
+  animateStaggeredCards,
+  animateCounterNumbers,
+  animateBackgroundParallax,
+  animateScrollIndicator
 } from "@/lib/animations";
 
 export const Home = (): JSX.Element => {
@@ -33,14 +38,24 @@ export const Home = (): JSX.Element => {
   const containerRef = useGSAP(() => {
     try {
       setTimeout(() => {
+        // Core entrance animations
         animateHeroEntrance();
         animateNavigation();
+        
+        // Enhanced visual effects
+        animateImageReveal();
+        animateStaggeredCards();
+        animateCounterNumbers();
+        animateBackgroundParallax();
+        animateScrollIndicator();
+        
+        // Legacy support
         animateCardsOnScroll(".overflow-hidden");
         animateStatsCounter(".text-3xl");
         setupButtonHoverAnimations();
         animateFloatingElements();
         setupParallaxImages();
-      }, 50);
+      }, 100);
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

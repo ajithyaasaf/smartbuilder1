@@ -16,7 +16,13 @@ import {
   setupButtonHoverAnimations,
   animateFloatingElements,
   setupParallaxImages,
-  animateTextReveal
+  animateTextReveal,
+  animateImageReveal,
+  animateStaggeredCards,
+  animateCounterNumbers,
+  animateBackgroundParallax,
+  animateScrollIndicator,
+  animateMorphingShapes
 } from "@/lib/animations";
 
 export const Gallery = (): JSX.Element => {
@@ -27,14 +33,25 @@ export const Gallery = (): JSX.Element => {
   const containerRef = useGSAP(() => {
     try {
       setTimeout(() => {
+        // Core page animations
         animatePageTransition();
         animateNavigation();
-        animateCardsOnScroll(".overflow-hidden");
         animateTextReveal(".section-title");
+        
+        // Gallery-specific animations
+        animateImageReveal();
+        animateStaggeredCards();
+        animateCounterNumbers();
+        animateMorphingShapes();
+        animateBackgroundParallax();
+        animateScrollIndicator();
+        
+        // Interactive elements
         setupButtonHoverAnimations();
         animateFloatingElements();
         setupParallaxImages();
-      }, 50);
+        animateCardsOnScroll(".overflow-hidden");
+      }, 100);
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

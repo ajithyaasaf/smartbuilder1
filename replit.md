@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 25, 2025: Significantly enhanced GSAP animations throughout project with advanced visual effects including image reveals, staggered cards, counter animations, background parallax, scroll indicators, typewriter text, morphing shapes, and service tabs
 - January 25, 2025: Enhanced Services page with professional project images and improved 3-column layout for better visual presentation
 - January 25, 2025: Fixed image fitting issues in "Our Specialties" section by switching to CSS background images for perfect container coverage without white space
 - January 25, 2025: Added professional images to "Our Specialties" section on home page - residential projects, independent villas, luxury apartments, and mini apartments with hover effects and gradient overlays

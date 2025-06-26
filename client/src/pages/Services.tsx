@@ -16,7 +16,12 @@ import {
   setupButtonHoverAnimations,
   animateFloatingElements,
   setupParallaxImages,
-  animateTextReveal
+  animateTextReveal,
+  animateImageReveal,
+  animateStaggeredCards,
+  animateServiceTabs,
+  animateBackgroundParallax,
+  animateScrollIndicator
 } from "@/lib/animations";
 
 export const Services = (): JSX.Element => {
@@ -27,14 +32,24 @@ export const Services = (): JSX.Element => {
   const containerRef = useGSAP(() => {
     try {
       setTimeout(() => {
+        // Core page animations
         animatePageTransition();
         animateNavigation();
-        animateCardsOnScroll(".overflow-hidden");
         animateTextReveal(".section-title");
+        
+        // Enhanced service-specific animations
+        animateImageReveal();
+        animateStaggeredCards();
+        animateServiceTabs();
+        animateBackgroundParallax();
+        animateScrollIndicator();
+        
+        // Interactive elements
         setupButtonHoverAnimations();
         animateFloatingElements();
         setupParallaxImages();
-      }, 50);
+        animateCardsOnScroll(".overflow-hidden");
+      }, 100);
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }
