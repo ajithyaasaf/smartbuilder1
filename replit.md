@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 26, 2025: Added navigation functionality to "Learn More" buttons in Home page "Our Specialties" section - now directs users to Services page for detailed service information
 - January 26, 2025: Completely redesigned Home page animations to match Services page smoothness - eliminated complex timelines, scale transforms, and heavy movements; Replaced with ultra-simple fade-ins (0.2s) for butter-smooth performance; Fixed stuttering in "Our Specialties" and Gallery sections; Accelerated hero image entrance to instant 0.2s loading
 - January 26, 2025: Implemented comprehensive senior-level performance optimizations including lazy loading, code splitting, service worker caching, optimized GSAP mobile animations, critical CSS inlining, resource preloading, and server-side caching headers resulting in significantly improved website speed
 - January 26, 2025: Fixed scroll indicator color to use primary brand color (#b48b2f) instead of old teal color

@@ -408,6 +408,7 @@ export const Home = (): JSX.Element => {
                     <Button 
                       variant="ghost" 
                       className="animate-button w-full mt-2 xs:mt-3 text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white transition-colors text-xs xs:text-sm py-2 min-h-[36px] xs:min-h-[40px]"
+                      onClick={() => navigate('/services')}
                     >
                       Learn More
                     </Button>
