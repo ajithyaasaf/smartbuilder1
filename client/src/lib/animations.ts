@@ -115,18 +115,9 @@ export const animateHeroEntrance = () => {
       ".h-48"
     ]);
 
-    // Create smooth entrance effects
+    // Create smooth entrance effects without DOM manipulation
     if (headings.length > 0) {
-      // Split text for word-by-word animation
-      headings.forEach(heading => {
-        if (heading.textContent && heading.innerHTML) {
-          const words = heading.textContent.split(' ');
-          heading.innerHTML = words.map(word => `<span class="word-animate">${word}</span>`).join(' ');
-        }
-      });
-      
-      const words = findElements([".word-animate"]);
-      const wordAnimation = safeAnimate(words, 
+      const headingAnimation = safeAnimate(headings, 
         { y: 60, opacity: 0, scale: 0.9 },
         { 
           y: 0, 
@@ -137,7 +128,7 @@ export const animateHeroEntrance = () => {
           stagger: 0.05
         }
       );
-      if (wordAnimation) tl.add(wordAnimation);
+      if (headingAnimation) tl.add(headingAnimation);
     }
     
     if (subtexts.length > 0) {
@@ -408,30 +399,24 @@ export const animateStatsCounter = (selector: string) => {
     const stats = findElements(statsSelectors);
     
     stats.forEach((stat) => {
-      if (stat && stat.textContent && stat.nodeType === 1) {
-        const finalNumber = stat.textContent;
-        const numericValue = parseInt(finalNumber.replace(/[^\d]/g, '') || '0');
-        
-        if (numericValue > 0) {
-          const counterObj = { count: 0 };
-          
-          const animation = gsap.to(counterObj, {
-            count: numericValue,
-            duration: 1.5,
+      if (stat && stat.nodeType === 1) {
+        // Simple fade and scale animation instead of text manipulation
+        safeAnimate(stat,
+          { opacity: 0, scale: 0.8, y: 20 },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.8,
             ease: "power2.out",
-            onUpdate: function() {
-              if (stat && stat.textContent !== undefined) {
-                stat.textContent = Math.floor(counterObj.count) + (finalNumber.includes('+') ? '+' : '');
-              }
-            },
             scrollTrigger: {
               trigger: stat,
               start: "top 80%",
               toggleActions: "play none none none",
               once: true
             }
-          });
-        }
+          }
+        );
       }
     });
   } catch (error) {
@@ -731,6 +716,7 @@ export const animateStaggeredCards = () => {
 
 export const animateCounterNumbers = () => {
   try {
+    // Skip counter animations to avoid React DOM conflicts
     const counterSelectors = [
       ".text-2xl.font-bold",
       ".text-3xl.font-bold", 
@@ -740,34 +726,23 @@ export const animateCounterNumbers = () => {
     const counters = findElements(counterSelectors);
 
     counters.forEach((counter) => {
-      if (counter && counter.textContent && counter.nodeType === 1) {
-        const text = counter.textContent;
-        if (/\d/.test(text)) {
-          const number = parseInt(text.replace(/\D/g, ''));
-          const suffix = text.replace(/\d/g, '');
-          
-          if (number > 0) {
-            const obj = { count: 0 };
-            counter.textContent = "0" + suffix;
-            
-            gsap.to(obj, {
-              count: number,
-              duration: 2,
-              ease: "power2.out",
-              onUpdate: () => {
-                if (counter.textContent !== undefined) {
-                  counter.textContent = Math.floor(obj.count) + suffix;
-                }
-              },
-              scrollTrigger: {
-                trigger: counter,
-                start: "top 75%",
-                toggleActions: "play none none none",
-                once: true
-              }
-            });
+      if (counter && counter.nodeType === 1) {
+        // Simple fade and scale animation instead of text manipulation
+        safeAnimate(counter,
+          { opacity: 0, scale: 0.8 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: counter,
+              start: "top 75%",
+              toggleActions: "play none none none",
+              once: true
+            }
           }
-        }
+        );
       }
     });
   } catch (error) {
@@ -777,32 +752,31 @@ export const animateCounterNumbers = () => {
 
 export const animateTextTypewriter = (selector: string) => {
   try {
+    // Skip typewriter animation to avoid React DOM conflicts
     const elements = findElements([selector, "h1", "h2", ".text-4xl", ".text-5xl"]);
     
     elements.forEach((element) => {
-      if (element && element.textContent && element.nodeType === 1) {
-        const text = element.textContent;
-        element.textContent = "";
-        
-        const obj = { progress: 0 };
-        gsap.to(obj, {
-          progress: text.length,
-          duration: text.length * 0.05,
-          ease: "none",
-          onUpdate: () => {
-            element.textContent = text.slice(0, Math.floor(obj.progress));
-          },
-          scrollTrigger: {
-            trigger: element,
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true
+      if (element && element.nodeType === 1) {
+        // Simple fade-in instead of typewriter to avoid DOM manipulation
+        safeAnimate(element,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 80%",
+              toggleActions: "play none none none",
+              once: true
+            }
           }
-        });
+        );
       }
     });
   } catch (error) {
-    console.debug("Typewriter animation error:", error);
+    console.debug("Text animation error:", error);
   }
 };
 
