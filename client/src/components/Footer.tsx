@@ -43,13 +43,12 @@ export const Footer = (): JSX.Element => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="relative">
+              <div className="w-12 h-8 bg-white rounded-sm p-1 flex items-center justify-center">
                 <img 
                   src="/logo.jpg" 
                   alt="Smart Builders Logo" 
-                  className="w-12 h-8 object-contain brightness-0 invert"
+                  className="w-full h-full object-contain"
                 />
-                <div className="absolute inset-0 bg-[#b48b2f] mix-blend-multiply opacity-90"></div>
               </div>
               <div>
                 <div className="text-xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
