@@ -287,15 +287,78 @@ export const Contact = (): JSX.Element => {
             </div>
           </section>
 
-          {/* Office Locations */}
+          {/* Interactive Map & Office Location */}
           <section className="mb-12 sm:mb-16 lg:mb-20 px-4">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-3 sm:mb-4">
-                Our <span className="text-[#b48b2f]">Locations</span>
+                Visit Our <span className="text-[#b48b2f]">Office</span>
               </h2>
               <p className="text-base sm:text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto px-4">
-                Visit our head office in Madurai for in-person consultation.
+                Located in the heart of Madurai, we're easily accessible and ready to serve you.
               </p>
+            </div>
+
+            {/* Interactive Map */}
+            <div className="max-w-6xl mx-auto mb-8 sm:mb-12">
+              <Card className="overflow-hidden border-none shadow-2xl">
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <div className="w-full h-[300px] sm:h-[400px] lg:h-[450px] bg-gray-100 rounded-lg overflow-hidden">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.764867635944!2d78.14379481!3d9.9312328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c582b1189633%3A0x559e0c50c3c4b8a5!2s23%2F72%2C%203rd%20St%2C%20Ramnagar%2C%20S%20S%20Colony%2C%20Madurai%2C%20Tamil%20Nadu%20625016!5e0!3m2!1sen!2sin!4v1735293042000"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Smart Builders & Developers Office Location"
+                        className="w-full h-full"
+                      />
+                    </div>
+                    
+                    {/* Map Overlay Info */}
+                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white/95 backdrop-blur-sm rounded-lg p-3 sm:p-4 shadow-lg max-w-[280px] sm:max-w-xs">
+                      <div className="flex items-center mb-2">
+                        <div className="w-3 h-3 bg-[#b48b2f] rounded-full mr-2 animate-pulse"></div>
+                        <span className="font-semibold text-[#313131] [font-family:'Poppins',Helvetica] text-xs sm:text-sm">
+                          Smart Builders & Developers
+                        </span>
+                      </div>
+                      <p className="text-xs text-[#6b6b6b] [font-family:'Poppins',Helvetica] mb-2">
+                        23/72, Ramnagar, 3rd Street<br />
+                        Bypass Rd, S S Colony<br />
+                        Madurai, Tamil Nadu 625016
+                      </p>
+                      <div className="flex items-center text-xs text-[#b48b2f] [font-family:'Poppins',Helvetica]">
+                        <span className="w-2 h-2 bg-green-500 rounded-full mr-1"></span>
+                        Open Now • 9 AM - 6 PM
+                      </div>
+                    </div>
+
+                    {/* Quick Actions */}
+                    <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 flex gap-2">
+                      <Button 
+                        size="sm"
+                        className="bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[40px_5px_40px_5px] font-medium [font-family:'Poppins',Helvetica] shadow-lg text-xs"
+                        onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=23/72,+Ramnagar,+3rd+Street,+Bypass+Rd,+S+S+Colony,+Madurai,+Tamil+Nadu+625016`, '_blank')}
+                      >
+                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                        Directions
+                      </Button>
+                      <Button 
+                        size="sm"
+                        variant="outline"
+                        className="bg-white/90 border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white rounded-[40px_5px_40px_5px] font-medium [font-family:'Poppins',Helvetica] shadow-lg text-xs"
+                        onClick={() => window.open(`tel:+919443221100`, '_self')}
+                      >
+                        <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                        Call
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:gap-8 max-w-lg mx-auto">
@@ -335,10 +398,23 @@ export const Contact = (): JSX.Element => {
                         </div>
                       </div>
                     </div>
-                    <Button className="w-full mt-6 bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[40px_5px_40px_5px] font-medium [font-family:'Poppins',Helvetica]">
-                      <MapPin className="w-4 h-4 mr-2" />
-                      Get Directions
-                    </Button>
+                    <div className="grid grid-cols-2 gap-3 mt-6">
+                      <Button 
+                        className="bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[40px_5px_40px_5px] font-medium [font-family:'Poppins',Helvetica]"
+                        onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(office.address)}`, '_blank')}
+                      >
+                        <MapPin className="w-4 h-4 mr-2" />
+                        Directions
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        className="border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white rounded-[40px_5px_40px_5px] font-medium [font-family:'Poppins',Helvetica]"
+                        onClick={() => window.open(`tel:${office.phone}`, '_self')}
+                      >
+                        <Phone className="w-4 h-4 mr-2" />
+                        Call Now
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
