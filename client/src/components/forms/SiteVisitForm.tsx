@@ -126,19 +126,19 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
   ];
 
   return (
-    <div className={`bg-white rounded-lg shadow-lg p-6 lg:p-8 ${className}`}>
-      <div className="text-center mb-6">
-        <h3 className="text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+    <div className={`bg-white rounded-lg shadow-lg p-3 xs:p-4 sm:p-6 w-full max-w-full ${className}`}>
+      <div className="text-center mb-4 sm:mb-6">
+        <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
           {title}
         </h3>
-        <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+        <p className="text-xs xs:text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
           {subtitle}
         </p>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 xs:space-y-4">
+          <div className="grid grid-cols-1 gap-3 xs:gap-4">
             <FormField
               control={form.control}
               name="name"
@@ -232,7 +232,7 @@ export const SiteVisitForm: React.FC<SiteVisitFormProps> = ({
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-3 xs:gap-4">
             <FormField
               control={form.control}
               name="preferredDate"

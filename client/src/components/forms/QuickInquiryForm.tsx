@@ -209,12 +209,12 @@ export const QuickInquiryForm: React.FC<QuickInquiryFormProps> = ({
   }
 
   return (
-    <div className={`bg-white rounded-lg shadow-lg p-6 ${className}`}>
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+    <div className={`bg-white rounded-lg shadow-lg p-3 xs:p-4 sm:p-6 w-full max-w-full ${className}`}>
+      <div className="text-center mb-4 sm:mb-6">
+        <h3 className="text-lg xs:text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
           {title}
         </h3>
-        <p className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+        <p className="text-xs xs:text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
           {subtitle}
         </p>
       </div>

@@ -135,7 +135,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 xs:space-y-4 sm:space-y-5" noValidate>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 xs:gap-4 sm:gap-5 lg:gap-6">
+          <div className="grid grid-cols-1 gap-3 xs:gap-4 sm:gap-5">
             <FormField
               control={form.control}
               name="name"
@@ -180,7 +180,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4 sm:gap-5 lg:gap-6">
+          <div className="grid grid-cols-1 gap-3 xs:gap-4 sm:gap-5">
             <FormField
               control={form.control}
               name="phone"

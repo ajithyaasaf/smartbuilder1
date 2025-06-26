@@ -131,18 +131,18 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
   };
 
   return (
-    <Card className={`${className}`}>
-      <CardHeader className="text-center">
-        <CardTitle className="flex items-center justify-center text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
-          <Calculator className="w-6 h-6 mr-2 text-[#b48b2f]" />
+    <Card className={`w-full max-w-full ${className}`}>
+      <CardHeader className="text-center p-3 xs:p-4 sm:p-6">
+        <CardTitle className="flex items-center justify-center text-lg xs:text-xl sm:text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
+          <Calculator className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 mr-2 text-[#b48b2f]" />
           EMI Calculator
         </CardTitle>
-        <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+        <p className="text-xs xs:text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
           Calculate your home loan EMI instantly
         </p>
       </CardHeader>
       
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 xs:space-y-5 sm:space-y-6 p-3 xs:p-4 sm:p-6">
         {/* Loan Amount */}
         <div className="space-y-3">
           <div className="flex justify-between items-center">
