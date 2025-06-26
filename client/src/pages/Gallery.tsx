@@ -76,107 +76,141 @@ export const Gallery = (): JSX.Element => {
       title: "Royal Residency",
       category: "completed",
       type: "image",
-      description: "Luxury apartment complex with 120 units",
-      location: "KK Nagar, Madurai",
+      description: "Luxury apartment complex with modern amenities",
+      location: "Madurai",
       year: "2023",
-      image: "/figmaAssets/mask-group.png",
+      image: "@assets/1_1750919638071.jpeg",
       stats: { units: 120, floors: 15, parking: 200 }
     },
     {
       id: 2,
-      title: "Green Valley Villas",
+      title: "Smart Heights",
       category: "completed",
-      type: "video",
-      description: "Eco-friendly independent villas",
-      location: "Coimbatore",
+      type: "image",
+      description: "Premium residential tower with panoramic views",
+      location: "Madurai",
       year: "2023",
-      image: "/figmaAssets/mask-group.png",
-      stats: { units: 25, floors: 2, parking: 50 }
+      image: "@assets/2_1750919638075.jpeg",
+      stats: { units: 80, floors: 12, parking: 160 }
     },
     {
       id: 3,
-      title: "Sky Gardens Apartments",
+      title: "Garden View Apartments",
       category: "completed",
       type: "image",
-      description: "Modern apartments with rooftop gardens",
-      location: "Chennai",
+      description: "Modern apartments with landscaped gardens",
+      location: "Madurai",
       year: "2022",
-      image: "/figmaAssets/mask-group.png",
-      stats: { units: 80, floors: 12, parking: 120 }
+      image: "@assets/3_1750919638076.jpeg",
+      stats: { units: 100, floors: 10, parking: 180 }
     },
-    // Ongoing Projects
     {
       id: 4,
-      title: "Paradise Heights",
-      category: "ongoing",
+      title: "Elite Complex",
+      category: "completed",
       type: "image",
-      description: "Premium high-rise development",
-      location: "Bypass Road, Madurai",
-      year: "2024",
-      image: "/figmaAssets/mask-group.png",
-      progress: 65,
-      stats: { units: 150, floors: 18, parking: 250 }
+      description: "Contemporary design with premium finishes",
+      location: "Madurai",
+      year: "2022",
+      image: "@assets/4_1750919638076.jpeg",
+      stats: { units: 90, floors: 8, parking: 150 }
     },
     {
       id: 5,
-      title: "Elite Towers",
-      category: "ongoing",
-      type: "video",
-      description: "Twin towers with commercial space",
-      location: "Chennai",
-      year: "2024",
-      image: "/figmaAssets/mask-group.png",
-      progress: 40,
-      stats: { units: 200, floors: 20, parking: 300 }
+      title: "Golden Tower",
+      category: "completed",
+      type: "image",
+      description: "Luxury high-rise with world-class amenities",
+      location: "Madurai",
+      year: "2021",
+      image: "@assets/5_1750919638077.jpeg",
+      stats: { units: 150, floors: 18, parking: 250 }
     },
-    // Construction Process
+    // Ongoing Projects
     {
       id: 6,
-      title: "Foundation Work",
-      category: "process",
+      title: "Paradise Heights",
+      category: "ongoing",
       type: "image",
-      description: "Deep foundation construction using latest technology",
-      location: "Various Sites",
-      image: "/figmaAssets/mask-group.png"
+      description: "Premium residential development in progress",
+      location: "Bypass Road, Madurai",
+      year: "2024",
+      image: "@assets/6_1750919638078.jpeg",
+      progress: 75,
+      stats: { units: 140, floors: 16, parking: 220 }
     },
     {
       id: 7,
-      title: "Structural Framework",
-      category: "process",
-      type: "video",
-      description: "High-quality concrete and steel construction",
-      location: "Various Sites",
-      image: "/figmaAssets/mask-group.png"
+      title: "Smart City Towers",
+      category: "ongoing",
+      type: "image",
+      description: "Modern twin towers with smart home features",
+      location: "Madurai",
+      year: "2024",
+      image: "@assets/7_1750919638079.jpeg",
+      progress: 60,
+      stats: { units: 180, floors: 20, parking: 300 }
     },
     {
       id: 8,
-      title: "Interior Finishing",
-      category: "process",
+      title: "Green Valley Phase II",
+      category: "ongoing",
       type: "image",
-      description: "Premium finishing and attention to detail",
-      location: "Various Sites",
-      image: "/figmaAssets/mask-group.png"
+      description: "Eco-friendly residential complex under construction",
+      location: "Madurai",
+      year: "2024",
+      image: "@assets/8_1750919638079.jpeg",
+      progress: 45,
+      stats: { units: 110, floors: 12, parking: 200 }
     },
-    // Awards & Events
+    // Construction Process
     {
       id: 9,
-      title: "Best Builder Award 2023",
-      category: "awards",
+      title: "Foundation Excellence",
+      category: "process",
       type: "image",
-      description: "Recognition for excellence in construction",
-      location: "Chennai",
-      year: "2023",
-      image: "/figmaAssets/mask-group.png"
+      description: "Deep foundation work using advanced technology",
+      location: "Construction Site",
+      image: "@assets/9_1750919638080.jpeg"
     },
     {
       id: 10,
-      title: "Project Inauguration",
+      title: "Structural Framework",
+      category: "process",
+      type: "image",
+      description: "High-quality concrete and steel construction",
+      location: "Construction Site",
+      image: "@assets/10_1750919638081.jpeg"
+    },
+    {
+      id: 11,
+      title: "Premium Finishing",
+      category: "process",
+      type: "image",
+      description: "Attention to detail in interior finishing",
+      location: "Construction Site",
+      image: "@assets/11_1750919638082.jpeg"
+    },
+    // Awards & Recognition
+    {
+      id: 12,
+      title: "Project Excellence Award",
       category: "awards",
-      type: "video",
-      description: "Grand opening of Royal Residency",
-      location: "Samayanallur, Madurai",
+      type: "image",
+      description: "Recognition for outstanding construction quality",
+      location: "Madurai",
       year: "2023",
-      image: "/figmaAssets/mask-group.png"
+      image: "@assets/12_1750919638083.jpeg"
+    },
+    {
+      id: 13,
+      title: "Completed Milestone",
+      category: "awards",
+      type: "image",
+      description: "Celebration of successful project completion",
+      location: "Madurai",
+      year: "2023",
+      image: "@assets/13_1750919638083.jpeg"
     }
   ];
 
