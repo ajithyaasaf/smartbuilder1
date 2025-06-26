@@ -16,6 +16,10 @@ interface EMIResult {
   totalAmount: number;
   totalInterest: number;
   principalAmount: number;
+  processingFees: number;
+  insurance: number;
+  registrationCharges: number;
+  totalUpfrontCost: number;
 }
 
 const saveCalculationSchema = z.object({
@@ -33,11 +37,11 @@ interface EMICalculatorFormProps {
 
 export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
   className = "",
-  defaultPrice = 5000000,
+  defaultPrice = 3500000,
 }) => {
   const [loanAmount, setLoanAmount] = useState([defaultPrice * 0.8]); // 80% of property price
-  const [interestRate, setInterestRate] = useState([8.5]);
-  const [tenure, setTenure] = useState([20]);
+  const [interestRate, setInterestRate] = useState([9.0]);
+  const [tenure, setTenure] = useState([15]);
   const [result, setResult] = useState<EMIResult | null>(null);
   const [showSaveForm, setShowSaveForm] = useState(false);
   const { toast } = useToast();
@@ -60,12 +64,22 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
       const emi = (principal * rate * Math.pow(1 + rate, time)) / (Math.pow(1 + rate, time) - 1);
       const totalAmount = emi * time;
       const totalInterest = totalAmount - principal;
+      
+      // Additional costs for Tamil Nadu/Madurai market
+      const processingFees = Math.round(principal * 0.005); // 0.5% processing fee
+      const insurance = Math.round(principal * 0.003); // 0.3% insurance premium
+      const registrationCharges = Math.round(principal * 0.007); // 0.7% registration charges (TN)
+      const totalUpfrontCost = processingFees + insurance + registrationCharges;
 
       setResult({
         emi: Math.round(emi),
         totalAmount: Math.round(totalAmount),
         totalInterest: Math.round(totalInterest),
         principalAmount: principal,
+        processingFees,
+        insurance,
+        registrationCharges,
+        totalUpfrontCost,
       });
     }
   };
@@ -156,14 +170,14 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
           <Slider
             value={loanAmount}
             onValueChange={setLoanAmount}
-            max={20000000}
-            min={500000}
+            max={10000000}
+            min={1000000}
             step={100000}
             className="[&_.bg-primary]:bg-[#b48b2f]"
           />
           <div className="flex justify-between text-xs text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-            <span>₹5L</span>
-            <span>₹2Cr</span>
+            <span>₹10L</span>
+            <span>₹1Cr</span>
           </div>
         </div>
 
@@ -180,14 +194,14 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
           <Slider
             value={interestRate}
             onValueChange={setInterestRate}
-            max={15}
-            min={6}
+            max={12}
+            min={8.5}
             step={0.1}
             className="[&_.bg-primary]:bg-[#b48b2f]"
           />
           <div className="flex justify-between text-xs text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-            <span>6%</span>
-            <span>15%</span>
+            <span>8.5%</span>
+            <span>12%</span>
           </div>
         </div>
 
@@ -258,6 +272,39 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
                 </div>
                 <div className="text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
                   Total Interest
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Costs for Tamil Nadu */}
+            <div className="border-t pt-4">
+              <h4 className="text-sm font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-3">
+                Additional Costs (Tamil Nadu)
+              </h4>
+              <div className="grid grid-cols-2 gap-3 text-xs">
+                <div className="flex justify-between">
+                  <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Processing Fees (0.5%)</span>
+                  <span className="text-[#313131] [font-family:'Poppins',Helvetica] font-medium">
+                    {formatCurrency(result.processingFees)}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Insurance (0.3%)</span>
+                  <span className="text-[#313131] [font-family:'Poppins',Helvetica] font-medium">
+                    {formatCurrency(result.insurance)}
+                  </span>
+                </div>
+                <div className="flex justify-between col-span-2">
+                  <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">Registration Charges (0.7%)</span>
+                  <span className="text-[#313131] [font-family:'Poppins',Helvetica] font-medium">
+                    {formatCurrency(result.registrationCharges)}
+                  </span>
+                </div>
+                <div className="flex justify-between col-span-2 pt-2 border-t">
+                  <span className="text-[#b48b2f] [font-family:'Poppins',Helvetica] font-semibold">Total Upfront Cost</span>
+                  <span className="text-[#b48b2f] [font-family:'Poppins',Helvetica] font-bold">
+                    {formatLakhs(result.totalUpfrontCost)}
+                  </span>
                 </div>
               </div>
             </div>

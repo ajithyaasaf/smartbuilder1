@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 26, 2025: Enhanced EMI Calculator for Madurai market with realistic parameters (₹10L-₹1Cr range, 8.5-12% interest, 15yr default tenure) and added Tamil Nadu specific costs (processing fees, insurance, registration charges)
 - January 26, 2025: Removed Schedule Site Visit form from Contact page and updated layout to 3-column grid (Quick Inquiry, Detailed Inquiry, EMI Calculator) for cleaner design
 - January 26, 2025: Fixed Contact page responsive design - "Send Us a Message" section now uses progressive breakpoints with mobile-first form layouts
 - January 26, 2025: Resolved React DOM manipulation errors in GSAP animations by removing text content modifications that conflicted with React's virtual DOM, ensuring ultra-smooth performance
