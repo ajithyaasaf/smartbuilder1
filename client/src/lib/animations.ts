@@ -948,7 +948,7 @@ export const animateScrollIndicator = () => {
         left: 0;
         width: 0%;
         height: 3px;
-        background: linear-gradient(90deg, #17a6b8, #148a9a);
+        background: linear-gradient(90deg, #b48b2f, #8f6f23);
         z-index: 1000;
         transform-origin: left;
         pointer-events: none;
