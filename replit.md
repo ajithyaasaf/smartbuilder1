@@ -177,6 +177,9 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 26, 2025: Implemented comprehensive senior-level performance optimizations including lazy loading, code splitting, service worker caching, optimized GSAP mobile animations, critical CSS inlining, resource preloading, and server-side caching headers resulting in significantly improved website speed
+- January 26, 2025: Fixed scroll indicator color to use primary brand color (#b48b2f) instead of old teal color
+- January 26, 2025: Enhanced mobile GSAP performance with device detection, simplified animations, reduced complexity, and mobile-specific optimizations for faster loading and smoother interactions
 - January 26, 2025: Added enterprise-level interactive Google Maps integration to Contact page with Smart Builders office location, overlay info, business hours, quick action buttons for directions and calling
 - January 26, 2025: Enhanced EMI Calculator for Madurai market with realistic parameters (₹10L-₹1Cr range, 8.5-12% interest, 15yr default tenure) and added Tamil Nadu specific costs (processing fees, insurance, registration charges)
 - January 26, 2025: Removed Schedule Site Visit form from Contact page and updated layout to 3-column grid (Quick Inquiry, Detailed Inquiry, EMI Calculator) for cleaner design

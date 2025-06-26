@@ -5,8 +5,30 @@ import { setupVite, serveStatic, log } from "./vite";
 import { storage } from "./storage";
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+// Performance optimization middleware - compression and caching headers
+app.use((req, res, next) => {
+  // Set security and performance headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  
+  // Aggressive caching for static assets
+  if (req.url.match(/\.(css|js|woff2?|ttf|eot|ico|png|jpg|jpeg|gif|svg)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    res.setHeader('Expires', new Date(Date.now() + 31536000000).toUTCString());
+  }
+  
+  // Cache API responses for short periods
+  if (req.url.startsWith('/api/visits')) {
+    res.setHeader('Cache-Control', 'public, max-age=30');
+  }
+  
+  next();
+});
+
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: false, limit: '1mb' }));
 
 // Session middleware for visit tracking
 app.use(session({

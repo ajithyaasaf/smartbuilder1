@@ -4,24 +4,59 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
+import { 
+  measurePerformance, 
+  addResourceHints, 
+  optimizeImages,
+  preloadCriticalResources 
+} from "@/utils/performance";
 
+// Lazy load non-critical pages for code splitting
+const About = lazy(() => import("@/pages/About").then(module => ({ default: module.About })));
+const Services = lazy(() => import("@/pages/Services").then(module => ({ default: module.Services })));
+const Contact = lazy(() => import("@/pages/Contact").then(module => ({ default: module.Contact })));
+const Gallery = lazy(() => import("@/pages/Gallery").then(module => ({ default: module.Gallery })));
+const Admin = lazy(() => import("@/pages/Admin").then(module => ({ default: module.Admin })));
+
+// Eager load home page for instant display
 import { Home } from "@/pages/Home";
-import { About } from "@/pages/About";
-import { Services } from "@/pages/Services";
-import { Contact } from "@/pages/Contact";
-import { Gallery } from "@/pages/Gallery";
-import { Admin } from "@/pages/Admin";
 
 function Router() {
+  const LoadingFallback = () => (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="loading-skeleton w-96 h-96 rounded-lg"></div>
+    </div>
+  );
+
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/services" component={Services} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/gallery" component={Gallery} />
-      <Route path="/admin" component={Admin} />
+      <Route path="/about">
+        <Suspense fallback={<LoadingFallback />}>
+          <About />
+        </Suspense>
+      </Route>
+      <Route path="/services">
+        <Suspense fallback={<LoadingFallback />}>
+          <Services />
+        </Suspense>
+      </Route>
+      <Route path="/contact">
+        <Suspense fallback={<LoadingFallback />}>
+          <Contact />
+        </Suspense>
+      </Route>
+      <Route path="/gallery">
+        <Suspense fallback={<LoadingFallback />}>
+          <Gallery />
+        </Suspense>
+      </Route>
+      <Route path="/admin">
+        <Suspense fallback={<LoadingFallback />}>
+          <Admin />
+        </Suspense>
+      </Route>
       <Route component={NotFound} />
     </Switch>
   );
@@ -29,6 +64,16 @@ function Router() {
 
 function App() {
   useEffect(() => {
+    // Initialize comprehensive performance optimizations
+    measurePerformance();
+    addResourceHints();
+    preloadCriticalResources();
+    
+    // Optimize images after DOM loads
+    setTimeout(() => {
+      optimizeImages();
+    }, 1000);
+
     // Add performance styles for faster navigation while keeping GSAP animations
     const style = document.createElement('style');
     style.textContent = `
@@ -42,10 +87,13 @@ function App() {
       .page-transition { 
         transform: translateZ(0);
       }
+      
+      /* Preload hover states */
+      .btn:hover { transform: translateY(-1px); }
     `;
     
-    if (!document.querySelector('#nav-speed')) {
-      style.id = 'nav-speed';
+    if (!document.querySelector('#performance-styles')) {
+      style.id = 'performance-styles';
       document.head.appendChild(style);
     }
   }, []);
