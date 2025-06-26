@@ -22,7 +22,8 @@ import {
   animateCounterNumbers,
   animateBackgroundParallax,
   animateScrollIndicator,
-  animateMorphingShapes
+  animateMorphingShapes,
+  initMobileOptimizations
 } from "@/lib/animations";
 
 export const Gallery = (): JSX.Element => {
@@ -32,6 +33,9 @@ export const Gallery = (): JSX.Element => {
 
   const containerRef = useGSAP(() => {
     try {
+      // Initialize mobile optimizations first
+      initMobileOptimizations();
+      
       setTimeout(() => {
         // Core page animations
         animatePageTransition();

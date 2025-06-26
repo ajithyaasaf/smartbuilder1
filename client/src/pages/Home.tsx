@@ -28,7 +28,8 @@ import {
   animateStaggeredCards,
   animateCounterNumbers,
   animateBackgroundParallax,
-  animateScrollIndicator
+  animateScrollIndicator,
+  initMobileOptimizations
 } from "@/lib/animations";
 
 export const Home = (): JSX.Element => {
@@ -37,6 +38,9 @@ export const Home = (): JSX.Element => {
 
   const containerRef = useGSAP(() => {
     try {
+      // Initialize mobile optimizations first
+      initMobileOptimizations();
+      
       setTimeout(() => {
         // Core entrance animations
         animateHeroEntrance();

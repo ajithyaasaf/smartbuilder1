@@ -4,22 +4,36 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
+// Mobile detection utility
+const isMobile = () => {
+  return typeof window !== 'undefined' && (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    window.innerWidth < 768
+  );
+};
+
+// Performance-optimized config for mobile
 export const animationConfig = {
   duration: {
-    fast: 0.3,
-    normal: 0.6,
-    slow: 1.2,
-    extra: 2.0,
+    fast: isMobile() ? 0.2 : 0.3,
+    normal: isMobile() ? 0.4 : 0.6,
+    slow: isMobile() ? 0.6 : 1.2,
+    extra: isMobile() ? 1.0 : 2.0,
   },
   ease: {
     smooth: "power2.out",
-    bounce: "back.out(1.7)",
-    elastic: "elastic.out(1, 0.3)",
+    bounce: isMobile() ? "power2.out" : "back.out(1.7)", // Simpler easing on mobile
+    elastic: isMobile() ? "power2.out" : "elastic.out(1, 0.3)",
     custom: "power3.inOut",
     dramatic: "power4.out",
     gentle: "sine.inOut",
   },
-  stagger: 0.1,
+  stagger: isMobile() ? 0.05 : 0.1, // Faster stagger on mobile
+  mobile: {
+    reduceAnimations: true,
+    disableScrollTrigger: false, // Can be enabled if needed
+    simplifyEffects: true,
+  }
 };
 
 // Helper function to find elements with multiple selector fallbacks
@@ -45,9 +59,22 @@ const findElements = (selectors: string[]): Element[] => {
   return [];
 };
 
-// Safe animation wrapper that prevents GSAP errors
+// Mobile-optimized animation wrapper with performance checks
 const safeAnimate = (elements: Element[] | Element | string, fromVars: any, toVars: any) => {
   if (!elements) return null;
+  
+  // Skip animations on very low-end devices
+  if (isMobile() && animationConfig.mobile.reduceAnimations) {
+    // For mobile, use will-change property for better performance
+    if (typeof elements === 'string') {
+      const found = document.querySelectorAll(elements);
+      found.forEach(el => {
+        if (el instanceof HTMLElement) {
+          el.style.willChange = 'transform, opacity';
+        }
+      });
+    }
+  }
   
   try {
     // Handle different element types
@@ -64,10 +91,26 @@ const safeAnimate = (elements: Element[] | Element | string, fromVars: any, toVa
     
     // Only animate if we have valid targets
     if (targets.length > 0) {
+      // Mobile optimization: reduce complex animations
+      if (isMobile() && animationConfig.mobile.simplifyEffects) {
+        // Simplify animations for mobile
+        const simplifiedFromVars = { ...fromVars };
+        const simplifiedToVars = { ...toVars };
+        
+        // Remove complex transforms on mobile
+        if (simplifiedFromVars.scale) simplifiedFromVars.scale = 1;
+        if (simplifiedToVars.scale) simplifiedToVars.scale = 1;
+        
+        // Reduce movement distance
+        if (simplifiedFromVars.y) simplifiedFromVars.y = simplifiedFromVars.y / 2;
+        if (simplifiedFromVars.x) simplifiedFromVars.x = simplifiedFromVars.x / 2;
+        
+        return gsap.fromTo(targets, simplifiedFromVars, simplifiedToVars);
+      }
+      
       return gsap.fromTo(targets, fromVars, toVars);
     }
   } catch (e) {
-    // Silently handle animation errors
     console.debug('Animation skipped for invalid targets');
   }
   
@@ -195,12 +238,14 @@ export const animateHeroEntrance = () => {
       if (imageAnimation) tl.add(imageAnimation, "-=0.8");
     }
 
-    // Add floating animations after entrance
-    tl.call(() => {
-      setTimeout(() => {
-        animateFloatingElements();
-      }, 1000);
-    });
+    // Skip floating animations on mobile for performance
+    if (!isMobile()) {
+      tl.call(() => {
+        setTimeout(() => {
+          animateFloatingElements();
+        }, 1000);
+      });
+    }
 
   } catch (error) {
     console.debug("Hero animation error:", error);
@@ -306,6 +351,11 @@ export const animateNavigation = () => {
 
 export const animateCardsOnScroll = (selector: string) => {
   try {
+    // Skip complex scroll animations on mobile for better performance
+    if (isMobile() && animationConfig.mobile.disableScrollTrigger) {
+      return;
+    }
+
     // Enhanced selector system with fallbacks
     const cardSelectors = [
       ".overflow-hidden",
@@ -323,24 +373,33 @@ export const animateCardsOnScroll = (selector: string) => {
 
     cards.forEach((card, index) => {
       if (card && card.nodeType === 1) {
+        const scrollConfig = isMobile() ? {
+          // Simplified mobile scroll config
+          trigger: card,
+          start: "top 90%",
+          once: true,
+          refreshPriority: -1 // Lower priority for better performance
+        } : {
+          // Full desktop scroll config
+          trigger: card,
+          start: "top 85%",
+          end: "bottom 15%",
+          toggleActions: "play none none reverse",
+          once: true
+        };
+
         const animationConfig = {
           y: 0,
           opacity: 1,
           scale: 1,
-          duration: 0.5,
-          delay: index * 0.05,
+          duration: isMobile() ? 0.3 : 0.5,
+          delay: index * (isMobile() ? 0.02 : 0.05),
           ease: "power2.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            end: "bottom 15%",
-            toggleActions: "play none none reverse",
-            once: true
-          }
+          scrollTrigger: scrollConfig
         };
         
         safeAnimate(card, 
-          { y: 30, opacity: 0, scale: 0.98 },
+          { y: isMobile() ? 15 : 30, opacity: 0, scale: isMobile() ? 1 : 0.98 },
           animationConfig
         );
       }
@@ -426,6 +485,11 @@ export const animateStatsCounter = (selector: string) => {
 
 export const setupButtonHoverAnimations = () => {
   try {
+    // Skip hover animations on mobile devices for better performance
+    if (isMobile()) {
+      return;
+    }
+
     const buttonSelectors = [
       "button",
       ".animate-button",
@@ -578,6 +642,11 @@ export const animateTextReveal = (selector: string) => {
 
 export const setupParallaxImages = () => {
   try {
+    // Disable parallax on mobile for performance
+    if (isMobile()) {
+      return;
+    }
+
     const imageSelectors = [
       "img"
     ];
@@ -593,7 +662,8 @@ export const setupParallaxImages = () => {
             trigger: img,
             start: "top bottom",
             end: "bottom top",
-            scrub: 0.5
+            scrub: 0.5,
+            refreshPriority: -1 // Lower priority for better performance
           }
         });
       }
@@ -782,6 +852,11 @@ export const animateTextTypewriter = (selector: string) => {
 
 export const animateBackgroundParallax = () => {
   try {
+    // Disable background parallax on mobile for performance
+    if (isMobile()) {
+      return;
+    }
+
     const backgrounds = findElements([
       ".bg-gradient-to-br",
       ".bg-gradient-to-r",
@@ -797,7 +872,8 @@ export const animateBackgroundParallax = () => {
             trigger: bg,
             start: "top bottom",
             end: "bottom top",
-            scrub: 0.5
+            scrub: 0.5,
+            refreshPriority: -1
           }
         });
       }
@@ -906,5 +982,70 @@ export const cleanupScrollTriggers = () => {
     }
   } catch (error) {
     console.debug("Cleanup error:", error);
+  }
+};
+
+// Mobile Performance Optimization Functions
+export const optimizeGSAPForMobile = () => {
+  if (!isMobile()) return;
+
+  // Set GSAP to use force3D: false on mobile to reduce GPU usage
+  gsap.config({
+    force3D: false,
+    nullTargetWarn: false
+  });
+
+  // Configure ScrollTrigger for mobile optimization
+  if (ScrollTrigger) {
+    ScrollTrigger.config({
+      limitCallbacks: true,
+      syncInterval: 150, // Reduce sync frequency on mobile
+      ignoreMobileResize: true
+    });
+  }
+};
+
+// Performance monitoring
+export const initPerformanceMonitoring = () => {
+  if (!isMobile() || typeof window === 'undefined') return;
+
+  let animationCount = 0;
+  
+  // Simple performance monitoring without overriding GSAP methods
+  const checkAnimationCount = () => {
+    if (animationCount > 50) {
+      console.debug('High animation count detected on mobile:', animationCount);
+    }
+    animationCount = 0; // Reset counter
+  };
+  
+  // Check every 2 seconds
+  setInterval(checkAnimationCount, 2000);
+};
+
+// Cleanup function for will-change properties
+export const cleanupWillChange = () => {
+  if (typeof document === 'undefined') return;
+  
+  try {
+    const elements = document.querySelectorAll('[style*="will-change"]');
+    elements.forEach(el => {
+      if (el instanceof HTMLElement) {
+        el.style.willChange = 'auto';
+      }
+    });
+  } catch (error) {
+    console.debug('Will-change cleanup error:', error);
+  }
+};
+
+// Initialize mobile optimizations
+export const initMobileOptimizations = () => {
+  if (isMobile()) {
+    optimizeGSAPForMobile();
+    initPerformanceMonitoring();
+    
+    // Clean up will-change properties after animations
+    setTimeout(cleanupWillChange, 5000);
   }
 };

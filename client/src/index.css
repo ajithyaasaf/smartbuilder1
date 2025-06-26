@@ -190,4 +190,82 @@
       transform: translateY(0);
     }
   }
+
+  /* Mobile Performance Optimizations */
+  @media (max-width: 768px) {
+    /* Disable complex animations on mobile for better performance */
+    .floating-element {
+      animation: none;
+    }
+    
+    /* Reduce will-change usage on mobile */
+    .parallax-element {
+      will-change: auto;
+    }
+    
+    /* Simplified hover effects for touch devices */
+    .service-card:hover,
+    .testimonial-card:hover,
+    .apartment-card:hover,
+    .villa-card:hover,
+    .mini-apartment-card:hover,
+    .land-card:hover,
+    .project-card:hover,
+    .feature-card:hover,
+    .amenity-card:hover {
+      transform: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Faster transitions on mobile */
+    .service-card,
+    .testimonial-card,
+    .apartment-card,
+    .villa-card,
+    .mini-apartment-card,
+    .land-card,
+    .project-card,
+    .feature-card,
+    .amenity-card {
+      transition: all 0.2s ease;
+    }
+    
+    /* Disable smooth scrolling on mobile for performance */
+    html {
+      scroll-behavior: auto;
+    }
+    
+    /* Optimize font rendering on mobile */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeSpeed;
+    }
+    
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  }
+
+  /* Additional mobile-specific optimizations */
+  @media (max-width: 640px) {
+    /* Further reduce animations on very small screens */
+    .animate-button:hover {
+      transform: none;
+      box-shadow: 0 4px 8px rgba(180, 139, 47, 0.2);
+    }
+    
+    /* Optimize touch interactions */
+    button, 
+    [role="button"], 
+    .btn {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+  }
 }

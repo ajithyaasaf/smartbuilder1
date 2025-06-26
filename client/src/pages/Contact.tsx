@@ -20,7 +20,8 @@ import {
   animateImageReveal,
   animateStaggeredCards,
   animateBackgroundParallax,
-  animateScrollIndicator
+  animateScrollIndicator,
+  initMobileOptimizations
 } from "@/lib/animations";
 
 export const Contact = (): JSX.Element => {
@@ -29,6 +30,9 @@ export const Contact = (): JSX.Element => {
 
   const containerRef = useGSAP(() => {
     try {
+      // Initialize mobile optimizations first
+      initMobileOptimizations();
+      
       setTimeout(() => {
         // Core page animations
         animatePageTransition();

@@ -21,7 +21,8 @@ import {
   animateCounterNumbers,
   animateBackgroundParallax,
   animateScrollIndicator,
-  animateTextTypewriter
+  animateTextTypewriter,
+  initMobileOptimizations
 } from "@/lib/animations";
 
 export const About = (): JSX.Element => {
@@ -30,6 +31,9 @@ export const About = (): JSX.Element => {
 
   const containerRef = useGSAP(() => {
     try {
+      // Initialize mobile optimizations first
+      initMobileOptimizations();
+      
       setTimeout(() => {
         // Core page animations
         animatePageTransition();

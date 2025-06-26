@@ -21,7 +21,8 @@ import {
   animateStaggeredCards,
   animateServiceTabs,
   animateBackgroundParallax,
-  animateScrollIndicator
+  animateScrollIndicator,
+  initMobileOptimizations
 } from "@/lib/animations";
 
 export const Services = (): JSX.Element => {
@@ -31,6 +32,9 @@ export const Services = (): JSX.Element => {
 
   const containerRef = useGSAP(() => {
     try {
+      // Initialize mobile optimizations first
+      initMobileOptimizations();
+      
       setTimeout(() => {
         // Core page animations
         animatePageTransition();
