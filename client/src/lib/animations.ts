@@ -351,18 +351,11 @@ export const animateNavigation = () => {
 
 export const animateCardsOnScroll = (selector: string) => {
   try {
-    // Skip complex scroll animations on mobile for better performance
-    if (isMobile() && animationConfig.mobile.disableScrollTrigger) {
-      return;
-    }
-
-    // Enhanced selector system with fallbacks
+    // Use gentle animations for smooth scrolling experience
     const cardSelectors = [
+      ".service-card",
       ".overflow-hidden",
-      ".border-none",
-      ".bg-white",
-      ".p-6",
-      ".p-8"
+      ".border-none"
     ];
     
     const cards = findElements(cardSelectors);
@@ -373,34 +366,22 @@ export const animateCardsOnScroll = (selector: string) => {
 
     cards.forEach((card, index) => {
       if (card && card.nodeType === 1) {
-        const scrollConfig = isMobile() ? {
-          // Simplified mobile scroll config
-          trigger: card,
-          start: "top 90%",
-          once: true,
-          refreshPriority: -1 // Lower priority for better performance
-        } : {
-          // Full desktop scroll config
-          trigger: card,
-          start: "top 85%",
-          end: "bottom 15%",
-          toggleActions: "play none none reverse",
-          once: true
-        };
-
-        const animationConfig = {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: isMobile() ? 0.3 : 0.5,
-          delay: index * (isMobile() ? 0.02 : 0.05),
-          ease: "power2.out",
-          scrollTrigger: scrollConfig
-        };
-        
+        // Very subtle and smooth animation
         safeAnimate(card, 
-          { y: isMobile() ? 15 : 30, opacity: 0, scale: isMobile() ? 1 : 0.98 },
-          animationConfig
+          { opacity: 0, y: 10 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            delay: index * 0.08,
+            ease: "power1.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 92%",
+              once: true,
+              fastScrollEnd: true
+            }
+          }
         );
       }
     });
@@ -724,20 +705,19 @@ export const animateImageReveal = () => {
 
     imageContainers.forEach((container, index) => {
       if (container && container.nodeType === 1) {
-        // Simple fade and scale reveal
+        // Minimal smooth reveal
         safeAnimate(container,
-          { opacity: 0, scale: 0.95 },
+          { opacity: 0 },
           {
             opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            delay: index * 0.1,
+            duration: 0.4,
+            ease: "power1.out",
+            delay: index * 0.03,
             scrollTrigger: {
               trigger: container,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
-              once: true
+              start: "top 95%",
+              once: true,
+              fastScrollEnd: true
             }
           }
         );
@@ -760,20 +740,20 @@ export const animateStaggeredCards = () => {
 
     cards.forEach((card, index) => {
       if (card && card.nodeType === 1) {
+        // Gentle, smooth animation without jarring movements
         safeAnimate(card,
-          { y: 50, opacity: 0, scale: 0.95 },
+          { opacity: 0, y: 8 },
           {
-            y: 0,
             opacity: 1,
-            scale: 1,
-            duration: 0.6,
-            ease: "power2.out",
-            delay: index * 0.1,
+            y: 0,
+            duration: 0.3,
+            ease: "power1.out",
+            delay: index * 0.05,
             scrollTrigger: {
               trigger: card,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
-              once: true
+              start: "top 94%",
+              once: true,
+              fastScrollEnd: true
             }
           }
         );

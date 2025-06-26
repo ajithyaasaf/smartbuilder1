@@ -42,18 +42,12 @@ export const Gallery = (): JSX.Element => {
         animateNavigation();
         animateTextReveal(".section-title");
         
-        // Gallery-specific animations
+        // Smooth gallery animations only
         animateImageReveal();
         animateStaggeredCards();
-        animateCounterNumbers();
-        animateMorphingShapes();
-        animateBackgroundParallax();
-        animateScrollIndicator();
         
-        // Interactive elements
+        // Essential interactions
         setupButtonHoverAnimations();
-        animateFloatingElements();
-        setupParallaxImages();
         animateCardsOnScroll(".overflow-hidden");
       }, 100);
     } catch (error) {

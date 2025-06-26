@@ -46,19 +46,13 @@ export const Home = (): JSX.Element => {
         animateHeroEntrance();
         animateNavigation();
         
-        // Enhanced visual effects
+        // Smooth visual effects only
         animateImageReveal();
         animateStaggeredCards();
-        animateCounterNumbers();
-        animateBackgroundParallax();
-        animateScrollIndicator();
         
-        // Legacy support
-        animateCardsOnScroll(".overflow-hidden");
-        animateStatsCounter(".text-3xl");
+        // Essential interactions
         setupButtonHoverAnimations();
-        animateFloatingElements();
-        setupParallaxImages();
+        animateCardsOnScroll(".service-card");
       }, 100);
     } catch (error) {
       console.debug("Animation initialization error:", error);
