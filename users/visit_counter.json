@@ -1,9 +1,9 @@
 {
-  "totalVisits": 2,
-  "dailyVisits": 2,
-  "lastResetDate": "2025-06-25T12:39:08.797Z",
+  "totalVisits": 10,
+  "dailyVisits": 5,
+  "lastResetDate": "2025-06-26T04:47:47.068Z",
   "createdAt": "2025-06-25T09:54:09.756Z",
-  "updatedAt": "2025-06-25T12:51:12.579Z",
+  "updatedAt": "2025-06-26T04:48:15.846Z",
   "lastResetBy": "admin",
   "lastResetReason": "Reset to zero"
 }

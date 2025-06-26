@@ -316,16 +316,15 @@ export const Home = (): JSX.Element => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.map((service, index) => (
-                <Card key={index} className="service-card group hover:shadow-xl transition-all duration-300 border-none overflow-hidden h-full">
-                  <div className="relative h-56 overflow-hidden">
+                <Card key={index} className="service-card group hover:shadow-xl transition-all duration-300 border-none overflow-hidden flex flex-col">
+                  <div className="relative w-full h-0 pb-[75%] overflow-hidden">
                     <img 
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      style={{ objectPosition: 'center' }}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                    <Badge className="floating-element absolute top-4 right-4 bg-[#b48b2f] text-white shadow-lg">
+                    <Badge className="floating-element absolute top-4 right-4 bg-[#b48b2f] text-white shadow-lg z-10">
                       {service.badge}
                     </Badge>
                   </div>
