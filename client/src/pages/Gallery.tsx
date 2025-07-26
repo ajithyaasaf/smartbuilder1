@@ -444,23 +444,7 @@ export const Gallery = (): JSX.Element => {
                       )}
                     </div>
 
-                    {/* Project Stats */}
-                    {item.stats && (
-                      <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100">
-                        <div className="text-center">
-                          <div className="font-bold text-[#b48b2f]">{item.stats.units}</div>
-                          <div className="text-xs text-[#6b6b6b]">Units</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="font-bold text-[#b48b2f]">{item.stats.floors}</div>
-                          <div className="text-xs text-[#6b6b6b]">Floors</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="font-bold text-[#b48b2f]">{item.stats.parking}</div>
-                          <div className="text-xs text-[#6b6b6b]">Parking</div>
-                        </div>
-                      </div>
-                    )}
+
                   </CardContent>
                 </Card>
               ))}
