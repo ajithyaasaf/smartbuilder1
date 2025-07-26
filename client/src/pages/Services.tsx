@@ -7,6 +7,7 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuL
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MapPin, Phone, Mail, Building, Home, Users, TreePine, ArrowRight, CheckCircle, Star, Award } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { EMICalculatorForm } from "@/components/forms";
 import { useNavigation } from "@/lib/navigation";
 import { useGSAP } from "@/hooks/useGSAP";
 import { 
@@ -358,6 +359,22 @@ export const Services = (): JSX.Element => {
                 </TabsContent>
               ))}
             </Tabs>
+          </section>
+
+          {/* EMI Calculator Section */}
+          <section className="mb-20">
+            <div className="text-center mb-12">
+              <h2 className="section-title text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+                Financial <span className="text-[#b48b2f]">Planning</span>
+              </h2>
+              <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
+                Calculate your EMI and plan your dream home investment with our instant calculator tailored for Madurai market rates.
+              </p>
+            </div>
+            
+            <div className="max-w-2xl mx-auto">
+              <EMICalculatorForm />
+            </div>
           </section>
 
           {/* Process Section */}

@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MapPin, Phone, Mail, Clock, MessageSquare, Building, Users, Calendar } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
-import { ContactForm, QuickInquiryForm, SiteVisitForm, EMICalculatorForm } from "@/components/forms";
+import { ContactForm, QuickInquiryForm, SiteVisitForm } from "@/components/forms";
 import { useGSAP } from "@/hooks/useGSAP";
 import { 
   animatePageTransition, 
@@ -267,7 +267,7 @@ export const Contact = (): JSX.Element => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
               {/* Quick Inquiry */}
               <div className="contact-form w-full">
                 <QuickInquiryForm 
@@ -282,11 +282,6 @@ export const Contact = (): JSX.Element => {
                   title="Detailed Inquiry"
                   subtitle="Tell us about your project requirements"
                 />
-              </div>
-
-              {/* EMI Calculator */}
-              <div className="contact-form w-full">
-                <EMICalculatorForm className="h-full w-full" />
               </div>
             </div>
           </section>
