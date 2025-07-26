@@ -62,9 +62,9 @@ export const About = (): JSX.Element => {
   const navItems = [
     { name: "Home", path: "/", active: false },
     { name: "About", path: "/about", active: true },
+    { name: "Gallery", path: "/gallery", active: false },
     { name: "Services", path: "/services", active: false },
-    { name: "Contact", path: "/contact", active: false },
-    { name: "Gallery", path: "/gallery", active: false }
+    { name: "Contact", path: "/contact", active: false }
   ];
 
   const milestones = [

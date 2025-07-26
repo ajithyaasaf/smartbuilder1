@@ -62,9 +62,9 @@ export const Services = (): JSX.Element => {
   const navItems = [
     { name: "Home", path: "/", active: false },
     { name: "About", path: "/about", active: false },
+    { name: "Gallery", path: "/gallery", active: false },
     { name: "Services", path: "/services", active: true },
-    { name: "Contact", path: "/contact", active: false },
-    { name: "Gallery", path: "/gallery", active: false }
+    { name: "Contact", path: "/contact", active: false }
   ];
 
   const services = [

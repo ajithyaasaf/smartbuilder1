@@ -60,9 +60,9 @@ export const Gallery = (): JSX.Element => {
   const navItems = [
     { name: "Home", path: "/", active: false },
     { name: "About", path: "/about", active: false },
+    { name: "Gallery", path: "/gallery", active: true },
     { name: "Services", path: "/services", active: false },
-    { name: "Contact", path: "/contact", active: false },
-    { name: "Gallery", path: "/gallery", active: true }
+    { name: "Contact", path: "/contact", active: false }
   ];
 
   const galleryItems = [

@@ -59,9 +59,9 @@ export const Contact = (): JSX.Element => {
   const navItems = [
     { name: "Home", path: "/", active: false },
     { name: "About", path: "/about", active: false },
+    { name: "Gallery", path: "/gallery", active: false },
     { name: "Services", path: "/services", active: false },
-    { name: "Contact", path: "/contact", active: true },
-    { name: "Gallery", path: "/gallery", active: false }
+    { name: "Contact", path: "/contact", active: true }
   ];
 
   const contactInfo = [
