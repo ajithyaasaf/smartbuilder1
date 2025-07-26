@@ -4,6 +4,13 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { storage } from "./storage";
 
+// Extend session type to include our custom properties
+declare module "express-session" {
+  interface SessionData {
+    counted?: boolean;
+  }
+}
+
 const app = express();
 
 // Performance optimization middleware - compression and caching headers
