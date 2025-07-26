@@ -349,9 +349,6 @@ export const Gallery = (): JSX.Element => {
               <h2 className="text-2xl lg:text-3xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
                 Our <span className="text-[#b48b2f]">Projects</span>
               </h2>
-              <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
-                Showing {startIndex + 1}-{Math.min(endIndex, totalItems)} of {totalItems} projects
-              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {currentItems.map((item) => (
