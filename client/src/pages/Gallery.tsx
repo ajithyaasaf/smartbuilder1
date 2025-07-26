@@ -645,7 +645,7 @@ export const Gallery = (): JSX.Element => {
                   <Button 
                     onClick={() => navigate('/services')}
                     variant="outline" 
-                    className="border-2 border-white text-white hover:bg-white hover:text-[#b48b2f] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]"
+                    className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#b48b2f] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]"
                   >
                     <Camera className="w-4 h-4 mr-2" />
                     View Our Services
