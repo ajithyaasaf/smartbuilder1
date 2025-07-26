@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MapPin, Phone, Mail, Camera, Play, Award, Users, Calendar, Eye, Download, Share2 } from "lucide-react";
@@ -28,7 +28,8 @@ import {
 
 export const Gallery = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
   const { navigate } = useNavigation();
 
   const containerRef = useGSAP(() => {
@@ -208,17 +209,17 @@ export const Gallery = (): JSX.Element => {
     }
   ];
 
-  const categories = [
-    { id: "all", label: "All Gallery", count: galleryItems.length },
-    { id: "completed", label: "Completed Projects", count: galleryItems.filter(item => item.category === "completed").length },
-    { id: "ongoing", label: "Ongoing Projects", count: galleryItems.filter(item => item.category === "ongoing").length },
-    { id: "process", label: "Construction Process", count: galleryItems.filter(item => item.category === "process").length },
-    { id: "awards", label: "Awards & Events", count: galleryItems.filter(item => item.category === "awards").length }
-  ];
+  // Pagination logic
+  const totalItems = galleryItems.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = galleryItems.slice(startIndex, endIndex);
 
-  const filteredItems = activeCategory === "all" 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === activeCategory);
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const achievements = [
     { number: "50+", label: "Completed Projects", icon: Award },
@@ -340,32 +341,20 @@ export const Gallery = (): JSX.Element => {
             </div>
           </section>
 
-          {/* Gallery Categories */}
-          <section className="mb-12">
-            <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8 h-auto p-1 bg-gray-100 rounded-lg">
-                {categories.map((category) => (
-                  <TabsTrigger 
-                    key={category.id} 
-                    value={category.id}
-                    className="flex flex-col items-center p-4 data-[state=active]:bg-[#b48b2f] data-[state=active]:text-white rounded-md transition-all duration-200"
-                  >
-                    <span className="font-medium [font-family:'Poppins',Helvetica] mb-1">
-                      {category.label}
-                    </span>
-                    <Badge className="bg-white/20 text-xs">
-                      {category.count}
-                    </Badge>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
-          </section>
+
 
           {/* Gallery Grid */}
           <section className="mb-20">
+            <div className="mb-8 text-center">
+              <h2 className="text-2xl lg:text-3xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
+                Our <span className="text-[#b48b2f]">Projects</span>
+              </h2>
+              <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
+                Showing {startIndex + 1}-{Math.min(endIndex, totalItems)} of {totalItems} projects
+              </p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredItems.map((item) => (
+              {currentItems.map((item) => (
                 <Card key={item.id} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group">
                   <div 
                     className="relative h-64 bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105"
@@ -479,6 +468,61 @@ export const Gallery = (): JSX.Element => {
                 </Card>
               ))}
             </div>
+            
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center mt-12 space-x-2">
+                <Button
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                  size="sm"
+                  className="px-3 py-2"
+                >
+                  Previous
+                </Button>
+                
+                <div className="flex space-x-1">
+                  {Array.from({ length: totalPages }, (_, index) => {
+                    const pageNumber = index + 1;
+                    const isCurrentPage = pageNumber === currentPage;
+                    const showPage = 
+                      pageNumber === 1 ||
+                      pageNumber === totalPages ||
+                      (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1);
+                    
+                    if (!showPage) {
+                      if (pageNumber === currentPage - 2 || pageNumber === currentPage + 2) {
+                        return <span key={pageNumber} className="px-2 text-[#6b6b6b]">...</span>;
+                      }
+                      return null;
+                    }
+                    
+                    return (
+                      <Button
+                        key={pageNumber}
+                        onClick={() => goToPage(pageNumber)}
+                        variant={isCurrentPage ? "default" : "outline"}
+                        size="sm"
+                        className={`px-3 py-2 ${isCurrentPage ? "bg-[#b48b2f] hover:bg-[#9d7829]" : ""}`}
+                      >
+                        {pageNumber}
+                      </Button>
+                    );
+                  })}
+                </div>
+                
+                <Button
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  variant="outline"
+                  size="sm"
+                  className="px-3 py-2"
+                >
+                  Next
+                </Button>
+              </div>
+            )}
           </section>
 
           {/* Video Showcase */}
