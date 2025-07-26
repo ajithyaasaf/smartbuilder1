@@ -150,8 +150,6 @@ export const Footer = (): JSX.Element => {
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-300">
             <div>© 2025 Smart Builders & Developers. All rights reserved.</div>
             <div className="hidden md:block">|</div>
-            <div>RERA Reg: TN/04/Building/0123/2023</div>
-            <div className="hidden md:block">|</div>
             <div className="flex items-center space-x-2">
               <Eye className="w-4 h-4 text-[#b48b2f]" />
               <span>
