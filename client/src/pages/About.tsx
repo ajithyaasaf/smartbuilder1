@@ -199,9 +199,7 @@ export const About = (): JSX.Element => {
           {/* Hero Section */}
           <section className="mb-20">
             <div className="text-center mb-16">
-              <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] border-[#b48b2f]/20 font-medium mb-4">
-                22 Years of Excellence
-              </Badge>
+              <Badge className="bg-[#b48b2f]/10 text-[#b48b2f] border-[#b48b2f]/20 font-medium mb-4">25 Years of Excellence</Badge>
               <h1 className="section-title text-4xl sm:text-5xl lg:text-6xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-6">
                 Building <span className="text-[#b48b2f]">Dreams</span> Since 2002
               </h1>
