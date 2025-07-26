@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -254,6 +254,42 @@ export const Gallery = (): JSX.Element => {
     // For now, show an alert. In a real implementation, you'd open a video player
     alert(`Playing video: ${item.title}\n\nThis would open a video player in a real implementation.`);
   };
+
+  const navigateImage = (direction: 'prev' | 'next') => {
+    const currentIndex = currentItems.findIndex(item => item.image === selectedImage);
+    if (currentIndex === -1) return;
+    
+    let newIndex;
+    if (direction === 'prev') {
+      newIndex = currentIndex > 0 ? currentIndex - 1 : currentItems.length - 1;
+    } else {
+      newIndex = currentIndex < currentItems.length - 1 ? currentIndex + 1 : 0;
+    }
+    
+    setSelectedImage(currentItems[newIndex].image);
+  };
+
+  // Keyboard navigation for modal
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (!selectedImage) return;
+      
+      switch (e.key) {
+        case 'Escape':
+          setSelectedImage(null);
+          break;
+        case 'ArrowLeft':
+          navigateImage('prev');
+          break;
+        case 'ArrowRight':
+          navigateImage('next');
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => document.removeEventListener('keydown', handleKeyPress);
+  }, [selectedImage, currentItems]);
 
   const achievements = [
     { number: "50+", label: "Completed Projects", icon: Award },
@@ -638,28 +674,63 @@ export const Gallery = (): JSX.Element => {
       </div>
       <Footer />
       
-      {/* Image Modal/Lightbox */}
+      {/* Image Modal/Lightbox - Responsive */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 xs:p-4 sm:p-6 md:p-8"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-6xl max-h-full">
+          <div className="relative w-full h-full max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl max-h-full flex items-center justify-center">
             <img 
               src={selectedImage} 
               alt="Gallery item" 
-              className="max-w-full max-h-full object-contain rounded-lg"
+              className="w-full h-full max-w-full max-h-full object-contain rounded-lg shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />
             <Button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
+              className="absolute top-2 right-2 xs:top-3 xs:right-3 sm:top-4 sm:right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 xs:p-2 sm:p-2.5 backdrop-blur-sm"
               size="sm"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </Button>
+            
+
+            {/* Previous Image Button */}
+            <div className="absolute inset-y-0 left-2 xs:left-4 flex items-center">
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage('prev');
+                }}
+                className="bg-black/30 hover:bg-black/50 text-white rounded-full p-1.5 xs:p-2 sm:p-3 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
+                size="sm"
+                title="Previous image"
+              >
+                <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </Button>
+            </div>
+            
+            {/* Next Image Button */}
+            <div className="absolute inset-y-0 right-2 xs:right-4 flex items-center">
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage('next');
+                }}
+                className="bg-black/30 hover:bg-black/50 text-white rounded-full p-1.5 xs:p-2 sm:p-3 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
+                size="sm"
+                title="Next image"
+              >
+                <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Button>
+            </div>
           </div>
         </div>
       )}
