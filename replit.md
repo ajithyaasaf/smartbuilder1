@@ -177,6 +177,8 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 26, 2025: Successfully completed migration from Replit Agent to standard Replit environment with full compatibility and security enhancements
+- January 26, 2025: Removed daily visits counter from Footer component per user request
 - January 26, 2025: Changed NewsletterForm label text color to white for better visibility on dark backgrounds
 - January 26, 2025: Added logo to footer with white background container for visibility on dark background - maintains brand consistency between header and footer
 - January 26, 2025: Added navigation functionality to "Learn More" buttons in Home page "Our Specialties" section - now directs users to Services page for detailed service information

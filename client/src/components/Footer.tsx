@@ -157,11 +157,6 @@ export const Footer = (): JSX.Element => {
               <span>
                 Site Visits: {loading ? '...' : counter?.totalVisits?.toLocaleString('en-IN') || '0'}
               </span>
-              {counter?.dailyVisits !== undefined && (
-                <span className="text-xs text-gray-400 ml-2">
-                  (Today: {counter.dailyVisits})
-                </span>
-              )}
             </div>
           </div>
           <div className="flex space-x-6 text-sm">
