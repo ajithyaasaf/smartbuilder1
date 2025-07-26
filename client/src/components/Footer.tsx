@@ -57,9 +57,7 @@ export const Footer = (): JSX.Element => {
                 <div className="text-sm text-gray-300">& Developers</div>
               </div>
             </div>
-            <p className="text-gray-300 text-sm [font-family:'Poppins',Helvetica] leading-6">
-              Building dreams and creating lifestyles with 22+ years of excellence in construction and development across Madurai.
-            </p>
+            <p className="text-gray-300 text-sm [font-family:'Poppins',Helvetica] leading-6">Building dreams and creating lifestyles with 25+ years of excellence in construction and development across Madurai.</p>
             <div className="space-y-2">
               <div className="flex items-center text-sm text-gray-300">
                 <MapPin className="w-4 h-4 mr-2 text-[#b48b2f]" />
