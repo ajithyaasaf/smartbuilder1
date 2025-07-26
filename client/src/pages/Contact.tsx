@@ -110,16 +110,13 @@ export const Contact = (): JSX.Element => {
         "23/72, Ramnagar, 3rd Street, Bypass Rd",
         "S S Colony, Madurai, Tamil Nadu 625016",
       ],
-      desc: "Mon-Sat: 9AM-6PM, Sun: 10AM-4PM",
+      desc: "Mon-Sat: 9AM-6PM",
       color: "text-purple-600",
     },
     {
       icon: Clock,
       title: "Working Hours",
-      details: [
-        "Monday - Saturday: 9:00 AM - 6:00 PM",
-        "Sunday: 10:00 AM - 4:00 PM",
-      ],
+      details: ["Monday - Saturday: 9:00 AM - 6:00 PM", ""],
       desc: "Extended hours during project phases",
       color: "text-orange-600",
     },
