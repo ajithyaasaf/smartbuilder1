@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useVisitCounter } from "@/hooks/useVisitCounter";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -89,10 +89,8 @@ export const Admin = (): JSX.Element => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
-  const [resetingVisits, setResetingVisits] = useState(false);
   const [viewingSubmission, setViewingSubmission] = useState<FormSubmission | null>(null);
   const { toast } = useToast();
-  const { counter: visitCounter, refetch: refetchVisits } = useVisitCounter(10000);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -281,43 +279,7 @@ export const Admin = (): JSX.Element => {
     }
   };
 
-  const handleResetVisits = async (resetTo?: number, reason?: string) => {
-    setResetingVisits(true);
-    try {
-      const response = await fetch("/api/admin/visits/reset", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ 
-          resetTo, 
-          reason,
-          adminUsername: username 
-        }),
-      });
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        await refetchVisits();
-        toast({
-          title: "Visit Counter Reset",
-          description: `Counter reset to ${resetTo || 0}. ${reason || 'Manual reset'}`,
-        });
-      } else {
-        throw new Error(result.message || "Reset failed");
-      }
-    } catch (error) {
-      console.error("Reset error:", error);
-      toast({
-        title: "Reset Failed",
-        description: error instanceof Error ? error.message : "Failed to reset visit counter",
-        variant: "destructive",
-      });
-    } finally {
-      setResetingVisits(false);
-    }
-  };
 
   const formatFormType = (type: string) => {
     const types = {
@@ -565,63 +527,7 @@ export const Admin = (): JSX.Element => {
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <CardHeader className="pb-2 px-3 xs:px-4 sm:px-6 pt-3 xs:pt-4 sm:pt-6">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-sm xs:text-base sm:text-lg font-semibold text-[#313131] leading-tight">
-                  <span className="hidden xs:inline">Site Visits</span>
-                  <span className="xs:hidden">Visits</span>
-                </CardTitle>
-                <Eye className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-[#b48b2f] flex-shrink-0" />
-              </div>
-            </CardHeader>
-            <CardContent className="px-3 xs:px-4 sm:px-6 pb-3 xs:pb-4 sm:pb-6">
-              <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#b48b2f] leading-tight">
-                {visitCounter?.totalVisits?.toLocaleString('en-IN') || '0'}
-              </div>
-              <p className="text-xs xs:text-sm text-[#6b6b6b] mt-1 leading-tight">
-                <span className="hidden sm:inline">Total visits (Today: {visitCounter?.dailyVisits || 0})</span>
-                <span className="sm:hidden">Today: {visitCounter?.dailyVisits || 0}</span>
-              </p>
-              <div className="mt-2 xs:mt-3 flex space-x-1 xs:space-x-2">
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="text-xs px-2 py-1 min-h-[32px] xs:min-h-[36px]"
-                      disabled={resetingVisits}
-                    >
-                      Reset
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Reset Visit Counter</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        This will reset the visit counter. You can set a custom starting number or reset to 0.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => handleResetVisits(0, "Reset to zero")}
-                        className="bg-red-600 hover:bg-red-700"
-                      >
-                        Reset to 0
-                      </AlertDialogAction>
-                      <AlertDialogAction
-                        onClick={() => handleResetVisits(1000, "Set to 1000")}
-                        className="bg-blue-600 hover:bg-blue-700"
-                      >
-                        Set to 1000
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </div>
-            </CardContent>
-          </Card>
+
         </div>
 
         {/* Form Type Breakdown - Enhanced Mobile */}
