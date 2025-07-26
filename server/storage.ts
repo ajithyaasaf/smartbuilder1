@@ -28,7 +28,7 @@ export class MemStorage implements IStorage {
   private formSubmissions: Map<string, FormSubmission>;
   private admin: Admin;
   private usersDir: string;
-  private visitCounter: VisitCounter;
+  private visitCounter!: VisitCounter;
   private visitCounterFile: string;
   private sessionIds: Set<string>;
   currentId: number;
