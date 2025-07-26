@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { MapPin, Phone, Mail, Award, Users, Calendar, Target, Heart, Shield, Star } from "lucide-react";
+import { MapPin, Phone, Mail, Award, Users, Calendar, Target, Heart, Shield, Star, Trophy } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
 import { useGSAP } from "@/hooks/useGSAP";
@@ -293,55 +293,110 @@ export const About = (): JSX.Element => {
             </div>
             
             {team.map((member, index) => (
-              <div key={index} className="max-w-4xl mx-auto">
-                <Card className="overflow-hidden shadow-xl bg-white border-0">
-                  {/* Header Section with Photo and Basic Info */}
-                  <div className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] p-8 lg:p-12 text-white">
-                    <div className="flex flex-col lg:flex-row items-center gap-8">
-                      <div className="flex-shrink-0">
-                        <div 
-                          className="w-32 h-32 lg:w-40 lg:h-40 rounded-full border-4 border-white shadow-lg"
-                          style={{
-                            backgroundImage: `url(${member.image})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center center',
-                            backgroundRepeat: 'no-repeat'
-                          }}
-                        ></div>
-                      </div>
-                      <div className="text-center lg:text-left flex-1">
-                        <h3 className="text-3xl lg:text-4xl font-bold [font-family:'Poppins',Helvetica] mb-2">
+              <div key={index} className="max-w-6xl mx-auto mb-16">
+                {/* Modern Card Layout with Visual Impact */}
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-white">
+                  {/* Decorative Background Elements */}
+                  <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#b48b2f]/5 to-transparent"></div>
+                  <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#b48b2f]/10 rounded-full"></div>
+                  <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#b48b2f]/5 rounded-full"></div>
+                  
+                  <div className="relative z-10 p-8 lg:p-12">
+                    {/* Hero Section - Split Layout */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-12">
+                      {/* Profile Image & Basic Info */}
+                      <div className="lg:col-span-1 text-center">
+                        <div className="relative inline-block mb-6">
+                          <div 
+                            className="w-48 h-48 lg:w-56 lg:h-56 rounded-2xl shadow-xl border-4 border-white"
+                            style={{
+                              backgroundImage: `url(${member.image})`,
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center center',
+                              backgroundRepeat: 'no-repeat'
+                            }}
+                          ></div>
+                          <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-[#b48b2f] rounded-full flex items-center justify-center shadow-lg">
+                            <Star className="w-8 h-8 text-white" />
+                          </div>
+                        </div>
+                        <h3 className="text-2xl lg:text-3xl font-bold [font-family:'Poppins',Helvetica] text-[#313131] mb-2">
                           {member.name}
                         </h3>
-                        <p className="text-xl lg:text-2xl font-semibold mb-3 opacity-90">
+                        <p className="text-lg font-semibold text-[#b48b2f] mb-4">
                           {member.role}
                         </p>
-                        <div className="flex items-center justify-center lg:justify-start gap-2 text-lg">
-                          <Calendar className="w-5 h-5" />
-                          <span>{member.experience}</span>
+                        <div className="inline-flex items-center gap-2 bg-[#b48b2f]/10 px-4 py-2 rounded-full">
+                          <Calendar className="w-4 h-4 text-[#b48b2f]" />
+                          <span className="text-sm font-medium text-[#313131]">{member.experience}</span>
                         </div>
-                        <p className="text-lg mt-2 opacity-90">{member.expertise}</p>
+                      </div>
+
+                      {/* Main Content Area */}
+                      <div className="lg:col-span-2">
+                        {/* Expertise & Vision */}
+                        <div className="mb-8">
+                          <h4 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
+                            Leadership Vision
+                          </h4>
+                          <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-lg leading-relaxed">
+                            {member.expertise}
+                          </p>
+                        </div>
+
+                        {/* Key Achievement Highlight */}
+                        <div className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] p-6 rounded-2xl text-white mb-8">
+                          <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                              <Trophy className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                              <h4 className="text-lg font-bold [font-family:'Poppins',Helvetica] mb-2">
+                                Key Achievement
+                              </h4>
+                              <p className="[font-family:'Poppins',Helvetica] opacity-95">
+                                {member.achievements}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Professional Stats */}
+                        <div className="grid grid-cols-2 gap-6">
+                          <div className="text-center p-4 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-xl">
+                            <Award className="w-8 h-8 text-[#b48b2f] mx-auto mb-2" />
+                            <p className="text-2xl font-bold text-[#313131]">{member.education.length}</p>
+                            <p className="text-sm text-[#6b6b6b] font-medium">Qualifications</p>
+                          </div>
+                          <div className="text-center p-4 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-xl">
+                            <Shield className="w-8 h-8 text-[#b48b2f] mx-auto mb-2" />
+                            <p className="text-2xl font-bold text-[#313131]">{member.memberships.length}</p>
+                            <p className="text-sm text-[#6b6b6b] font-medium">Memberships</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <CardContent className="p-8 lg:p-12">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                      {/* Education Section */}
-                      <div>
-                        <h4 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4 flex items-center">
-                          <Award className="w-5 h-5 mr-2 text-[#b48b2f]" />
-                          Education
-                        </h4>
+                    {/* Detailed Information - Expandable Style */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                      {/* Education - Modern Card Style */}
+                      <div className="bg-gray-50 p-6 rounded-2xl">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-10 h-10 bg-[#b48b2f] rounded-xl flex items-center justify-center">
+                            <Award className="w-5 h-5 text-white" />
+                          </div>
+                          <h4 className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
+                            Education
+                          </h4>
+                        </div>
                         <div className="space-y-3">
                           {member.education.map((edu, eduIndex) => (
-                            <div key={eduIndex} className="flex items-center p-3 bg-gray-50 rounded-lg">
-                              <div className="w-12 h-12 bg-[#b48b2f] rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            <div key={eduIndex} className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-[#b48b2f]/20 rounded-lg flex items-center justify-center text-xs font-bold text-[#b48b2f]">
                                 {edu.year.slice(-2)}
                               </div>
-                              <div>
-                                <p className="font-semibold text-[#313131]">{edu.degree}</p>
-                                <p className="text-sm text-[#6b6b6b]">Completed in {edu.year}</p>
+                              <div className="flex-1">
+                                <p className="font-medium text-[#313131] text-sm">{edu.degree}</p>
                               </div>
                             </div>
                           ))}
@@ -349,51 +404,49 @@ export const About = (): JSX.Element => {
                       </div>
 
                       {/* Professional Memberships */}
-                      <div>
-                        <h4 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4 flex items-center">
-                          <Shield className="w-5 h-5 mr-2 text-[#b48b2f]" />
-                          Professional Memberships
-                        </h4>
+                      <div className="bg-gray-50 p-6 rounded-2xl">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-10 h-10 bg-[#b48b2f] rounded-xl flex items-center justify-center">
+                            <Shield className="w-5 h-5 text-white" />
+                          </div>
+                          <h4 className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
+                            Memberships
+                          </h4>
+                        </div>
                         <div className="space-y-2">
                           {member.memberships.map((membership, memIndex) => (
-                            <div key={memIndex} className="flex items-center p-2">
-                              <div className="w-2 h-2 bg-[#b48b2f] rounded-full mr-3"></div>
-                              <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica]">{membership}</p>
+                            <div key={memIndex} className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 bg-[#b48b2f] rounded-full mt-2 flex-shrink-0"></div>
+                              <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm leading-relaxed">{membership}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Experience Highlights */}
+                      <div className="bg-gray-50 p-6 rounded-2xl">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-10 h-10 bg-[#b48b2f] rounded-xl flex items-center justify-center">
+                            <Target className="w-5 h-5 text-white" />
+                          </div>
+                          <h4 className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
+                            Experience
+                          </h4>
+                        </div>
+                        <div className="space-y-3">
+                          {member.experience_details.slice(0, 3).map((exp, expIndex) => (
+                            <div key={expIndex} className="flex items-start gap-3">
+                              <div className="w-6 h-6 bg-[#b48b2f] rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                                {expIndex + 1}
+                              </div>
+                              <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm leading-relaxed">{exp}</p>
                             </div>
                           ))}
                         </div>
                       </div>
                     </div>
-
-                    {/* Experience Highlights */}
-                    <div className="mt-8">
-                      <h4 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4 flex items-center">
-                        <Target className="w-5 h-5 mr-2 text-[#b48b2f]" />
-                        Experience Highlights
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {member.experience_details.map((exp, expIndex) => (
-                          <div key={expIndex} className="flex items-start p-4 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-lg">
-                            <div className="w-6 h-6 bg-[#b48b2f] rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-0.5 flex-shrink-0">
-                              {expIndex + 1}
-                            </div>
-                            <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm leading-relaxed">{exp}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Key Achievement Banner */}
-                    <div className="mt-8 p-6 bg-gradient-to-r from-[#b48b2f]/10 to-[#b48b2f]/5 rounded-xl border-l-4 border-[#b48b2f]">
-                      <h4 className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
-                        Key Achievement
-                      </h4>
-                      <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] font-medium">
-                        {member.achievements}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </div>
             ))}
           </section>
