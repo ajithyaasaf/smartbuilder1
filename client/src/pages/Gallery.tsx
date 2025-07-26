@@ -477,23 +477,7 @@ export const Gallery = (): JSX.Element => {
                       )}
                     </Badge>
 
-                    {/* Progress for ongoing projects */}
-                    {item.progress && (
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <div className="bg-white/90 rounded-full p-2">
-                          <div className="flex items-center justify-between text-xs text-[#313131] mb-1">
-                            <span>Progress</span>
-                            <span className="font-bold">{item.progress}%</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div 
-                              className="bg-[#b48b2f] h-2 rounded-full transition-all duration-300"
-                              style={{ width: `${item.progress}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+
                   </div>
 
                   <CardContent className="p-6">
