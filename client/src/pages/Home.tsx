@@ -74,7 +74,7 @@ export const Home = (): JSX.Element => {
 
   const stats = [
     { icon: Building, value: "500+", label: "Projects Completed", color: "text-blue-600" },
-    { icon: Users, value: "2000+", label: "Happy Families", color: "text-green-600" },
+    { icon: Users, value: "1000+", label: "Happy Families", color: "text-green-600" },
     { icon: Award, value: "25+", label: "Years Experience", color: "text-purple-600" },
     { icon: Star, value: "4.9", label: "Customer Rating", color: "text-orange-600" },
   ];
