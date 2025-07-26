@@ -177,6 +177,8 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 26, 2025: Made gallery action buttons functional with proper modal implementation for viewing images, share functionality, and download capabilities
+- January 26, 2025: Removed project statistics (units, floors, parking) from all gallery cards for cleaner design
 - January 26, 2025: Removed site visit counter control box from Admin dashboard for cleaner interface focus
 - January 26, 2025: Completely removed category tabs from Gallery page and implemented pagination system (9 projects per page) with Previous/Next navigation and smooth scrolling
 - January 26, 2025: Successfully completed migration from Replit Agent to standard Replit environment with full compatibility and security enhancements

@@ -30,6 +30,7 @@ export const Gallery = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { navigate } = useNavigation();
 
   const containerRef = useGSAP(() => {
@@ -221,6 +222,39 @@ export const Gallery = (): JSX.Element => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleViewImage = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+  };
+
+  const handleShare = (item: any) => {
+    if (navigator.share) {
+      navigator.share({
+        title: item.title,
+        text: item.description,
+        url: window.location.href
+      }).catch(console.error);
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(`${item.title} - ${item.description}\n${window.location.href}`);
+      alert('Project details copied to clipboard!');
+    }
+  };
+
+  const handleDownload = (imageUrl: string, title: string) => {
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = `${title.replace(/\s+/g, '_')}.jpg`;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handlePlayVideo = (item: any) => {
+    // For now, show an alert. In a real implementation, you'd open a video player
+    alert(`Playing video: ${item.title}\n\nThis would open a video player in a real implementation.`);
+  };
+
   const achievements = [
     { number: "50+", label: "Completed Projects", icon: Award },
     { number: "1000+", label: "Happy Families", icon: Users },
@@ -363,12 +397,26 @@ export const Gallery = (): JSX.Element => {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="flex space-x-3">
-                        <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-white/30">
+                        <Button 
+                          size="sm" 
+                          className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleViewImage(item.image);
+                          }}
+                        >
                           <Eye className="w-4 h-4 mr-2" />
                           View
                         </Button>
                         {item.type === "video" && (
-                          <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-white/30">
+                          <Button 
+                            size="sm" 
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handlePlayVideo(item);
+                            }}
+                          >
                             <Play className="w-4 h-4 mr-2" />
                             Play
                           </Button>
@@ -418,10 +466,28 @@ export const Gallery = (): JSX.Element => {
                         {item.title}
                       </CardTitle>
                       <div className="flex space-x-2">
-                        <Button size="sm" variant="ghost" className="p-1">
+                        <Button 
+                          size="sm" 
+                          variant="ghost" 
+                          className="p-1"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleShare(item);
+                          }}
+                          title="Share project"
+                        >
                           <Share2 className="w-4 h-4 text-[#6b6b6b]" />
                         </Button>
-                        <Button size="sm" variant="ghost" className="p-1">
+                        <Button 
+                          size="sm" 
+                          variant="ghost" 
+                          className="p-1"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDownload(item.image, item.title);
+                          }}
+                          title="Download image"
+                        >
                           <Download className="w-4 h-4 text-[#6b6b6b]" />
                         </Button>
                       </div>
@@ -571,6 +637,32 @@ export const Gallery = (): JSX.Element => {
         </div>
       </div>
       <Footer />
+      
+      {/* Image Modal/Lightbox */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-6xl max-h-full">
+            <img 
+              src={selectedImage} 
+              alt="Gallery item" 
+              className="max-w-full max-h-full object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <Button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
+              size="sm"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
