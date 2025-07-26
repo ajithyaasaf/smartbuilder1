@@ -155,10 +155,6 @@ export const Footer = (): JSX.Element => {
               </span>
             </div>
           </div>
-          <div className="flex space-x-6 text-sm">
-            <a href="#" className="text-gray-300 hover:text-[#b48b2f] transition-colors">Privacy Policy</a>
-            <a href="#" className="text-gray-300 hover:text-[#b48b2f] transition-colors">Terms & Conditions</a>
-          </div>
         </div>
 
         {/* CTA Section */}
