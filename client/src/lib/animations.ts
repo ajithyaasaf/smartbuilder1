@@ -149,95 +149,35 @@ export const animateHeroEntrance = () => {
 
 export const animateNavigation = () => {
   try {
-    const tl = gsap.timeline();
-    
-    // Enhanced navigation selectors
-    const logos = findElements([
-      "nav img", 
-      ".nav-logo img",
-      ".w-20, .w-24, .w-32"
-    ]);
-    
-    const brandText = findElements([
-      ".nav-logo div",
-      ".text-xl.font-bold",
-      ".text-2xl.font-bold"
-    ]);
-    
+    // Only keep hover effects for nav items - no entrance animations
     const navItems = findElements([
       "nav a",
       ".nav-item a",
       "[class*='NavigationMenuLink']"
     ]);
 
-    // Logo entrance with smooth animation
-    if (logos.length > 0) {
-      const logoAnimation = safeAnimate(logos, 
-        { x: -40, opacity: 0, scale: 0.8 },
-        { 
-          x: 0, 
-          opacity: 1,
-          scale: 1,
-          duration: 0.8, 
-          ease: "power2.out" 
-        }
-      );
-      if (logoAnimation) tl.add(logoAnimation);
-    }
-
-    // Brand text reveal
-    if (brandText.length > 0) {
-      const brandAnimation = safeAnimate(brandText, 
-        { x: -20, opacity: 0 },
-        { 
-          x: 0, 
-          opacity: 1, 
-          duration: 0.6, 
-          ease: "power2.out",
-          stagger: 0.05 
-        }
-      );
-      if (brandAnimation) tl.add(brandAnimation, "-=0.4");
-    }
-    
-    // Navigation items with stagger
-    if (navItems.length > 0) {
-      const navAnimation = safeAnimate(navItems, 
-        { y: -20, opacity: 0 },
-        { 
-          y: 0, 
-          opacity: 1,
-          duration: 0.5, 
-          ease: "power2.out",
-          stagger: 0.08,
-          delay: 0.2
-        }
-      );
-      if (navAnimation) tl.add(navAnimation);
-
-      // Add smooth hover animations for nav items
-      navItems.forEach(item => {
-        if (item && typeof item.addEventListener === 'function') {
-          item.addEventListener('mouseenter', () => {
-            gsap.to(item, {
-              y: -2,
-              scale: 1.02,
-              duration: 0.2,
-              ease: "power1.out"
-            });
+    // Add smooth hover animations for nav items only
+    navItems.forEach(item => {
+      if (item && typeof item.addEventListener === 'function') {
+        item.addEventListener('mouseenter', () => {
+          gsap.to(item, {
+            y: -2,
+            scale: 1.02,
+            duration: 0.2,
+            ease: "power1.out"
           });
+        });
 
-          item.addEventListener('mouseleave', () => {
-            gsap.to(item, {
-              y: 0,
-              scale: 1,
-              duration: 0.2,
-              ease: "power1.out"
-            });
+        item.addEventListener('mouseleave', () => {
+          gsap.to(item, {
+            y: 0,
+            scale: 1,
+            duration: 0.2,
+            ease: "power1.out"
           });
-        }
-      });
-    }
+        });
+      }
+    });
 
   } catch (error) {
     console.debug("Navigation animation error:", error);
@@ -438,21 +378,8 @@ export const setupButtonHoverAnimations = () => {
 };
 
 export const animatePageTransition = () => {
-  try {
-    const pageElements = findElements([
-      "header",
-      "main"
-    ]);
-    
-    if (pageElements.length > 0) {
-      safeAnimate(pageElements, 
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", stagger: 0.05 }
-      );
-    }
-  } catch (error) {
-    console.debug("Page transition error:", error);
-  }
+  // Disabled for instant page transitions - no animation delays
+  return;
 };
 
 export const animateFloatingElements = () => {

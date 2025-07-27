@@ -36,25 +36,23 @@ export const Services = (): JSX.Element => {
       // Initialize mobile optimizations first
       initMobileOptimizations();
       
-      setTimeout(() => {
-        // Core page animations
-        animatePageTransition();
-        animateNavigation();
-        animateTextReveal(".section-title");
-        
-        // Enhanced service-specific animations
-        animateImageReveal();
-        animateStaggeredCards();
-        animateServiceTabs();
-        animateBackgroundParallax();
-        animateScrollIndicator();
-        
-        // Interactive elements
-        setupButtonHoverAnimations();
-        animateFloatingElements();
-        setupParallaxImages();
-        animateCardsOnScroll(".overflow-hidden");
-      }, 100);
+      // Instant execution - no delays
+      animatePageTransition();
+      animateNavigation();
+      animateTextReveal(".section-title");
+      
+      // Enhanced service-specific animations
+      animateImageReveal();
+      animateStaggeredCards();
+      animateServiceTabs();
+      animateBackgroundParallax();
+      animateScrollIndicator();
+      
+      // Interactive elements
+      setupButtonHoverAnimations();
+      animateFloatingElements();
+      setupParallaxImages();
+      animateCardsOnScroll(".overflow-hidden");
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

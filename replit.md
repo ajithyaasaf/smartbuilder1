@@ -177,6 +177,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 26, 2025: Removed page transition animations and delays for instant navigation - pages now switch immediately without spinners or shifting effects
 - January 26, 2025: Moved EMI Calculator from Contact page to Services page in dedicated "Financial Planning" section for improved UX - users can now calculate loan affordability directly while viewing services
 - January 26, 2025: Updated navigation order to: Home, About, Gallery, Services, Contact across all pages for better user flow
 - January 26, 2025: Redesigned About page leadership section with modern card layout, removing resume-style appearance for more visual impact and engagement

@@ -41,18 +41,16 @@ export const Home = (): JSX.Element => {
       // Initialize mobile optimizations first
       initMobileOptimizations();
       
-      setTimeout(() => {
-        // Ultra-simple animations like Services page
-        animateHeroEntrance();
-        animateNavigation();
-        
-        // Only essential smooth effects
-        animateImageReveal();
-        animateStaggeredCards();
-        
-        // Essential interactions
-        setupButtonHoverAnimations();
-      }, 50);
+      // Instant execution - no delays
+      animateHeroEntrance();
+      animateNavigation();
+      
+      // Only essential smooth effects
+      animateImageReveal();
+      animateStaggeredCards();
+      
+      // Essential interactions
+      setupButtonHoverAnimations();
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

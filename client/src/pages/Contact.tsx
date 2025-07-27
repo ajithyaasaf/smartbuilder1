@@ -57,24 +57,22 @@ export const Contact = (): JSX.Element => {
       // Initialize mobile optimizations first
       initMobileOptimizations();
 
-      setTimeout(() => {
-        // Core page animations
-        animatePageTransition();
-        animateNavigation();
+      // Instant execution - no delays
+      animatePageTransition();
+      animateNavigation();
 
-        // Contact-specific animations
-        animateFormEntrance(".contact-form");
-        animateImageReveal();
-        animateStaggeredCards();
-        animateBackgroundParallax();
-        animateScrollIndicator();
+      // Contact-specific animations
+      animateFormEntrance(".contact-form");
+      animateImageReveal();
+      animateStaggeredCards();
+      animateBackgroundParallax();
+      animateScrollIndicator();
 
-        // Interactive elements
-        setupButtonHoverAnimations();
-        animateFloatingElements();
-        setupParallaxImages();
-        animateCardsOnScroll(".overflow-hidden");
-      }, 100);
+      // Interactive elements
+      setupButtonHoverAnimations();
+      animateFloatingElements();
+      setupParallaxImages();
+      animateCardsOnScroll(".overflow-hidden");
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

@@ -38,20 +38,18 @@ export const Gallery = (): JSX.Element => {
       // Initialize mobile optimizations first
       initMobileOptimizations();
       
-      setTimeout(() => {
-        // Core page animations
-        animatePageTransition();
-        animateNavigation();
-        animateTextReveal(".section-title");
-        
-        // Smooth gallery animations only
-        animateImageReveal();
-        animateStaggeredCards();
-        
-        // Essential interactions
-        setupButtonHoverAnimations();
-        animateCardsOnScroll(".overflow-hidden");
-      }, 100);
+      // Instant execution - no delays
+      animatePageTransition();
+      animateNavigation();
+      animateTextReveal(".section-title");
+      
+      // Smooth gallery animations only
+      animateImageReveal();
+      animateStaggeredCards();
+      
+      // Essential interactions
+      setupButtonHoverAnimations();
+      animateCardsOnScroll(".overflow-hidden");
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }

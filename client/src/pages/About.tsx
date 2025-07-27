@@ -34,26 +34,24 @@ export const About = (): JSX.Element => {
       // Initialize mobile optimizations first
       initMobileOptimizations();
       
-      setTimeout(() => {
-        // Core page animations
-        animatePageTransition();
-        animateNavigation();
-        animateTextReveal(".section-title");
-        
-        // Enhanced about-specific animations
-        animateTextTypewriter(".text-4xl");
-        animateImageReveal();
-        animateStaggeredCards();
-        animateCounterNumbers();
-        animateBackgroundParallax();
-        animateScrollIndicator();
-        
-        // Interactive elements
-        setupButtonHoverAnimations();
-        animateFloatingElements();
-        setupParallaxImages();
-        animateCardsOnScroll(".overflow-hidden");
-      }, 100);
+      // Instant execution - no delays
+      animatePageTransition();
+      animateNavigation();
+      animateTextReveal(".section-title");
+      
+      // Enhanced about-specific animations
+      animateTextTypewriter(".text-4xl");
+      animateImageReveal();
+      animateStaggeredCards();
+      animateCounterNumbers();
+      animateBackgroundParallax();
+      animateScrollIndicator();
+      
+      // Interactive elements
+      setupButtonHoverAnimations();
+      animateFloatingElements();
+      setupParallaxImages();
+      animateCardsOnScroll(".overflow-hidden");
     } catch (error) {
       console.debug("Animation initialization error:", error);
     }
