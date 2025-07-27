@@ -137,7 +137,6 @@ export const Home = (): JSX.Element => {
         canonicalUrl="https://smartbuilders.replit.app/"
         schema={getOrganizationSchema()}
       />
-      
       <div className="bg-white overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative page-content">
           {/* Background decorative elements */}
@@ -280,9 +279,7 @@ export const Home = (): JSX.Element => {
                       <span className="text-[#b48b2f]">Lifestyles</span>
                       <span className="text-[#313131]">.</span>
                     </h1>
-                    <p className="hero-subtext text-base sm:text-lg md:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-6 sm:leading-7 md:leading-8 max-w-full sm:max-w-lg lg:max-w-xl">
-                      Premium residential projects in Madurai with 22+ years of excellence in construction and development.
-                    </p>
+                    <p className="hero-subtext text-base sm:text-lg md:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-6 sm:leading-7 md:leading-8 max-w-full sm:max-w-lg lg:max-w-xl">Premium residential projects in Madurai with 25+ years of excellence in construction and development.</p>
                   </div>
 
                   {/* CTA Buttons - Enhanced Responsive */}
