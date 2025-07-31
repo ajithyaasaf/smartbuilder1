@@ -432,27 +432,34 @@ export const Services = (): JSX.Element => {
 
                         <div>
                           <Card className="overflow-hidden border-none shadow-lg h-full">
-                            <CardHeader className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] text-white p-4">
-                              <CardTitle className="text-lg font-bold [font-family:'Poppins',Helvetica]">
+                            <CardHeader className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] text-white p-6">
+                              <CardTitle className="text-xl font-bold [font-family:'Poppins',Helvetica] text-center">
                                 What Makes Us Special
                               </CardTitle>
                             </CardHeader>
-                            <CardContent className="p-4">
-                              <div className="grid grid-cols-1 gap-3">
+                            <CardContent className="p-6">
+                              <div className="space-y-4">
                                 {service.features.map((feature, index) => (
                                   <div
                                     key={index}
-                                    className="flex items-center"
+                                    className="flex items-start bg-gray-50 p-4 rounded-lg"
                                   >
-                                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                                    <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm">
+                                    <CheckCircle className="w-5 h-5 text-green-500 mr-4 flex-shrink-0 mt-0.5" />
+                                    <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-base leading-relaxed">
                                       {feature}
                                     </span>
                                   </div>
                                 ))}
                               </div>
-
-
+                              
+                              <div className="mt-6 pt-6 border-t border-gray-200 text-center">
+                                <p className="text-[#b48b2f] font-semibold [font-family:'Poppins',Helvetica] text-lg">
+                                  {service.completedProjects}+ Completed Projects
+                                </p>
+                                <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm mt-1">
+                                  Trusted by families across Madurai
+                                </p>
+                              </div>
                             </CardContent>
                           </Card>
                         </div>
