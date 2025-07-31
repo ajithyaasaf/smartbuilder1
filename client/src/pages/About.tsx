@@ -90,7 +90,7 @@ export const About = (): JSX.Element => {
 
   const milestones = [
     {
-      year: "2002",
+      year: "2000",
       title: "Company Foundation",
       desc: "Smart Builders & Developers established with vision to transform construction standards in Tamil Nadu",
     },
@@ -122,7 +122,7 @@ export const About = (): JSX.Element => {
     {
       year: "2024",
       title: "Market Excellence",
-      desc: "Achieved milestone of 50+ completed projects serving 1000+ satisfied families",
+      desc: "Achieved milestone of 50+ completed projects serving Many satisfied families",
     },
   ];
 
@@ -293,7 +293,12 @@ export const About = (): JSX.Element => {
                 2000
               </h1>
               <p className="text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-3xl mx-auto leading-relaxed">
-                Smart Builders & Developers has transformed from a small construction firm to become Tamil Nadu's most trusted real estate developer. Our journey of over two decades has been defined by unwavering commitment to quality construction, innovative design solutions, and exceptional customer satisfaction across all our projects.
+                Smart Builders & Developers has transformed from a small
+                construction firm to become Tamil Nadu's most trusted real
+                estate developer. Our journey of over two decades has been
+                defined by unwavering commitment to quality construction,
+                innovative design solutions, and exceptional customer
+                satisfaction across all our projects.
               </p>
             </div>
           </section>
@@ -307,13 +312,27 @@ export const About = (): JSX.Element => {
                 </h2>
                 <div className="space-y-4 text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
                   <p>
-                    Smart Builders & Developers was established in 2002 with a clear mission: to transform the construction landscape of Tamil Nadu through innovative design, superior quality, and unwavering commitment to customer satisfaction. What began as a vision has now become a leading construction company in South India.
+                    Smart Builders & Developers was established in 2000 with a
+                    clear mission: to transform the construction landscape of
+                    Tamil Nadu through innovative design, superior quality, and
+                    unwavering commitment to customer satisfaction. What began
+                    as a vision has now become a leading construction company in
+                    South India.
                   </p>
                   <p>
-                    Our company specializes in residential projects, luxury apartments, independent villas, and mini apartments. With over two decades of experience in the construction industry, we have successfully delivered 50+ premium projects, creating homes for more than 1000+ happy families across Tamil Nadu.
+                    Our company specializes in residential projects, luxury
+                    apartments, independent villas, and mini apartments. With
+                    over two decades of experience in the construction industry,
+                    we have successfully delivered 50+ premium projects,
+                    creating homes for So Many families across Tamil Nadu.
                   </p>
                   <p>
-                    Smart Builders & Developers stands out for our comprehensive approach to construction - from initial planning and design to final delivery and after-sales service. Our expertise extends across structural engineering, project management, and modern construction practices, ensuring every project meets the highest standards of quality and durability.
+                    Smart Builders & Developers stands out for our comprehensive
+                    approach to construction - from initial planning and design
+                    to final delivery and after-sales service. Our expertise
+                    extends across structural engineering, project management,
+                    and modern construction practices, ensuring every project
+                    meets the highest standards of quality and durability.
                   </p>
                 </div>
               </div>
@@ -366,7 +385,7 @@ export const About = (): JSX.Element => {
           </section>
 
           {/* Leadership Team - Founder Profile */}
-          <section className="mb-20">
+          {/* <section className="mb-20">
             <div className="text-center mb-12">
               <h2 className="section-title text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
                 Leadership <span className="text-[#b48b2f]">Team</span>
@@ -561,7 +580,7 @@ export const About = (): JSX.Element => {
                 </div>
               </div>
             ))}
-          </section>
+          </section> */}
 
           {/* What Sets Us Apart */}
           <section className="mb-20">
