@@ -321,10 +321,10 @@ export const Gallery = (): JSX.Element => {
   }, [selectedImage, currentItems]);
 
   const achievements = [
-    { number: "500+", label: "Completed Projects", icon: Award },
-    { number: "1000+", label: "Happy Families", icon: Users },
-    { number: "22+", label: "Years Experience", icon: Calendar },
-    { number: "500K+", label: "Sq.Ft Delivered", icon: Camera },
+    { number: "60+", label: "Completed Projects", icon: Award },
+    { number: "95%", label: "Happy Families", icon: Users },
+    { number: "25+", label: "Years Experience", icon: Calendar },
+    { number: "100K+", label: "Sq.Ft Delivered", icon: Camera },
   ];
 
   return (

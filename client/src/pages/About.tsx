@@ -90,44 +90,39 @@ export const About = (): JSX.Element => {
 
   const milestones = [
     {
-      year: "1996",
-      title: "Education Foundation",
-      desc: "M Rajan completed Diploma in Civil Engineering",
-    },
-    {
-      year: "2000",
-      title: "Advanced Qualification",
-      desc: "Completed Bachelor of Engineering (B.E)",
-    },
-    {
       year: "2002",
       title: "Company Foundation",
-      desc: "Started Smart Builders & Developers with a vision to transform Madurai's skyline",
+      desc: "Smart Builders & Developers established with vision to transform construction standards in Tamil Nadu",
     },
     {
       year: "2005",
-      title: "International Experience",
-      desc: "Worked on high-rise building projects in Sharjah, UAE",
+      title: "International Projects",
+      desc: "Successfully executed high-rise building projects in Sharjah, UAE, gaining valuable international experience",
     },
     {
-      year: "2010",
-      title: "Tamil Nadu Expansion",
-      desc: "Extended operations across Tamil Nadu",
+      year: "2008",
+      title: "Local Market Leadership",
+      desc: "Became recognized as a trusted name in Madurai's residential construction sector",
     },
     {
-      year: "2015",
-      title: "Recognition",
-      desc: "Established memberships with professional engineering bodies",
+      year: "2012",
+      title: "Expanded Operations",
+      desc: "Extended construction services across Tamil Nadu with multiple ongoing projects",
+    },
+    {
+      year: "2016",
+      title: "Technology Integration",
+      desc: "Adopted modern construction practices, structural detailing, and quality management systems",
     },
     {
       year: "2020",
-      title: "Innovation",
-      desc: "Introduced modern construction practices and structural detailing",
+      title: "Diverse Portfolio",
+      desc: "Expanded into luxury apartments, independent villas, and mini apartment developments",
     },
     {
       year: "2024",
-      title: "Excellence",
-      desc: "Delivered 50+ premium projects with 1000+ happy families",
+      title: "Market Excellence",
+      desc: "Achieved milestone of 50+ completed projects serving 1000+ satisfied families",
     },
   ];
 
@@ -298,11 +293,7 @@ export const About = (): JSX.Element => {
                 2000
               </h1>
               <p className="text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-3xl mx-auto leading-relaxed">
-                Founded by M Rajan with his engineering expertise and
-                international experience, our journey from humble beginnings to
-                becoming Madurai's most trusted construction company has been
-                defined by unwavering commitment to quality, innovation, and
-                customer satisfaction.
+                Smart Builders & Developers has transformed from a small construction firm to become Tamil Nadu's most trusted real estate developer. Our journey of over two decades has been defined by unwavering commitment to quality construction, innovative design solutions, and exceptional customer satisfaction across all our projects.
               </p>
             </div>
           </section>
@@ -316,27 +307,13 @@ export const About = (): JSX.Element => {
                 </h2>
                 <div className="space-y-4 text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
                   <p>
-                    Smart Builders & Developers was founded with a simple yet
-                    powerful vision: to create homes that families would cherish
-                    for generations. What started as a small construction firm
-                    has evolved into one of Tamil Nadu's most respected real
-                    estate developers.
+                    Smart Builders & Developers was established in 2002 with a clear mission: to transform the construction landscape of Tamil Nadu through innovative design, superior quality, and unwavering commitment to customer satisfaction. What began as a vision has now become a leading construction company in South India.
                   </p>
                   <p>
-                    Our founder M Rajan, with his Diploma in Civil Engineering
-                    (1996) and B.E degree (2000), combined with 25+ years of
-                    experience including international projects in UAE,
-                    recognized the need for quality housing that combines modern
-                    amenities with traditional values. This philosophy continues
-                    to guide every project we undertake.
+                    Our company specializes in residential projects, luxury apartments, independent villas, and mini apartments. With over two decades of experience in the construction industry, we have successfully delivered 50+ premium projects, creating homes for more than 1000+ happy families across Tamil Nadu.
                   </p>
                   <p>
-                    Over the years, we've proudly completed numerous successful
-                    projects across South India, providing quality homes for
-                    countless families. Each development is a testament to our
-                    unwavering commitment to excellence, sustainability, and the
-                    vision of building communities where people truly feel at
-                    home
+                    Smart Builders & Developers stands out for our comprehensive approach to construction - from initial planning and design to final delivery and after-sales service. Our expertise extends across structural engineering, project management, and modern construction practices, ensuring every project meets the highest standards of quality and durability.
                   </p>
                 </div>
               </div>
