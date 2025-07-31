@@ -96,16 +96,16 @@ export const Services = (): JSX.Element => {
       icon: Home,
       description: "Premium residential complexes with modern amenities",
       features: [
-        "Gated Communities",
-        "24/7 Security",
-        "Power Backup",
-        "Water Supply",
-        "Parking",
-        "Garden Areas",
+        "Premium lifestyle living with world-class amenities",
+        "Secure gated community with 24/7 surveillance",
+        "Uninterrupted power supply and water connection",
+        "Ample parking space and beautiful landscaped gardens",
+        "Family-friendly environment with recreational facilities",
+        "Strategic location with excellent connectivity",
       ],
       projects: ["Green Valley Homes", "Royal Residency", "Paradise Heights"],
-      priceRange: "₹45L - ₹1.2Cr",
-      completedProjects: 25,
+      priceRange: "Contact for Pricing",
+      completedProjects: 5,
       image: "/residential-projects.jpg",
     },
     {
@@ -114,16 +114,16 @@ export const Services = (): JSX.Element => {
       icon: Building,
       description: "Modern apartment complexes with luxury amenities",
       features: [
-        "Swimming Pool",
-        "Gym",
-        "Club House",
-        "Children's Play Area",
-        "Lift",
-        "Intercom",
+        "Luxurious lifestyle with premium amenities and facilities",
+        "State-of-the-art swimming pool and fully equipped gymnasium",
+        "Elegant clubhouse for social gatherings and events",
+        "Dedicated children's play area for safe outdoor activities",
+        "High-speed elevators and modern intercom systems",
+        "Contemporary design with spacious and well-ventilated rooms",
       ],
       projects: ["Sky Gardens", "Elite Towers", "Grand Plaza"],
-      priceRange: "₹35L - ₹85L",
-      completedProjects: 18,
+      priceRange: "Contact for Pricing",
+      completedProjects: 3,
       image: "/luxury-apartments.jpg",
     },
     {
@@ -132,16 +132,16 @@ export const Services = (): JSX.Element => {
       icon: TreePine,
       description: "Luxury independent villas with private gardens",
       features: [
-        "Private Garden",
-        "Car Porch",
-        "Servant Quarter",
-        "Solar Panels",
-        "Rain Water Harvesting",
-        "Modern Kitchen",
+        "Exclusive independent living with complete privacy",
+        "Spacious private gardens and dedicated car parking",
+        "Eco-friendly features including solar panels and rainwater harvesting",
+        "Modern modular kitchen with premium fittings and fixtures",
+        "Additional servant quarters for household convenience",
+        "Customizable interiors to match your personal style",
       ],
       projects: ["Villa Serena", "Royal Villas", "Green Meadows"],
-      priceRange: "₹85L - ₹2.5Cr",
-      completedProjects: 12,
+      priceRange: "Contact for Pricing",
+      completedProjects: 2,
       image: "/independent-villas.jpg",
     },
     {
@@ -150,16 +150,16 @@ export const Services = (): JSX.Element => {
       icon: Users,
       description: "Affordable housing solutions for young professionals",
       features: [
-        "Compact Design",
-        "Modern Amenities",
-        "Easy EMI",
-        "Ready to Move",
-        "Prime Location",
-        "Investment Friendly",
+        "Smart and efficient space utilization for modern living",
+        "Affordable housing solution with premium quality construction",
+        "Flexible EMI options to suit your financial planning",
+        "Ready-to-move-in homes with all essential amenities",
+        "Prime locations with excellent connectivity to IT hubs",
+        "Perfect investment opportunity with high rental potential",
       ],
       projects: ["Smart Homes", "Urban Nest", "City Square"],
-      priceRange: "₹18L - ₹45L",
-      completedProjects: 15,
+      priceRange: "Contact for Pricing",
+      completedProjects: 3,
       image: "/mini-apartments.jpg",
     },
     {
@@ -168,16 +168,16 @@ export const Services = (): JSX.Element => {
       icon: Award,
       description: "Premium land development and promotion services",
       features: [
-        "Clear Title",
-        "DTCP Approved",
-        "Bank Loan",
-        "Basic Infrastructure",
-        "Registration Support",
-        "Investment Guidance",
+        "100% clear title with all legal documentation verified",
+        "DTCP approved layouts with proper infrastructure planning",
+        "Bank loan assistance for hassle-free purchase process",
+        "Basic infrastructure including roads, drainage, and utilities",
+        "Complete registration support and legal guidance",
+        "Expert investment advice for maximum returns",
       ],
       projects: ["Golden Valley", "Metro Lands", "Future City"],
-      priceRange: "₹800/sq ft - ₹2500/sq ft",
-      completedProjects: 8,
+      priceRange: "Contact for Pricing",
+      completedProjects: 2,
       image: "/residential-projects.jpg",
     },
   ];
@@ -434,7 +434,7 @@ export const Services = (): JSX.Element => {
                                 {service.priceRange}
                               </div>
                               <div className="text-sm text-[#6b6b6b]">
-                                Price Range
+                                Pricing Details
                               </div>
                             </div>
                           </div>
@@ -449,7 +449,7 @@ export const Services = (): JSX.Element => {
                           <Card className="overflow-hidden border-none shadow-lg h-full">
                             <CardHeader className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] text-white p-4">
                               <CardTitle className="text-lg font-bold [font-family:'Poppins',Helvetica]">
-                                Key Features
+                                What Makes Us Special
                               </CardTitle>
                             </CardHeader>
                             <CardContent className="p-4">
