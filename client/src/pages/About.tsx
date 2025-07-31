@@ -54,23 +54,16 @@ export const About = (): JSX.Element => {
 
   const containerRef = useGSAP(() => {
     try {
-      // Initialize mobile optimizations first
       initMobileOptimizations();
-
-      // Instant execution - no delays
       animatePageTransition();
       animateNavigation();
       animateTextReveal(".section-title");
-
-      // Enhanced about-specific animations
       animateTextTypewriter(".text-4xl");
       animateImageReveal();
       animateStaggeredCards();
       animateCounterNumbers();
       animateBackgroundParallax();
       animateScrollIndicator();
-
-      // Interactive elements
       setupButtonHoverAnimations();
       animateFloatingElements();
       setupParallaxImages();
@@ -385,7 +378,7 @@ export const About = (): JSX.Element => {
           </section>
 
           {/* Leadership Team - Founder Profile */}
-          {/* <section className="mb-20">
+          {/*  <section className="mb-20">
             <div className="text-center mb-12">
               <h2 className="section-title text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
                 Leadership <span className="text-[#b48b2f]">Team</span>
@@ -398,17 +391,17 @@ export const About = (): JSX.Element => {
 
             {team.map((member, index) => (
               <div key={index} className="max-w-6xl mx-auto mb-16">
-                {/* Modern Card Layout with Visual Impact */}
+                 Modern Card Layout with Visual Impact 
                 <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-white">
-                  {/* Decorative Background Elements */}
+                   Decorative Background Elements 
                   <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#b48b2f]/5 to-transparent"></div>
                   <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#b48b2f]/10 rounded-full"></div>
                   <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#b48b2f]/5 rounded-full"></div>
 
                   <div className="relative z-10 p-8 lg:p-12">
-                    {/* Hero Section - Split Layout */}
+                     Hero Section - Split Layout 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-12">
-                      {/* Profile Image & Basic Info */}
+                       Profile Image & Basic Info 
                       <div className="lg:col-span-1 text-center">
                         <div className="relative inline-block mb-6">
                           <div
@@ -438,9 +431,9 @@ export const About = (): JSX.Element => {
                         </div>
                       </div>
 
-                      {/* Main Content Area */}
+                       Main Content Area 
                       <div className="lg:col-span-2">
-                        {/* Expertise & Vision */}
+                         Expertise & Vision 
                         <div className="mb-8">
                           <h4 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
                             Leadership Vision
@@ -450,7 +443,7 @@ export const About = (): JSX.Element => {
                           </p>
                         </div>
 
-                        {/* Key Achievement Highlight */}
+                         Key Achievement Highlight 
                         <div className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] p-6 rounded-2xl text-white mb-8">
                           <div className="flex items-start gap-4">
                             <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -467,7 +460,7 @@ export const About = (): JSX.Element => {
                           </div>
                         </div>
 
-                        {/* Professional Stats */}
+                         Professional Stats 
                         <div className="grid grid-cols-2 gap-6">
                           <div className="text-center p-4 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-xl">
                             <Award className="w-8 h-8 text-[#b48b2f] mx-auto mb-2" />
@@ -491,9 +484,9 @@ export const About = (): JSX.Element => {
                       </div>
                     </div>
 
-                    {/* Detailed Information - Expandable Style */}
+                     Detailed Information - Expandable Style 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                      {/* Education - Modern Card Style */}
+                      Education - Modern Card Style 
                       <div className="bg-gray-50 p-6 rounded-2xl">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-10 h-10 bg-[#b48b2f] rounded-xl flex items-center justify-center">
@@ -522,7 +515,7 @@ export const About = (): JSX.Element => {
                         </div>
                       </div>
 
-                      {/* Professional Memberships */}
+                       Professional Memberships 
                       <div className="bg-gray-50 p-6 rounded-2xl">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-10 h-10 bg-[#b48b2f] rounded-xl flex items-center justify-center">
@@ -547,7 +540,7 @@ export const About = (): JSX.Element => {
                         </div>
                       </div>
 
-                      {/* Experience Highlights */}
+                       Experience Highlights 
                       <div className="bg-gray-50 p-6 rounded-2xl">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-10 h-10 bg-[#b48b2f] rounded-xl flex items-center justify-center">
