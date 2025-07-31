@@ -235,7 +235,7 @@ export const About = (): JSX.Element => {
                 <div className="hidden lg:flex items-center space-x-4">
                   <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
                     <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
-                    Ramnagar, Madurai
+                    SS colony, Madurai
                   </div>
                 </div>
 
@@ -295,7 +295,7 @@ export const About = (): JSX.Element => {
               </Badge>
               <h1 className="section-title text-4xl sm:text-5xl lg:text-6xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-6">
                 Building <span className="text-[#b48b2f]">Dreams</span> Since
-                2002
+                2000
               </h1>
               <p className="text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-3xl mx-auto leading-relaxed">
                 Founded by M Rajan with his engineering expertise and
@@ -594,7 +594,8 @@ export const About = (): JSX.Element => {
                   What Sets <span className="text-[#b48b2f]">Us Apart</span>
                 </h2>
                 <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                  Discover the unique advantages that make Smart Builders your trusted construction partner in Madurai.
+                  Discover the unique advantages that make Smart Builders your
+                  trusted construction partner in Madurai.
                 </p>
               </div>
 
@@ -602,30 +603,36 @@ export const About = (): JSX.Element => {
                 {[
                   {
                     title: "25+ Years Expertise",
-                    description: "Quarter-century of proven construction excellence",
+                    description:
+                      "Quarter-century of proven construction excellence",
                     icon: Trophy,
-                    highlight: "Since 1999"
+                    highlight: "Since 1999",
                   },
                   {
                     title: "100% Quality Assurance",
-                    description: "Every project backed by our quality guarantee",
+                    description:
+                      "Every project backed by our quality guarantee",
                     icon: Shield,
-                    highlight: "Zero Compromise"
+                    highlight: "Zero Compromise",
                   },
                   {
                     title: "On-Time Delivery",
                     description: "Committed to meeting every project deadline",
                     icon: Target,
-                    highlight: "Always Punctual"
+                    highlight: "Always Punctual",
                   },
                   {
                     title: "Customer-First Approach",
-                    description: "Your satisfaction is our ultimate success metric",
+                    description:
+                      "Your satisfaction is our ultimate success metric",
                     icon: Heart,
-                    highlight: "Happy Clients"
+                    highlight: "Happy Clients",
                   },
                 ].map((feature, index) => (
-                  <div key={index} className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+                  <div
+                    key={index}
+                    className="text-center group hover:transform hover:scale-105 transition-all duration-300"
+                  >
                     <div className="w-16 h-16 mx-auto mb-4 bg-[#b48b2f] rounded-full flex items-center justify-center group-hover:bg-[#9d7829] transition-colors">
                       <feature.icon className="w-8 h-8 text-white" />
                     </div>
@@ -635,7 +642,9 @@ export const About = (): JSX.Element => {
                     <p className="text-[#b48b2f] font-semibold mb-2 text-sm">
                       {feature.highlight}
                     </p>
-                    <p className="text-sm text-[#6b6b6b] leading-relaxed">{feature.description}</p>
+                    <p className="text-sm text-[#6b6b6b] leading-relaxed">
+                      {feature.description}
+                    </p>
                   </div>
                 ))}
               </div>

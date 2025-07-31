@@ -269,7 +269,7 @@ export const Services = (): JSX.Element => {
                 <div className="hidden lg:flex items-center space-x-4">
                   <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
                     <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
-                    Ramnagar, Madurai
+                    SS colony, Madurai
                   </div>
                 </div>
 
@@ -451,10 +451,11 @@ export const Services = (): JSX.Element => {
                                   </div>
                                 ))}
                               </div>
-                              
+
                               <div className="mt-6 pt-6 border-t border-gray-200 text-center">
                                 <p className="text-[#b48b2f] font-semibold [font-family:'Poppins',Helvetica] text-lg">
-                                  {service.completedProjects}+ Completed Projects
+                                  {service.completedProjects}+ Completed
+                                  Projects
                                 </p>
                                 <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm mt-1">
                                   Trusted by families across Madurai

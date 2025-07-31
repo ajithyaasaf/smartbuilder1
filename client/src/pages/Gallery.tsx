@@ -1,18 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { MapPin, Phone, Mail, Camera, Play, Award, Users, Calendar, Eye, Download, Share2 } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Camera,
+  Play,
+  Award,
+  Users,
+  Calendar,
+  Eye,
+  Download,
+  Share2,
+} from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useNavigation } from "@/lib/navigation";
 import { useGSAP } from "@/hooks/useGSAP";
-import { 
-  animatePageTransition, 
-  animateNavigation, 
-  animateCardsOnScroll, 
+import {
+  animatePageTransition,
+  animateNavigation,
+  animateCardsOnScroll,
   setupButtonHoverAnimations,
   animateFloatingElements,
   setupParallaxImages,
@@ -23,7 +46,7 @@ import {
   animateBackgroundParallax,
   animateScrollIndicator,
   animateMorphingShapes,
-  initMobileOptimizations
+  initMobileOptimizations,
 } from "@/lib/animations";
 
 export const Gallery = (): JSX.Element => {
@@ -37,16 +60,16 @@ export const Gallery = (): JSX.Element => {
     try {
       // Initialize mobile optimizations first
       initMobileOptimizations();
-      
+
       // Instant execution - no delays
       animatePageTransition();
       animateNavigation();
       animateTextReveal(".section-title");
-      
+
       // Smooth gallery animations only
       animateImageReveal();
       animateStaggeredCards();
-      
+
       // Essential interactions
       setupButtonHoverAnimations();
       animateCardsOnScroll(".overflow-hidden");
@@ -60,7 +83,7 @@ export const Gallery = (): JSX.Element => {
     { name: "About", path: "/about", active: false },
     { name: "Gallery", path: "/gallery", active: true },
     { name: "Services", path: "/services", active: false },
-    { name: "Contact", path: "/contact", active: false }
+    { name: "Contact", path: "/contact", active: false },
   ];
 
   const galleryItems = [
@@ -74,7 +97,7 @@ export const Gallery = (): JSX.Element => {
       location: "Madurai",
       year: "2023",
       image: "/1_1750919638071.jpeg",
-      stats: { units: 120, floors: 15, parking: 200 }
+      stats: { units: 120, floors: 15, parking: 200 },
     },
     {
       id: 2,
@@ -85,7 +108,7 @@ export const Gallery = (): JSX.Element => {
       location: "Madurai",
       year: "2023",
       image: "/2_1750919638075.jpeg",
-      stats: { units: 80, floors: 12, parking: 160 }
+      stats: { units: 80, floors: 12, parking: 160 },
     },
     {
       id: 3,
@@ -96,7 +119,7 @@ export const Gallery = (): JSX.Element => {
       location: "Madurai",
       year: "2022",
       image: "/3_1750919638076.jpeg",
-      stats: { units: 100, floors: 10, parking: 180 }
+      stats: { units: 100, floors: 10, parking: 180 },
     },
     {
       id: 4,
@@ -107,7 +130,7 @@ export const Gallery = (): JSX.Element => {
       location: "Madurai",
       year: "2022",
       image: "/4_1750919638076.jpeg",
-      stats: { units: 90, floors: 8, parking: 150 }
+      stats: { units: 90, floors: 8, parking: 150 },
     },
     {
       id: 5,
@@ -118,7 +141,7 @@ export const Gallery = (): JSX.Element => {
       location: "Madurai",
       year: "2021",
       image: "/5_1750919638077.jpeg",
-      stats: { units: 150, floors: 18, parking: 250 }
+      stats: { units: 150, floors: 18, parking: 250 },
     },
     // Ongoing Projects
     {
@@ -131,7 +154,7 @@ export const Gallery = (): JSX.Element => {
       year: "2024",
       image: "/6_1750919638078.jpeg",
       progress: 75,
-      stats: { units: 140, floors: 16, parking: 220 }
+      stats: { units: 140, floors: 16, parking: 220 },
     },
     {
       id: 7,
@@ -143,7 +166,7 @@ export const Gallery = (): JSX.Element => {
       year: "2024",
       image: "/7_1750919638079.jpeg",
       progress: 60,
-      stats: { units: 180, floors: 20, parking: 300 }
+      stats: { units: 180, floors: 20, parking: 300 },
     },
     {
       id: 8,
@@ -155,7 +178,7 @@ export const Gallery = (): JSX.Element => {
       year: "2024",
       image: "/8_1750919638079.jpeg",
       progress: 45,
-      stats: { units: 110, floors: 12, parking: 200 }
+      stats: { units: 110, floors: 12, parking: 200 },
     },
     // Construction Process
     {
@@ -165,7 +188,7 @@ export const Gallery = (): JSX.Element => {
       type: "image",
       description: "Deep foundation work using advanced technology",
       location: "Construction Site",
-      image: "/9_1750919638080.jpeg"
+      image: "/9_1750919638080.jpeg",
     },
     {
       id: 10,
@@ -174,7 +197,7 @@ export const Gallery = (): JSX.Element => {
       type: "image",
       description: "High-quality concrete and steel construction",
       location: "Construction Site",
-      image: "/10_1750919638081.jpeg"
+      image: "/10_1750919638081.jpeg",
     },
     {
       id: 11,
@@ -183,7 +206,7 @@ export const Gallery = (): JSX.Element => {
       type: "image",
       description: "Attention to detail in interior finishing",
       location: "Construction Site",
-      image: "/11_1750919638082.jpeg"
+      image: "/11_1750919638082.jpeg",
     },
     // Awards & Recognition
     {
@@ -194,7 +217,7 @@ export const Gallery = (): JSX.Element => {
       description: "Recognition for outstanding construction quality",
       location: "Madurai",
       year: "2023",
-      image: "/12_1750919638083.jpeg"
+      image: "/12_1750919638083.jpeg",
     },
     {
       id: 13,
@@ -204,8 +227,8 @@ export const Gallery = (): JSX.Element => {
       description: "Celebration of successful project completion",
       location: "Madurai",
       year: "2023",
-      image: "/13_1750919638083.jpeg"
-    }
+      image: "/13_1750919638083.jpeg",
+    },
   ];
 
   // Pagination logic
@@ -217,7 +240,7 @@ export const Gallery = (): JSX.Element => {
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleViewImage = (imageUrl: string) => {
@@ -226,23 +249,27 @@ export const Gallery = (): JSX.Element => {
 
   const handleShare = (item: any) => {
     if (navigator.share) {
-      navigator.share({
-        title: item.title,
-        text: item.description,
-        url: window.location.href
-      }).catch(console.error);
+      navigator
+        .share({
+          title: item.title,
+          text: item.description,
+          url: window.location.href,
+        })
+        .catch(console.error);
     } else {
       // Fallback: copy to clipboard
-      navigator.clipboard.writeText(`${item.title} - ${item.description}\n${window.location.href}`);
-      alert('Project details copied to clipboard!');
+      navigator.clipboard.writeText(
+        `${item.title} - ${item.description}\n${window.location.href}`,
+      );
+      alert("Project details copied to clipboard!");
     }
   };
 
   const handleDownload = (imageUrl: string, title: string) => {
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = imageUrl;
-    link.download = `${title.replace(/\s+/g, '_')}.jpg`;
-    link.target = '_blank';
+    link.download = `${title.replace(/\s+/g, "_")}.jpg`;
+    link.target = "_blank";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -250,20 +277,24 @@ export const Gallery = (): JSX.Element => {
 
   const handlePlayVideo = (item: any) => {
     // For now, show an alert. In a real implementation, you'd open a video player
-    alert(`Playing video: ${item.title}\n\nThis would open a video player in a real implementation.`);
+    alert(
+      `Playing video: ${item.title}\n\nThis would open a video player in a real implementation.`,
+    );
   };
 
-  const navigateImage = (direction: 'prev' | 'next') => {
-    const currentIndex = currentItems.findIndex(item => item.image === selectedImage);
+  const navigateImage = (direction: "prev" | "next") => {
+    const currentIndex = currentItems.findIndex(
+      (item) => item.image === selectedImage,
+    );
     if (currentIndex === -1) return;
-    
+
     let newIndex;
-    if (direction === 'prev') {
+    if (direction === "prev") {
       newIndex = currentIndex > 0 ? currentIndex - 1 : currentItems.length - 1;
     } else {
       newIndex = currentIndex < currentItems.length - 1 ? currentIndex + 1 : 0;
     }
-    
+
     setSelectedImage(currentItems[newIndex].image);
   };
 
@@ -271,29 +302,29 @@ export const Gallery = (): JSX.Element => {
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (!selectedImage) return;
-      
+
       switch (e.key) {
-        case 'Escape':
+        case "Escape":
           setSelectedImage(null);
           break;
-        case 'ArrowLeft':
-          navigateImage('prev');
+        case "ArrowLeft":
+          navigateImage("prev");
           break;
-        case 'ArrowRight':
-          navigateImage('next');
+        case "ArrowRight":
+          navigateImage("next");
           break;
       }
     };
 
-    document.addEventListener('keydown', handleKeyPress);
-    return () => document.removeEventListener('keydown', handleKeyPress);
+    document.addEventListener("keydown", handleKeyPress);
+    return () => document.removeEventListener("keydown", handleKeyPress);
   }, [selectedImage, currentItems]);
 
   const achievements = [
     { number: "500+", label: "Completed Projects", icon: Award },
     { number: "1000+", label: "Happy Families", icon: Users },
     { number: "22+", label: "Years Experience", icon: Calendar },
-    { number: "500K+", label: "Sq.Ft Delivered", icon: Camera }
+    { number: "500K+", label: "Sq.Ft Delivered", icon: Camera },
   ];
 
   return (
@@ -305,9 +336,9 @@ export const Gallery = (): JSX.Element => {
             <div className="relative">
               <nav className="flex items-center justify-between py-3 xs:py-4 mb-6 sm:mb-8 lg:mb-12 xl:mb-16">
                 <div className="nav-logo flex items-center space-x-3">
-                  <img 
-                    src="/logo.jpg" 
-                    alt="Smart Builders Logo" 
+                  <img
+                    src="/logo.jpg"
+                    alt="Smart Builders Logo"
                     className="w-20 h-12 sm:w-24 sm:h-16 lg:w-32 lg:h-20 object-contain"
                   />
                   <div className="hidden sm:block">
@@ -319,7 +350,7 @@ export const Gallery = (): JSX.Element => {
                     </div>
                   </div>
                 </div>
-                
+
                 <NavigationMenu className="hidden lg:flex">
                   <NavigationMenuList className="flex gap-6 xl:gap-8">
                     {navItems.map((item, index) => (
@@ -342,15 +373,32 @@ export const Gallery = (): JSX.Element => {
                 <div className="hidden lg:flex items-center space-x-4">
                   <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
                     <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
-                    Ramnagar, Madurai
+                    SS colony, Madurai
                   </div>
                 </div>
 
-                <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <Sheet
+                  open={isMobileMenuOpen}
+                  onOpenChange={setIsMobileMenuOpen}
+                >
                   <SheetTrigger asChild>
-                    <Button variant="ghost" className="lg:hidden p-2" aria-label="Toggle menu">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    <Button
+                      variant="ghost"
+                      className="lg:hidden p-2"
+                      aria-label="Toggle menu"
+                    >
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 6h16M4 12h16M4 18h16"
+                        />
                       </svg>
                     </Button>
                   </SheetTrigger>
@@ -386,15 +434,19 @@ export const Gallery = (): JSX.Element => {
                 Our Work <span className="text-[#b48b2f]">Gallery</span>
               </h1>
               <p className="text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-3xl mx-auto leading-relaxed">
-                Explore our portfolio of completed projects, ongoing developments, and construction excellence. 
-                Each image tells a story of quality, innovation, and satisfied customers.
+                Explore our portfolio of completed projects, ongoing
+                developments, and construction excellence. Each image tells a
+                story of quality, innovation, and satisfied customers.
               </p>
             </div>
 
             {/* Achievement Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
               {achievements.map((achievement, index) => (
-                <Card key={index} className="text-center p-6 border-none bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10">
+                <Card
+                  key={index}
+                  className="text-center p-6 border-none bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10"
+                >
                   <CardContent className="p-0">
                     <achievement.icon className="w-8 h-8 mx-auto mb-4 text-[#b48b2f]" />
                     <div className="text-2xl lg:text-3xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-2">
@@ -409,8 +461,6 @@ export const Gallery = (): JSX.Element => {
             </div>
           </section>
 
-
-
           {/* Gallery Grid */}
           <section className="mb-20">
             <div className="mb-8 text-center">
@@ -420,19 +470,21 @@ export const Gallery = (): JSX.Element => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {currentItems.map((item) => (
-                <Card key={item.id} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group">
-                  <div 
+                <Card
+                  key={item.id}
+                  className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group"
+                >
+                  <div
                     className="relative h-64 bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105"
                     style={{
-                      backgroundImage: `url(${item.image})`
+                      backgroundImage: `url(${item.image})`,
                     }}
                   >
-                    
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="flex space-x-3">
-                        <Button 
-                          size="sm" 
+                        <Button
+                          size="sm"
                           className="bg-white/20 hover:bg-white/30 text-white border-white/30"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -443,8 +495,8 @@ export const Gallery = (): JSX.Element => {
                           View
                         </Button>
                         {item.type === "video" && (
-                          <Button 
-                            size="sm" 
+                          <Button
+                            size="sm"
                             className="bg-white/20 hover:bg-white/30 text-white border-white/30"
                             onClick={(e) => {
                               e.stopPropagation();
@@ -459,9 +511,11 @@ export const Gallery = (): JSX.Element => {
                     </div>
 
                     {/* Type Badge */}
-                    <Badge className={`absolute top-4 left-4 ${
-                      item.type === "video" ? "bg-red-500" : "bg-[#b48b2f]"
-                    } text-white`}>
+                    <Badge
+                      className={`absolute top-4 left-4 ${
+                        item.type === "video" ? "bg-red-500" : "bg-[#b48b2f]"
+                      } text-white`}
+                    >
                       {item.type === "video" ? (
                         <>
                           <Play className="w-3 h-3 mr-1" />
@@ -474,8 +528,6 @@ export const Gallery = (): JSX.Element => {
                         </>
                       )}
                     </Badge>
-
-
                   </div>
 
                   <CardContent className="p-6">
@@ -484,9 +536,9 @@ export const Gallery = (): JSX.Element => {
                         {item.title}
                       </CardTitle>
                       <div className="flex space-x-2">
-                        <Button 
-                          size="sm" 
-                          variant="ghost" 
+                        <Button
+                          size="sm"
+                          variant="ghost"
                           className="p-1"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -496,9 +548,9 @@ export const Gallery = (): JSX.Element => {
                         >
                           <Share2 className="w-4 h-4 text-[#6b6b6b]" />
                         </Button>
-                        <Button 
-                          size="sm" 
-                          variant="ghost" 
+                        <Button
+                          size="sm"
+                          variant="ghost"
                           className="p-1"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -510,7 +562,7 @@ export const Gallery = (): JSX.Element => {
                         </Button>
                       </div>
                     </div>
-                    
+
                     <CardDescription className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] mb-4">
                       {item.description}
                     </CardDescription>
@@ -527,13 +579,11 @@ export const Gallery = (): JSX.Element => {
                         </div>
                       )}
                     </div>
-
-
                   </CardContent>
                 </Card>
               ))}
             </div>
-            
+
             {/* Pagination Controls */}
             {totalPages > 1 && (
               <div className="flex justify-center items-center mt-12 space-x-2">
@@ -546,23 +596,34 @@ export const Gallery = (): JSX.Element => {
                 >
                   Previous
                 </Button>
-                
+
                 <div className="flex space-x-1">
                   {Array.from({ length: totalPages }, (_, index) => {
                     const pageNumber = index + 1;
                     const isCurrentPage = pageNumber === currentPage;
-                    const showPage = 
+                    const showPage =
                       pageNumber === 1 ||
                       pageNumber === totalPages ||
-                      (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1);
-                    
+                      (pageNumber >= currentPage - 1 &&
+                        pageNumber <= currentPage + 1);
+
                     if (!showPage) {
-                      if (pageNumber === currentPage - 2 || pageNumber === currentPage + 2) {
-                        return <span key={pageNumber} className="px-2 text-[#6b6b6b]">...</span>;
+                      if (
+                        pageNumber === currentPage - 2 ||
+                        pageNumber === currentPage + 2
+                      ) {
+                        return (
+                          <span
+                            key={pageNumber}
+                            className="px-2 text-[#6b6b6b]"
+                          >
+                            ...
+                          </span>
+                        );
                       }
                       return null;
                     }
-                    
+
                     return (
                       <Button
                         key={pageNumber}
@@ -576,7 +637,7 @@ export const Gallery = (): JSX.Element => {
                     );
                   })}
                 </div>
-                
+
                 <Button
                   onClick={() => goToPage(currentPage + 1)}
                   disabled={currentPage === totalPages}
@@ -630,19 +691,20 @@ export const Gallery = (): JSX.Element => {
                   Want to See More?
                 </h2>
                 <p className="text-lg [font-family:'Poppins',Helvetica] mb-8 opacity-90 max-w-2xl mx-auto">
-                  Schedule a visit to our ongoing projects or completed properties to experience our quality firsthand.
+                  Schedule a visit to our ongoing projects or completed
+                  properties to experience our quality firsthand.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    onClick={() => navigate('/contact')}
+                  <Button
+                    onClick={() => navigate("/contact")}
                     className="bg-white text-[#b48b2f] hover:bg-gray-100 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]"
                   >
                     <Phone className="w-4 h-4 mr-2" />
                     Schedule Site Visit
                   </Button>
-                  <Button 
-                    onClick={() => navigate('/services')}
-                    variant="outline" 
+                  <Button
+                    onClick={() => navigate("/services")}
+                    variant="outline"
                     className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#b48b2f] rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]"
                   >
                     <Camera className="w-4 h-4 mr-2" />
@@ -655,17 +717,17 @@ export const Gallery = (): JSX.Element => {
         </div>
       </div>
       <Footer />
-      
+
       {/* Image Modal/Lightbox - Responsive */}
       {selectedImage && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 xs:p-4 sm:p-6 md:p-8"
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative w-full h-full max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl max-h-full flex items-center justify-center">
-            <img 
-              src={selectedImage} 
-              alt="Gallery item" 
+            <img
+              src={selectedImage}
+              alt="Gallery item"
               className="w-full h-full max-w-full max-h-full object-contain rounded-lg shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />
@@ -674,42 +736,71 @@ export const Gallery = (): JSX.Element => {
               className="absolute top-2 right-2 xs:top-3 xs:right-3 sm:top-4 sm:right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 xs:p-2 sm:p-2.5 backdrop-blur-sm"
               size="sm"
             >
-              <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </Button>
-            
 
             {/* Previous Image Button */}
             <div className="absolute inset-y-0 left-2 xs:left-4 flex items-center">
               <Button
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigateImage('prev');
+                  navigateImage("prev");
                 }}
                 className="bg-black/30 hover:bg-black/50 text-white rounded-full p-1.5 xs:p-2 sm:p-3 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
                 size="sm"
                 title="Previous image"
               >
-                <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </Button>
             </div>
-            
+
             {/* Next Image Button */}
             <div className="absolute inset-y-0 right-2 xs:right-4 flex items-center">
               <Button
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigateImage('next');
+                  navigateImage("next");
                 }}
                 className="bg-black/30 hover:bg-black/50 text-white rounded-full p-1.5 xs:p-2 sm:p-3 backdrop-blur-sm opacity-70 hover:opacity-100 transition-opacity"
                 size="sm"
                 title="Next image"
               >
-                <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </Button>
             </div>
