@@ -97,7 +97,7 @@ export const Services = (): JSX.Element => {
       description: "Premium residential complexes with modern amenities",
       features: [
         "Quality construction with good materials",
-        "Basic security and power backup",
+        "Best security and power backup",
         "Clean surroundings and parking space",
       ],
       projects: ["Green Valley Homes", "Royal Residency", "Paradise Heights"],
@@ -112,7 +112,7 @@ export const Services = (): JSX.Element => {
       description: "Modern apartment complexes with luxury amenities",
       features: [
         "Well-ventilated rooms with good lighting",
-        "Basic amenities and clean common areas",
+        "Best amenities and clean common areas",
         "Safe environment for families",
       ],
       projects: ["Sky Gardens", "Elite Towers", "Grand Plaza"],
@@ -143,7 +143,7 @@ export const Services = (): JSX.Element => {
       features: [
         "Affordable and budget-friendly homes",
         "Simple EMI payment options",
-        "Good location with basic connectivity",
+        "Good location with best connectivity",
       ],
       projects: ["Smart Homes", "Urban Nest", "City Square"],
       priceRange: "Contact for Pricing",
