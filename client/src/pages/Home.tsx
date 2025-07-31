@@ -232,7 +232,7 @@ export const Home = (): JSX.Element => {
                 <div className="hidden lg:flex items-center space-x-4">
                   <div className="flex items-center text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
                     <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
-                    Ramnagar, Madurai
+                    SS colony, Madurai
                   </div>
                 </div>
 

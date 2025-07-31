@@ -1,19 +1,42 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { MapPin, Phone, Mail, Building, Home, Users, TreePine, ArrowRight, CheckCircle, Star, Award } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Building,
+  Home,
+  Users,
+  TreePine,
+  ArrowRight,
+  CheckCircle,
+  Star,
+  Award,
+} from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { EMICalculatorForm } from "@/components/forms";
 import { useNavigation } from "@/lib/navigation";
 import { useGSAP } from "@/hooks/useGSAP";
-import { 
-  animatePageTransition, 
-  animateNavigation, 
-  animateCardsOnScroll, 
+import {
+  animatePageTransition,
+  animateNavigation,
+  animateCardsOnScroll,
   setupButtonHoverAnimations,
   animateFloatingElements,
   setupParallaxImages,
@@ -23,7 +46,7 @@ import {
   animateServiceTabs,
   animateBackgroundParallax,
   animateScrollIndicator,
-  initMobileOptimizations
+  initMobileOptimizations,
 } from "@/lib/animations";
 
 export const Services = (): JSX.Element => {
@@ -35,19 +58,19 @@ export const Services = (): JSX.Element => {
     try {
       // Initialize mobile optimizations first
       initMobileOptimizations();
-      
+
       // Instant execution - no delays
       animatePageTransition();
       animateNavigation();
       animateTextReveal(".section-title");
-      
+
       // Enhanced service-specific animations
       animateImageReveal();
       animateStaggeredCards();
       animateServiceTabs();
       animateBackgroundParallax();
       animateScrollIndicator();
-      
+
       // Interactive elements
       setupButtonHoverAnimations();
       animateFloatingElements();
@@ -63,7 +86,7 @@ export const Services = (): JSX.Element => {
     { name: "About", path: "/about", active: false },
     { name: "Gallery", path: "/gallery", active: false },
     { name: "Services", path: "/services", active: true },
-    { name: "Contact", path: "/contact", active: false }
+    { name: "Contact", path: "/contact", active: false },
   ];
 
   const services = [
@@ -72,72 +95,147 @@ export const Services = (): JSX.Element => {
       title: "Residential Projects",
       icon: Home,
       description: "Premium residential complexes with modern amenities",
-      features: ["Gated Communities", "24/7 Security", "Power Backup", "Water Supply", "Parking", "Garden Areas"],
+      features: [
+        "Gated Communities",
+        "24/7 Security",
+        "Power Backup",
+        "Water Supply",
+        "Parking",
+        "Garden Areas",
+      ],
       projects: ["Green Valley Homes", "Royal Residency", "Paradise Heights"],
       priceRange: "₹45L - ₹1.2Cr",
       completedProjects: 25,
-      image: "/residential-projects.jpg"
+      image: "/residential-projects.jpg",
     },
     {
       id: "apartments",
       title: "Apartments",
       icon: Building,
       description: "Modern apartment complexes with luxury amenities",
-      features: ["Swimming Pool", "Gym", "Club House", "Children's Play Area", "Lift", "Intercom"],
+      features: [
+        "Swimming Pool",
+        "Gym",
+        "Club House",
+        "Children's Play Area",
+        "Lift",
+        "Intercom",
+      ],
       projects: ["Sky Gardens", "Elite Towers", "Grand Plaza"],
       priceRange: "₹35L - ₹85L",
       completedProjects: 18,
-      image: "/luxury-apartments.jpg"
+      image: "/luxury-apartments.jpg",
     },
     {
       id: "villas",
       title: "Villas",
       icon: TreePine,
       description: "Luxury independent villas with private gardens",
-      features: ["Private Garden", "Car Porch", "Servant Quarter", "Solar Panels", "Rain Water Harvesting", "Modern Kitchen"],
+      features: [
+        "Private Garden",
+        "Car Porch",
+        "Servant Quarter",
+        "Solar Panels",
+        "Rain Water Harvesting",
+        "Modern Kitchen",
+      ],
       projects: ["Villa Serena", "Royal Villas", "Green Meadows"],
       priceRange: "₹85L - ₹2.5Cr",
       completedProjects: 12,
-      image: "/independent-villas.jpg"
+      image: "/independent-villas.jpg",
     },
     {
       id: "mini-apartments",
       title: "Mini Apartments",
       icon: Users,
       description: "Affordable housing solutions for young professionals",
-      features: ["Compact Design", "Modern Amenities", "Easy EMI", "Ready to Move", "Prime Location", "Investment Friendly"],
+      features: [
+        "Compact Design",
+        "Modern Amenities",
+        "Easy EMI",
+        "Ready to Move",
+        "Prime Location",
+        "Investment Friendly",
+      ],
       projects: ["Smart Homes", "Urban Nest", "City Square"],
       priceRange: "₹18L - ₹45L",
       completedProjects: 15,
-      image: "/mini-apartments.jpg"
+      image: "/mini-apartments.jpg",
     },
     {
       id: "land-promotion",
       title: "Land Promoters",
       icon: Award,
       description: "Premium land development and promotion services",
-      features: ["Clear Title", "DTCP Approved", "Bank Loan", "Basic Infrastructure", "Registration Support", "Investment Guidance"],
+      features: [
+        "Clear Title",
+        "DTCP Approved",
+        "Bank Loan",
+        "Basic Infrastructure",
+        "Registration Support",
+        "Investment Guidance",
+      ],
       projects: ["Golden Valley", "Metro Lands", "Future City"],
       priceRange: "₹800/sq ft - ₹2500/sq ft",
       completedProjects: 8,
-      image: "/residential-projects.jpg"
-    }
+      image: "/residential-projects.jpg",
+    },
   ];
 
   const processSteps = [
-    { step: "1", title: "Consultation", desc: "Free initial consultation to understand your requirements" },
-    { step: "2", title: "Site Visit", desc: "Visit and inspect the proposed construction site" },
-    { step: "3", title: "Design", desc: "Custom architectural design based on your preferences" },
-    { step: "4", title: "Approval", desc: "Obtain necessary approvals and permits" },
-    { step: "5", title: "Construction", desc: "Quality construction with regular progress updates" },
-    { step: "6", title: "Handover", desc: "Final inspection and key handover ceremony" }
+    {
+      step: "1",
+      title: "Consultation",
+      desc: "Free initial consultation to understand your requirements",
+    },
+    {
+      step: "2",
+      title: "Site Visit",
+      desc: "Visit and inspect the proposed construction site",
+    },
+    {
+      step: "3",
+      title: "Design",
+      desc: "Custom architectural design based on your preferences",
+    },
+    {
+      step: "4",
+      title: "Approval",
+      desc: "Obtain necessary approvals and permits",
+    },
+    {
+      step: "5",
+      title: "Construction",
+      desc: "Quality construction with regular progress updates",
+    },
+    {
+      step: "6",
+      title: "Handover",
+      desc: "Final inspection and key handover ceremony",
+    },
   ];
 
   const whyChooseUs = [
-    { title: "22+ Years Experience", desc: "Two decades of construction excellence", icon: Award },
-    { title: "1000+ Happy Families", desc: "Delivered dream homes across South India", icon: Users },
-    { title: "Zero Compromise Quality", desc: "Premium materials and skilled craftsmanship", icon: CheckCircle },
-    { title: "Timely Delivery", desc: "On-time project completion guarantee", icon: Star }
+    {
+      title: "25+ Years Experience",
+      desc: "Two decades of construction excellence",
+      icon: Award,
+    },
+    {
+      title: "60+ Happy Families",
+      desc: "Delivered dream homes across South India",
+      icon: Users,
+    },
+    {
+      title: "Zero Compromise Quality",
+      desc: "Premium materials and skilled craftsmanship",
+      icon: CheckCircle,
+    },
+    {
+      title: "Timely Delivery",
+      desc: "On-time project completion guarantee",
+      icon: Star,
+    },
   ];
 
   return (
@@ -149,9 +247,9 @@ export const Services = (): JSX.Element => {
             <div className="relative">
               <nav className="flex items-center justify-between py-3 xs:py-4 mb-6 sm:mb-8 lg:mb-12 xl:mb-16">
                 <div className="nav-logo flex items-center space-x-3">
-                  <img 
-                    src="/logo.jpg" 
-                    alt="Smart Builders Logo" 
+                  <img
+                    src="/logo.jpg"
+                    alt="Smart Builders Logo"
                     className="w-20 h-12 sm:w-24 sm:h-16 lg:w-32 lg:h-20 object-contain"
                   />
                   <div className="hidden sm:block">
@@ -163,7 +261,7 @@ export const Services = (): JSX.Element => {
                     </div>
                   </div>
                 </div>
-                
+
                 <NavigationMenu className="hidden lg:flex">
                   <NavigationMenuList className="flex gap-6 xl:gap-8">
                     {navItems.map((item, index) => (
@@ -190,11 +288,28 @@ export const Services = (): JSX.Element => {
                   </div>
                 </div>
 
-                <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <Sheet
+                  open={isMobileMenuOpen}
+                  onOpenChange={setIsMobileMenuOpen}
+                >
                   <SheetTrigger asChild>
-                    <Button variant="ghost" className="lg:hidden p-2" aria-label="Toggle menu">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    <Button
+                      variant="ghost"
+                      className="lg:hidden p-2"
+                      aria-label="Toggle menu"
+                    >
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 6h16M4 12h16M4 18h16"
+                        />
                       </svg>
                     </Button>
                   </SheetTrigger>
@@ -227,44 +342,58 @@ export const Services = (): JSX.Element => {
                 Comprehensive Construction Services
               </Badge>
               <h1 className="section-title text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4 sm:mb-6 leading-tight">
-                Building Your <span className="text-[#b48b2f]">Dream Spaces</span>
+                Building Your{" "}
+                <span className="text-[#b48b2f]">Dream Spaces</span>
               </h1>
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-xs sm:max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-2">
-                From residential complexes to luxury villas, we offer comprehensive construction services 
-                tailored to meet your unique requirements and budget.
+                From residential complexes to luxury villas, we offer
+                comprehensive construction services tailored to meet your unique
+                requirements and budget.
               </p>
             </div>
           </section>
 
           {/* Services Tabs - Enhanced Mobile Responsive */}
           <section className="mb-12 sm:mb-16 lg:mb-20">
-            <Tabs value={activeService} onValueChange={setActiveService} className="w-full">
+            <Tabs
+              value={activeService}
+              onValueChange={setActiveService}
+              className="w-full"
+            >
               <TabsList className="grid w-full grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mb-8 sm:mb-10 lg:mb-12 h-auto p-1 bg-gray-100 rounded-lg gap-1">
                 {services.map((service) => (
-                  <TabsTrigger 
-                    key={service.id} 
+                  <TabsTrigger
+                    key={service.id}
                     value={service.id}
                     className="flex flex-col xs:flex-row lg:flex-col items-center justify-center p-2 xs:p-3 sm:p-4 data-[state=active]:bg-[#b48b2f] data-[state=active]:text-white rounded-md transition-all duration-200 min-h-[60px] xs:min-h-[70px] sm:min-h-[80px]"
                   >
                     <service.icon className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 mb-1 xs:mb-0 xs:mr-2 lg:mr-0 lg:mb-2 flex-shrink-0" />
                     <span className="text-xs xs:text-sm sm:text-sm font-medium [font-family:'Poppins',Helvetica] text-center xs:text-left lg:text-center leading-tight">
-                      <span className="hidden xs:inline lg:hidden">{service.title}</span>
-                      <span className="xs:hidden lg:inline">{service.title}</span>
+                      <span className="hidden xs:inline lg:hidden">
+                        {service.title}
+                      </span>
+                      <span className="xs:hidden lg:inline">
+                        {service.title}
+                      </span>
                     </span>
                   </TabsTrigger>
                 ))}
               </TabsList>
 
               {services.map((service) => (
-                <TabsContent key={service.id} value={service.id} className="space-y-6 sm:space-y-8">
+                <TabsContent
+                  key={service.id}
+                  value={service.id}
+                  className="space-y-6 sm:space-y-8"
+                >
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
                     {/* Service Image - Enhanced Mobile */}
                     <div className="lg:col-span-1 order-1 lg:order-1">
                       <Card className="overflow-hidden border-none shadow-lg sm:shadow-xl">
-                        <div 
+                        <div
                           className="relative w-full h-48 xs:h-56 sm:h-64 lg:h-72 bg-cover bg-center bg-no-repeat"
                           style={{
-                            backgroundImage: `url(${service.image})`
+                            backgroundImage: `url(${service.image})`,
                           }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -290,19 +419,23 @@ export const Services = (): JSX.Element => {
                           <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] mb-6 leading-relaxed">
                             {service.description}
                           </p>
-                          
+
                           <div className="grid grid-cols-2 gap-4 mb-6">
                             <div className="text-center p-4 bg-[#b48b2f]/5 rounded-lg">
                               <div className="text-2xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
                                 {service.completedProjects}+
                               </div>
-                              <div className="text-sm text-[#6b6b6b]">Completed Projects</div>
+                              <div className="text-sm text-[#6b6b6b]">
+                                Completed Projects
+                              </div>
                             </div>
                             <div className="text-center p-4 bg-[#b48b2f]/5 rounded-lg">
                               <div className="text-lg font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
                                 {service.priceRange}
                               </div>
-                              <div className="text-sm text-[#6b6b6b]">Price Range</div>
+                              <div className="text-sm text-[#6b6b6b]">
+                                Price Range
+                              </div>
                             </div>
                           </div>
 
@@ -322,7 +455,10 @@ export const Services = (): JSX.Element => {
                             <CardContent className="p-4">
                               <div className="grid grid-cols-1 gap-3">
                                 {service.features.map((feature, index) => (
-                                  <div key={index} className="flex items-center">
+                                  <div
+                                    key={index}
+                                    className="flex items-center"
+                                  >
                                     <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
                                     <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm">
                                       {feature}
@@ -330,14 +466,17 @@ export const Services = (): JSX.Element => {
                                   </div>
                                 ))}
                               </div>
-                              
+
                               <div className="mt-4 pt-4 border-t border-gray-100">
                                 <h4 className="font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2 text-sm">
                                   Recent Projects:
                                 </h4>
                                 <div className="space-y-2">
                                   {service.projects.map((project, index) => (
-                                    <div key={index} className="flex items-center justify-between">
+                                    <div
+                                      key={index}
+                                      className="flex items-center justify-between"
+                                    >
                                       <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm">
                                         {project}
                                       </span>
@@ -366,10 +505,11 @@ export const Services = (): JSX.Element => {
                 Financial <span className="text-[#b48b2f]">Planning</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                Calculate your EMI and plan your dream home investment with our instant calculator tailored for Madurai market rates.
+                Calculate your EMI and plan your dream home investment with our
+                instant calculator tailored for Madurai market rates.
               </p>
             </div>
-            
+
             <div className="max-w-2xl mx-auto">
               <EMICalculatorForm />
             </div>
@@ -382,13 +522,17 @@ export const Services = (): JSX.Element => {
                 Our <span className="text-[#b48b2f]">Process</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                A systematic approach ensuring quality delivery from concept to completion.
+                A systematic approach ensuring quality delivery from concept to
+                completion.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {processSteps.map((step, index) => (
-                <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                <Card
+                  key={index}
+                  className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 text-center"
+                >
                   <CardContent className="p-8">
                     <div className="w-16 h-16 mx-auto mb-6 bg-[#b48b2f] rounded-full flex items-center justify-center">
                       <span className="text-2xl font-bold text-white [font-family:'Poppins',Helvetica]">
@@ -412,10 +556,12 @@ export const Services = (): JSX.Element => {
             <div className="bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-3xl p-8 lg:p-12">
               <div className="text-center mb-12">
                 <h2 className="section-title text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                  Why Choose <span className="text-[#b48b2f]">Smart Builders</span>
+                  Why Choose{" "}
+                  <span className="text-[#b48b2f]">Smart Builders</span>
                 </h2>
                 <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                  Experience the difference that quality, integrity, and commitment make.
+                  Experience the difference that quality, integrity, and
+                  commitment make.
                 </p>
               </div>
 
@@ -445,19 +591,20 @@ export const Services = (): JSX.Element => {
                   Ready to Start Your Dream Project?
                 </h2>
                 <p className="text-lg [font-family:'Poppins',Helvetica] mb-8 opacity-90 max-w-2xl mx-auto">
-                  Get a free consultation and quote for your construction project. Our experts are ready to help.
+                  Get a free consultation and quote for your construction
+                  project. Our experts are ready to help.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    onClick={() => navigate('/contact')}
+                  <Button
+                    onClick={() => navigate("/contact")}
                     className="bg-white text-[#b48b2f] hover:bg-gray-100 rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]"
                   >
                     <Phone className="w-4 h-4 mr-2" />
                     Contact Us Now
                   </Button>
-                  <Button 
-                    onClick={() => navigate('/about')}
-                    variant="outline" 
+                  <Button
+                    onClick={() => navigate("/about")}
+                    variant="outline"
                     className="border-2 border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white rounded-[40px_5px_40px_5px] px-8 py-4 font-medium [font-family:'Poppins',Helvetica]"
                   >
                     <ArrowRight className="w-4 h-4 mr-2" />
