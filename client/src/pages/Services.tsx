@@ -96,9 +96,9 @@ export const Services = (): JSX.Element => {
       icon: Home,
       description: "Premium residential complexes with modern amenities",
       features: [
-        "Quality construction with premium materials",
-        "24/7 security and power backup included",
-        "Beautiful gardens and ample parking space",
+        "Quality construction with good materials",
+        "Basic security and power backup",
+        "Clean surroundings and parking space",
       ],
       projects: ["Green Valley Homes", "Royal Residency", "Paradise Heights"],
       priceRange: "Contact for Pricing",
@@ -111,9 +111,9 @@ export const Services = (): JSX.Element => {
       icon: Building,
       description: "Modern apartment complexes with luxury amenities",
       features: [
-        "Swimming pool and gym facilities",
-        "Spacious rooms with modern design",
-        "Children's play area and clubhouse",
+        "Well-ventilated rooms with good lighting",
+        "Basic amenities and clean common areas",
+        "Safe environment for families",
       ],
       projects: ["Sky Gardens", "Elite Towers", "Grand Plaza"],
       priceRange: "Contact for Pricing",
@@ -126,9 +126,9 @@ export const Services = (): JSX.Element => {
       icon: TreePine,
       description: "Luxury independent villas with private gardens",
       features: [
-        "Private garden and car parking",
-        "Solar panels and eco-friendly features",
-        "Modern kitchen and customizable interiors",
+        "Private space and car parking",
+        "Good ventilation and natural lighting",
+        "Functional kitchen and practical design",
       ],
       projects: ["Villa Serena", "Royal Villas", "Green Meadows"],
       priceRange: "Contact for Pricing",
@@ -141,9 +141,9 @@ export const Services = (): JSX.Element => {
       icon: Users,
       description: "Affordable housing solutions for young professionals",
       features: [
-        "Affordable and ready-to-move homes",
-        "Easy EMI options available",
-        "Prime location with good connectivity",
+        "Affordable and budget-friendly homes",
+        "Simple EMI payment options",
+        "Good location with basic connectivity",
       ],
       projects: ["Smart Homes", "Urban Nest", "City Square"],
       priceRange: "Contact for Pricing",
@@ -156,9 +156,9 @@ export const Services = (): JSX.Element => {
       icon: Award,
       description: "Premium land development and promotion services",
       features: [
-        "Clear title and DTCP approved plots",
-        "Bank loan assistance available",
-        "Complete registration and legal support",
+        "Clear documents and approved plots",
+        "Help with bank loan process",
+        "Registration and paperwork support",
       ],
       projects: ["Golden Valley", "Metro Lands", "Future City"],
       priceRange: "Contact for Pricing",
@@ -452,26 +452,7 @@ export const Services = (): JSX.Element => {
                                 ))}
                               </div>
 
-                              <div className="mt-4 pt-4 border-t border-gray-100">
-                                <h4 className="font-semibold text-[#313131] [font-family:'Poppins',Helvetica] mb-2 text-sm">
-                                  Recent Projects:
-                                </h4>
-                                <div className="space-y-2">
-                                  {service.projects.map((project, index) => (
-                                    <div
-                                      key={index}
-                                      className="flex items-center justify-between"
-                                    >
-                                      <span className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm">
-                                        {project}
-                                      </span>
-                                      <Badge className="bg-green-100 text-green-800 text-xs">
-                                        Completed
-                                      </Badge>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
+
                             </CardContent>
                           </Card>
                         </div>
