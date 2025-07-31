@@ -155,6 +155,17 @@ export const Footer = (): JSX.Element => {
               </span>
             </div>
           </div>
+          <div className="text-sm text-gray-400">
+            Designed & Developed by{' '}
+            <a 
+              href="https://www.godivatech.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[#b48b2f] hover:text-[#9d7829] transition-colors font-medium"
+            >
+              GodivaTeach
+            </a>
+          </div>
         </div>
 
         {/* CTA Section */}
