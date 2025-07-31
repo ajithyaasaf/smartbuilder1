@@ -93,6 +93,13 @@ This is a modern full-stack web application built with React (frontend), Express
 - **Port Mapping**: Internal port 5000 mapped to external port 80
 - **Build Process**: Automated build on deployment
 
+### Vercel Deployment Configuration
+- **Frontend-Only Deployment**: Uses `vercel.json` with static build configuration
+- **Build Command**: `vite build` - generates optimized static assets
+- **Output Directory**: `dist/public` - contains built frontend files
+- **Routing**: SPA routing with catch-all rewrites to `/index.html`
+- **Framework**: Set to `null` to avoid framework-specific optimizations
+
 ## Complete Project Analysis - Smart Builders & Developers Website
 
 ### Design System & Brand Identity
@@ -177,6 +184,7 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 31, 2025: Successfully configured Vercel deployment with proper frontend-only build setup using vercel.json configuration - project now deploys correctly to Vercel with static site generation
 - January 26, 2025: Removed page transition animations and delays for instant navigation - pages now switch immediately without spinners or shifting effects
 - January 26, 2025: Moved EMI Calculator from Contact page to Services page in dedicated "Financial Planning" section for improved UX - users can now calculate loan affordability directly while viewing services
 - January 26, 2025: Updated navigation order to: Home, About, Gallery, Services, Contact across all pages for better user flow
