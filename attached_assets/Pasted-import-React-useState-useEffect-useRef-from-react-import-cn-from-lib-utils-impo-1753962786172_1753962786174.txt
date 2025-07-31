@@ -1,0 +1,269 @@
+import React, { useState, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"; // Assuming Lucide icons are available
+
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  description: string;
+  location: string;
+}
+
+const projects: Project[] = [
+  {
+    id: 1,
+    title: "Modern Villa",
+    category: "construction",
+    image: "/assets/images/For builders/Projects/1.jpeg",
+    description: "Modern Villa's built with eco-friendly designs.",
+    location: "Coimbatore",
+  },
+  {
+    id: 2,
+    title: "Bright Homes",
+    category: "construction",
+    image: "/assets/images/For builders/Projects/2.jpeg",
+    description: "Stylish homes designed for comfort and durability.",
+    location: "Madurai",
+  },
+  {
+    id: 3,
+    title: "Residences",
+    category: "construction",
+    image: "/assets/images/For builders/Projects/3.jpeg",
+    description: "Elegant living spaces with sustainable features.",
+    location: "Coimbatore",
+  },
+  {
+    id: 4,
+    title: "School",
+    category: "solar",
+    image: "/assets/images/For solar/Projects/School.jpg",
+    description: "Solar-powered school for a brighter future.",
+    location: "Madurai",
+  },
+  {
+    id: 5,
+    title: "Residential",
+    category: "solar",
+    image: "/assets/images/For solar/Projects/Residencial.jpg", // Verify if this should be Residential.jpg
+    description: "Clean energy for homes, saving costs daily.",
+    location: "Coimbatore",
+  },
+  {
+    id: 6,
+    title: "Factory",
+    category: "solar",
+    image: "/assets/images/For solar/Projects/Factory.jpg",
+    description: "Efficient solar power for industrial operations.",
+    location: "Tiruchirappalli",
+  },
+];
+
+const ProjectCard: React.FC<{ project: Project; index: number; onViewClick: (index: number) => void }> = ({
+  project,
+  index,
+  onViewClick,
+}) => {
+  const isMobile = useIsMobile();
+
+  return (
+    <div
+      className="group relative overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+      data-aos="fade-up"
+      data-aos-duration="800"
+      data-aos-delay={100 * (index % 3)}
+    >
+      <div className="relative aspect-[3/4] sm:aspect-[4/3] md:aspect-video w-full overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          loading={index === 0 ? "eager" : "lazy"}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
+      </div>
+      <div className="absolute bottom-0 left-0 p-3 sm:p-4 text-white w-full">
+        <h3 className="text-lg sm:text-xl font-bold mb-1 group-hover:text-smart-yellow transition-colors duration-300">
+          {project.title}
+        </h3>
+        <p className="text-xs sm:text-sm text-gray-200 mb-1 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300">
+          {project.description}
+        </p>
+        <p className="text-xs sm:text-sm text-gray-300 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300">
+          Location: {project.location}
+        </p>
+        <Button
+          variant="outline"
+          size={isMobile ? "sm" : "default"}
+          className="mt-1 bg-transparent border-white text-white hover:bg-smart-yellow hover:text-gray-900 hover:border-smart-yellow transition-all duration-300 opacity-0 group-hover:opacity-100"
+          onClick={() => onViewClick(index)}
+        >
+          View
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+const ProjectImageModal = ({ projects, initialIndex, isOpen, onClose }) => {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!isOpen) return;
+      switch (e.key) {
+        case "ArrowLeft":
+          setCurrentIndex((prev) => (prev > 0 ? prev - 1 : projects.length - 1));
+          break;
+        case "ArrowRight":
+          setCurrentIndex((prev) => (prev < projects.length - 1 ? prev + 1 : 0));
+          break;
+        case "Escape":
+          onClose();
+          break;
+      }
+    };
+    const handleClickOutside = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        onClose();
+      }
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+      window.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, projects.length, onClose]);
+
+  const handleNext = () => setCurrentIndex((prev) => (prev < projects.length - 1 ? prev + 1 : 0));
+  const handlePrev = () => setCurrentIndex((prev) => (prev > 0 ? prev - 1 : projects.length - 1));
+  const toggleZoom = () => setIsZoomed((prev) => !prev);
+
+  const currentProject = projects[currentIndex];
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-gray-900/90 flex items-center justify-center z-50 p-4 sm:p-6 md:p-8">
+      <div ref={modalRef} className="relative w-full max-w-4xl h-[80vh] sm:h-[85vh] bg-gray-800 rounded-lg shadow-2xl overflow-hidden">
+        <div className="flex justify-between items-center p-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
+            {currentProject.title}
+          </h2>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onClose}
+            className="bg-white text-gray-900 hover:bg-gray-100 border-gray-300 rounded-full w-10 h-10"
+            aria-label="Close"
+          >
+            ×
+          </Button>
+        </div>
+        <div className="relative w-full h-[calc(100%-4rem)]">
+          <img
+            src={currentProject.image}
+            alt={currentProject.title}
+            className={`w-full h-full object-contain object-center transition-transform duration-300 ${isZoomed ? "scale-150" : ""}`}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = "/assets/images/placeholder.jpg"; // Replace with your placeholder path
+            }}
+          />
+          <div className="absolute inset-0 bg-black/5 hover:bg-black/10 transition-opacity duration-300"></div>
+        </div>
+        <div className="flex justify-between items-center mt-4 p-4 text-white">
+          <Button
+            variant="outline"
+            onClick={handlePrev}
+            className="bg-white/80 text-gray-900 hover:bg-white border-gray-300 rounded-full w-10 h-10"
+            aria-label="Previous Image"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </Button>
+          <span className="text-sm sm:text-base">
+            {currentIndex + 1} of {projects.length}
+          </span>
+          <Button
+            variant="outline"
+            onClick={handleNext}
+            className="bg-white/80 text-gray-900 hover:bg-white border-gray-300 rounded-full w-10 h-10"
+            aria-label="Next Image"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </Button>
+        </div>
+        <Button
+          variant="outline"
+          onClick={toggleZoom}
+          className="absolute top-4 right-16 bg-white/80 text-gray-900 hover:bg-white border-gray-300 rounded-full w-10 h-10"
+          aria-label={isZoomed ? "Zoom Out" : "Zoom In"}
+        >
+          {isZoomed ? <ZoomOut className="w-6 h-6" /> : <ZoomIn className="w-6 h-6" />}
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+const ProjectsShowcase = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const handleViewClick = (index: number) => {
+    setSelectedIndex(index);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedIndex(null);
+  };
+
+  return (
+    <section id="projects" className="py-16 sm:py-20 bg-gray-50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div
+          className="text-center mb-10 sm:mb-12"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+            Our Projects
+          </h2>
+          <div className="w-24 h-1 bg-smart-yellow mx-auto mb-6"></div>
+          <p className="max-w-2xl mx-auto text-gray-600 text-base sm:text-lg">
+            Discover our work in construction and solar energy across Tamil Nadu.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              onViewClick={handleViewClick}
+            />
+          ))}
+        </div>
+
+        <ProjectImageModal
+          projects={projects}
+          initialIndex={selectedIndex ?? 0}
+          isOpen={selectedIndex !== null}
+          onClose={handleCloseModal}
+        />
+      </div>
+    </section>
+  );
+};
+
+export default ProjectsShowcase;

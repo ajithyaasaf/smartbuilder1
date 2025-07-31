@@ -184,6 +184,8 @@ This is a modern full-stack web application built with React (frontend), Express
 - Environment variables support
 
 ## Changelog
+- January 31, 2025: Added "Designed & Developed by GodivaTeach" credit to footer with link to www.godivatech.com for proper attribution
+- January 31, 2025: Transformed "Awards & Recognition" section in About page to "What Sets Us Apart" with customer-focused content highlighting 25+ years expertise, quality assurance, on-time delivery, and customer-first approach - improved conversion potential
 - January 31, 2025: Successfully configured Vercel deployment with proper frontend-only build setup using vercel.json configuration - project now deploys correctly to Vercel with static site generation
 - January 26, 2025: Removed page transition animations and delays for instant navigation - pages now switch immediately without spinners or shifting effects
 - January 26, 2025: Moved EMI Calculator from Contact page to Services page in dedicated "Financial Planning" section for improved UX - users can now calculate loan affordability directly while viewing services
