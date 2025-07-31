@@ -391,9 +391,7 @@ export const Home = (): JSX.Element => {
                           <div className="text-xs sm:text-sm font-semibold text-[#313131]">
                             Premium Quality
                           </div>
-                          <div className="text-xs text-[#6b6b6b]">
-                            Since 2002
-                          </div>
+                          <div className="text-xs text-[#6b6b6b]">Since 2000</div>
                         </div>
                         <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#b48b2f] rounded-full flex items-center justify-center">
                           <Award className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
