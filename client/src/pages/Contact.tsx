@@ -90,7 +90,7 @@ export const Contact = (): JSX.Element => {
     {
       icon: Phone,
       title: "Call Us",
-      details: ["+91 98765 43210", "+91 87654 32109"],
+      details: ["+91 96004 52274"],
       desc: "Available Numbers",
       color: "text-green-600",
     },
@@ -125,7 +125,7 @@ export const Contact = (): JSX.Element => {
       city: "Madurai",
       address: `23/72, Ramnagar 3rd Street, S S Colony, Bypass Rd, Madurai -
           625016`,
-      phone: "+91 98765 43210",
+      phone: "+91 96004 52274",
       email: "madurai@smartbuilders.com",
       type: "Head Office",
     },

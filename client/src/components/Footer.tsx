@@ -80,7 +80,7 @@ export const Footer = (): JSX.Element => {
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Phone className="w-4 h-4 mr-2 text-[#b48b2f]" />
-                +91 98765 43210
+                +91 96004 52274
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Mail className="w-4 h-4 mr-2 text-[#b48b2f]" />
