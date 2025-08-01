@@ -123,8 +123,8 @@ export const Contact = (): JSX.Element => {
   const officeLocations = [
     {
       city: "Madurai",
-      address:
-        "23/72, Ramnagar, 3rd Street, Bypass Rd, S S Colony, Madurai - 625016",
+      address: `23/72, Ramnagar 3rd Street, S S Colony, Bypass Rd, Madurai -
+          625016`,
       phone: "+91 98765 43210",
       email: "madurai@smartbuilders.com",
       type: "Head Office",

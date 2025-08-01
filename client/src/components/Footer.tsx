@@ -1,38 +1,49 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Phone, Mail, Clock, Building, Facebook, Twitter, Instagram, Linkedin, Eye } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Building,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Eye,
+} from "lucide-react";
 import { NewsletterForm } from "@/components/forms";
 import { useVisitCounter } from "@/hooks/useVisitCounter";
 
 export const Footer = (): JSX.Element => {
   const { counter, loading } = useVisitCounter(30000); // Refresh every 30 seconds
-  
+
   const quickLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
     { name: "Contact", path: "/contact" },
     { name: "Gallery", path: "/gallery" },
-    { name: "Admin", path: "/admin" }
+    { name: "Admin", path: "/admin" },
   ];
 
   const services = [
     "Construction Services",
     "Interior Design",
-    "Project Management", 
+    "Project Management",
     "Legal Services",
     "Home Loans",
-    "Property Investment"
+    "Property Investment",
   ];
 
   const locations = [
     "Ramnagar, Madurai",
-    "KK Nagar, Madurai", 
+    "KK Nagar, Madurai",
     "Samayanallur, Madurai",
     "Thiruparankundram, Madurai",
     "Bypass Road, Madurai",
-    "SIPCOT Area, Madurai"
+    "SIPCOT Area, Madurai",
   ];
 
   return (
@@ -44,9 +55,9 @@ export const Footer = (): JSX.Element => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-8 bg-white rounded-sm p-1 flex items-center justify-center">
-                <img 
-                  src="/logo.jpg" 
-                  alt="Smart Builders Logo" 
+                <img
+                  src="/logo.jpg"
+                  alt="Smart Builders Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -57,11 +68,15 @@ export const Footer = (): JSX.Element => {
                 <div className="text-sm text-gray-300">& Developers</div>
               </div>
             </div>
-            <p className="text-gray-300 text-sm [font-family:'Poppins',Helvetica] leading-6">Building dreams and creating lifestyles with 25+ years of excellence in construction and development across Madurai.</p>
+            <p className="text-gray-300 text-sm [font-family:'Poppins',Helvetica] leading-6">
+              Building dreams and creating lifestyles with 25+ years of
+              excellence in construction and development across Madurai.
+            </p>
             <div className="space-y-2">
               <div className="flex items-center text-sm text-gray-300">
                 <MapPin className="w-4 h-4 mr-2 text-[#b48b2f]" />
-                23/72, Ramnagar, 3rd Street, Bypass Rd, S S Colony, Madurai - 625016
+                23/72, Ramnagar 3rd Street, S S Colony, Bypass Rd, Madurai -
+                625016
               </div>
               <div className="flex items-center text-sm text-gray-300">
                 <Phone className="w-4 h-4 mr-2 text-[#b48b2f]" />
@@ -104,7 +119,10 @@ export const Footer = (): JSX.Element => {
             </h3>
             <ul className="space-y-2">
               {services.map((service, index) => (
-                <li key={index} className="text-gray-300 text-sm [font-family:'Poppins',Helvetica]">
+                <li
+                  key={index}
+                  className="text-gray-300 text-sm [font-family:'Poppins',Helvetica]"
+                >
                   {service}
                 </li>
               ))}
@@ -113,7 +131,7 @@ export const Footer = (): JSX.Element => {
 
           {/* Newsletter Subscription */}
           <div className="space-y-4">
-            <NewsletterForm 
+            <NewsletterForm
               title="Stay Updated"
               subtitle="Get latest updates & offers"
               variant="inline"
@@ -124,16 +142,32 @@ export const Footer = (): JSX.Element => {
                 Follow Us
               </h4>
               <div className="flex space-x-3">
-                <Button size="sm" variant="ghost" className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10"
+                >
                   <Facebook className="w-4 h-4" />
                 </Button>
-                <Button size="sm" variant="ghost" className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10"
+                >
                   <Instagram className="w-4 h-4" />
                 </Button>
-                <Button size="sm" variant="ghost" className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10"
+                >
                   <Twitter className="w-4 h-4" />
                 </Button>
-                <Button size="sm" variant="ghost" className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10"
+                >
                   <Linkedin className="w-4 h-4" />
                 </Button>
               </div>
@@ -151,15 +185,18 @@ export const Footer = (): JSX.Element => {
             <div className="flex items-center space-x-2">
               <Eye className="w-4 h-4 text-[#b48b2f]" />
               <span>
-                Site Visits: {loading ? '...' : counter?.totalVisits?.toLocaleString('en-IN') || '0'}
+                Site Visits:{" "}
+                {loading
+                  ? "..."
+                  : counter?.totalVisits?.toLocaleString("en-IN") || "0"}
               </span>
             </div>
           </div>
           <div className="text-sm text-gray-400">
-            Designed & Developed by{' '}
-            <a 
-              href="https://www.godivatech.com" 
-              target="_blank" 
+            Designed & Developed by{" "}
+            <a
+              href="https://www.godivatech.com"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-[#b48b2f] hover:text-[#9d7829] transition-colors font-medium"
             >
@@ -177,16 +214,16 @@ export const Footer = (): JSX.Element => {
             Get in touch with our experts for a free consultation
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button 
-              onClick={() => window.open('tel:+1234567890', '_self')}
+            <Button
+              onClick={() => window.open("tel:+1234567890", "_self")}
               className="bg-[#b48b2f] hover:bg-[#9d7829] text-white rounded-[20px_2px_20px_2px] px-6 py-2 font-medium [font-family:'Poppins',Helvetica]"
             >
               <Phone className="w-4 h-4 mr-2" />
               Call Now
             </Button>
-            <Button 
-              onClick={() => window.location.href = '/contact'}
-              variant="outline" 
+            <Button
+              onClick={() => (window.location.href = "/contact")}
+              variant="outline"
               className="border-[#b48b2f] text-[#b48b2f] hover:bg-[#b48b2f] hover:text-white rounded-[20px_2px_20px_2px] px-6 py-2 font-medium [font-family:'Poppins',Helvetica]"
             >
               <Mail className="w-4 h-4 mr-2" />
