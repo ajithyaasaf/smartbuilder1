@@ -299,7 +299,7 @@ export const Home = (): JSX.Element => {
                         <div className="flex flex-col space-y-2 text-xs xs:text-sm text-[#6b6b6b] [font-family:'Poppins',Helvetica]">
                           <div className="flex items-center">
                             <MapPin className="w-3.5 h-3.5 mr-2 text-[#b48b2f] flex-shrink-0" />
-                            <span>Ramnagar, Madurai</span>
+                            <span>S S colony, Madurai</span>
                           </div>
                           <div className="flex items-center">
                             <Phone className="w-3.5 h-3.5 mr-2 text-[#b48b2f] flex-shrink-0" />
