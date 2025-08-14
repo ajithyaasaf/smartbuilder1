@@ -11,13 +11,11 @@ import {
   Twitter,
   Instagram,
   Linkedin,
-  Eye,
 } from "lucide-react";
 import { NewsletterForm } from "@/components/forms";
-import { useVisitCounter } from "@/hooks/useVisitCounter";
+
 
 export const Footer = (): JSX.Element => {
-  const { counter, loading } = useVisitCounter(30000); // Refresh every 30 seconds
 
   const quickLinks = [
     { name: "Home", path: "/" },
@@ -161,14 +159,14 @@ export const Footer = (): JSX.Element => {
                   variant="ghost"
                   className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10"
                 >
-                  <Twitter className="w-4 h-4" />
+                  {/* <Twitter className="w-4 h-4" /> */}
                 </Button>
                 <Button
                   size="sm"
                   variant="ghost"
                   className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10"
                 >
-                  <Linkedin className="w-4 h-4" />
+                  {/*  <Linkedin className="w-4 h-4" /> */}
                 </Button>
               </div>
             </div>
@@ -182,15 +180,7 @@ export const Footer = (): JSX.Element => {
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-300">
             <div>© 2025 Smart Builders & Developers. All rights reserved.</div>
             <div className="hidden md:block">|</div>
-            <div className="flex items-center space-x-2">
-              <Eye className="w-4 h-4 text-[#b48b2f]" />
-              <span>
-                Site Visits:{" "}
-                {loading
-                  ? "..."
-                  : counter?.totalVisits?.toLocaleString("en-IN") || "0"}
-              </span>
-            </div>
+
           </div>
           <div className="text-sm text-gray-400">
             Designed & Developed by{" "}
