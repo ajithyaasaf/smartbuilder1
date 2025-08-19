@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
+import * as XLSX from 'xlsx';
 
 interface EMIResult {
   emi: number;
@@ -108,57 +109,71 @@ export const EMICalculatorForm: React.FC<EMICalculatorFormProps> = ({
   const downloadCalculation = () => {
     if (!result) return;
 
-    const calculationText = `
-EMI CALCULATION REPORT
-======================
+    // Create workbook and worksheet
+    const wb = XLSX.utils.book_new();
+    
+    // Create data for the Excel sheet
+    const data = [
+      ['EMI CALCULATION REPORT', ''],
+      ['', ''],
+      ['Property Loan Details', ''],
+      ['Loan Amount', result.principalAmount],
+      ['Interest Rate', `${interestRate[0]}%`],
+      ['Loan Tenure', `${tenure[0]} years`],
+      ['', ''],
+      ['Monthly EMI Breakdown', ''],
+      ['Monthly EMI', result.emi],
+      ['Total Amount Payable', result.totalAmount],
+      ['Total Interest', result.totalInterest],
+      ['', ''],
+      ['Additional Costs (Tamil Nadu)', ''],
+      ['Processing Fees (0.5%)', result.processingFees],
+      ['Insurance Premium (0.3%)', result.insurance],
+      ['Registration Charges (0.7%)', result.registrationCharges],
+      ['Total Upfront Cost', result.totalUpfrontCost],
+      ['', ''],
+      ['Financial Summary', ''],
+      ['Principal Amount', result.principalAmount],
+      [`Total Interest Over ${tenure[0]} Years`, result.totalInterest],
+      ['Total Amount (Principal + Interest)', result.totalAmount],
+      ['Additional Upfront Costs', result.totalUpfrontCost],
+      ['Grand Total Cost', result.totalAmount + result.totalUpfrontCost],
+      ['', ''],
+      ['Generated on', new Date().toLocaleDateString('en-IN', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      })],
+      ['', ''],
+      ['Note', 'This is an indicative calculation. Actual EMI may vary based on bank policies and processing fees.']
+    ];
 
-Property Loan Details:
-- Loan Amount: ${formatCurrency(result.principalAmount)}
-- Interest Rate: ${interestRate[0]}% per annum
-- Loan Tenure: ${tenure[0]} years
-
-Monthly EMI Breakdown:
-- Monthly EMI: ${formatCurrency(result.emi)}
-- Total Amount Payable: ${formatCurrency(result.totalAmount)}
-- Total Interest: ${formatCurrency(result.totalInterest)}
-
-Additional Costs (Tamil Nadu):
-- Processing Fees (0.5%): ${formatCurrency(result.processingFees)}
-- Insurance Premium (0.3%): ${formatCurrency(result.insurance)}
-- Registration Charges (0.7%): ${formatCurrency(result.registrationCharges)}
-- Total Upfront Cost: ${formatCurrency(result.totalUpfrontCost)}
-
-Financial Summary:
-- Principal Amount: ${formatCurrency(result.principalAmount)}
-- Total Interest Over ${tenure[0]} Years: ${formatCurrency(result.totalInterest)}
-- Total Amount (Principal + Interest): ${formatCurrency(result.totalAmount)}
-- Additional Upfront Costs: ${formatCurrency(result.totalUpfrontCost)}
-- Grand Total Cost: ${formatCurrency(result.totalAmount + result.totalUpfrontCost)}
-
-Generated on: ${new Date().toLocaleDateString('en-IN', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    })}
-
-Note: This is an indicative calculation. Actual EMI may vary based on bank policies and processing fees.
-    `.trim();
-
-    const blob = new Blob([calculationText], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `EMI-Calculation-${formatLakhs(result.principalAmount).replace('₹', '').replace(' ', '')}-${new Date().getTime()}.txt`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
+    // Create worksheet
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    
+    // Style the header
+    ws['A1'] = { t: 's', v: 'EMI CALCULATION REPORT', s: { font: { bold: true, sz: 16 } } };
+    
+    // Set column widths
+    ws['!cols'] = [
+      { width: 35 },
+      { width: 20 }
+    ];
+    
+    // Add worksheet to workbook
+    XLSX.utils.book_append_sheet(wb, ws, 'EMI Calculation');
+    
+    // Generate filename
+    const filename = `EMI-Calculation-${formatLakhs(result.principalAmount).replace('₹', '').replace(' ', '')}-${new Date().getTime()}.xlsx`;
+    
+    // Save the file
+    XLSX.writeFile(wb, filename);
     
     toast({
       title: "Download Complete!",
-      description: "EMI calculation report has been saved to your device.",
+      description: "EMI calculation report has been saved as Excel file.",
     });
   };
 
