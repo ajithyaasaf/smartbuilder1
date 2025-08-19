@@ -72,7 +72,7 @@ export const Footer = (): JSX.Element => {
             </p>
             <div className="space-y-2">
               <div className="flex items-center text-sm text-gray-300">
-                <MapPin className="w-6 h-6 mr-2 text-[#b48b2f]" />
+                <MapPin className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 mr-2 text-[#b48b2f]" />
                 23/72, Ramnagar 3rd Street, S S Colony, Bypass Rd, Madurai -
                 625016
               </div>
