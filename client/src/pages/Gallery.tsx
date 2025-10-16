@@ -168,7 +168,7 @@ export const Gallery = (): JSX.Element => {
       type: "image",
       description: "Eco-friendly residential complex under construction",
       location: "Coimbatore",
-      image: "/8_1750919638079.jpeg",
+      image: "/8_1750919638079.jpg",
       progress: 45,
       stats: { units: 110, floors: 12, parking: 200 },
     },
