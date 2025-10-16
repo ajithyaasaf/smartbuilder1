@@ -26,29 +26,11 @@ export const Footer = (): JSX.Element => {
     { name: "Admin", path: "/admin" },
   ];
 
-  const contactDetails = [
-    "23/72, Ramnagar 3rd Street",
-    "S S Colony, Bypass Rd",
-    "Madurai - 625016",
-    "+91 96004 52274",
-    "info@smartbuilders.com",
-    "Mon-Sat: 9:00 AM - 6:00 PM",
-  ];
-
-  const locations = [
-    "Ramnagar, Madurai",
-    "KK Nagar, Madurai",
-    "Samayanallur, Madurai",
-    "Thiruparankundram, Madurai",
-    "Bypass Road, Madurai",
-    "SIPCOT Area, Madurai",
-  ];
-
   return (
     <footer className="bg-[#313131] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
@@ -63,7 +45,7 @@ export const Footer = (): JSX.Element => {
                 <div className="text-xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
                   Smart Builders
                 </div>
-                <div className="text-sm text-gray-300">& Real Estate Developers</div>
+                <div className="text-sm text-gray-300">& Developers</div>
               </div>
             </div>
             <p className="text-gray-300 text-sm [font-family:'Poppins',Helvetica] leading-6">
@@ -110,23 +92,6 @@ export const Footer = (): JSX.Element => {
             </ul>
           </div>
 
-          {/* Contact Details */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
-              Contact Details
-            </h3>
-            <ul className="space-y-2">
-              {contactDetails.map((detail, index) => (
-                <li
-                  key={index}
-                  className="text-gray-300 text-sm [font-family:'Poppins',Helvetica]"
-                >
-                  {detail}
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Newsletter Subscription */}
           <div className="space-y-4">
             <NewsletterForm
@@ -159,14 +124,14 @@ export const Footer = (): JSX.Element => {
                   variant="ghost"
                   className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10"
                 >
-                  {/* <Twitter className="w-4 h-4" /> */}
+                  <Twitter className="w-4 h-4" />
                 </Button>
                 <Button
                   size="sm"
                   variant="ghost"
                   className="w-8 h-8 p-0 text-gray-300 hover:text-[#b48b2f] hover:bg-[#b48b2f]/10"
                 >
-                  {/*  <Linkedin className="w-4 h-4" /> */}
+                  <Linkedin className="w-4 h-4" />
                 </Button>
               </div>
             </div>
@@ -178,7 +143,7 @@ export const Footer = (): JSX.Element => {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-300">
-            <div>© 2025 Smart Builders & Real Estate Developers. All rights reserved.</div>
+            <div>© 2025 Smart Builders & Developers. All rights reserved.</div>
             <div className="hidden md:block">|</div>
 
           </div>

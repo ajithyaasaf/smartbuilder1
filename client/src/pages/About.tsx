@@ -85,7 +85,7 @@ export const About = (): JSX.Element => {
     {
       year: "2000",
       title: "Company Foundation",
-      desc: "Smart Builders & Real Estate Developers established with vision to transform construction standards in Tamil Nadu",
+      desc: "Smart Builders & Developers established with vision to transform construction standards in Tamil Nadu",
     },
     {
       year: "2005",
@@ -286,7 +286,7 @@ export const About = (): JSX.Element => {
                 2000
               </h1>
               <p className="text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-3xl mx-auto leading-relaxed">
-                Smart Builders & Real Estate Developers has grown from a small construction firm to become Tamil Nadu's most trusted real estate developer. For over two decades, we've been committed to building quality homes, creating innovative designs, and ensuring our customers are truly satisfied with every project we deliver.
+                Smart Builders & Developers has grown from a small construction firm to become Tamil Nadu's most trusted real estate developer. For over two decades, we've been committed to building quality homes, creating innovative designs, and ensuring our customers are truly satisfied with every project we deliver.
               </p>
             </div>
           </section>
@@ -361,7 +361,7 @@ export const About = (): JSX.Element => {
                 Leadership <span className="text-[#b48b2f]">Team</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                Meet the visionary founder driving Smart Builders & Real Estate Developers
+                Meet the visionary founder driving Smart Builders & Developers
                 towards excellence in construction and real estate.
               </p>
             </div>

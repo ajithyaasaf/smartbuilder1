@@ -381,7 +381,7 @@ export const Contact = (): JSX.Element => {
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        title="Smart Builders & Real Estate Developers Office Location"
+                        title="Smart Builders & Developers Office Location"
                         className="w-full h-full"
                       />
                     </div>
@@ -391,7 +391,7 @@ export const Contact = (): JSX.Element => {
                       <div className="flex items-center mb-2">
                         <div className="w-3 h-3 bg-[#b48b2f] rounded-full mr-2 animate-pulse"></div>
                         <span className="font-semibold text-[#313131] [font-family:'Poppins',Helvetica] text-xs sm:text-sm">
-                          Smart Builders & Real Estate Developers
+                          Smart Builders & Developers
                         </span>
                       </div>
                       <p className="text-xs text-[#6b6b6b] [font-family:'Poppins',Helvetica] mb-2">

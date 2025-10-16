@@ -19,7 +19,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   canonicalUrl,
   schema
 }) => {
-  const fullTitle = `${title} | Smart Builders & Real Estate Developers - Premier Construction Company in Madurai`;
+  const fullTitle = `${title} | Smart Builders & Developers - Premier Construction Company in Madurai`;
   const baseUrl = "https://smartbuilders.replit.app";
   const imageUrl = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
   
@@ -46,7 +46,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     // Basic meta tags
     updateMeta('description', description);
     updateMeta('keywords', keywords);
-    updateMeta('author', 'Smart Builders & Real Estate Developers');
+    updateMeta('author', 'Smart Builders & Developers');
     updateMeta('robots', 'index, follow');
     updateMeta('viewport', 'width=device-width, initial-scale=1.0');
     
@@ -57,7 +57,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     updateMeta('og:image', imageUrl, true);
     updateMeta('og:image:width', '1200', true);
     updateMeta('og:image:height', '630', true);
-    updateMeta('og:site_name', 'Smart Builders & Real Estate Developers', true);
+    updateMeta('og:site_name', 'Smart Builders & Developers', true);
     updateMeta('og:locale', 'en_IN', true);
     
     // Twitter Card tags
@@ -103,7 +103,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 export const getOrganizationSchema = () => ({
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Smart Builders & Real Estate Developers",
+  "name": "Smart Builders & Developers",
   "alternateName": "Smart Builders",
   "url": "https://smartbuilders.replit.app",
   "logo": "https://smartbuilders.replit.app/logo.png",
@@ -139,7 +139,7 @@ export const getOrganizationSchema = () => ({
 export const getRealEstateSchema = () => ({
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
-  "name": "Smart Builders & Real Estate Developers",
+  "name": "Smart Builders & Developers",
   "description": "Leading real estate developer and construction company in Madurai",
   "url": "https://smartbuilders.replit.app",
   "priceRange": "₹18L - ₹2.5Cr",
