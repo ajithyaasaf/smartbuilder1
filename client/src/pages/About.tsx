@@ -286,7 +286,11 @@ export const About = (): JSX.Element => {
                 2000
               </h1>
               <p className="text-xl text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-3xl mx-auto leading-relaxed">
-                Smart Builders & Developers has grown from a small construction firm to become Tamil Nadu's most trusted real estate developer. For over two decades, we've been committed to building quality homes, creating innovative designs, and ensuring our customers are truly satisfied with every project we deliver.
+                Smart Builders & Developers has grown from a small construction
+                firm to become Tamil Nadu's most trusted real estate developer.
+                For over two decades, we've been committed to building quality
+                homes, creating innovative designs, and ensuring our customers
+                are truly satisfied with every project we deliver.
               </p>
             </div>
           </section>
@@ -300,10 +304,33 @@ export const About = (): JSX.Element => {
                 </h2>
                 <div className="space-y-4 text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] leading-relaxed">
                   <p>
-                    Smart Builders & Real Estate Developers was founded in 2000 with a simple yet powerful vision: to create quality homes that families can cherish for generations. Starting as a small construction firm, we've grown to become one of Tamil Nadu's most trusted names in real estate development.
+                    Smart Builders & Real Estate Developers was{" "}
+                    <span className="font-bold text-[#313131]">
+                      founded in 2000
+                    </span>{" "}
+                    with a simple yet powerful vision: to create{" "}
+                    <span className="font-bold text-[#313131]">
+                      quality homes
+                    </span>{" "}
+                    that{" "}
+                    <span className="font-bold text-[#313131]">
+                      families can cherish for generations
+                    </span>
+                    . Starting as a small construction firm, we've grown to
+                    become one of{" "}
+                    <span className="font-bold text-[#313131]">
+                      Tamil Nadu's most trusted names
+                    </span>{" "}
+                    in real estate development.
                   </p>
                   <p>
-                    What sets Smart Builders & Real Estate Developers apart is our complete approach to homebuilding. We handle everything from planning your dream home to handing over the keys, and we're still there for you even after you move in. Our team brings together expertise in engineering, design, and project management to ensure every home we build is solid, beautiful, and built to last.
+                    What sets Smart Builders & Real Estate Developers apart is
+                    our complete approach to homebuilding. We handle everything
+                    from planning your dream home to handing over the keys, and
+                    we're still there for you even after you move in. Our team
+                    brings together expertise in engineering, design, and
+                    project management to ensure every home we build is solid,
+                    beautiful, and built to last.
                   </p>
                 </div>
               </div>
@@ -326,7 +353,8 @@ export const About = (): JSX.Element => {
                 Our <span className="text-[#b48b2f]">Values</span>
               </h2>
               <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto whitespace-nowrap">
-                The principles that guide every decision we make and every project we deliver.
+                The principles that guide every decision we make and every
+                project we deliver.
               </p>
             </div>
 
@@ -353,204 +381,6 @@ export const About = (): JSX.Element => {
               ))}
             </div>
           </section>
-
-          {/* Leadership Team - Founder Profile */}
-          {/*  <section className="mb-20">
-            <div className="text-center mb-12">
-              <h2 className="section-title text-3xl lg:text-4xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                Leadership <span className="text-[#b48b2f]">Team</span>
-              </h2>
-              <p className="text-lg text-[#6b6b6b] [font-family:'Poppins',Helvetica] max-w-2xl mx-auto">
-                Meet the visionary founder driving Smart Builders & Developers
-                towards excellence in construction and real estate.
-              </p>
-            </div>
-
-            {team.map((member, index) => (
-              <div key={index} className="max-w-6xl mx-auto mb-16">
-                 Modern Card Layout with Visual Impact 
-                <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-white">
-                   Decorative Background Elements 
-                  <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#b48b2f]/5 to-transparent"></div>
-                  <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#b48b2f]/10 rounded-full"></div>
-                  <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#b48b2f]/5 rounded-full"></div>
-
-                  <div className="relative z-10 p-8 lg:p-12">
-                     Hero Section - Split Layout 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-12">
-                       Profile Image & Basic Info 
-                      <div className="lg:col-span-1 text-center">
-                        <div className="relative inline-block mb-6">
-                          <div
-                            className="w-48 h-48 lg:w-56 lg:h-56 rounded-2xl shadow-xl border-4 border-white"
-                            style={{
-                              backgroundImage: `url(${member.image})`,
-                              backgroundSize: "cover",
-                              backgroundPosition: "center center",
-                              backgroundRepeat: "no-repeat",
-                            }}
-                          ></div>
-                          <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-[#b48b2f] rounded-full flex items-center justify-center shadow-lg">
-                            <Star className="w-8 h-8 text-white" />
-                          </div>
-                        </div>
-                        <h3 className="text-2xl lg:text-3xl font-bold [font-family:'Poppins',Helvetica] text-[#313131] mb-2">
-                          {member.name}
-                        </h3>
-                        <p className="text-lg font-semibold text-[#b48b2f] mb-4">
-                          {member.role}
-                        </p>
-                        <div className="inline-flex items-center gap-2 bg-[#b48b2f]/10 px-4 py-2 rounded-full">
-                          <Calendar className="w-4 h-4 text-[#b48b2f]" />
-                          <span className="text-sm font-medium text-[#313131]">
-                            {member.experience}
-                          </span>
-                        </div>
-                      </div>
-
-                       Main Content Area 
-                      <div className="lg:col-span-2">
-                         Expertise & Vision 
-                        <div className="mb-8">
-                          <h4 className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] mb-4">
-                            Leadership Vision
-                          </h4>
-                          <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-lg leading-relaxed">
-                            {member.expertise}
-                          </p>
-                        </div>
-
-                         Key Achievement Highlight 
-                        <div className="bg-gradient-to-r from-[#b48b2f] to-[#9d7829] p-6 rounded-2xl text-white mb-8">
-                          <div className="flex items-start gap-4">
-                            <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                              <Trophy className="w-6 h-6 text-white" />
-                            </div>
-                            <div>
-                              <h4 className="text-lg font-bold [font-family:'Poppins',Helvetica] mb-2">
-                                Key Achievement
-                              </h4>
-                              <p className="[font-family:'Poppins',Helvetica] opacity-95">
-                                {member.achievements}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                         Professional Stats 
-                        <div className="grid grid-cols-2 gap-6">
-                          <div className="text-center p-4 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-xl">
-                            <Award className="w-8 h-8 text-[#b48b2f] mx-auto mb-2" />
-                            <p className="text-2xl font-bold text-[#313131]">
-                              {member.education.length}
-                            </p>
-                            <p className="text-sm text-[#6b6b6b] font-medium">
-                              Qualifications
-                            </p>
-                          </div>
-                          <div className="text-center p-4 bg-gradient-to-br from-[#b48b2f]/5 to-[#b48b2f]/10 rounded-xl">
-                            <Shield className="w-8 h-8 text-[#b48b2f] mx-auto mb-2" />
-                            <p className="text-2xl font-bold text-[#313131]">
-                              {member.memberships.length}
-                            </p>
-                            <p className="text-sm text-[#6b6b6b] font-medium">
-                              Memberships
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                     Detailed Information - Expandable Style 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                      Education - Modern Card Style 
-                      <div className="bg-gray-50 p-6 rounded-2xl">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 bg-[#b48b2f] rounded-xl flex items-center justify-center">
-                            <Award className="w-5 h-5 text-white" />
-                          </div>
-                          <h4 className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
-                            Education
-                          </h4>
-                        </div>
-                        <div className="space-y-3">
-                          {member.education.map((edu, eduIndex) => (
-                            <div
-                              key={eduIndex}
-                              className="flex items-center gap-3"
-                            >
-                              <div className="w-8 h-8 bg-[#b48b2f]/20 rounded-lg flex items-center justify-center text-xs font-bold text-[#b48b2f]">
-                                {edu.year.slice(-2)}
-                              </div>
-                              <div className="flex-1">
-                                <p className="font-medium text-[#313131] text-sm">
-                                  {edu.degree}
-                                </p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                       Professional Memberships 
-                      <div className="bg-gray-50 p-6 rounded-2xl">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 bg-[#b48b2f] rounded-xl flex items-center justify-center">
-                            <Shield className="w-5 h-5 text-white" />
-                          </div>
-                          <h4 className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
-                            Memberships
-                          </h4>
-                        </div>
-                        <div className="space-y-2">
-                          {member.memberships.map((membership, memIndex) => (
-                            <div
-                              key={memIndex}
-                              className="flex items-start gap-2"
-                            >
-                              <div className="w-1.5 h-1.5 bg-[#b48b2f] rounded-full mt-2 flex-shrink-0"></div>
-                              <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm leading-relaxed">
-                                {membership}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                       Experience Highlights 
-                      <div className="bg-gray-50 p-6 rounded-2xl">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 bg-[#b48b2f] rounded-xl flex items-center justify-center">
-                            <Target className="w-5 h-5 text-white" />
-                          </div>
-                          <h4 className="text-lg font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
-                            Experience
-                          </h4>
-                        </div>
-                        <div className="space-y-3">
-                          {member.experience_details
-                            .slice(0, 3)
-                            .map((exp, expIndex) => (
-                              <div
-                                key={expIndex}
-                                className="flex items-start gap-3"
-                              >
-                                <div className="w-6 h-6 bg-[#b48b2f] rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                                  {expIndex + 1}
-                                </div>
-                                <p className="text-[#6b6b6b] [font-family:'Poppins',Helvetica] text-sm leading-relaxed">
-                                  {exp}
-                                </p>
-                              </div>
-                            ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </section> */}
 
           {/* What Sets Us Apart */}
           <section className="mb-20">
