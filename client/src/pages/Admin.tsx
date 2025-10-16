@@ -367,7 +367,7 @@ export const Admin = (): JSX.Element => {
               Admin <span className="text-[#b48b2f]">Login</span>
             </CardTitle>
             <CardDescription className="text-xs xs:text-sm px-2">
-              Access the Smart Builders & Developers admin dashboard
+              Access the Smart Builders & Real Estate Developers admin dashboard
             </CardDescription>
           </CardHeader>
           <CardContent className="px-4 xs:px-6">
@@ -420,7 +420,7 @@ export const Admin = (): JSX.Element => {
           <div className="flex justify-between items-center h-14 xs:h-16 sm:h-18">
             <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4 min-w-0 flex-1">
               <h1 className="text-sm xs:text-base sm:text-lg lg:text-2xl font-bold text-[#313131] [font-family:'Poppins',Helvetica] truncate">
-                <span className="hidden sm:inline">Smart Builders & Developers </span>
+                <span className="hidden sm:inline">Smart Builders & Real Estate Developers </span>
                 <span className="sm:hidden">Smart Builders </span>
                 <span className="text-[#b48b2f]">Admin</span>
               </h1>

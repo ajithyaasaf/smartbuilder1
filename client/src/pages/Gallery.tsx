@@ -94,8 +94,7 @@ export const Gallery = (): JSX.Element => {
       category: "completed",
       type: "image",
       description: "Luxury apartment complex with modern amenities",
-      location: "Madurai",
-      year: "2023",
+      location: "Coimbatore",
       image: "/1_1750919638071.jpeg",
       stats: { units: 120, floors: 15, parking: 200 },
     },
@@ -105,8 +104,7 @@ export const Gallery = (): JSX.Element => {
       category: "completed",
       type: "image",
       description: "Premium residential tower with panoramic views",
-      location: "Madurai",
-      year: "2023",
+      location: "Coimbatore",
       image: "/2_1750919638075.jpeg",
       stats: { units: 80, floors: 12, parking: 160 },
     },
@@ -116,8 +114,7 @@ export const Gallery = (): JSX.Element => {
       category: "completed",
       type: "image",
       description: "Modern apartments with landscaped gardens",
-      location: "Madurai",
-      year: "2022",
+      location: "Coimbatore",
       image: "/3_1750919638076.jpeg",
       stats: { units: 100, floors: 10, parking: 180 },
     },
@@ -127,8 +124,7 @@ export const Gallery = (): JSX.Element => {
       category: "completed",
       type: "image",
       description: "Contemporary design with premium finishes",
-      location: "Madurai",
-      year: "2022",
+      location: "Coimbatore",
       image: "/4_1750919638076.jpeg",
       stats: { units: 90, floors: 8, parking: 150 },
     },
@@ -138,8 +134,7 @@ export const Gallery = (): JSX.Element => {
       category: "completed",
       type: "image",
       description: "Luxury high-rise with world-class amenities",
-      location: "Madurai",
-      year: "2021",
+      location: "Coimbatore",
       image: "/5_1750919638077.jpeg",
       stats: { units: 150, floors: 18, parking: 250 },
     },
@@ -150,8 +145,7 @@ export const Gallery = (): JSX.Element => {
       category: "ongoing",
       type: "image",
       description: "Premium residential development in progress",
-      location: "Bypass Road, Madurai",
-      year: "2024",
+      location: "Coimbatore",
       image: "/6_1750919638078.jpeg",
       progress: 75,
       stats: { units: 140, floors: 16, parking: 220 },
@@ -162,8 +156,7 @@ export const Gallery = (): JSX.Element => {
       category: "ongoing",
       type: "image",
       description: "Modern twin towers with smart home features",
-      location: "Madurai",
-      year: "2024",
+      location: "Coimbatore",
       image: "/7_1750919638079.jpeg",
       progress: 60,
       stats: { units: 180, floors: 20, parking: 300 },
@@ -174,8 +167,7 @@ export const Gallery = (): JSX.Element => {
       category: "ongoing",
       type: "image",
       description: "Eco-friendly residential complex under construction",
-      location: "Madurai",
-      year: "2024",
+      location: "Coimbatore",
       image: "/8_1750919638079.jpeg",
       progress: 45,
       stats: { units: 110, floors: 12, parking: 200 },
@@ -187,7 +179,7 @@ export const Gallery = (): JSX.Element => {
       category: "process",
       type: "image",
       description: "Deep foundation work using advanced technology",
-      location: "Construction Site",
+      location: "Coimbatore",
       image: "/9_1750919638080.jpeg",
     },
     {
@@ -196,7 +188,7 @@ export const Gallery = (): JSX.Element => {
       category: "process",
       type: "image",
       description: "High-quality concrete and steel construction",
-      location: "Construction Site",
+      location: "Coimbatore",
       image: "/10_1750919638081.jpeg",
     },
     {
@@ -205,7 +197,7 @@ export const Gallery = (): JSX.Element => {
       category: "process",
       type: "image",
       description: "Attention to detail in interior finishing",
-      location: "Construction Site",
+      location: "Coimbatore",
       image: "/11_1750919638082.jpeg",
     },
     // Awards & Recognition
@@ -215,8 +207,7 @@ export const Gallery = (): JSX.Element => {
       category: "awards",
       type: "image",
       description: "Recognition for outstanding construction quality",
-      location: "Madurai",
-      year: "2023",
+      location: "Coimbatore",
       image: "/12_1750919638083.jpeg",
     },
     {
@@ -225,8 +216,7 @@ export const Gallery = (): JSX.Element => {
       category: "awards",
       type: "image",
       description: "Celebration of successful project completion",
-      location: "Madurai",
-      year: "2023",
+      location: "Coimbatore",
       image: "/13_1750919638083.jpeg",
     },
   ];
@@ -321,8 +311,8 @@ export const Gallery = (): JSX.Element => {
   }, [selectedImage, currentItems]);
 
   const achievements = [
-    { number: "60+", label: "Completed Projects", icon: Award },
-    { number: "95%", label: "Happy Families", icon: Users },
+    { number: "120+", label: "Completed Projects", icon: Award },
+    { number: "98%", label: "Happy Families", icon: Users },
     { number: "25+", label: "Years Experience", icon: Calendar },
     { number: "100K+", label: "Sq.Ft Delivered", icon: Camera },
   ];
@@ -567,17 +557,11 @@ export const Gallery = (): JSX.Element => {
                       {item.description}
                     </CardDescription>
 
-                    <div className="flex items-center justify-between text-sm text-[#6b6b6b] mb-4">
+                    <div className="flex items-center text-sm text-[#6b6b6b] mb-4">
                       <div className="flex items-center">
                         <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
                         {item.location}
                       </div>
-                      {item.year && (
-                        <div className="flex items-center">
-                          <Calendar className="w-4 h-4 mr-1 text-[#b48b2f]" />
-                          {item.year}
-                        </div>
-                      )}
                     </div>
                   </CardContent>
                 </Card>

@@ -207,7 +207,7 @@ export const Services = (): JSX.Element => {
       icon: Award,
     },
     {
-      title: "60+ Happy Families",
+      title: "120+ Happy Families",
       desc: "Delivered dream homes across South India",
       icon: Users,
     },

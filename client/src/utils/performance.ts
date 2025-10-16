@@ -1,4 +1,4 @@
-// Performance optimization utilities for Smart Builders & Developers
+// Performance optimization utilities for Smart Builders & Real Estate Developers
 
 // Lazy loading observer for images
 export const createLazyImageObserver = () => {

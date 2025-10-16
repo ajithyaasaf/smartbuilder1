@@ -89,13 +89,13 @@ export const Home = (): JSX.Element => {
   const stats = [
     {
       icon: Building,
-      value: "60+",
+      value: "120+",
       label: "Projects Completed",
       color: "text-blue-600",
     },
     {
       icon: Users,
-      value: "95%",
+      value: "98%",
       label: "Happy Families",
       color: "text-green-600",
     },
@@ -175,7 +175,7 @@ export const Home = (): JSX.Element => {
     <div ref={containerRef} className="bg-white min-h-screen w-full">
       <SEOHead
         title="Premier Construction Company in Madurai"
-        description="Smart Builders & Developers - Leading construction company in Madurai with 22+ years experience. Specializing in residential projects, apartments, villas, and land development. 500+ projects completed."
+        description="Smart Builders & Real Estate Developers - Leading construction company in Madurai with 22+ years experience. Specializing in residential projects, apartments, villas, and land development. 500+ projects completed."
         keywords="construction company Madurai, builders Madurai, residential projects, apartments, villas, real estate Madurai, Tamil Nadu builders"
         canonicalUrl="https://smartbuilders.replit.app/"
         schema={getOrganizationSchema()}

@@ -129,6 +129,13 @@ export const Contact = (): JSX.Element => {
       email: "madurai@smartbuilders.com",
       type: "Head Office",
     },
+    {
+      city: "Coimbatore",
+      address: "28, Lakshmi Nagar, Near KM school, Irugur, COIMBATORE - 26",
+      phone: "+91 96004 52274",
+      email: "coimbatore@smartbuilders.com",
+      type: "Branch Office",
+    },
   ];
 
   const faqs = [
@@ -374,7 +381,7 @@ export const Contact = (): JSX.Element => {
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        title="Smart Builders & Developers Office Location"
+                        title="Smart Builders & Real Estate Developers Office Location"
                         className="w-full h-full"
                       />
                     </div>
@@ -384,7 +391,7 @@ export const Contact = (): JSX.Element => {
                       <div className="flex items-center mb-2">
                         <div className="w-3 h-3 bg-[#b48b2f] rounded-full mr-2 animate-pulse"></div>
                         <span className="font-semibold text-[#313131] [font-family:'Poppins',Helvetica] text-xs sm:text-sm">
-                          Smart Builders & Developers
+                          Smart Builders & Real Estate Developers
                         </span>
                       </div>
                       <p className="text-xs text-[#6b6b6b] [font-family:'Poppins',Helvetica] mb-2">

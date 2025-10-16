@@ -26,13 +26,13 @@ export const Footer = (): JSX.Element => {
     { name: "Admin", path: "/admin" },
   ];
 
-  const services = [
-    "Construction Services",
-    "Interior Design",
-    "Project Management",
-    "Legal Services",
-    "Home Loans",
-    "Property Investment",
+  const contactDetails = [
+    "23/72, Ramnagar 3rd Street",
+    "S S Colony, Bypass Rd",
+    "Madurai - 625016",
+    "+91 96004 52274",
+    "info@smartbuilders.com",
+    "Mon-Sat: 9:00 AM - 6:00 PM",
   ];
 
   const locations = [
@@ -63,7 +63,7 @@ export const Footer = (): JSX.Element => {
                 <div className="text-xl font-bold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
                   Smart Builders
                 </div>
-                <div className="text-sm text-gray-300">& Developers</div>
+                <div className="text-sm text-gray-300">& Real Estate Developers</div>
               </div>
             </div>
             <p className="text-gray-300 text-sm [font-family:'Poppins',Helvetica] leading-6">
@@ -110,18 +110,18 @@ export const Footer = (): JSX.Element => {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Contact Details */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-[#b48b2f] [font-family:'Poppins',Helvetica]">
-              Our Services
+              Contact Details
             </h3>
             <ul className="space-y-2">
-              {services.map((service, index) => (
+              {contactDetails.map((detail, index) => (
                 <li
                   key={index}
                   className="text-gray-300 text-sm [font-family:'Poppins',Helvetica]"
                 >
-                  {service}
+                  {detail}
                 </li>
               ))}
             </ul>
@@ -178,7 +178,7 @@ export const Footer = (): JSX.Element => {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-300">
-            <div>© 2025 Smart Builders & Developers. All rights reserved.</div>
+            <div>© 2025 Smart Builders & Real Estate Developers. All rights reserved.</div>
             <div className="hidden md:block">|</div>
 
           </div>
