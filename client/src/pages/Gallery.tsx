@@ -90,40 +90,40 @@ export const Gallery = (): JSX.Element => {
     // Completed Projects
     {
       id: 1,
-      title: "Royal Residency",
+      title: "",
       category: "completed",
       type: "image",
-      description: "Luxury apartment complex with modern amenities",
+      description: "Residential Construction Project",
       location: "Coimbatore",
       image: "/2_1762951632960.jpg",
       stats: { units: 120, floors: 15, parking: 200 },
     },
     {
       id: 2,
-      title: "Smart Heights",
+      title: "",
       category: "completed",
       type: "image",
-      description: "Premium residential tower with panoramic views",
+      description: "Residential Construction Project",
       location: "Coimbatore",
       image: "/5_1762951675138.jpg",
       stats: { units: 80, floors: 12, parking: 160 },
     },
     {
       id: 4,
-      title: "Elite Complex",
+      title: "",
       category: "completed",
       type: "image",
-      description: "Contemporary design with premium finishes",
+      description: "Residential Construction Project",
       location: "Coimbatore",
       image: "/4_1762951725994.jpg",
       stats: { units: 90, floors: 8, parking: 150 },
     },
     {
       id: 5,
-      title: "Golden Tower",
+      title: "",
       category: "completed",
       type: "image",
-      description: "Luxury high-rise with world-class amenities",
+      description: "Residential Construction Project",
       location: "Coimbatore",
       image: "/3_1762951744996.jpg",
       stats: { units: 150, floors: 18, parking: 250 },
@@ -131,10 +131,10 @@ export const Gallery = (): JSX.Element => {
     // Ongoing Projects
     {
       id: 7,
-      title: "Smart City Towers",
+      title: "",
       category: "ongoing",
       type: "image",
-      description: "Modern twin towers with smart home features",
+      description: "Residential Construction Project",
       location: "Coimbatore",
       image: "/7_1750919638079.jpeg",
       progress: 60,
@@ -142,10 +142,10 @@ export const Gallery = (): JSX.Element => {
     },
     {
       id: 8,
-      title: "Green Valley Phase II",
+      title: "",
       category: "ongoing",
       type: "image",
-      description: "Eco-friendly residential complex under construction",
+      description: "Residential Construction Project",
       location: "Coimbatore",
       image: "/8_1750919638079.jpg",
       progress: 45,
@@ -154,47 +154,47 @@ export const Gallery = (): JSX.Element => {
     // Construction Process
     {
       id: 9,
-      title: "Foundation Excellence",
+      title: "",
       category: "process",
       type: "image",
-      description: "Deep foundation work using advanced technology",
+      description: "Construction Work",
       location: "Coimbatore",
       image: "/9_1750919638080.jpeg",
     },
     {
       id: 10,
-      title: "Structural Framework",
+      title: "",
       category: "process",
       type: "image",
-      description: "High-quality concrete and steel construction",
+      description: "Construction Work",
       location: "Coimbatore",
       image: "/10_1750919638081.jpeg",
     },
     {
       id: 11,
-      title: "Premium Finishing",
+      title: "",
       category: "process",
       type: "image",
-      description: "Attention to detail in interior finishing",
+      description: "Construction Work",
       location: "Coimbatore",
       image: "/11_1750919638082.jpeg",
     },
     // Awards & Recognition
     {
       id: 12,
-      title: "Project Excellence Award",
+      title: "",
       category: "awards",
       type: "image",
-      description: "Recognition for outstanding construction quality",
+      description: "Company Achievement",
       location: "Coimbatore",
       image: "/12_1750919638083.jpeg",
     },
     {
       id: 13,
-      title: "Completed Milestone",
+      title: "",
       category: "awards",
       type: "image",
-      description: "Celebration of successful project completion",
+      description: "Company Achievement",
       location: "Coimbatore",
       image: "/13_1750919638083.jpeg",
     },
@@ -500,10 +500,7 @@ export const Gallery = (): JSX.Element => {
                   </div>
 
                   <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <CardTitle className="text-xl font-bold text-[#313131] [font-family:'Poppins',Helvetica]">
-                        {item.title}
-                      </CardTitle>
+                    <div className="flex items-start justify-end mb-3">
                       <div className="flex space-x-2">
                         <Button
                           size="sm"
@@ -523,7 +520,7 @@ export const Gallery = (): JSX.Element => {
                           className="p-1"
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleDownload(item.image, item.title);
+                            handleDownload(item.image, item.title || 'project');
                           }}
                           title="Download image"
                         >
@@ -539,7 +536,7 @@ export const Gallery = (): JSX.Element => {
                     <div className="flex items-center text-sm text-[#6b6b6b] mb-4">
                       <div className="flex items-center">
                         <MapPin className="w-4 h-4 mr-1 text-[#b48b2f]" />
-                        {item.location}
+                        <span className="font-bold">{item.location}</span>
                       </div>
                     </div>
                   </CardContent>
